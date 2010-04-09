@@ -1,0 +1,32 @@
+#summary Description of the ILP models of Gate Assignment Problem.
+
+= Introduction =
+
+Add your content here.
+
+= Models =
+
+== Bin packing ==
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="min z^b = \sum_{k \in G} c_{k} u_{k}"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="\sum_{k:(i, k) \in E} x_{ik} = 1 forall i \in B"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="\sum_{i \in Q_{F_k}} x_{ik}\leq 1 forall k \in G"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="sum_{i:(i, k) \in E} x_{ik} \leq |\{(i, k)\}| u_{k} forall k \in G"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="\sum_{k \in G} u_{k} \geq LB"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="x_{ik} \in \{0, 1\} forall(i, k) \in E"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="u_{k} \in \{0, 1\} forall k \in G"/>
+
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
