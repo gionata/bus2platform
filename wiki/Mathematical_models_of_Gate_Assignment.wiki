@@ -23,6 +23,24 @@ Add your content here.
 <wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="u_{k} \in \{0, 1\} forall k \in G"/>
 
 
+== Min Max ==
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="min z^{dm} = m"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="\sum_{k:(i, k) \in E} x_{ik} = 1 forall i \in B"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="\sum_{i \in Q_{F_k}} x_{ik}\leq 1 forall k \in G"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="x_{ik} + x_{jk} - y_{ij} \leq 1 forall (i, j) \in F\, forall k:(i, k),(j, k) \in E"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="m + M y_{ij} -c_{ij} y_{ij} \leq M forall(i, j) \in F"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="x_{ik} \in \{0, 1\} forall(i, k) \in E"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="0 \leq y_{ij} \leq forall (i, j) \in F"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="m \geq 0"/>
+
 
 = Details =
 
