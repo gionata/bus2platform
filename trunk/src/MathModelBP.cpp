@@ -34,6 +34,7 @@ MathModelBP::MathModelBP(GraphModel &graphs): MathModel(graphs)
 	int lb = _graphs.sets().lowerBoundNumberGates();
 	setLbNoGates(lb);
 	setSOS1();
+	set_add_rowmode(_lp, FALSE);
 }
 
 MathModelBP::~MathModelBP()
@@ -46,6 +47,8 @@ lprec *MathModelBP::createLP(unsigned int numVars, unsigned int numConstraints)
 	if ((_lp = make_lp(numConstraints, numVars)) == NULL) {
 		exit(1);
 	}
+
+	set_add_rowmode(_lp, TRUE);
 
 	set_lp_name(_lp, "BinPacking");
 	set_minim(_lp);
