@@ -65,6 +65,7 @@ MathModelMinPConflict::MathModelMinPConflict(GraphModel &graphs): MathModel(grap
 	mstime = (double)(end - begin) / (CLOCKS_PER_SEC / 1000);
 	_sr.add(SolutionInformation("sos1LPtime (ms)", "Time to construct the SOS1 constraints", int_long, &(mstime)));
 
+	set_add_rowmode(_lp, FALSE);
 
 	//cout << "constraints, secondo previsione: " << _numConstraints << endl;
 	//cout << "constraints, secondo codice:     " << get_Nrows(_lp) << endl;
@@ -86,6 +87,8 @@ lprec *MathModelMinPConflict::createLP(unsigned int numVars,
 	if ((_lp = make_lp(numConstraints, numVars)) == NULL) {
 		exit(1);
 	}
+
+	set_add_rowmode(_lp, TRUE);
 
 	set_lp_name(_lp, "MinPConflict");
 	set_minim(_lp);

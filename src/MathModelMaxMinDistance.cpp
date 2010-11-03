@@ -42,6 +42,7 @@ MathModelMaxMinDistance::MathModelMaxMinDistance(GraphModel &graphs): MathModel(
 	setLinkConstraints();
 	setLinkMConstraints();
 	setSOS1();
+	set_add_rowmode(_lp, FALSE);
 	//cout << "constraints, secondo previsione: " << _numConstraints << endl;
 	//cout << "constraints, secondo codice:     " << get_Nrows(_lp) << endl;
 //	write_lp(_lp, "modelMaxMinDistance.lp");
@@ -61,6 +62,8 @@ lprec *MathModelMaxMinDistance::createLP(unsigned int numVars,
 	if ((_lp = make_lp(numConstraints, numVars)) == NULL) {
 		exit(1);
 	}
+
+	set_add_rowmode(_lp, TRUE);
 
 	set_lp_name(_lp, "MaxMinDistance");
 	set_maxim(_lp);
