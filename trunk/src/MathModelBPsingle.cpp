@@ -25,6 +25,8 @@ MathModelBPsingle::MathModelBPsingle(GraphModel &graphs): MathModel(graphs)
 		_row_values[i] = 1.0;
 	}
 
+	_column_numbers = new int[_numVars + 1];
+
 	_lp = createLP(_numVars, _numConstraints);
 	setObjectiveFunction();
 	setAssignmentConstraints();
@@ -39,10 +41,10 @@ MathModelBPsingle::MathModelBPsingle(GraphModel &graphs): MathModel(graphs)
 MathModelBPsingle::~MathModelBPsingle()
 {
 	delete[]_row_values;
+	delete[]_column_numbers;
 }
 
-lprec *MathModelBPsingle::createLP(unsigned int numVars,
-							unsigned int numConstraints)
+lprec *MathModelBPsingle::createLP(unsigned int numVars, unsigned int numConstraints)
 {
 	if ((_lp = make_lp(numConstraints, numVars)) == NULL) {
 		exit(1);
@@ -94,11 +96,13 @@ bool MathModelBPsingle::setAssignmentConstraints()
 		set_row_name(_lp, i + 1, _col_or_row_name);
 		graph_traits < GraphH >::out_edge_iterator out_i, out_end;
 
+		unsigned count = 0;
 		for (tie(out_i, out_end) = out_edges(i, _graphs.graphH());
 				out_i != out_end; ++out_i) {
-			set_mat(_lp, i + 1, _H_edge_index[*out_i] + 1, 1.0);
+			_column_numbers[count++] = _H_edge_index[*out_i] + 1;
 		}
 
+		set_rowex(_lp, i + 1, count, _row_values, _column_numbers);
 		set_constr_type(_lp, i + 1, EQ);
 		set_rh(_lp, i + 1, 1.0);
 	}
@@ -128,6 +132,7 @@ bool MathModelBPsingle::setLinkConstraints()
 {
 
 	int row_no = _numDwells + _numInterestingCliques;
+	_row_values[1] = -1.;
 	/* for each gate */
 	for (unsigned int k = 0; k < _graphs.numPlatforms(); k++) {
 		int k1 = k + _numDwells;
@@ -137,8 +142,10 @@ bool MathModelBPsingle::setLinkConstraints()
 				in_i != in_end; ++in_i) {
 			row_no++;
 			graph_traits < GraphH >::edge_descriptor e = *in_i;
-			set_mat(_lp, row_no, _H_edge_index[e] + 1, 1.0);
-			set_mat(_lp, row_no, _uk_start + k, -1.0);
+			_column_numbers[0] = _H_edge_index[e] + 1;
+			_column_numbers[1] = _uk_start + k;
+
+			set_rowex(_lp, row_no, 2, _row_values, _column_numbers);
 			set_constr_type(_lp, row_no, LE);
 			set_rh(_lp, row_no, 0.0);
 			VertexDescriptorH i = source(e, _graphs.graphH());
@@ -146,6 +153,7 @@ bool MathModelBPsingle::setLinkConstraints()
 			set_row_name(_lp, row_no, _col_or_row_name);
 		}
 	}
+	_row_values[1] = 1.;
 
 	return true;
 }

@@ -31,6 +31,7 @@ MathModelMaxMinDistance::MathModelMaxMinDistance(GraphModel &graphs): MathModel(
 		_row_values[i] = 1.0;
 	}
 
+	_column_numbers = new int[_numVars + 1];
 	_linkrow[0] =  1.;
 	_linkrow[1] =  1.;
 	_linkrow[2] = -1.;
@@ -54,6 +55,7 @@ MathModelMaxMinDistance::MathModelMaxMinDistance(GraphModel &graphs): MathModel(
 MathModelMaxMinDistance::~MathModelMaxMinDistance(void)
 {
 	delete[]_row_values;
+	delete[]_column_numbers;
 }
 
 lprec *MathModelMaxMinDistance::createLP(unsigned int numVars,
@@ -81,9 +83,11 @@ lprec *MathModelMaxMinDistance::createLP(unsigned int numVars,
 		(*_assignment)[xik_idx].second =
 			target(*ei, _graphs.graphH());
 		set_binary(_lp, variableIndex, TRUE);
+#ifndef _NO_LP_NAMES
 		//strcpy(_col_or_row_name, _H_edge_name[*ei].c_str());
 		strcpy(_col_or_row_name, _H_edge_name[xik_idx].c_str());
 		set_col_name(_lp, variableIndex, _col_or_row_name);
+#endif
 	}
 	}
 
@@ -94,14 +98,17 @@ lprec *MathModelMaxMinDistance::createLP(unsigned int numVars,
 		size_t variableIndex = yij_idx + _yij_start;
 		// set_binary(_lp, variableIndex, TRUE);
 		set_bounds(_lp, variableIndex, 0.0, 1.0);
-		// strcpy(_col_or_row_name, _C_edge_name[*ei].c_str());
-		strcpy(_col_or_row_name, _C_edge_name[ yij_idx].c_str());
+#ifndef _NO_LP_NAMES
+		strcpy(_col_or_row_name, _C_edge_name[yij_idx].c_str());
 		set_col_name(_lp, variableIndex, _col_or_row_name);
+#endif
 	}
 	}
 
+#ifndef _NO_LP_NAMES
 	strcpy(_col_or_row_name, "m");
 	set_col_name(_lp, _m_start, _col_or_row_name);
+#endif
 
 	return _lp;
 }
@@ -125,16 +132,19 @@ bool MathModelMaxMinDistance::setAssignmentConstraints()
 
 	/* for each dwell */
 	for (unsigned int i = 0; i < _numDwells; i++) {
+#ifndef _NO_LP_NAMES
 		sprintf(_col_or_row_name, "dwell_%d", i + 1);
 		set_row_name(_lp, _currentRow, _col_or_row_name);
+#endif
 
 		graph_traits < GraphH >::out_edge_iterator out_i, out_end;
+		unsigned count = 0;
 		for (tie(out_i, out_end) = out_edges(i, H); out_i != out_end;
 				++out_i) {
-			set_mat(_lp, _currentRow,
-				   _H_edge_index[*out_i] + _xik_start, 1.0);
+			_column_numbers[count++] = _H_edge_index[*out_i] + _xik_start;
 		}
 
+		set_rowex(_lp, _currentRow, count, _row_values, _column_numbers);
 		set_constr_type(_lp, _currentRow, EQ);
 		set_rh(_lp, _currentRow++, 1.0);
 	}
@@ -146,12 +156,15 @@ bool MathModelMaxMinDistance::setIncompatibilityConstraints()
 {
 
 	for (int soss = 0; soss < _numInterestingCliques; soss++) {
-		sprintf(_col_or_row_name, "incomp_clique_%d", soss + 1);
+
 		set_rowex(_lp, _currentRow, _sos1Cardinality[soss], _row_values,
 				_colno[soss]);
 		set_constr_type(_lp, _currentRow, LE);
 		set_rh(_lp, _currentRow, 1.0);
+#ifndef _NO_LP_NAMES
+		sprintf(_col_or_row_name, "incomp_clique_%d", soss + 1);
 		set_row_name(_lp, _currentRow++, _col_or_row_name);
+#endif
 	}
 
 	return true;
@@ -189,19 +202,12 @@ bool MathModelMaxMinDistance::setLinkConstraints()
 		{
 			size_t x_ik = x_ijk->first;
 			size_t x_jk = x_ijk->second;
-			/*
+			
 			_linkcolno[0] = x_ik + _xik_start;
 			_linkcolno[1] = x_jk + _xik_start;
 			_linkcolno[2] = y_ijIndex + _yij_start;
-			set_rowex(_lp, _currentRow, 3, _linkrow, _linkcolno);
-			*/
 
-			set_mat(_lp, _currentRow, x_ik + _xik_start,
-				   1);
-			set_mat(_lp, _currentRow, x_jk + _xik_start,
-				   1);
-			set_mat(_lp, _currentRow, y_ijIndex + _yij_start,
-				   -1);
+			set_rowex(_lp, _currentRow, 3, _linkrow, _linkcolno);
 
 			/*VertexDescriptor k =  target(x_ik, H);*/
 #ifndef _NO_LP_NAMES
@@ -247,18 +253,24 @@ bool MathModelMaxMinDistance::setLinkMConstraints()
 			continue;
 		}*/
 
+#ifdef _NO_LP_NAMES
 		int iIndex = _C_vertex_index[i];
 		int jIndex = _C_vertex_index[j];
 		sprintf(_col_or_row_name, "m_y_%d_%d", B[iIndex]->dwellNumber(),
 			   B[jIndex]->dwellNumber());
 		set_row_name(_lp, _currentRow, _col_or_row_name);
-		set_mat(_lp, _currentRow, _m_start, 1);
-		set_mat(_lp, _currentRow, yij_idx + _yij_start,
-			   _bigM - _C_edge_weight[yij_idx]);
+#endif
+		_column_numbers[0] = _m_start;
+		_column_numbers[1] = yij_idx + _yij_start;
+		//_linkrow[0] =  1.;
+		_linkrow[1] =  _bigM - _C_edge_weight[yij_idx];
+		set_rowex(_lp, _currentRow, 2, _linkrow, _column_numbers);
 		set_constr_type(_lp, _currentRow, LE);
 		set_rh(_lp, _currentRow, _bigM);
 		_currentRow++;
 	}
+
+	_linkrow[1] =  1.;
 
 	return true;
 }

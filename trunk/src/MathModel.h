@@ -146,6 +146,7 @@ protected:
     int **_colno;
     int _numInterestingCliques;
     double *_row_values;
+    int *_column_numbers;
     std::vector < int >&_sos1Cardinality;
     std::vector < std::pair < int, int > > *_assignment;
 

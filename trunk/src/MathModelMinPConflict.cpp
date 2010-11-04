@@ -30,6 +30,8 @@ MathModelMinPConflict::MathModelMinPConflict(GraphModel &graphs): MathModel(grap
 		_row_values[i] = 1.0;
 	}
 
+	_column_numbers = new int[_numVars + 1];
+
 	_lp = createLP(_numVars, _numConstraints);
 	clock_t end = clock();
 	long int mstime = (double)(end - begin) / (CLOCKS_PER_SEC / 1000);
@@ -69,20 +71,16 @@ MathModelMinPConflict::MathModelMinPConflict(GraphModel &graphs): MathModel(grap
 
 	//cout << "constraints, secondo previsione: " << _numConstraints << endl;
 	//cout << "constraints, secondo codice:     " << get_Nrows(_lp) << endl;
-
-//	write_lp(_lp, "modelMinPConflict.lp");
-//	set_XLI(_lp, "xli_CPLEX");
-//	write_XLI(_lp, "modelMinPConflict_CPLEX.lp", 0, FALSE);
 }
 
 MathModelMinPConflict::~MathModelMinPConflict(void)
 {
 	// _sr.print(cout);
 	delete[]_row_values;
+	delete[]_column_numbers;
 }
 
-lprec *MathModelMinPConflict::createLP(unsigned int numVars,
-							    unsigned int numConstraints)
+lprec *MathModelMinPConflict::createLP(unsigned int numVars, unsigned int numConstraints)
 {
 	if ((_lp = make_lp(numConstraints, numVars)) == NULL) {
 		exit(1);
@@ -90,7 +88,9 @@ lprec *MathModelMinPConflict::createLP(unsigned int numVars,
 
 	set_add_rowmode(_lp, TRUE);
 
+#ifndef _NO_LP_NAMES
 	set_lp_name(_lp, "MinPConflict");
+#endif
 	set_minim(_lp);
 
 	graph_traits < GraphH >::edge_iterator eiH, edge_endH;
@@ -175,14 +175,15 @@ bool MathModelMinPConflict::setAssignmentConstraints()
 		sprintf(_col_or_row_name, "dwell_%d", i + 1);
 		set_row_name(_lp, _currentRow, _col_or_row_name);
 #endif
-		graph_traits < GraphH >::out_edge_iterator out_iH, out_endH;
 
+		graph_traits < GraphH >::out_edge_iterator out_iH, out_endH;
+		unsigned count = 0;
 		for (tie(out_iH, out_endH) = out_edges(i, _graphs.graphH());
 				out_iH != out_endH; ++out_iH) {
-			set_mat(_lp, _currentRow,
-				   _H_edge_index[*out_iH] + _xik_start, 1.0);
+			_column_numbers[count++] = _H_edge_index[*out_iH] + _xik_start;
 		}
 
+		set_rowex(_lp, _currentRow, count, _row_values, _column_numbers);
 		set_constr_type(_lp, _currentRow, EQ);
 		set_rh(_lp, _currentRow++, 1.0);
 	}
@@ -216,6 +217,8 @@ bool MathModelMinPConflict::setLinkConstraints()
 	//GraphH &H = _graphs.graphH();
 	int fictitious_k = 0;
 
+	_row_values[2] = -1.;
+
 	graph_traits < GraphC >::edge_iterator eiC, ei_endC;
 	VertexDescriptorC i, j;
 
@@ -239,16 +242,12 @@ bool MathModelMinPConflict::setLinkConstraints()
 		{
 			size_t x_ik = x_ijk->first;
 			size_t x_jk = x_ijk->second;
-			set_mat(_lp, _currentRow, x_ik + _xik_start,
-				   1);
-			set_mat(_lp, _currentRow, x_jk + _xik_start,
-				   1);
-			set_mat(_lp, _currentRow, y_ijIndex + _yij_start,
-				   -1);
-			/*int k =  (x_ik, H)
-			sprintf(_col_or_row_name, "link_%d_%d_%d", B[iIndex]->dwellNumber(),
-			   B[jIndex]->dwellNumber(), k);
-			set_row_name(_lp, _currentRow, _col_or_row_name);*/
+			_column_numbers[0] = x_ik + _xik_start;
+			_column_numbers[1] = x_jk + _xik_start;
+			_column_numbers[2] = y_ijIndex + _yij_start;
+
+			set_rowex(_lp, _currentRow, 3, _row_values, _column_numbers);
+
 #ifndef _NO_LP_NAMES
 			sprintf(_col_or_row_name, "link_%d_%d_%d", B[iIndex]->dwellNumber(),
 						   B[jIndex]->dwellNumber(), fictitious_k++ % _graphs.numPlatforms() + 1);
@@ -259,6 +258,8 @@ bool MathModelMinPConflict::setLinkConstraints()
 			_currentRow++;
 		}
 	}
+
+	_row_values[2] = 1.;
 
 	return true;
 }
