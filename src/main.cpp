@@ -107,6 +107,8 @@ int main(int argc, char *argv[])
 	begin = clock();
 	MathModel *bpModel = new MathModelBP(gModel);
 	end = clock();
+	bpModel->writeModelLP_solve("modelBP.lp");
+	bpModel->writeModelCPLEX("modelBP_CPLEX.lp");
 	cerr << "  Costruzione di MathModelBP in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	bpModel->verbose(IMPORTANT); // NEUTRAL CRITICAL SEVERE IMPORTANT NORMAL DETAILED FULL
 	bpModel->solveX();
@@ -127,7 +129,6 @@ int main(int argc, char *argv[])
 		delete[]solution;
 		delete(gd);
 	}
-	bpModel->writeModelLP_solve("MathModelBP.lp");
 	delete bpModel;
 
 	/*
@@ -139,6 +140,8 @@ int main(int argc, char *argv[])
 	// TODO: rimettere MathModel *bpModelsingle = new MathModelBPsingle(gModel);
 	MathModelBPsingle *bpModelsingle = new MathModelBPsingle(gModel);
 	end = clock();
+	bpModelsingle->writeModelLP_solve("modelBPsingle.lp");
+	bpModelsingle->writeModelCPLEX("modelBPsingle_CPLEX.lp");
 	cerr << "  Costruzione di MathModelBPsingle in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
 	bpModelsingle->verbose(IMPORTANT);
@@ -164,7 +167,6 @@ int main(int argc, char *argv[])
 		delete[]solution;
 		delete(gd);
 	}
-	bpModelsingle->writeModelLP_solve("MathModelBPsingle.lp");
 	delete bpModelsingle;
 
 	/*
@@ -176,13 +178,15 @@ int main(int argc, char *argv[])
 	// TODO MathModel
 	MathModelMinPConflict *mPconflictModel = new MathModelMinPConflict(gModel);
 	end = clock();
+	mPconflictModel->writeModelLP_solve("modelMinPConflict.lp");
+	mPconflictModel->writeModelCPLEX("modelMinPConflict_CPLEX.lp");
 	cerr << "  Costruzione di MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
 	mPconflictModel->verbose(IMPORTANT);
 	mPconflictModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mPconflictModel->setTimeout(5);
+	mPconflictModel->setTimeout(10);
 	mPconflictModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -198,7 +202,6 @@ int main(int argc, char *argv[])
 		delete[]solution;
 		delete(gd);
 	}
-	mPconflictModel->writeModelLP_solve("modelMinPConflict.lp");
 	delete mPconflictModel;
 
 	/*
@@ -210,13 +213,15 @@ int main(int argc, char *argv[])
 	// TODO MathModel
 	MathModelMaxMinDistance *mmdModel = new MathModelMaxMinDistance(gModel);
 	end = clock();
+	mmdModel->writeModelLP_solve("modelMaxMinDistance.lp");
+	mmdModel->writeModelCPLEX("modelMaxMinDistance_CPLEX.lp");
 	cerr << "  Costruzione di MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
 	mmdModel->verbose(IMPORTANT);
 	mmdModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mmdModel->setTimeout(5);
+	mmdModel->setTimeout(15);
 	mmdModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -235,7 +240,6 @@ int main(int argc, char *argv[])
 		delete[]solution;
 		delete(gd);
 	}
-	mmdModel->writeModelLP_solve("modelMaxMinDistance.lp");
 	delete mmdModel;
 
 	delete []warmStart;
