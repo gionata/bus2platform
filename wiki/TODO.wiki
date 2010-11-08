@@ -1,0 +1,14 @@
+#ToDo list.
+
+= High priority =
+
+  * Modify the _c_{ij} to divide the time horizon in smaller slots such that the _c_{ij} = 0 if _i_ belongs to slot _m_ and _j_ belongs to _n_, _|n - m| > 1_.
+
+  * Divide the instance in sub-instances.
+
+  * ...
+
+
+= Medium Priority =
+
+  * Add the "adjacency constraints" for "corse bis".
