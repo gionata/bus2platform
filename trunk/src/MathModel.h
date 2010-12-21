@@ -17,6 +17,9 @@
 #include <vector>
 #include <set>
 
+// per debug
+#include <iostream>
+
 class MathModel: public SolutionAlgorithm {
 public:
 
@@ -100,6 +103,7 @@ public:
     	_total_iter = get_total_iter(_lp);
     	_total_nodes = get_total_nodes(_lp);
 
+	std::cerr << "Status: " << status << " " << get_statustext(_lp, status) << std::endl;
     	if (status == OPTIMAL || status == SUBOPTIMAL || status == FEASFOUND)
     		_solved = true;
     	else

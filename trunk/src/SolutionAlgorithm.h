@@ -11,9 +11,11 @@ public:
 		return (_clock_end - _clock_begin) / (double)(CLOCKS_PER_SEC / 1000);
 	}
 	virtual bool solved() { return _solved; }
+	virtual bool feasible() { return _feasible; }
 	double objectiveFunction() const { return _objectiveFunction; }
 protected:
 	bool _solved;
+	bool _feasible;
 	clock_t _clock_begin;
 	clock_t _clock_end;
 	double _objectiveFunction;

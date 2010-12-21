@@ -110,7 +110,12 @@ bool IntervalPackingFinishFirst::solveX()
 				Ik.begin();
 
 			while (otherInterval != Ik.end()) {
-				if ((*otherInterval)->overlap(*finish_first)) {
+				if ((*otherInterval)->overlap(*finish_first)
+				/*	|| ( (*otherInterval)->lower().time_point() > finish_first->upper().time_point()
+						&& (*otherInterval)->lower().time_point() - minutes(10) < finish_first->upper().time_point())
+					|| ( (*otherInterval)->upper().time_point() > finish_first->lower().time_point()
+						&& (*otherInterval)->upper().time_point() - minutes(10) < finish_first->lower().time_point())
+				*/		) {
 					Interval *overlappingInterval =
 						*otherInterval;
 					otherInterval++;
