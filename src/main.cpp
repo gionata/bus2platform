@@ -98,7 +98,6 @@ int main(int argc, char *argv[])
 	}
 	delete(heuristicPacking);
 
-	// TODO aggiunge a MathModel.h l'interfaccia per settaggio initialSolution
 	/*
 	 * MathModelBP
 	 */
@@ -125,7 +124,7 @@ int main(int argc, char *argv[])
 		if (!warmStart) {
 			warmStart = new int[problemSets.B().size()];
 		}
-		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
+//		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
 		delete[]solution;
 		delete(gd);
 	}
@@ -137,16 +136,15 @@ int main(int argc, char *argv[])
 	cerr << "/*" << endl;	cerr << " * MathModelBPsingle" << endl;	cerr << " */\n" << endl;
 	cerr << "Costruzione del modello matematico di list-coloring. Tutti i vincoli." << endl;
 	begin = clock();
-	// TODO: rimettere MathModel *bpModelsingle = new MathModelBPsingle(gModel);
-	MathModelBPsingle *bpModelsingle = new MathModelBPsingle(gModel);
+	MathModel *bpModelsingle = new MathModelBPsingle(gModel);
 	end = clock();
 	bpModelsingle->writeModelLP_solve("modelBPsingle.lp");
 	bpModelsingle->writeModelCPLEX("modelBPsingle_CPLEX.lp");
 	cerr << "  Costruzione di MathModelBPsingle in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
 	bpModelsingle->verbose(IMPORTANT);
-	if (warmStart)
-		bpModelsingle->initialSolution(warmStart);
+//	if (warmStart)
+//		bpModelsingle->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelBPsingle dopo " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	bpModelsingle->solveX();
@@ -163,7 +161,7 @@ int main(int argc, char *argv[])
 		if (!warmStart) {
 			warmStart = new int[problemSets.B().size()];
 		}
-		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
+//		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
 		delete[]solution;
 		delete(gd);
 	}
@@ -175,18 +173,17 @@ int main(int argc, char *argv[])
 	cerr << "/*" << endl;	cerr << " * mPconflictModel" << endl;	cerr << " */\n" << endl;
 	cerr << "Costruzione del modello matematico per min conflitto." << endl;
 	begin = clock();
-	// TODO MathModel
-	MathModelMinPConflict *mPconflictModel = new MathModelMinPConflict(gModel);
+	MathModel *mPconflictModel = new MathModelMinPConflict(gModel);
 	end = clock();
 	mPconflictModel->writeModelLP_solve("modelMinPConflict.lp");
 	mPconflictModel->writeModelCPLEX("modelMinPConflict_CPLEX.lp");
 	cerr << "  Costruzione di MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
 	mPconflictModel->verbose(IMPORTANT);
-	mPconflictModel->initialSolution(warmStart);
+//	mPconflictModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mPconflictModel->setTimeout(10);
+	mPconflictModel->setTimeout(900);
 	mPconflictModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -194,7 +191,7 @@ int main(int argc, char *argv[])
 	cerr << "    Objective function: " << mPconflictModel->objectiveFunction() << " (probabilita')" << endl;
 	cerr << "    Iterations: " << mPconflictModel->totalIter() << endl;
 	cerr << "    Nodes: " << mPconflictModel->totalNodes() << "\n" << endl;
-	if (mPconflictModel->solved()) {
+	if (mPconflictModel->solved() || true) {
 		svg_output = "MathModelMinPConflict.svg";
 		mPconflictModel->solution(solution);
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
@@ -210,18 +207,17 @@ int main(int argc, char *argv[])
 	cerr << "/*" << endl;	cerr << " * MathModelMaxMinDistance" << endl;	cerr << " */\n" << endl;
 	cerr << "Costruzione del modello per massimizzazione distanze fra soste" << endl;
 	begin = clock();
-	// TODO MathModel
-	MathModelMaxMinDistance *mmdModel = new MathModelMaxMinDistance(gModel);
+	MathModel *mmdModel = new MathModelMaxMinDistance(gModel);
 	end = clock();
 	mmdModel->writeModelLP_solve("modelMaxMinDistance.lp");
 	mmdModel->writeModelCPLEX("modelMaxMinDistance_CPLEX.lp");
 	cerr << "  Costruzione di MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
 	mmdModel->verbose(IMPORTANT);
-	mmdModel->initialSolution(warmStart);
+//	mmdModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mmdModel->setTimeout(15);
+	mmdModel->setTimeout(900);
 	mmdModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -229,7 +225,7 @@ int main(int argc, char *argv[])
 	cerr << "    Objective function: " << mmdModel->objectiveFunction() << endl;
 	cerr << "    Iterations: " << mmdModel->totalIter() << endl;
 	cerr << "    Nodes: " << mmdModel->totalNodes() << "\n" << endl;
-	if (mmdModel->solved()) {
+	if (mmdModel->solved() || true) {
 		svg_output = "MathModelMaxMinDistance.svg";
 		mmdModel->solution(solution);
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
