@@ -59,6 +59,7 @@ public:
 	SetModel &sets() const;
 	int **specialOrderedSets1() const;
 	std::vector < int >&sos1_cardinality() const;
+	std::vector < int >&sos1_corresponding_gate() const;
 //	std::map < size_t, std::set < int > * > &linkXiYij() const;
 //	std::map < size_t, std::set < int > * > &linkXjYij() const;
 	compatibleGates &compGates() const;
@@ -136,6 +137,7 @@ public:
 	int _numInterestingCliques;
 	int **_sos1;
 	std::vector < int > *_sos1_cardinality;
+	std::vector < int > *_sos1_corresponding_gate;
 	//std::map < size_t, std::set < int > * > *_linkXiYij;
 	//std::map < size_t, std::set < int > * > *_linkXjYij;
 

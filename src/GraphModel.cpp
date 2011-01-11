@@ -25,7 +25,7 @@ GraphModel::GraphModel(SetModel &s): _sets(s), _B(s.B()), _G(s.G())
     _Hptr = new GraphH(_numVerticesH);
     _numEdgesH = 0;
     set_graph_H();
-	_numCompGates = 0;
+    _numCompGates = 0;
     _numVerticesC = _numDwells;
     _Cptr = new GraphC(_numVerticesC);
 //    _linkXiYij = new std::map < size_t, std::set < int > * >();
@@ -249,6 +249,7 @@ void GraphModel::findMaximalCliques()
     //const int uk_start = numEdgesH() + 1;
     _sos1 = new int *[_sets.numMaximalCliques()];
     _sos1_cardinality = new std::vector < int >(_sets.numMaximalCliques());
+    _sos1_corresponding_gate = new std::vector < int >(_sets.numMaximalCliques());
 
     for (unsigned int i = 0; i < _sets.numMaximalCliques(); i++) {
         _sos1_cardinality->push_back(0);
@@ -294,6 +295,7 @@ void GraphModel::findMaximalCliques()
                 }
 
                 // (*_mutuallyExclusiveEdgesOnGate)[k].push_back(currentClique);
+                (*_sos1_corresponding_gate)[_numInterestingCliques] = k; 
                 _numInterestingCliques++;
             }
         }
@@ -332,6 +334,11 @@ int **GraphModel::specialOrderedSets1() const
 std::vector < int > &GraphModel::sos1_cardinality() const
 {
     return *_sos1_cardinality;
+}
+
+std::vector < int >&GraphModel::sos1_corresponding_gate() const
+{
+    return *_sos1_corresponding_gate;
 }
 
 compatibleGates &GraphModel::compGates() const
