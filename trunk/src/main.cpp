@@ -11,6 +11,7 @@
 #include "GraphModel.h"
 #include "MathModelBP.h"
 #include "MathModelBPsingle.h"
+#include "MathModelColoring.h"
 #include "MathModelMaxTotalDistance.h"
 #include "MathModelMaxMinDistance.h"
 #include "MathModelMinPConflict.h"
@@ -97,6 +98,38 @@ int main(int argc, char *argv[])
 		cerr << "    Objective function: " << heuristicPacking->objectiveFunction() << " piattaforme.\n" << endl;
 	}
 	delete(heuristicPacking);
+
+	/*
+	 * MathModelColoring
+	 */
+	cerr << "/*" << endl;	cerr << " * MathModelColoring" << endl;	cerr << " */\n" << endl;
+	cerr << "Costruzione del modello matematico di list-coloring." << endl;
+	begin = clock();
+	MathModel *colModel = new MathModelColoring(gModel);
+	end = clock();
+	colModel->writeModelLP_solve("modelColoring.lp");
+	colModel->writeModelCPLEX("modelColoring_CPLEX.lp");
+	cerr << "  Costruzione di MathModelColoring in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+	colModel->verbose(IMPORTANT); // NEUTRAL CRITICAL SEVERE IMPORTANT NORMAL DETAILED FULL
+	colModel->solveX();
+	end = clock();
+	cerr << "  Soluzione del MathModelColoring in " << (end -	begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+	cerr << "    Time (lp->solve()): " << colModel->elapsedTime() << "ms." << endl;
+	cerr << "    Objective function: " << colModel->objectiveFunction() << " (" << (sqrt(8*colModel->objectiveFunction()+1)-1) / 2 << ") piattaforme x peso." << endl;
+	cerr << "    Iterations: " << colModel->totalIter() << endl;
+	cerr << "    Nodes: " << colModel->totalNodes() << "\n" << endl;
+	if (colModel->solved()) {
+		svg_output = "MathModelColoring.svg";
+		colModel->solution(solution);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
+		if (!warmStart) {
+			warmStart = new int[problemSets.B().size()];
+		}
+//		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
+		delete[]solution;
+		delete(gd);
+	}
+	delete colModel;
 
 	/*
 	 * MathModelBP
