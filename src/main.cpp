@@ -16,6 +16,7 @@
 #include "MathModelMaxMinDistance.h"
 #include "MathModelMinPConflict.h"
 #include "IntervalPackingFinishFirst.h"
+#include "IntervalPackingFirstFit.h"
 #include "GanttDiagram.h"
 #include "SolutionReport.h"
 
@@ -99,6 +100,38 @@ int main(int argc, char *argv[])
 	}
 	delete(heuristicPacking);
 
+	/*
+	 * EURISTICA IntervalPackingFinishFirst
+	 */
+	cerr << "/*" << endl;
+	cerr << " * IntervalPackingFirstFit" << endl;
+	cerr << " */\n" << endl;
+	cerr << "Euristica di packing FirstFit" << endl;
+	begin = clock();
+	IntervalPackingFirstFit *heuristic1Packing =
+		new IntervalPackingFirstFit(problemSets, gModel);
+	heuristic1Packing->solveX();
+	end = clock();
+	cerr << "  IntervalPackingFirstFit in " << (end -
+			begin) /
+		(double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+
+	if (heuristic1Packing->solved()) {
+		svg_output = "IntervalPackingFirstFit.svg";
+		heuristic1Packing->solution(solution);
+		if (!warmStart) {
+			warmStart = new int[problemSets.B().size()];
+		}
+		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(),
+						  problemSets.B(), solution);
+		delete[]solution;
+		delete(gd);
+		cerr << "    Time: " << heuristic1Packing->elapsedTime() << "ms." << endl;
+		cerr << "    Objective function: " << heuristic1Packing->objectiveFunction() << " piattaforme.\n" << endl;
+	}
+	delete(heuristic1Packing);
+	
 	/*
 	 * MathModelColoring
 	 */
