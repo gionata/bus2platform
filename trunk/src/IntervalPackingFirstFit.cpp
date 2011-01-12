@@ -11,75 +11,9 @@
 using namespace std;
 
 IntervalPackingFirstFit::IntervalPackingFirstFit(SetModel &sets, GraphModel &graphs): _sets(sets),
-	_graphs
-	(graphs)
+     _graphs
+     (graphs)
 {
-	Intervals &I = _sets.I();
-	int dwellsToBeAssigned = I.size();
-	int gatesUsage = 0;
-	/* Ordina I per tempo vincoli più stringenti e per tempo di inizio intervallo */
-	sort(I.begin(), I.end(), LeftEndpoint());
-	/* Inserisci l'intervallo nel gate aperto con tempo di fine intervallo più vicino */
-
-	for (Gates::const_iterator gitr = _sets.G().begin();
-			dwellsToBeAssigned && gitr != _sets.G().end(); gitr++) {
-		list < Interval * >S;
-		list < Interval * >Ik;
-
-		for (Intervals::const_iterator iitr = I.begin();
-				iitr != I.end(); iitr++) {
-			if (!(*iitr)->assigned()) {
-				VertexDescriptorH v_i =
-					vertex((*iitr)->vertex(), _graphs.graphH());
-				VertexDescriptorH v_k =
-					vertex((*gitr)->id(), _graphs.graphH());
-				std::pair < EdgeDescriptorH, bool > edge_ik =
-					edge(v_i, v_k, _graphs.graphH());
-
-				if (edge_ik.second == false) {
-					continue;
-				}
-
-				Ik.push_back(*iitr);
-			}
-		}
-
-		gatesUsage++;
-
-		while (!Ik.empty()) {
-			Interval *finish_first = Ik.front();
-			S.push_back(finish_first);
-			Ik.remove(finish_first);
-			finish_first->platform((*gitr)->id());
-			dwellsToBeAssigned--;
-			list < Interval * >::iterator otherInterval =
-				Ik.begin();
-
-			while (otherInterval != Ik.end()) {
-				if ((*otherInterval)->overlap(*finish_first)) {
-					Interval *overlappingInterval =
-						*otherInterval;
-					otherInterval++;
-					Ik.remove(overlappingInterval);
-				} else {
-					otherInterval++;
-				}
-			}
-		}
-
-		cout << "Gate " << (*gitr)->gateNumber() << " (" << S.
-			size() << ")[";
-
-		for (list < Interval * >::const_iterator currentGateInterval =
-					S.begin(); currentGateInterval != S.end();
-				currentGateInterval++) {
-			cout << " " << (*currentGateInterval)->vertex();
-		}
-
-		cout << " ]" << endl;
-	}
-
-	cout << "Usati " << gatesUsage << " gates." << endl;
 }
 
 /*
@@ -99,5 +33,67 @@ return S
 
 IntervalPackingFirstFit::~IntervalPackingFirstFit()
 {
-	// TODO Auto-generated destructor stub
+     // TODO Auto-generated destructor stub
+}
+
+bool IntervalPackingFirstFit::solveX() {
+     _clock_begin = clock();
+
+     Intervals &I = _sets.I();
+     int dwellsToBeAssigned = I.size();
+     int gatesUsage = 0;
+     int last_color = 0;
+     ptime w[_sets.G().size()]; // _graphs.sets().lowerBoundNumberGates()
+
+     for (int i = 0; i < _sets.G().size(); i++) {
+          w[i] = _sets.G().at(i)->stopAvailableTimes().front()->begin();
+     }
+     /* Ordina I per tempo vincoli più stringenti e per tempo di inizio intervallo */
+     sort(I.begin(), I.end(), LeftEndpoint());
+     /* Inserisci l'intervallo nel gate aperto con tempo di fine intervallo più vicino */
+
+     for (Intervals::const_iterator v_itr = I.begin();
+               v_itr != I.end(); v_itr++) {
+          VertexDescriptorH v_i =
+               vertex((*v_itr)->vertex(), _graphs.graphH());
+          for (Gates::const_iterator c_itr = _sets.G().begin();
+                    c_itr != _sets.G().end(); c_itr++) {
+
+               VertexDescriptorH v_k =
+                    vertex((*c_itr)->id(), _graphs.graphH());
+
+               std::pair < EdgeDescriptorH, bool > edge_ik =
+                    edge(v_i, v_k, _graphs.graphH());
+
+               if (edge_ik.second == false // non assegnabile
+                         || (*v_itr)->lower().time_point() < w[(*c_itr)->id()]) { // piattaforma occupata
+                    continue;
+               } else { // assegnabile
+                    dwellsToBeAssigned--;
+                    if ((*c_itr)->id()>last_color)
+                         last_color = (*c_itr)->id();
+                    (*v_itr)->platform((*c_itr)->id());
+                    w[(*c_itr)->id()] = (*v_itr)->upper().time_point();
+               }
+          }
+     }
+}
+
+bool IntervalPackingFirstFit::solution(int*& gates) const
+{
+	if (!_solved) {
+		return false;
+	}
+
+	Intervals &I = _sets.I();
+	int numDwells = _sets.B().size();
+	gates = new int[numDwells];
+
+	for (Intervals::const_iterator dwellIntervall = I.begin();
+			dwellIntervall != I.end(); dwellIntervall++) {
+		gates[(*dwellIntervall)->vertex()] =
+			(*dwellIntervall)->platform() - numDwells;
+	}
+
+	return true;
 }

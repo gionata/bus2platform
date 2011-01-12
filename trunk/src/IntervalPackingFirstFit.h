@@ -8,16 +8,20 @@
 
 #include "SetModel.h"
 #include "GraphModel.h"
+#include "SolutionAlgorithm.h"
 
 #include <vector>
 
 /**
  *
  */
-class IntervalPackingFirstFit {
+class IntervalPackingFirstFit: public SolutionAlgorithm {
 public:
 	IntervalPackingFirstFit(SetModel &sets, GraphModel &graphs);
 	~IntervalPackingFirstFit();
+	
+	virtual bool solveX();
+	virtual bool solution(int *&gates) const;
 private:
 	SetModel &_sets;
 	GraphModel &_graphs;
