@@ -76,17 +76,18 @@ int main(int argc, char *argv[])
 	cerr << " */\n" << endl;
 	cerr << "Euristica di packing FinishFirst" << endl;
 	begin = clock();
-	IntervalPackingFinishFirst *heuristicPacking =
+	IntervalPackingFinishFirst *finishFirst =
 		new IntervalPackingFinishFirst(problemSets, gModel);
-	heuristicPacking->solveX();
+	finishFirst->solveX();
 	end = clock();
 	cerr << "  IntervalPackingFinishFirst in " << (end -
 			begin) /
 		(double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-
-	if (heuristicPacking->solved()) {
+	cerr << "finishFirst was successful? " << finishFirst->solved()<< endl;
+	
+	if (finishFirst->solved()) {
 		svg_output = "IntervalPackingFinishFirst.svg";
-		heuristicPacking->solution(solution);
+		finishFirst->solution(solution);
 		if (!warmStart) {
 			warmStart = new int[problemSets.B().size()];
 		}
@@ -95,10 +96,10 @@ int main(int argc, char *argv[])
 						  problemSets.B(), solution);
 		delete[]solution;
 		delete(gd);
-		cerr << "    Time: " << heuristicPacking->elapsedTime() << "ms." << endl;
-		cerr << "    Objective function: " << heuristicPacking->objectiveFunction() << " piattaforme.\n" << endl;
+		cerr << "    Time: " << finishFirst->elapsedTime() << "ms." << endl;
+		cerr << "    Objective function: " << finishFirst->objectiveFunction() << " piattaforme.\n" << endl;
 	}
-	delete(heuristicPacking);
+	delete(finishFirst);
 
 	/*
 	 * EURISTICA IntervalPackingFinishFirst
@@ -108,17 +109,18 @@ int main(int argc, char *argv[])
 	cerr << " */\n" << endl;
 	cerr << "Euristica di packing FirstFit" << endl;
 	begin = clock();
-	IntervalPackingFirstFit *heuristic1Packing =
+	IntervalPackingFirstFit *firstFit =
 		new IntervalPackingFirstFit(problemSets, gModel);
-	heuristic1Packing->solveX();
+	firstFit->solveX();
 	end = clock();
 	cerr << "  IntervalPackingFirstFit in " << (end -
 			begin) /
 		(double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-
-	if (heuristic1Packing->solved()) {
+	cerr << "firstFit was successful? " << firstFit->solved()<< endl;
+	
+	if (firstFit->solved()) {
 		svg_output = "IntervalPackingFirstFit.svg";
-		heuristic1Packing->solution(solution);
+		firstFit->solution(solution);
 		if (!warmStart) {
 			warmStart = new int[problemSets.B().size()];
 		}
@@ -127,10 +129,10 @@ int main(int argc, char *argv[])
 						  problemSets.B(), solution);
 		delete[]solution;
 		delete(gd);
-		cerr << "    Time: " << heuristic1Packing->elapsedTime() << "ms." << endl;
-		cerr << "    Objective function: " << heuristic1Packing->objectiveFunction() << " piattaforme.\n" << endl;
+		cerr << "    Time: " << firstFit->elapsedTime() << "ms." << endl;
+		cerr << "    Objective function: " << firstFit->objectiveFunction() << " piattaforme.\n" << endl;
 	}
-	delete(heuristic1Packing);
+	delete(firstFit);
 	
 	/*
 	 * MathModelColoring
