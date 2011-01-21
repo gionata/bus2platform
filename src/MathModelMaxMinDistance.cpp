@@ -49,7 +49,6 @@ MathModelMaxMinDistance::MathModelMaxMinDistance(GraphModel &graphs): MathModel(
 //	write_lp(_lp, "modelMaxMinDistance.lp");
 //	set_XLI(_lp, "xli_CPLEX");
 //	write_XLI(_lp, "modelMaxMinDistance_CPLEX.lp", 0, FALSE);
-
 }
 
 MathModelMaxMinDistance::~MathModelMaxMinDistance(void)
@@ -234,6 +233,7 @@ bool MathModelMaxMinDistance::setLinkMConstraints()
 	VertexDescriptorC i, j;
 
 	double _bigM = 0;
+	double lb = 10E5;
 	for (tie(ei, ei_end) = edges(_graphs.graphC()); ei != ei_end; ++ei) {
 		size_t yij_idx = _C_edge_index[*ei];
 		double cost = _C_edge_weight[yij_idx];
@@ -241,7 +241,12 @@ bool MathModelMaxMinDistance::setLinkMConstraints()
 		if (_bigM < cost) {
 			_bigM = cost;
 		}
+		if (cost < lb)
+		  lb = cost;
 	}
+	
+	// _linkrow[0] =  1.;
+	// _column_numbers[0] = _m_start;
 
 	/* 1: \forall (i, j) \in F */
 	for (tie(ei, ei_end) = edges(C); ei != ei_end; ++ei) {
@@ -262,7 +267,7 @@ bool MathModelMaxMinDistance::setLinkMConstraints()
 #endif
 		_column_numbers[0] = _m_start;
 		_column_numbers[1] = yij_idx + _yij_start;
-		//_linkrow[0] =  1.;
+		_linkrow[0] =  1.;
 		_linkrow[1] =  _bigM - _C_edge_weight[yij_idx];
 		set_rowex(_lp, _currentRow, 2, _linkrow, _column_numbers);
 		set_constr_type(_lp, _currentRow, LE);
@@ -270,7 +275,10 @@ bool MathModelMaxMinDistance::setLinkMConstraints()
 		_currentRow++;
 	}
 
+	_linkrow[0] =  1.;
 	_linkrow[1] =  1.;
+	
+	set_bounds(_lp, _m_start, lb, _bigM);
 
 	return true;
 }
@@ -289,21 +297,21 @@ bool MathModelMaxMinDistance::setSOS1()
 
 bool MathModelMaxMinDistance::solution(int *&gates)  const
 {
-	double *sol = new double[_numVars];
 	gates = new int[_numDwells];
+	int Norig_columns, Norig_rows;
+	REAL value;
+	Norig_columns = get_Norig_columns(_lp);
+	Norig_rows = get_Norig_rows(_lp);
 
-	if (get_variables(_lp, sol) == FALSE) {
-		return false;
+	for(int i = 1; i < _yij_start; i++) {
+	  value = get_var_primalresult(_lp, Norig_rows + i);
+	  if (value >= 0.998) {
+			gates[(*_assignment)[i-1].first] =
+			(*_assignment)[i-1].second - _numDwells;
+		// cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
+	  };
 	}
 
-	for (int i = 0; i < _yij_start - 1; i++)
-		if (sol[i] >= 0.998) {
-			gates[(*_assignment)[i].first] =
-				(*_assignment)[i].second - _numDwells;
-			// cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
-		}
-
-	delete[]sol;
 	return true;
 }
 

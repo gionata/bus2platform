@@ -89,11 +89,21 @@ public:
     {
     	/*
     	   set_presolve(_lp,
-    	   PRESOLVE_ROWS | PRESOLVE_COLS | PRESOLVE_LINDEP |
-    	   PRESOLVE_REDUCEGCD | PRESOLVE_PROBEREDUCE | PRESOLVE_BOUNDS | PRESOLVE_DUALS,
+    	   PRESOLVE_ROWS | PRESOLVE_COLS | PRESOLVE_LINDEP | PRESOLVE_SOS | 
+    	   PRESOLVE_REDUCEGCD | PRESOLVE_PROBEREDUCE | PRESOLVE_BOUNDS | 
+    	   PRESOLVE_PROBEFIX | PRESOLVE_DUALS,
     	   1000
     	   );
     	 */
+	
+	set_presolve(_lp,
+		     PRESOLVE_ROWS | PRESOLVE_COLS | PRESOLVE_LINDEP |
+		     PRESOLVE_SOS |
+		     PRESOLVE_REDUCEGCD | PRESOLVE_PROBEFIX | PRESOLVE_PROBEREDUCE |
+		     PRESOLVE_COLDOMINATE | PRESOLVE_ROWDOMINATE | PRESOLVE_BOUNDS,
+		     get_presolveloops(_lp)
+		    );
+
     	unsigned char status;
     	_clock_begin = clock();
     	status = solve(_lp);

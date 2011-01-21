@@ -396,7 +396,7 @@ unsigned int GraphModel::numInterestingCliques() const
     return _numInterestingCliques;
 }
 
-#ifdef _DEBUG
+//#ifdef _DEBUG
 void GraphModel::debugWriteH()
 {
     string *instance_name;
@@ -463,4 +463,4 @@ void GraphModel::debugWriteC()
     delete instance_name;
 }
 
-#endif
+//#endif
