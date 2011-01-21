@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 	GraphModel gModel(problemSets);
 	end = clock();
 	cerr << "  Grafi H e C generati in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms.\n" << endl;
-
+	
 	int *solution = 0;
 	int *warmStart = 0;
 	string svg_output;
@@ -247,7 +247,7 @@ int main(int argc, char *argv[])
 	mPconflictModel->writeModelCPLEX("modelMinPConflict_CPLEX.lp");
 	cerr << "  Costruzione di MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
-	mPconflictModel->verbose(IMPORTANT);
+	mPconflictModel->verbose(DETAILED);
 //	mPconflictModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -281,7 +281,7 @@ int main(int argc, char *argv[])
 	mmdModel->writeModelCPLEX("modelMaxMinDistance_CPLEX.lp");
 	cerr << "  Costruzione di MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
-	mmdModel->verbose(IMPORTANT);
+	mmdModel->verbose(DETAILED);//IMPORTANT
 //	mmdModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;

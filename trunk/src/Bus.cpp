@@ -4,6 +4,7 @@
  */
 
 #include "Bus.h"
+#include <boost/graph/graph_concepts.hpp>
 
 Bus::Bus(int id, int dwellNumber, ptime arrival, ptime departure,
          Gates *gates): has_id(id), _dwellNumber(dwellNumber),
@@ -52,4 +53,22 @@ void Bus::vertexIndex(size_t vertexIndex)
     this->_vertexIndex = vertexIndex;
 }
 
+bool Bus::assigned() const
+{
+  return _assigned;
+}
 
+void Bus::assigned(bool status)
+{
+  _assigned = status;
+}
+
+size_t Bus::platform() const
+{
+  return _platform;
+}
+
+void Bus::platform(size_t gate)
+{
+  _platform = gate;
+}

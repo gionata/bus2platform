@@ -3,9 +3,12 @@
  *  \author Gionata Massi <massi@diiga.univpm.it>
  */
 #include "MathModelMinPConflict.h"
+#include <cmath>
 
 using namespace std;
 using namespace boost;
+
+// #define LINEAR_FUNCT
 
 MathModelMinPConflict::MathModelMinPConflict(GraphModel &graphs): MathModel(graphs), _D(0.0), _d(100000.0), _sr()
 {
@@ -127,31 +130,48 @@ lprec *MathModelMinPConflict::createLP(unsigned int numVars, unsigned int numCon
 bool MathModelMinPConflict::setObjectiveFunction()
 {
 
-	// D = max {c_ij}
 	boost::graph_traits < GraphC >::edge_iterator eiC, ei_endC;
 
+	double cost [_graphs.numEdgesC()];
 	for (tie(eiC, ei_endC) = edges(_graphs.graphC()); eiC != ei_endC; ++eiC) {
 		size_t yij_idx = _C_edge_index[*eiC];
-		double cost = _C_edge_weight[yij_idx];
+		
+#ifdef LINEAR_FUNCT
+		cost[yij_idx] =_C_edge_weight[yij_idx];
+#else
+		double conflict = 0.0;
+		if (_C_edge_weight[yij_idx] <= 0)
+		    conflict = 1.0;
+		else if (_C_edge_weight[yij_idx] <= 30.0)
+		    conflict = exp(-0.05*_C_edge_weight[yij_idx]);
+		else
+		    conflict =  0.0;
+		cost[yij_idx] = 1.0 - conflict;
+#endif
 
-		if (_D < cost) {
-			_D = cost;
+		if (_D < cost[yij_idx]) {
+			_D = cost[yij_idx];
 		}
 
-		if (_d > cost) {
-			_d = cost;
+		if (_d > cost[yij_idx]) {
+			_d = cost[yij_idx];
 		}
 	}
 
-	double den = _graphs.numEdgesC() * (_D - _d);
-
+	double den =
+#ifdef LINEAR_FUNCT
+	    _graphs.numEdgesC() *
+#endif
+	    (_D - _d);
+	    
 	for (tie(eiC, ei_endC) = edges(_graphs.graphC()); eiC != ei_endC; ++eiC) {
 		size_t yij_idx = _C_edge_index[*eiC];
-		double cost = _C_edge_weight[yij_idx];
+		
 		int variableIndex = yij_idx + _yij_start;
+//std::cout << "edge: " << yij_idx << " weight: " << _C_edge_weight[yij_idx] << " cost: " << (_D - cost[yij_idx]) / den << endl; 
 
-		if (_D - cost > 0)
-			if (set_obj(_lp, variableIndex, (_D - cost) / den) ==
+		if (_D - cost[yij_idx] > 0)
+			if (set_obj(_lp, variableIndex, (_D - cost[yij_idx]) / den) ==
 					FALSE) {
 				return false;
 			}
@@ -278,21 +298,21 @@ bool MathModelMinPConflict::setSOS1()
 
 bool MathModelMinPConflict::solution(int *&gates)  const
 {
-	double *sol = new double[_numVars];
 	gates = new int[_numDwells];
+	int Norig_columns, Norig_rows;
+	REAL value;
+	Norig_columns = get_Norig_columns(_lp);
+	Norig_rows = get_Norig_rows(_lp);
 
-	if (get_variables(_lp, sol) == FALSE) {
-		return false;
+	for(int i = 1; i < _yij_start; i++) {
+	  value = get_var_primalresult(_lp, Norig_rows + i);
+	  if (value >= 0.998) {
+			gates[(*_assignment)[i-1].first] =
+			(*_assignment)[i-1].second - _numDwells;
+		// cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
+	  };
 	}
 
-	for (int i = 0; i < _yij_start - 1; i++)
-		if (sol[i] >= 0.998) {
-			gates[(*_assignment)[i].first] =
-				(*_assignment)[i].second - _numDwells;
-			// cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
-		}
-
-	delete[]sol;
 	return true;
 }
 
@@ -340,12 +360,12 @@ bool MathModelMinPConflict::initialSolution(int *startingSolution)
 	if ( guess_basis(_lp, varValues, basisvector) == TRUE) {
 		// cerr << "\a>> LP_SOLVE ha riconosciuto una base iniziale! <<" << endl;
 		if (set_basis(_lp, basisvector, TRUE) == TRUE) {
-			//cerr << ">> >> Base settata!!!!!!! << <<" << endl;
-			//write_basis(_lp, "modelMinPConflict.bas");
+			cerr << ">> >> Base settata!!!!!!! << <<" << endl;
+			write_basis(_lp, "modelMinPConflict_initial.bas");
 			status = true;
 		}
 	} else {
-		//cerr << "\a>> Non riesco a fornire soluzione iniziale <<" << endl;
+		cerr << "\a>> Non riesco a fornire soluzione iniziale <<" << endl;
 		status = false;
 	}
 

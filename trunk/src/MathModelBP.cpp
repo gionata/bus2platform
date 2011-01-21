@@ -222,23 +222,20 @@ bool MathModelBP::setLbNoGates(int lb)
 
 bool MathModelBP::solution(int *&gates) const
 {
-	double *sol = new double[_numVars];
 	gates = new int[_numDwells];
+	int Norig_columns, Norig_rows;
+	REAL value;
+	Norig_columns = get_Norig_columns(_lp);
+	Norig_rows = get_Norig_rows(_lp);
 
-	if (get_variables(_lp, sol) == FALSE) {
-		return false;
+	for(int i = 1; i < _uk_start; i++) {
+	  value = get_var_primalresult(_lp, Norig_rows + i);
+	  if (value >= 0.998) {
+			gates[(*_assignment)[i-1].first] =
+			(*_assignment)[i-1].second - _numDwells;
+		// cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
+	  };
 	}
-
-	for (int i = 0; i < _uk_start - 1; i++)
-		if (sol[i] >= 0.998) {
-			// se si usa una adjacency_list
-			gates[(*_assignment)[i].first] =
-				(*_assignment)[i].second - _numDwells;
-			//cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
-			//cout << /*get_col_name(_lp, i+1) << "  " <<*/ (*_assignment)[i].first << "; " << (*_assignment)[i].second << endl;
-		}
-	// cout << endl;
-	delete []sol;
 
 	return true;
 }

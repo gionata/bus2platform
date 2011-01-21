@@ -20,9 +20,9 @@
 #include <string>
 
 /* Debug */
-#ifdef _DEBUG
+//#ifdef _DEBUG
 #include <boost/graph/graphviz.hpp>
-#endif
+//#endif
 
 class compatibleGatesT {
 private:
@@ -82,6 +82,12 @@ public:
 	boost::property_map < GraphC, boost::vertex_index_t >::type C_vertex_index() const { return _C_vertex_index; }
 	boost::property_map < GraphC, boost::edge_index_t >::type C_edge_index() { return _C_edge_index; }
 	boost::property_map < GraphH, boost::edge_index_t >::type H_edge_index() { return _H_edge_index; }
+
+	/* Debug related methods */
+//#ifdef _DEBUG
+	void debugWriteH();
+	void debugWriteC();
+//#endif
 
 
 
@@ -158,11 +164,6 @@ public:
 	void set_graph_C(void);
 	void findMaximalCliques();
 
-	/* Debug related methods */
-#ifdef _DEBUG
-	void debugWriteH();
-	void debugWriteC();
-#endif
 };
 
 

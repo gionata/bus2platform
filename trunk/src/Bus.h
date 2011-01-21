@@ -13,6 +13,7 @@
 #include "Gate.h"
 #include <vector>
 #include <algorithm>
+#include <cstring>
 
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -33,6 +34,10 @@ public:
     bool compatible(Gate *g) const;
     size_t vertexIndex() const;
     void vertexIndex(size_t vertexIndex);
+    bool assigned() const;
+    void assigned(bool status);
+    size_t platform() const;
+    void platform(size_t gate);
 private:
     int _dwellNumber;
     ptime _arrival;
@@ -40,6 +45,8 @@ private:
     time_period _occupacyPeriod;
     Gates *_gates;
     size_t _vertexIndex;
+    bool _assigned;
+    size_t _platform;
 };
 
 typedef std::vector < Bus * >Buses;
