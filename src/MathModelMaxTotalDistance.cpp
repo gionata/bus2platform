@@ -7,20 +7,20 @@
 using namespace std;
 using namespace boost;
 
-MathModelMaxTotalDistance::MathModelMaxTotalDistance(GraphModel &graphs): 
-        MathModel(graphs)
+MathModelMaxTotalDistance::MathModelMaxTotalDistance(GraphModel &graphs):
+	MathModel(graphs)
 {
 	_solved = false;
 	_col_or_row_name = new char[100];
 	_numVars = _graphs.numEdgesH() + _graphs.numEdgesC();
 	_numConstraints = _numDwells +     /* Assignment */
-				   _graphs.numInterestingCliques() +    /* Incompatibility */
-				   _graphs.numEdgesC() + /* Y_ij linx to X_ik and X_jk */
-				   _graphs.numEdgesC() + /* Y_ij linx to X_ik and X_jk */
-				   _graphs.numEdgesC();  /* Y_ij linx to X_ik and X_jk */
+	                  _graphs.numInterestingCliques() +    /* Incompatibility */
+	                  _graphs.numEdgesC() + /* Y_ij linx to X_ik and X_jk */
+	                  _graphs.numEdgesC() + /* Y_ij linx to X_ik and X_jk */
+	                  _graphs.numEdgesC();  /* Y_ij linx to X_ik and X_jk */
 	_xik_start = 1;
 	_yij_start = _graphs.numEdgesH() + 1;
-	
+
 	_row_values = new double[_numVars + 1];
 	_row_values[0] = 1.0;
 
@@ -46,7 +46,7 @@ MathModelMaxTotalDistance::~MathModelMaxTotalDistance(void)
 }
 
 lprec *MathModelMaxTotalDistance::createLP(unsigned int numVars,
-		unsigned int numConstraints)
+        unsigned int numConstraints)
 {
 	if ((_lp = make_lp(numConstraints, numVars)) == NULL) {
 		exit(1);
@@ -61,9 +61,9 @@ lprec *MathModelMaxTotalDistance::createLP(unsigned int numVars,
 		size_t xik_idx = _H_edge_index[*eiH];
 		int variableIndex = xik_idx + _xik_start;
 		(*_assignment)[xik_idx].first =
-			source(*eiH, _graphs.graphH());
+		    source(*eiH, _graphs.graphH());
 		(*_assignment)[xik_idx].second =
-			target(*eiH, _graphs.graphH());
+		    target(*eiH, _graphs.graphH());
 		set_binary(_lp, variableIndex, TRUE);
 		//strcpy(_col_or_row_name, _H_edge_name[*ei].c_str());
 		strcpy(_col_or_row_name, _H_edge_name[xik_idx].c_str());
@@ -113,9 +113,9 @@ bool MathModelMaxTotalDistance::setAssignmentConstraints()
 		graph_traits < GraphH >::out_edge_iterator out_iH, out_endH;
 
 		for (tie(out_iH, out_endH) = out_edges(i, _graphs.graphH());
-				out_iH != out_endH; ++out_iH) {
+		        out_iH != out_endH; ++out_iH) {
 			set_mat(_lp, _currentRow,
-				   _H_edge_index[*out_iH] + _xik_start, 1.0);
+			        _H_edge_index[*out_iH] + _xik_start, 1.0);
 		}
 
 		set_constr_type(_lp, _currentRow, EQ);
@@ -131,7 +131,7 @@ bool MathModelMaxTotalDistance::setIncompatibilityConstraints()
 	for (int soss = 0; soss < _numInterestingCliques; soss++) {
 		sprintf(_col_or_row_name, "incomp_clique_%d", soss + 1);
 		set_rowex(_lp, _currentRow, _sos1Cardinality[soss], _row_values,
-				_colno[soss]);
+		          _colno[soss]);
 		set_constr_type(_lp, _currentRow, LE);
 		set_rh(_lp, _currentRow, 1.0);
 		set_row_name(_lp, _currentRow++, _col_or_row_name);
@@ -171,7 +171,7 @@ bool MathModelMaxTotalDistance::setLinkConstraints()
 		currentRow2 = _currentRow + _graphs.numEdgesC();
 		currentRow3 = currentRow2 + _graphs.numEdgesC();
 		sprintf(_col_or_row_name, "l1_y_%d_%d",
-			   B[iIndex]->dwellNumber(), B[jIndex]->dwellNumber());
+		        B[iIndex]->dwellNumber(), B[jIndex]->dwellNumber());
 		set_row_name(_lp, _currentRow, _col_or_row_name);
 		//sprintf(_col_or_row_name, "l2_y_%d_%d", B[iIndex]->dwellNumber(),  B[jIndex]->dwellNumber());
 		_col_or_row_name[1] = '2';
@@ -180,56 +180,56 @@ bool MathModelMaxTotalDistance::setLinkConstraints()
 		_col_or_row_name[1] = '3';
 		set_row_name(_lp, currentRow3, _col_or_row_name);
 
-/*
-		std::set < int >*&linkXiYij =
-			_graphs.linkXiYij()[_C_edge_index[*ei]];
-		std::set < int >*&linkXjYij =
-			_graphs.linkXjYij()[_C_edge_index[*ei]];
-*/
+		/*
+				std::set < int >*&linkXiYij =
+					_graphs.linkXiYij()[_C_edge_index[*ei]];
+				std::set < int >*&linkXjYij =
+					_graphs.linkXjYij()[_C_edge_index[*ei]];
+		*/
 
 		/*
 		   cout << "Generating link constraints of (" << B[iIndex]->id()
 		   << ", " << B[jIndex]->id() << ") in F. [" << _C_edge_index[*ei]
 		   << "/" << _graphs.numEdgesC() << "]" << endl;
 		 */
-/*
-		int countI = 0;
+		/*
+				int countI = 0;
 
-		for (set < int >::const_iterator x_ik = linkXiYij->begin();
-				x_ik != linkXiYij->end(); x_ik++) {
-			colno[0][countI] = *x_ik + _xik_start;
-			colno[2][countI++] = *x_ik + _xik_start;
-		}
+				for (set < int >::const_iterator x_ik = linkXiYij->begin();
+						x_ik != linkXiYij->end(); x_ik++) {
+					colno[0][countI] = *x_ik + _xik_start;
+					colno[2][countI++] = *x_ik + _xik_start;
+				}
 
-		int countJ = 0;
+				int countJ = 0;
 
-		for (set < int >::const_iterator x_jk = linkXjYij->begin();
-				x_jk != linkXjYij->end(); x_jk++) {
-			colno[1][countJ] = *x_jk + _xik_start;
-			colno[2][countI + countJ++] = *x_jk + _xik_start;
-		}
+				for (set < int >::const_iterator x_jk = linkXjYij->begin();
+						x_jk != linkXjYij->end(); x_jk++) {
+					colno[1][countJ] = *x_jk + _xik_start;
+					colno[2][countI + countJ++] = *x_jk + _xik_start;
+				}
 
-		set_rowex(_lp, _currentRow, countI, _row_values, colno[0]);
-		set_rowex(_lp, currentRow2, countJ, _row_values, colno[1]);
-		set_rowex(_lp, currentRow3, countI + countJ, _row_values,
-				colno[2]);
+				set_rowex(_lp, _currentRow, countI, _row_values, colno[0]);
+				set_rowex(_lp, currentRow2, countJ, _row_values, colno[1]);
+				set_rowex(_lp, currentRow3, countI + countJ, _row_values,
+						colno[2]);
 
-		set_mat(_lp, _currentRow, _H_edge_index[*ei] + _yij_start,
-			   -1.0);
-		set_constr_type(_lp, _currentRow, GE);
-		set_rh(_lp, _currentRow, 0.0);
+				set_mat(_lp, _currentRow, _H_edge_index[*ei] + _yij_start,
+					   -1.0);
+				set_constr_type(_lp, _currentRow, GE);
+				set_rh(_lp, _currentRow, 0.0);
 
-		set_mat(_lp, currentRow2, _H_edge_index[*ei] + _yij_start,
-			   -1.0);
-		set_constr_type(_lp, currentRow2, GE);
-		set_rh(_lp, currentRow2, 0.0);
+				set_mat(_lp, currentRow2, _H_edge_index[*ei] + _yij_start,
+					   -1.0);
+				set_constr_type(_lp, currentRow2, GE);
+				set_rh(_lp, currentRow2, 0.0);
 
-		set_mat(_lp, currentRow3, _H_edge_index[*ei] + _yij_start,
-			   -1.0);
-		set_constr_type(_lp, currentRow3, LE);
-		set_rh(_lp, currentRow3, 1.0);
-		_currentRow++;
-		*/
+				set_mat(_lp, currentRow3, _H_edge_index[*ei] + _yij_start,
+					   -1.0);
+				set_constr_type(_lp, currentRow3, LE);
+				set_rh(_lp, currentRow3, 1.0);
+				_currentRow++;
+				*/
 	}
 
 	_currentRow += 2 * _graphs.numEdgesC();
@@ -247,7 +247,7 @@ bool MathModelMaxTotalDistance::setSOS1()
 	for (int soss = 0; soss < _numInterestingCliques; soss++) {
 		sprintf(_col_or_row_name, "SOS_%d", soss + 1);
 		add_SOS(_lp, _col_or_row_name, 1, 1, _sos1Cardinality[soss],
-			   _colno[soss], NULL);
+		        _colno[soss], NULL);
 	}
 
 	return TRUE;
@@ -265,7 +265,7 @@ bool MathModelMaxTotalDistance::solution(int *&gates)  const
 	for (int i = 0; i < _yij_start - 1; i++)
 		if (sol[i] >= 0.998) {
 			gates[(*_assignment)[i].first] =
-				(*_assignment)[i].second - _numDwells;
+			    (*_assignment)[i].second - _numDwells;
 			// cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
 		}
 

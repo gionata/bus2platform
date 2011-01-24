@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 	GraphModel gModel(problemSets);
 	end = clock();
 	cerr << "  Grafi H e C generati in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms.\n" << endl;
-	
+
 	int *solution = 0;
 	int *warmStart = 0;
 	string svg_output;
@@ -77,14 +77,14 @@ int main(int argc, char *argv[])
 	cerr << "Euristica di packing FinishFirst" << endl;
 	begin = clock();
 	IntervalPackingFinishFirst *finishFirst =
-		new IntervalPackingFinishFirst(problemSets, gModel);
+	    new IntervalPackingFinishFirst(problemSets, gModel);
 	finishFirst->solveX();
 	end = clock();
 	cerr << "  IntervalPackingFinishFirst in " << (end -
-			begin) /
-		(double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	cerr << "finishFirst was successful? " << finishFirst->solved()<< endl;
-	
+	        begin) /
+	     (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+	cerr << "finishFirst was successful? " << (bool) finishFirst->solved() << endl;
+
 	if (finishFirst->solved()) {
 		svg_output = "IntervalPackingFinishFirst.svg";
 		finishFirst->solution(solution);
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
 		}
 		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(),
-						  problemSets.B(), solution);
+		                      problemSets.B(), solution);
 		delete[]solution;
 		delete(gd);
 		cerr << "    Time: " << finishFirst->elapsedTime() << "ms." << endl;
@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 	delete(finishFirst);
 
 	/*
-	 * EURISTICA IntervalPackingFinishFirst
+	 * EURISTICA IntervalPackingFirstFirst
 	 */
 	cerr << "/*" << endl;
 	cerr << " * IntervalPackingFirstFit" << endl;
@@ -110,14 +110,14 @@ int main(int argc, char *argv[])
 	cerr << "Euristica di packing FirstFit" << endl;
 	begin = clock();
 	IntervalPackingFirstFit *firstFit =
-		new IntervalPackingFirstFit(problemSets, gModel);
+	    new IntervalPackingFirstFit(problemSets, gModel);
 	firstFit->solveX();
 	end = clock();
 	cerr << "  IntervalPackingFirstFit in " << (end -
-			begin) /
-		(double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	cerr << "firstFit was successful? " << firstFit->solved()<< endl;
-	
+	        begin) /
+	     (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+	cerr << "firstFit was successful? " << (bool) firstFit->solved() << endl;
+
 	if (firstFit->solved()) {
 		svg_output = "IntervalPackingFirstFit.svg";
 		firstFit->solution(solution);
@@ -126,18 +126,20 @@ int main(int argc, char *argv[])
 		}
 		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(),
-						  problemSets.B(), solution);
+		                      problemSets.B(), solution);
 		delete[]solution;
 		delete(gd);
 		cerr << "    Time: " << firstFit->elapsedTime() << "ms." << endl;
 		cerr << "    Objective function: " << firstFit->objectiveFunction() << " piattaforme.\n" << endl;
 	}
 	delete(firstFit);
-	
+
 	/*
 	 * MathModelColoring
 	 */
-	cerr << "/*" << endl;	cerr << " * MathModelColoring" << endl;	cerr << " */\n" << endl;
+	cerr << "/*" << endl;
+	cerr << " * MathModelColoring" << endl;
+	cerr << " */\n" << endl;
 	cerr << "Costruzione del modello matematico di list-coloring." << endl;
 	begin = clock();
 	MathModel *colModel = new MathModelColoring(gModel);
@@ -169,7 +171,9 @@ int main(int argc, char *argv[])
 	/*
 	 * MathModelBP
 	 */
-	cerr << "/*" << endl;	cerr << " * MathModelBP" << endl;	cerr << " */\n" << endl;
+	cerr << "/*" << endl;
+	cerr << " * MathModelBP" << endl;
+	cerr << " */\n" << endl;
 	cerr << "Costruzione del modello matematico di list-coloring. Vincoli compattati." << endl;
 	begin = clock();
 	MathModel *bpModel = new MathModelBP(gModel);
@@ -201,7 +205,9 @@ int main(int argc, char *argv[])
 	/*
 	 * MathModelBPsingle
 	 */
-	cerr << "/*" << endl;	cerr << " * MathModelBPsingle" << endl;	cerr << " */\n" << endl;
+	cerr << "/*" << endl;
+	cerr << " * MathModelBPsingle" << endl;
+	cerr << " */\n" << endl;
 	cerr << "Costruzione del modello matematico di list-coloring. Tutti i vincoli." << endl;
 	begin = clock();
 	MathModel *bpModelsingle = new MathModelBPsingle(gModel);
@@ -238,7 +244,9 @@ int main(int argc, char *argv[])
 	/*
 	 *  MathModelMinPConflict
 	 */
-	cerr << "/*" << endl;	cerr << " * mPconflictModel" << endl;	cerr << " */\n" << endl;
+	cerr << "/*" << endl;
+	cerr << " * mPconflictModel" << endl;
+	cerr << " */\n" << endl;
 	cerr << "Costruzione del modello matematico per min conflitto." << endl;
 	begin = clock();
 	MathModel *mPconflictModel = new MathModelMinPConflict(gModel);
@@ -247,11 +255,11 @@ int main(int argc, char *argv[])
 	mPconflictModel->writeModelCPLEX("modelMinPConflict_CPLEX.lp");
 	cerr << "  Costruzione di MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
-	mPconflictModel->verbose(DETAILED);
+	mPconflictModel->verbose(IMPORTANT);
 //	mPconflictModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mPconflictModel->setTimeout(900);
+	mPconflictModel->setTimeout(600);
 	mPconflictModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -272,7 +280,9 @@ int main(int argc, char *argv[])
 	/*
 	 * MathModelMaxMinDistance
 	 */
-	cerr << "/*" << endl;	cerr << " * MathModelMaxMinDistance" << endl;	cerr << " */\n" << endl;
+	cerr << "/*" << endl;
+	cerr << " * MathModelMaxMinDistance" << endl;
+	cerr << " */\n" << endl;
 	cerr << "Costruzione del modello per massimizzazione distanze fra soste" << endl;
 	begin = clock();
 	MathModel *mmdModel = new MathModelMaxMinDistance(gModel);
@@ -281,11 +291,11 @@ int main(int argc, char *argv[])
 	mmdModel->writeModelCPLEX("modelMaxMinDistance_CPLEX.lp");
 	cerr << "  Costruzione di MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
-	mmdModel->verbose(DETAILED);//IMPORTANT
+	mmdModel->verbose(IMPORTANT);//IMPORTANT
 //	mmdModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mmdModel->setTimeout(900);
+	mmdModel->setTimeout(300);
 	mmdModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -309,7 +319,7 @@ int main(int argc, char *argv[])
 	delete []warmStart;
 
 	// system("pause");
-	
+
 	/*
 	begin = clock();
 	MathModelMaxTotalDistance *tdModel = new MathModelMaxTotalDistance(gModel);

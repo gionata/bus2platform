@@ -10,14 +10,14 @@ using namespace boost::posix_time;
 using namespace boost::gregorian;
 
 GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
-					  int *dwellOnPlatform): _G(G), _B(B),
+                           int *dwellOnPlatform): _G(G), _B(B),
 	_dwellOnPlatform(dwellOnPlatform), _x_offset(0)
 {
 	_platforms = _G.size();
 	_scale = 1.0;
 	_width = findWidth();
-	_scale = 800 / _width;
-	_width = 800;
+	_scale = 600 / _width;
+	_width = 600;
 	_height = 3 * _width / 4;
 	_platformHeight = _height / (2 * _platforms - 1);
 	_platform_y_offset = new double[_platforms];
@@ -30,8 +30,9 @@ GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
 	_surface = cairo_svg_surface_create(output, _width, _height);
 	_cr = cairo_create(_surface);
 	cairo_select_font_face(_cr, "Sans", CAIRO_FONT_SLANT_NORMAL,
-					   CAIRO_FONT_WEIGHT_NORMAL);
-	cairo_set_font_size(_cr, _platformHeight / 3);
+	                       CAIRO_FONT_WEIGHT_NORMAL);
+	// cairo_set_font_size(_cr, _platformHeight / 3); // 800pt
+	cairo_set_font_size(_cr, _platformHeight / 6); // 600pt
 
 	drawPlatforms();
 	drawBusDwells();
@@ -53,15 +54,15 @@ GanttDiagram::findWidth()
 	double tmp;
 
 	for (Gates::const_iterator giter = _G.begin(); giter != _G.end();
-			giter++) {
+	        giter++) {
 		std::vector < TimeAvailability * >&availableTimes =
-			(*giter)->stopAvailableTimes();
+		    (*giter)->stopAvailableTimes();
 
 		for (std::vector <
-				TimeAvailability * >::const_iterator availableTimeIter =
-					availableTimes.begin();
-				availableTimeIter != availableTimes.end();
-				availableTimeIter++) {
+		        TimeAvailability * >::const_iterator availableTimeIter =
+		            availableTimes.begin();
+		        availableTimeIter != availableTimes.end();
+		        availableTimeIter++) {
 			ptime beginTime = (*availableTimeIter)->begin();
 			ptime endTime = (*availableTimeIter)->end();
 			tmp = x_coordinate(beginTime);
@@ -88,18 +89,18 @@ void GanttDiagram::drawPlatforms()
 	for (int p = 0; p < _platforms; p++) {
 		// per ogni intervallo di abilitazione disegna il rettangolo corrispondente
 		std::vector < TimeAvailability * >&stopAvailableTimes =
-			_G[p]->stopAvailableTimes();
+		    _G[p]->stopAvailableTimes();
 
 		for (std::vector <
-				TimeAvailability * >::const_iterator interval =
-					stopAvailableTimes.begin();
-				interval != stopAvailableTimes.end(); interval++) {
+		        TimeAvailability * >::const_iterator interval =
+		            stopAvailableTimes.begin();
+		        interval != stopAvailableTimes.end(); interval++) {
 			double x0 = x_coordinate((*interval)->begin());
 			double x1 = x_coordinate((*interval)->end());
 
 			drawBorderedRectangle(x0, _platform_y_offset[p], x1 - x0, _platformHeight
-							  , 0, 0, 0.5
-							  , 0.7, 0.7, 0.7);
+			                      , 0, 0, 0.5
+			                      , 0.7, 0.7, 0.7);
 		}
 	}
 }
@@ -117,13 +118,13 @@ void GanttDiagram::drawBusDwells()
 		double x1 =  x_coordinate(departure);
 
 		drawBorderedRectangle(x0, _platform_y_offset[gate], x1 - x0, _platformHeight
-						  , 0.5, 0, 0
-						  , 1.0, 0.97, 0.80);
+		                      , 0.5, 0, 0
+		                      , 1.0, 0.97, 0.80);
 		char bus_number[5];
 		sprintf(bus_number, "%d", (*b)->dwellNumber());
 		cairo_text_extents(_cr, bus_number, &extents);
 		cairo_move_to(_cr, (x1 + x0) / 2 - extents.width / 2,
-				    _platform_y_offset[gate] + _platformHeight / 2);
+		              _platform_y_offset[gate] + _platformHeight / 2);
 		cairo_set_source_rgb(_cr, 0, 0, 0);
 		cairo_show_text(_cr, bus_number);
 	}
@@ -135,9 +136,9 @@ double GanttDiagram::x_coordinate(ptime p)
 	long mm = p.time_of_day().minutes();
 	long hh = p.time_of_day().hours();
 	double x = (1. / 60 * ss +
-			   1. * mm +
-			  60. * hh -
-		      _x_offset) * _scale;
+	            1. * mm +
+	            60. * hh -
+	            _x_offset) * _scale;
 
 	return x;
 }

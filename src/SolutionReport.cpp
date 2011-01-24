@@ -9,7 +9,8 @@
 
 using namespace std;
 
-SolutionInformation::SolutionInformation (char *name, char *description, myType type, void *value) {
+SolutionInformation::SolutionInformation (char *name, char *description, myType type, void *value)
+{
 	this->name = string(name);
 	this->description = string (description);
 	this->type = type;
@@ -19,12 +20,14 @@ SolutionInformation::SolutionInformation (char *name, char *description, myType 
 		this->d = *((double *) value);
 }
 
-SolutionReport::SolutionReport() {
+SolutionReport::SolutionReport()
+{
 	// TODO Auto-generated constructor stub
 	_dataVecP = new vector<SolutionInformation>();
 }
 
-SolutionReport::~SolutionReport() {
+SolutionReport::~SolutionReport()
+{
 	// TODO Auto-generated destructor stub
 	/*for (vector<SolutionInformation>::iterator si = _dataVecP->begin();
 			si != _dataVecP->end(); si++)
@@ -32,13 +35,15 @@ SolutionReport::~SolutionReport() {
 	delete _dataVecP;
 }
 
-void SolutionReport::add(SolutionInformation info) {
+void SolutionReport::add(SolutionInformation info)
+{
 	_dataVecP->push_back(info);
 }
 
-void SolutionReport::print(ostream &log) {
+void SolutionReport::print(ostream &log)
+{
 	for (vector<SolutionInformation>::iterator si = _dataVecP->begin();
-				si != _dataVecP->end(); si++) {
+	        si != _dataVecP->end(); si++) {
 		log << si->name << "\t" << si->description << "\t" << si->type << "\t";
 		if (si->type == int_long)
 			log << si->l;

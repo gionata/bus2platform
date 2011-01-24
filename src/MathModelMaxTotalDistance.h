@@ -23,7 +23,9 @@ public:
 
 	// virtual bool solveX();
 	virtual bool solution(int *&gates) const;
-	bool initialSolution(int *startingSolution) { return true; }
+	bool initialSolution(int *startingSolution) {
+		return true;
+	}
 
 private:
 	int _yij_start;

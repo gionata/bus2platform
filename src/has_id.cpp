@@ -15,10 +15,10 @@ has_id::~has_id()
 
 int has_id::id() const
 {
-    return _id;
+	return _id;
 }
 
 void has_id::id(const int id)
 {
-    _id = id;
+	_id = id;
 }

@@ -15,38 +15,38 @@
  */
 class Interval {
 public:
-    Interval(IntervalEndpoint const &l, IntervalEndpoint const &u, int platform = -1, bool assigned = false);
+	Interval(IntervalEndpoint const &l, IntervalEndpoint const &u, int platform = -1, bool assigned = false);
 	// Interval();
-    ~Interval();
-    IntervalEndpoint const &lower() const;
-    IntervalEndpoint const &upper() const;
-    bool assigned() const;
+	~Interval();
+	IntervalEndpoint const &lower() const;
+	IntervalEndpoint const &upper() const;
+	bool assigned() const;
 	void assigned(bool);
-    int platform() const;
-    void platform(int g);
-    bool overlap(const Interval &x);
-    int vertex() const;
+	int platform() const;
+	void platform(int g);
+	bool overlap(const Interval &x);
+	int vertex() const;
 private:
-    const IntervalEndpoint &_low;
-    const IntervalEndpoint &_up;
-    bool _assigned;
-    int _platform;
+	const IntervalEndpoint &_low;
+	const IntervalEndpoint &_up;
+	bool _assigned;
+	int _platform;
 };
 
 typedef std::vector < Interval * >Intervals;
 
 class RightEndpoint {
 public:
-    bool operator() (const Interval *i1, const Interval *i2)const {
-        return i1->upper().time_point() < i2->upper().time_point();
-    }
+	bool operator() (const Interval *i1, const Interval *i2)const {
+		return i1->upper().time_point() < i2->upper().time_point();
+	}
 };
 
 class LeftEndpoint {
 public:
-    bool operator() (const Interval *i1, const Interval *i2)const {
-        return i1->lower().time_point() < i2->lower().time_point();
-    }
+	bool operator() (const Interval *i1, const Interval *i2)const {
+		return i1->lower().time_point() < i2->lower().time_point();
+	}
 };
 
 #endif /* INTERVAL_H_ */

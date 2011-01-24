@@ -27,12 +27,12 @@ TimeSlots::~TimeSlots(void)
 }
 
 TimeAvailability *TimeSlots::getTimeAvailability(CalendarDate *day,
-		ptime begin, ptime end)
+        ptime begin, ptime end)
 {
 	TimeAvailability *ret;
 
 	for (std::vector < TimeAvailability * >::const_iterator t =
-				_times.begin(); t != _times.end(); t++) {
+	            _times.begin(); t != _times.end(); t++) {
 		if ((*t)->day() != day) {
 			continue;
 		}

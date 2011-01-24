@@ -14,7 +14,7 @@ public:
 	has_id(const int id);
 	~has_id();
 	int id() const;
-	void id(const int id);	
+	void id(const int id);
 	friend class lthas_id;
 
 private:

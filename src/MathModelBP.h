@@ -27,7 +27,7 @@ public:
 
 private:
 	int _uk_start;
-	
+
 	lprec *createLP(unsigned int _numVars, unsigned int _numConstraints);
 	bool setObjectiveFunction();
 	bool setAssignmentConstraints();
@@ -35,7 +35,7 @@ private:
 	bool setLinkConstraints();
 	bool setSOS1();
 	bool setLbNoGates(int lb);
-	
+
 };
 
 #endif /* MATHMODELBP_H_ */
