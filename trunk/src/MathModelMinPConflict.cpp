@@ -16,13 +16,19 @@ MathModelMinPConflict::MathModelMinPConflict(GraphModel &graphs): MathModel(grap
 	unsigned _numEdgesC = _graphs.numEdgesC();
 	unsigned _linkConstraints = _graphs.numCompGates();
 
+	_presolveOpts =
+	    PRESOLVE_ROWS | PRESOLVE_COLS | PRESOLVE_LINDEP |
+	    PRESOLVE_SOS |
+	    PRESOLVE_REDUCEGCD | PRESOLVE_PROBEFIX | PRESOLVE_PROBEREDUCE |
+	    PRESOLVE_COLDOMINATE | PRESOLVE_ROWDOMINATE | PRESOLVE_BOUNDS;
+
 	clock_t begin = clock();
 
 	_numVars = _numEdgesH + _numEdgesC + 1;
 	_numConstraints = _numDwells +     /* Assignment */
-				   _numInterestingCliques +   /* Incompatibility */
-				   _linkConstraints +    /* Y_ij linx to X_ik and X_jk */
-				   0;
+	                  _numInterestingCliques +   /* Incompatibility */
+	                  _linkConstraints +    /* Y_ij linx to X_ik and X_jk */
+	                  0;
 	// _xik_start = 1;
 	_yij_start = _numEdgesH + _xik_start;
 
@@ -101,9 +107,9 @@ lprec *MathModelMinPConflict::createLP(unsigned int numVars, unsigned int numCon
 		size_t xik_idx = _H_edge_index[*eiH];
 		int variableIndex = xik_idx + _xik_start;
 		(*_assignment)[xik_idx].first =
-			source(*eiH, _graphs.graphH());
+		    source(*eiH, _graphs.graphH());
 		(*_assignment)[xik_idx].second =
-			target(*eiH, _graphs.graphH());
+		    target(*eiH, _graphs.graphH());
 		set_binary(_lp, variableIndex, TRUE);
 #ifndef _NO_LP_NAMES
 		// strcpy(_col_or_row_name, _H_edge_name[*eiH].c_str());
@@ -135,17 +141,17 @@ bool MathModelMinPConflict::setObjectiveFunction()
 	double cost [_graphs.numEdgesC()];
 	for (tie(eiC, ei_endC) = edges(_graphs.graphC()); eiC != ei_endC; ++eiC) {
 		size_t yij_idx = _C_edge_index[*eiC];
-		
+
 #ifdef LINEAR_FUNCT
 		cost[yij_idx] =_C_edge_weight[yij_idx];
 #else
 		double conflict = 0.0;
 		if (_C_edge_weight[yij_idx] <= 0)
-		    conflict = 1.0;
+			conflict = 1.0;
 		else if (_C_edge_weight[yij_idx] <= 30.0)
-		    conflict = exp(-0.05*_C_edge_weight[yij_idx]);
+			conflict = exp(-0.05*_C_edge_weight[yij_idx]);
 		else
-		    conflict =  0.0;
+			conflict =  0.0;
 		cost[yij_idx] = 1.0 - conflict;
 #endif
 
@@ -163,16 +169,16 @@ bool MathModelMinPConflict::setObjectiveFunction()
 	    _graphs.numEdgesC() *
 #endif
 	    (_D - _d);
-	    
+
 	for (tie(eiC, ei_endC) = edges(_graphs.graphC()); eiC != ei_endC; ++eiC) {
 		size_t yij_idx = _C_edge_index[*eiC];
-		
+
 		int variableIndex = yij_idx + _yij_start;
-//std::cout << "edge: " << yij_idx << " weight: " << _C_edge_weight[yij_idx] << " cost: " << (_D - cost[yij_idx]) / den << endl; 
+//std::cout << "edge: " << yij_idx << " weight: " << _C_edge_weight[yij_idx] << " cost: " << (_D - cost[yij_idx]) / den << endl;
 
 		if (_D - cost[yij_idx] > 0)
 			if (set_obj(_lp, variableIndex, (_D - cost[yij_idx]) / den) ==
-					FALSE) {
+			        FALSE) {
 				return false;
 			}
 	}
@@ -199,13 +205,14 @@ bool MathModelMinPConflict::setAssignmentConstraints()
 		graph_traits < GraphH >::out_edge_iterator out_iH, out_endH;
 		unsigned count = 0;
 		for (tie(out_iH, out_endH) = out_edges(i, _graphs.graphH());
-				out_iH != out_endH; ++out_iH) {
+		        out_iH != out_endH; ++out_iH) {
 			_column_numbers[count++] = _H_edge_index[*out_iH] + _xik_start;
 		}
 
 		set_rowex(_lp, _currentRow, count, _row_values, _column_numbers);
 		set_constr_type(_lp, _currentRow, EQ);
 		set_rh(_lp, _currentRow++, 1.0);
+		add_SOS(_lp, NULL, 1, 1, count,  _column_numbers, NULL);
 	}
 
 	return true;
@@ -217,7 +224,7 @@ bool MathModelMinPConflict::setIncompatibilityConstraints()
 	for (int soss = 0; soss < _numInterestingCliques; soss++) {
 
 		set_rowex(_lp, _currentRow, _sos1Cardinality[soss], _row_values,
-				_colno[soss]);
+		          _colno[soss]);
 		set_constr_type(_lp, _currentRow, LE);
 		set_rh(_lp, _currentRow, 1.0);
 #ifndef _NO_LP_NAMES
@@ -250,7 +257,7 @@ bool MathModelMinPConflict::setLinkConstraints()
 //		if (j >= i) {
 //			continue;
 //		}
-		
+
 #ifndef _NO_LP_NAMES
 		int iIndex = _C_vertex_index[i];
 		int jIndex = _C_vertex_index[j];
@@ -258,8 +265,7 @@ bool MathModelMinPConflict::setLinkConstraints()
 		int y_ijIndex = _C_edge_index[*eiC];
 
 		for (std::vector<std::pair<size_t, size_t> > ::const_iterator x_ijk = _graphs.compGates()[y_ijIndex]->begin();
-			x_ijk != _graphs.compGates()[y_ijIndex]->end(); x_ijk++)
-		{
+		        x_ijk != _graphs.compGates()[y_ijIndex]->end(); x_ijk++) {
 			size_t x_ik = x_ijk->first;
 			size_t x_jk = x_ijk->second;
 			_column_numbers[0] = x_ik + _xik_start;
@@ -270,7 +276,7 @@ bool MathModelMinPConflict::setLinkConstraints()
 
 #ifndef _NO_LP_NAMES
 			sprintf(_col_or_row_name, "link_%d_%d_%d", B[iIndex]->dwellNumber(),
-						   B[jIndex]->dwellNumber(), fictitious_k++ % _graphs.numPlatforms() + 1);
+			        B[jIndex]->dwellNumber(), fictitious_k++ % _graphs.numPlatforms() + 1);
 			set_row_name(_lp, _currentRow, _col_or_row_name);
 #endif
 			set_constr_type(_lp, _currentRow, LE);
@@ -290,7 +296,7 @@ bool MathModelMinPConflict::setSOS1()
 	for (int soss = 0; soss < _numInterestingCliques; soss++) {
 		sprintf(_col_or_row_name, "SOS_%d", soss + 1);
 		add_SOS(_lp, _col_or_row_name, 1, 1, _sos1Cardinality[soss],
-			   _colno[soss], NULL);
+		        _colno[soss], NULL);
 	}
 
 	return true;
@@ -299,18 +305,77 @@ bool MathModelMinPConflict::setSOS1()
 bool MathModelMinPConflict::solution(int *&gates)  const
 {
 	gates = new int[_numDwells];
-	int Norig_columns, Norig_rows;
-	REAL value;
-	Norig_columns = get_Norig_columns(_lp);
-	Norig_rows = get_Norig_rows(_lp);
+	if (_presolveOpts != PRESOLVE_NONE) {
+		int Norig_columns, Norig_rows;
+		REAL value;
+		Norig_columns = get_Norig_columns(_lp);
+		Norig_rows = get_Norig_rows(_lp);
 
-	for(int i = 1; i < _yij_start; i++) {
-	  value = get_var_primalresult(_lp, Norig_rows + i);
-	  if (value >= 0.998) {
-			gates[(*_assignment)[i-1].first] =
-			(*_assignment)[i-1].second - _numDwells;
-		// cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
-	  };
+		for(int i = 1; i < _yij_start; i++) {
+			value = get_var_primalresult(_lp, Norig_rows + i);
+			if (value >= 0.998) {
+				gates[(*_assignment)[i-1].first] =
+				    (*_assignment)[i-1].second - _numDwells;
+				// cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
+			};
+		}
+	} else {
+		double *sol = new double[_numVars];
+		if (get_variables(_lp, sol) == FALSE) {
+			return false;
+		}
+
+		for (int i = 0; i < _yij_start - 1; i++)
+			if (sol[i] >= 0.998) {
+				gates[(*_assignment)[i].first] =
+				    (*_assignment)[i].second - _numDwells;
+				// cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
+			}
+
+		delete[]sol;
+	}
+
+	//////////////   VERIFICA AMMISSIBILITA   //////////////
+	//                                                    //
+	//     verifica di ammissibilita' della soluzione     //
+	//                                                    //
+	////////////////////////////////////////////////////////
+	vector < vector <size_t> > gate_dwell (_objectiveFunction);
+	bool used[_graphs.G().size()];
+	for (int i = 0; i < _graphs.G().size(); i++) {
+		used[i] = false;
+	}
+	// setta il vettore gate_dwell
+	for (int d = 0; d < _numDwells; d++) {
+		size_t platform = gates[d];
+		if (!used[platform]) {
+			used[platform] = true;
+			// gate_dwell[platform]= new vector<size_t>();
+		}
+		gate_dwell[platform].push_back(d);
+	}
+	// controlla, per ogni piattaforma
+	for (int p = 0; p < _graphs.G().size(); p++) {
+		// che ogni sosta
+		for (vector<size_t>::const_iterator i = gate_dwell[p].begin(); i != gate_dwell[p].end(); i++) {
+			// sia assegnabile alla piattaforma
+			if (! _graphs.B()[*i]->compatible(_graphs.G()[p])) {
+				cerr << "sosta " << _graphs.B()[*i]->dwellNumber() << " non compatibile con piattaforma "<< p + 1 << endl;
+				exit(1);
+			}
+			// non interferisca con nessuna delle soste successive
+			if (*i != gate_dwell[p].back()) {
+				vector<size_t>::const_iterator j = i;
+				j++;
+				for (; j != gate_dwell[p].end(); j++) {
+					if (_graphs.B()[*i]->occupacyPeriod().intersects(_graphs.B()[*j]->occupacyPeriod())) {
+						cerr << "piattaforma " << p + 1 << ", sosta " <<
+						     _graphs.B()[*i]->dwellNumber() << " interferisce con " << _graphs.B()[*j]->dwellNumber() << endl;
+						exit(1);
+					}
+				}
+			}
+		}
 	}
 
 	return true;

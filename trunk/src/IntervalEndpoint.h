@@ -18,28 +18,28 @@ typedef enum EndPointType_t { rightEP = 0, leftEP = 1 } EndPointType;
  */
 class IntervalEndpoint {
 public:
-    IntervalEndpoint();
-    IntervalEndpoint(ptime time_point, EndPointType endPoint,
-                     int vertex);
-    ~IntervalEndpoint();
-    bool operator<(const IntervalEndpoint &right);
-    static bool cmp(const IntervalEndpoint &left,
-                    const IntervalEndpoint &right);
-    EndPointType endpointType() const;
-    int vertex() const;
-    ptime time_point() const;
+	IntervalEndpoint();
+	IntervalEndpoint(ptime time_point, EndPointType endPoint,
+	                 int vertex);
+	~IntervalEndpoint();
+	bool operator<(const IntervalEndpoint &right);
+	static bool cmp(const IntervalEndpoint &left,
+	                const IntervalEndpoint &right);
+	EndPointType endpointType() const;
+	int vertex() const;
+	ptime time_point() const;
 private:
-    ptime _time_point;
-    EndPointType _endPoint;
-    int _vertex;
+	ptime _time_point;
+	EndPointType _endPoint;
+	int _vertex;
 };
 
 class EndpointLess {
 public:
-    bool operator() (const IntervalEndpoint &left,
-                     const IntervalEndpoint &right) const {
-        return left.time_point() < right.time_point();
-    }
+	bool operator() (const IntervalEndpoint &left,
+	                 const IntervalEndpoint &right) const {
+		return left.time_point() < right.time_point();
+	}
 };
 
 #endif /* INTERVALENDPOINT_H_ */

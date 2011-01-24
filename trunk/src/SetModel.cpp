@@ -17,188 +17,188 @@
 
 SetModel::SetModel(char *filename)
 {
-    int no_platforms;
-    int no_dwells;
-    std::ifstream inf;
-    inf.open(filename);
+	int no_platforms;
+	int no_dwells;
+	std::ifstream inf;
+	inf.open(filename);
 
-    if (inf.fail()) {
-        inf.clear();
-        exit(1);
-    }
+	if (inf.fail()) {
+		inf.clear();
+		exit(1);
+	}
 
-    std::string line;
-    int hh, mm, ss;
-    // int dwellVectorIndex = 0;
-    int lastGate = 0;
-    date d(2010, 1, 1);
+	std::string line;
+	int hh, mm, ss;
+	// int dwellVectorIndex = 0;
+	int lastGate = 0;
+	date d(2010, 1, 1);
 
-    do {
-        getline(inf, line);
+	do {
+		getline(inf, line);
 
-        if (inf.eof()) {
-            inf.close();
-            exit(1);
-        }
-    } while (line.empty());
+		if (inf.eof()) {
+			inf.close();
+			exit(1);
+		}
+	} while (line.empty());
 
-    std::istringstream line_stream(line);
-    line_stream >> no_dwells >> no_platforms;
-    TimeSlots &timeSlots = TimeSlots::getInstance();
-    _B = new Buses(no_dwells);
-    _G = new Gates(no_platforms);
-    line_stream.clear();
+	std::istringstream line_stream(line);
+	line_stream >> no_dwells >> no_platforms;
+	TimeSlots &timeSlots = TimeSlots::getInstance();
+	_B = new Buses(no_dwells);
+	_G = new Gates(no_platforms);
+	line_stream.clear();
 
-    for (int gateIter = 0; gateIter < no_platforms; gateIter++) {
-        getline(inf, line);
-        line_stream.str(line);
-        int stationSystemGateId;
-        line_stream >> stationSystemGateId;
-        (*_G)[gateIter] = new Gate(gateIter, stationSystemGateId);
+	for (int gateIter = 0; gateIter < no_platforms; gateIter++) {
+		getline(inf, line);
+		line_stream.str(line);
+		int stationSystemGateId;
+		line_stream >> stationSystemGateId;
+		(*_G)[gateIter] = new Gate(gateIter, stationSystemGateId);
 
-        do {
-            std::string begin, end;
-            line_stream >> begin >> end;
-            sscanf(begin.c_str(), "%d:%d:%d", &hh, &mm, &ss);
-            ptime pt_begin(d,
-                           hours(hh) + minutes(mm) + seconds(ss));
-            sscanf(end.c_str(), "%d:%d:%d", &hh, &mm, &ss);
-            ptime pt_end(d, hours(hh) + minutes(mm) + seconds(ss));
-            TimeAvailability *timeWindow =
-                timeSlots.getTimeAvailability(0, pt_begin, pt_end);
-            (*_G)[gateIter]->stopAvailableTimes(timeWindow);
-        } while (!line_stream.eof());
+		do {
+			std::string begin, end;
+			line_stream >> begin >> end;
+			sscanf(begin.c_str(), "%d:%d:%d", &hh, &mm, &ss);
+			ptime pt_begin(d,
+			               hours(hh) + minutes(mm) + seconds(ss));
+			sscanf(end.c_str(), "%d:%d:%d", &hh, &mm, &ss);
+			ptime pt_end(d, hours(hh) + minutes(mm) + seconds(ss));
+			TimeAvailability *timeWindow =
+			    timeSlots.getTimeAvailability(0, pt_begin, pt_end);
+			(*_G)[gateIter]->stopAvailableTimes(timeWindow);
+		} while (!line_stream.eof());
 
-        line_stream.clear();
-    }
+		line_stream.clear();
+	}
 
-    int dwellVectorIndex = 0;
+	int dwellVectorIndex = 0;
 
-    for (getline(inf, line); !inf.eof() && dwellVectorIndex < no_dwells;
-            getline(inf, line)) {
-        if (line == "") {
-            continue;
-        }
+	for (getline(inf, line); !inf.eof() && dwellVectorIndex < no_dwells;
+	        getline(inf, line)) {
+		if (line == "") {
+			continue;
+		}
 
-        line_stream.str(line);
-        int stationSystemDwellId;
-        std::string arrival;
-        std::string departure;
-        Gates *gates = new Gates();
-        line_stream >> stationSystemDwellId;
-        line_stream >> arrival;
-        line_stream >> departure;
-        sscanf(arrival.c_str(), "%d:%d:%d", &hh, &mm, &ss);
-        ptime pt_arrival(d, hours(hh) + minutes(mm) + seconds(ss));
-        sscanf(departure.c_str(), "%d:%d:%d", &hh, &mm, &ss);
-        ptime pt_departure(d, hours(hh) + minutes(mm) + seconds(ss));
+		line_stream.str(line);
+		int stationSystemDwellId;
+		std::string arrival;
+		std::string departure;
+		Gates *gates = new Gates();
+		line_stream >> stationSystemDwellId;
+		line_stream >> arrival;
+		line_stream >> departure;
+		sscanf(arrival.c_str(), "%d:%d:%d", &hh, &mm, &ss);
+		ptime pt_arrival(d, hours(hh) + minutes(mm) + seconds(ss));
+		sscanf(departure.c_str(), "%d:%d:%d", &hh, &mm, &ss);
+		ptime pt_departure(d, hours(hh) + minutes(mm) + seconds(ss));
 
-        do {
-            int gateVectorIndex = 0;
-            int stationSystemGateId;
-            line_stream >> stationSystemGateId;
-            bool yetInserted = false;
+		do {
+			int gateVectorIndex = 0;
+			int stationSystemGateId;
+			line_stream >> stationSystemGateId;
+			bool yetInserted = false;
 
-            for (Gates::const_iterator gateIter = _G->begin();
-                    gateIter != _G->end(); gateIter++) {
-                // for (int gateIter = 0; gateIter != lastGate; gateIter++) {
-                if ((*gateIter)->gateNumber() ==
-                        stationSystemGateId) {
-                    gateVectorIndex = (*gateIter)->id();
-                    yetInserted = true;
-                    break;
-                }
-            }
+			for (Gates::const_iterator gateIter = _G->begin();
+			        gateIter != _G->end(); gateIter++) {
+				// for (int gateIter = 0; gateIter != lastGate; gateIter++) {
+				if ((*gateIter)->gateNumber() ==
+				        stationSystemGateId) {
+					gateVectorIndex = (*gateIter)->id();
+					yetInserted = true;
+					break;
+				}
+			}
 
-            if (!yetInserted) {
-                _G->push_back(new
-                              Gate(lastGate,
-                                   stationSystemGateId));
-                gateVectorIndex = lastGate++;
-            }
+			if (!yetInserted) {
+				_G->push_back(new
+				              Gate(lastGate,
+				                   stationSystemGateId));
+				gateVectorIndex = lastGate++;
+			}
 
-            gates->push_back((*_G)[gateVectorIndex]);
-        } while (!line_stream.eof());
+			gates->push_back((*_G)[gateVectorIndex]);
+		} while (!line_stream.eof());
 
-        (*_B)[dwellVectorIndex] =
-            new Bus(dwellVectorIndex, stationSystemDwellId, pt_arrival,
-                    pt_departure, gates);
-        dwellVectorIndex++;
-        line_stream.clear();
-    }
+		(*_B)[dwellVectorIndex] =
+		    new Bus(dwellVectorIndex, stationSystemDwellId, pt_arrival,
+		            pt_departure, gates);
+		dwellVectorIndex++;
+		line_stream.clear();
+	}
 
-    timeIntervals();
-    _numMaximalCliques = 0;
-    _maximalCliquesAtGate =
-        new std::vector < std::vector < std::set < int > * > >();
-    int k = 0;
+	timeIntervals();
+	_numMaximalCliques = 0;
+	_maximalCliquesAtGate =
+	    new std::vector < std::vector < std::set < int > * > >();
+	int k = 0;
 
-    for (Gates::iterator gateIter = _G->begin(); gateIter != _G->end();
-            gateIter++) {
-        (*gateIter)->id((*gateIter)->id() + dwellVectorIndex);
-        findMaximalCliques(k++);
-    }
+	for (Gates::iterator gateIter = _G->begin(); gateIter != _G->end();
+	        gateIter++) {
+		(*gateIter)->id((*gateIter)->id() + dwellVectorIndex);
+		findMaximalCliques(k++);
+	}
 }
 
 SetModel::~SetModel()
 {
-    for (Intervals::const_iterator i = _I->begin(); i != _I->end(); i++) {
-        delete (*i);
-    }
+	for (Intervals::const_iterator i = _I->begin(); i != _I->end(); i++) {
+		delete (*i);
+	}
 
-    delete _I;
-    //for (std::vector <IntervalEndpoint>::const_iterator i = _timeOccupation->begin();
-    //      i != _timeOccupation->end(); i++)
-    //      delete *i;
-    delete _timeOccupation;
+	delete _I;
+	//for (std::vector <IntervalEndpoint>::const_iterator i = _timeOccupation->begin();
+	//      i != _timeOccupation->end(); i++)
+	//      delete *i;
+	delete _timeOccupation;
 
-    for (std::vector < std::vector < std::set < int > * > >::iterator i =
-                _maximalCliquesAtGate->begin(); i != _maximalCliquesAtGate->end();
-            i++)
-        for (std::vector < std::set < int >*>::iterator j = i->begin();
-                j != i->end(); j++) {
-            delete *j;
-        }
+	for (std::vector < std::vector < std::set < int > * > >::iterator i =
+	            _maximalCliquesAtGate->begin(); i != _maximalCliquesAtGate->end();
+	        i++)
+		for (std::vector < std::set < int >*>::iterator j = i->begin();
+		        j != i->end(); j++) {
+			delete *j;
+		}
 
-    delete _maximalCliquesAtGate;
+	delete _maximalCliquesAtGate;
 
-    for (Gates::iterator g = _G->begin(); g != _G->end(); g++) {
-        delete *g;
-    }
+	for (Gates::iterator g = _G->begin(); g != _G->end(); g++) {
+		delete *g;
+	}
 
-    delete _G;
+	delete _G;
 
-    int intervalIdx = 0;
-    for (Buses::iterator dwellIter = _B->begin();
-           dwellIter != _B->end(); dwellIter++) {
-           delete *dwellIter;
-    }
+	int intervalIdx = 0;
+	for (Buses::iterator dwellIter = _B->begin();
+	        dwellIter != _B->end(); dwellIter++) {
+		delete *dwellIter;
+	}
 
-    delete _B;
+	delete _B;
 }
 
 void SetModel::timeIntervals()
 {
-    _timeOccupation = new std::vector < IntervalEndpoint > (2 * _B->size());
-    _I = new Intervals(_B->size());
-    int intervalIdx = 0;
-    int endpointIdx = 0;
+	_timeOccupation = new std::vector < IntervalEndpoint > (2 * _B->size());
+	_I = new Intervals(_B->size());
+	int intervalIdx = 0;
+	int endpointIdx = 0;
 
-    for (Buses::const_iterator dwellIter = _B->begin();
-            dwellIter != _B->end(); dwellIter++) {
-        IntervalEndpoint *left =
-            new IntervalEndpoint((**dwellIter).arrival(), leftEP,
-                                 (**dwellIter).id());
-        IntervalEndpoint *right =
-            new IntervalEndpoint((**dwellIter).departure(), rightEP,
-                                 (**dwellIter).id());
-        Interval *interval = new Interval(*left, *right);
-        (*_timeOccupation)[endpointIdx++] = *left;
-        (*_timeOccupation)[endpointIdx++] = *right;
-        (*_I)[intervalIdx++] = interval;
-    }
+	for (Buses::const_iterator dwellIter = _B->begin();
+	        dwellIter != _B->end(); dwellIter++) {
+		IntervalEndpoint *left =
+		    new IntervalEndpoint((**dwellIter).arrival(), leftEP,
+		                         (**dwellIter).id());
+		IntervalEndpoint *right =
+		    new IntervalEndpoint((**dwellIter).departure(), rightEP,
+		                         (**dwellIter).id());
+		Interval *interval = new Interval(*left, *right);
+		(*_timeOccupation)[endpointIdx++] = *left;
+		(*_timeOccupation)[endpointIdx++] = *right;
+		(*_I)[intervalIdx++] = interval;
+	}
 
-    _sortedTimeOccupation = false;
+	_sortedTimeOccupation = false;
 }
 
 /*
@@ -212,111 +212,111 @@ void SetModel::timeIntervals()
 */
 void SetModel::findMaximalCliques(int gate)
 {
-    std::vector < std::set < int >*>maximalCliques;
-    maximalCliques.reserve(_I->size());
+	std::vector < std::set < int >*>maximalCliques;
+	maximalCliques.reserve(_I->size());
 
-    if (!_sortedTimeOccupation) {
-        sort(_timeOccupation->begin(), _timeOccupation->end(),
-             EndpointLess());
-        _sortedTimeOccupation = true;
-    }
+	if (!_sortedTimeOccupation) {
+		sort(_timeOccupation->begin(), _timeOccupation->end(),
+		     EndpointLess());
+		_sortedTimeOccupation = true;
+	}
 
-    int clique = 0;
-    std::set < int >*currentClique = new std::set < int >();
-    EndPointType previous = leftEP;
+	int clique = 0;
+	std::set < int >*currentClique = new std::set < int >();
+	EndPointType previous = leftEP;
 
-    for (std::vector < IntervalEndpoint >::const_iterator i =
-                _timeOccupation->begin(); i != _timeOccupation->end(); i++) {
-        if (!(*_B)[i->vertex()]->compatible((*_G)[gate])) {
-            continue;
-        }
+	for (std::vector < IntervalEndpoint >::const_iterator i =
+	            _timeOccupation->begin(); i != _timeOccupation->end(); i++) {
+		if (!(*_B)[i->vertex()]->compatible((*_G)[gate])) {
+			continue;
+		}
 
-        if (i->endpointType() == leftEP) {
-            /* Add to current maximal clique */
-            currentClique->insert(i->vertex());
-            previous = leftEP;
-        } else {
-            if (previous == leftEP) {
-                std::set < int >*maximalCliquePtr =
-                    new std::set < int >(*currentClique);
-                maximalCliques.push_back(maximalCliquePtr);
-                clique++;
-                _numMaximalCliques++;
-                currentClique->erase(i->vertex());
-            } else {
-                currentClique->erase(i->vertex());
-                // maximalCliques[clique - 1]->erase(i->vertex());
-            }
+		if (i->endpointType() == leftEP) {
+			/* Add to current maximal clique */
+			currentClique->insert(i->vertex());
+			previous = leftEP;
+		} else {
+			if (previous == leftEP) {
+				std::set < int >*maximalCliquePtr =
+				    new std::set < int >(*currentClique);
+				maximalCliques.push_back(maximalCliquePtr);
+				clique++;
+				_numMaximalCliques++;
+				currentClique->erase(i->vertex());
+			} else {
+				currentClique->erase(i->vertex());
+				// maximalCliques[clique - 1]->erase(i->vertex());
+			}
 
-            previous = rightEP;
-        }
-    }
+			previous = rightEP;
+		}
+	}
 
-    _maximalCliquesAtGate->push_back(maximalCliques);
-    // if (maximalCliques.size() <= 1)
-    //      std::cout << "Clique di size " << maximalCliques.size() << std::endl;
-    delete currentClique;
+	_maximalCliquesAtGate->push_back(maximalCliques);
+	// if (maximalCliques.size() <= 1)
+	//      std::cout << "Clique di size " << maximalCliques.size() << std::endl;
+	delete currentClique;
 }
 
-int SetModel::lowerBoundNumberGates() 
+int SetModel::lowerBoundNumberGates()
 {
 
-    if (!_sortedTimeOccupation) {
-        sort(_timeOccupation->begin(), _timeOccupation->end(),
-             EndpointLess());
-        _sortedTimeOccupation = true;
-    }
+	if (!_sortedTimeOccupation) {
+		sort(_timeOccupation->begin(), _timeOccupation->end(),
+		     EndpointLess());
+		_sortedTimeOccupation = true;
+	}
 
-    int gatesLB = 0;
-    int max = 0;
-    EndPointType previous = leftEP;
+	int gatesLB = 0;
+	int max = 0;
+	EndPointType previous = leftEP;
 
-    for (std::vector < IntervalEndpoint >::const_iterator i =
-                _timeOccupation->begin(); i != _timeOccupation->end(); i++) {
-        if (i->endpointType() == leftEP) {
-            gatesLB++;
-            previous = leftEP;
-        } else {
-            if (previous == leftEP) {
-                if (max < gatesLB) {
-                    max = gatesLB;
-                }
+	for (std::vector < IntervalEndpoint >::const_iterator i =
+	            _timeOccupation->begin(); i != _timeOccupation->end(); i++) {
+		if (i->endpointType() == leftEP) {
+			gatesLB++;
+			previous = leftEP;
+		} else {
+			if (previous == leftEP) {
+				if (max < gatesLB) {
+					max = gatesLB;
+				}
 
-                gatesLB--;
-            } else {
-                gatesLB--;
-            }
+				gatesLB--;
+			} else {
+				gatesLB--;
+			}
 
-            previous = rightEP;
-        }
-    }
+			previous = rightEP;
+		}
+	}
 
-    // std::cout << "LB on the number of gates:" << max << std::endl;
+	// std::cout << "LB on the number of gates:" << max << std::endl;
 
-    return max;
+	return max;
 }
 
 Buses &SetModel::B() const
 {
-    return *_B;
+	return *_B;
 }
 
 Gates &SetModel::G() const
 {
-    return *_G;
+	return *_G;
 }
 
 Intervals &SetModel::I() const
 {
-    return *_I;
+	return *_I;
 }
 
 std::vector < std::vector < std::set < int > * > > & SetModel::maximalCliques() const
 {
-    return *_maximalCliquesAtGate;
+	return *_maximalCliquesAtGate;
 }
 
 unsigned int SetModel::numMaximalCliques() const
 {
-    return _numMaximalCliques;
+	return _numMaximalCliques;
 }

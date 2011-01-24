@@ -10,14 +10,13 @@ using namespace boost;
 
 MathModelColoring::MathModelColoring(GraphModel &graphs): MathModel(graphs)
 {
-
 	_numVars = _graphs.numEdgesH() + _graphs.numPlatforms();
 	_numConstraints = _numDwells +     /* Assignment */
-				   _graphs.numInterestingCliques() +    /* Incompatibility */
-				   //_graphs.numPlatforms() +   /* U_k linx to X_ik */
-				   1;               /* lower bound sul numero di gates aperti */
-				   /* 1 -- upper bound */
-				   /* |V| -- ( \sum_{j=1}^g u_j ) >= ( \sum_{j=1}^g j * x_{ij} ) */
+	                  _graphs.numInterestingCliques() +    /* Incompatibility */
+	                  //_graphs.numPlatforms() +   /* U_k linx to X_ik */
+	                  1;               /* lower bound sul numero di gates aperti */
+	/* 1 -- upper bound */
+	/* |V| -- ( \sum_{j=1}^g u_j ) >= ( \sum_{j=1}^g j * x_{ij} ) */
 	_uk_start = _graphs.numEdgesH() + 1;
 
 
@@ -41,6 +40,13 @@ MathModelColoring::MathModelColoring(GraphModel &graphs): MathModel(graphs)
 	// setReduceFractionalSols();
 	setSOS1();
 	set_add_rowmode(_lp, FALSE);
+	_presolveOpts = //PRESOLVE_NONE;
+	    //
+	    PRESOLVE_ROWS | PRESOLVE_COLS | PRESOLVE_LINDEP |
+	    PRESOLVE_SOS |
+	    PRESOLVE_REDUCEGCD | PRESOLVE_PROBEFIX | PRESOLVE_PROBEREDUCE |
+	    PRESOLVE_COLDOMINATE | PRESOLVE_ROWDOMINATE | PRESOLVE_BOUNDS;
+	//
 }
 
 MathModelColoring::~MathModelColoring()
@@ -57,7 +63,7 @@ lprec *MathModelColoring::createLP(unsigned int numVars, unsigned int numConstra
 
 	set_add_rowmode(_lp, TRUE);
 #ifndef _NO_LP_NAMES
-	set_lp_name(_lp, "BinPacking");
+	set_lp_name(_lp, "Coloring");
 #endif
 
 	set_minim(_lp);
@@ -67,9 +73,9 @@ lprec *MathModelColoring::createLP(unsigned int numVars, unsigned int numConstra
 		size_t xik_idx = _H_edge_index[*ei];
 		int variableIndex = xik_idx + _xik_start;
 		(*_assignment)[xik_idx].first =
-			source(*ei, _graphs.graphH());
+		    source(*ei, _graphs.graphH());
 		(*_assignment)[xik_idx].second =
-			target(*ei, _graphs.graphH());
+		    target(*ei, _graphs.graphH());
 		set_binary(_lp, variableIndex, TRUE);
 
 #ifndef _NO_LP_NAMES
@@ -114,13 +120,14 @@ bool MathModelColoring::setAssignmentConstraints()
 
 		unsigned count = 0;
 		for (tie(out_i, out_end) = out_edges(i, _graphs.graphH());
-				out_i != out_end; ++out_i) {
+		        out_i != out_end; ++out_i) {
 			_column_numbers[count++] = _H_edge_index[*out_i] + 1;
 		}
 
 		set_rowex(_lp, i + 1, count, _row_values, _column_numbers);
 		set_constr_type(_lp, i + 1, EQ);
 		set_rh(_lp, i + 1, 1.0);
+		add_SOS(_lp, NULL, 1, 1, count,  _column_numbers, NULL);
 	}
 
 	return true;
@@ -136,11 +143,11 @@ bool MathModelColoring::setIncompatibilityConstraints()
 		// copia _colno[soss] in un nuovo array di _sos1Cardinality[soss] + 1
 		int columns_numbers_uk[_sos1Cardinality[soss]+1];
 		for (int i = 0; i <_sos1Cardinality[soss]; i++)
-		  columns_numbers_uk[i] = _colno[soss][i];
+			columns_numbers_uk[i] = _colno[soss][i];
 		columns_numbers_uk[_sos1Cardinality[soss]] = _uk_start + _graphs.sos1_corresponding_gate()[soss];
 		_row_values[_sos1Cardinality[soss]] = -1.0;
 		set_rowex(_lp, row_no, _sos1Cardinality[soss]+1, _row_values,
-				columns_numbers_uk);
+		          columns_numbers_uk);
 		_row_values[_sos1Cardinality[soss]] = +1.0;
 		set_constr_type(_lp, row_no, LE);
 		set_rh(_lp, row_no, 0.0);
@@ -160,10 +167,10 @@ bool MathModelColoring::setSOS1()
 
 	for (int soss = 0; soss < _numInterestingCliques; soss++) {
 
-		sprintf(_col_or_row_name, "SOS_%d", soss + 1);
+		// sprintf(_col_or_row_name, "SOS_%d", soss + 1);
 		index =
-			add_SOS(_lp, _col_or_row_name, 1, 1, _sos1Cardinality[soss],
-				   _colno[soss], NULL);
+		    add_SOS(_lp, /*_col_or_row_name*/ NULL, 1, 1, _sos1Cardinality[soss],
+		            _colno[soss], NULL);
 	}
 
 	return true;
@@ -179,8 +186,8 @@ bool MathModelColoring::setLbNoGates(int lb)
 	}
 
 	if (set_rowex
-			(_lp, row_no, _graphs.numPlatforms(), _row_values,
-			 columns_no) == FALSE) {
+	        (_lp, row_no, _graphs.numPlatforms(), _row_values,
+	         columns_no) == FALSE) {
 		delete[]columns_no;
 		return false;
 	}
@@ -199,20 +206,78 @@ bool MathModelColoring::setLbNoGates(int lb)
 
 bool MathModelColoring::solution(int *&gates) const
 {
-
 	gates = new int[_numDwells];
-	int Norig_columns, Norig_rows;
-	REAL value;
-	Norig_columns = get_Norig_columns(_lp);
-	Norig_rows = get_Norig_rows(_lp);
 
-	for(int i = 1; i < _uk_start; i++) {
-	  value = get_var_primalresult(_lp, Norig_rows + i);
-	  if (value >= 0.998) {
-			gates[(*_assignment)[i-1].first] =
-			(*_assignment)[i-1].second - _numDwells;
-		// cout << /*get_col_name(_lp, i+1) << "  " <<*/ _graphs.sets().B()[(*_assignment)[i].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i].second - _numDwells]->gateNumber() << endl;
-	  };
+	if (_presolveOpts != PRESOLVE_NONE) {
+		int Norig_columns, Norig_rows;
+		REAL value;
+		Norig_columns = get_Norig_columns(_lp);
+		Norig_rows = get_Norig_rows(_lp);
+
+		for(int i = 1; i < _uk_start; i++) {
+			value = get_var_primalresult(_lp, Norig_rows + i);
+			if (value >= 0.998) {
+				gates[(*_assignment)[i-1].first] =
+				    (*_assignment)[i-1].second - _numDwells;
+				// cout << get_origcol_name(_lp, /* Norig_rows + */ i) << "  " << _graphs.sets().B()[(*_assignment)[i-1].first]->dwellNumber() << "; " << _graphs.sets().G()[(*_assignment)[i-1].second - _numDwells]->gateNumber() << endl;
+			};
+		}
+	} else {
+		double *sol = new double[_numVars];
+		if (get_variables(_lp, sol) == FALSE) {
+			return false;
+		}
+
+		for (int i = 0; i < _uk_start - 1; i++)
+			if (sol[i] >= 0.998) {
+				// se si usa una adjacency_list
+				gates[(*_assignment)[i].first] =
+				    (*_assignment)[i].second - _numDwells;
+			}
+		delete []sol;
+	}
+
+	//////////////   VERIFICA AMMISSIBILITA   //////////////
+	//                                                    //
+	//     verifica di ammissibilita' della soluzione     //
+	//                                                    //
+	////////////////////////////////////////////////////////
+	vector < vector <size_t> > gate_dwell (_objectiveFunction);
+	bool used[_graphs.G().size()];
+	for (int i = 0; i < _graphs.G().size(); i++) {
+		used[i] = false;
+	}
+	// setta il vettore gate_dwell
+	for (int d = 0; d < _numDwells; d++) {
+		size_t platform = gates[d];
+		if (!used[platform]) {
+			used[platform] = true;
+			// gate_dwell[platform]= new vector<size_t>();
+		}
+		gate_dwell[platform].push_back(d);
+	}
+	// controlla, per ogni piattaforma
+	for (int p = 0; p < _graphs.G().size(); p++) {
+		// che ogni sosta
+		for (vector<size_t>::const_iterator i = gate_dwell[p].begin(); i != gate_dwell[p].end(); i++) {
+			// sia assegnabile alla piattaforma
+			if (! _graphs.B()[*i]->compatible(_graphs.G()[p])) {
+				cerr << "sosta " << _graphs.B()[*i]->dwellNumber() << " non compatibile con piattaforma "<< p + 1 << endl;
+				exit(1);
+			}
+			// non interferisca con nessuna delle soste successive
+			if (*i != gate_dwell[p].back()) {
+				vector<size_t>::const_iterator j = i;
+				j++;
+				for (; j != gate_dwell[p].end(); j++) {
+					if (_graphs.B()[*i]->occupacyPeriod().intersects(_graphs.B()[*j]->occupacyPeriod())) {
+						cerr << "piattaforma " << p + 1 << ", sosta " <<
+						     _graphs.B()[*i]->dwellNumber() << " interferisce con " << _graphs.B()[*j]->dwellNumber() << endl;
+						exit(1);
+					}
+				}
+			}
+		}
 	}
 
 	return true;

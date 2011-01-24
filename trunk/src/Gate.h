@@ -21,12 +21,12 @@ public:
 	int gateNumber() const;
 	std::vector < TimeAvailability * > &stopAvailableTimes();
 	void stopAvailableTimes(TimeAvailability *timeAvailability);
-    size_t vertexIndex() const;
-    void vertexIndex(size_t vertexIndex);
+	size_t vertexIndex() const;
+	void vertexIndex(size_t vertexIndex);
 private:
 	int _gateNumber;
 	std::vector < TimeAvailability * > *_stopAvailableTimes;
-    size_t _vertexIndex;
+	size_t _vertexIndex;
 };
 
 typedef std::vector < Gate * > Gates;

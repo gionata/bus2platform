@@ -17,7 +17,7 @@ public:
 	static TimeSlots &getInstance();
 	//TimeSlots &getInstance();
 	TimeAvailability *getTimeAvailability(CalendarDate *day, ptime begin,
-								   ptime end);
+	                                      ptime end);
 private:
 	TimeSlots(void);
 	~TimeSlots(void);

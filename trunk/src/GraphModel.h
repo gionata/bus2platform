@@ -72,16 +72,36 @@ public:
 	unsigned int numInterestingCliques() const;
 	unsigned int numCompGates() const;
 
-	vertex_name_m H_vertex_name() const { return _H_vertex_name; }
-	vertex_name_m C_vertex_name() const { return _C_vertex_name; }
-	edge_name_m H_edge_name() const { return _H_edge_name; }
-	edge_name_m C_edge_name() const { return _C_edge_name; }
-	edge_weight_m C_edge_weight() { return _C_edge_weight; }
-	edge_weight_m H_edge_weight() { return _H_edge_weight; }
-	boost::property_map < GraphH, boost::vertex_index_t >::type H_vertex_index() const { return _H_vertex_index; }
-	boost::property_map < GraphC, boost::vertex_index_t >::type C_vertex_index() const { return _C_vertex_index; }
-	boost::property_map < GraphC, boost::edge_index_t >::type C_edge_index() { return _C_edge_index; }
-	boost::property_map < GraphH, boost::edge_index_t >::type H_edge_index() { return _H_edge_index; }
+	vertex_name_m H_vertex_name() const {
+		return _H_vertex_name;
+	}
+	vertex_name_m C_vertex_name() const {
+		return _C_vertex_name;
+	}
+	edge_name_m H_edge_name() const {
+		return _H_edge_name;
+	}
+	edge_name_m C_edge_name() const {
+		return _C_edge_name;
+	}
+	edge_weight_m C_edge_weight() {
+		return _C_edge_weight;
+	}
+	edge_weight_m H_edge_weight() {
+		return _H_edge_weight;
+	}
+	boost::property_map < GraphH, boost::vertex_index_t >::type H_vertex_index() const {
+		return _H_vertex_index;
+	}
+	boost::property_map < GraphC, boost::vertex_index_t >::type C_vertex_index() const {
+		return _C_vertex_index;
+	}
+	boost::property_map < GraphC, boost::edge_index_t >::type C_edge_index() {
+		return _C_edge_index;
+	}
+	boost::property_map < GraphH, boost::edge_index_t >::type H_edge_index() {
+		return _H_edge_index;
+	}
 
 	/* Debug related methods */
 //#ifdef _DEBUG
@@ -91,7 +111,7 @@ public:
 
 
 
- private:
+private:
 	/* Sets */
 	SetModel &_sets;
 	/* Set (vector) of bus dwells */
@@ -154,7 +174,7 @@ public:
 	// std::vector<std::vector<std::set <int> * > > *_mutuallyExclusiveEdgesOnGate;
 	unsigned int _numMaximalCliques;
 
-	
+
 	compatibleGates *_compGates;
 	unsigned int _numCompGates;
 
