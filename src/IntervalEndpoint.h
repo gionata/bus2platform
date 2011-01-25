@@ -38,7 +38,12 @@ class EndpointLess {
 public:
 	bool operator() (const IntervalEndpoint &left,
 	                 const IntervalEndpoint &right) const {
-		return left.time_point() < right.time_point();
+		if (left.time_point() < right.time_point())
+			return true;
+		else if (left.time_point() == right.time_point())
+			return left.vertex() < right.vertex();
+		else
+			return false;
 	}
 };
 

@@ -127,6 +127,15 @@ SetModel::SetModel(char *filename)
 		line_stream.clear();
 	}
 
+	// ordina _B per tempo di inizio e fine degli intervalli di sosta
+	sort(_B->begin(), _B->end(), BusPtrSort());
+
+	// aggiorna gli id associati ad ogni sosta
+	int idx = 0;
+	for (Buses::iterator b = _B->begin(); b != _B->end(); b++)
+		(*b)->id(idx++);
+
+	// genera il vettore dei tempi
 	timeIntervals();
 	_numMaximalCliques = 0;
 	_maximalCliquesAtGate =

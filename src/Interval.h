@@ -37,15 +37,27 @@ typedef std::vector < Interval * >Intervals;
 
 class RightEndpoint {
 public:
-	bool operator() (const Interval *i1, const Interval *i2)const {
+	bool operator() (const Interval *i1, const Interval *i2) const {
 		return i1->upper().time_point() < i2->upper().time_point();
 	}
 };
 
 class LeftEndpoint {
 public:
-	bool operator() (const Interval *i1, const Interval *i2)const {
+	bool operator() (const Interval *i1, const Interval *i2) const {
 		return i1->lower().time_point() < i2->lower().time_point();
+	}
+};
+
+class LeftRightEndpoint {
+public:
+	bool operator() (const Interval *i1, const Interval *i2) const {
+		if (i1->lower().time_point() < i2->lower().time_point())
+			return true;
+		else if (i1->lower().time_point() <= i2->lower().time_point())
+			return i1->upper().time_point() <= i2->upper().time_point();
+		else
+			return false;
 	}
 };
 

@@ -58,4 +58,16 @@ public:
 	}
 };
 
+class BusPtrSort {
+public:
+	bool operator() (const Bus *i1, const Bus *i2) const {
+		if (i1->arrival() < i2->arrival())
+			return true;
+		else if (i1->arrival() == i2->arrival())
+			return i1->departure() < i2->departure();
+		else
+			return false;
+	}
+};
+
 #endif /* BUS_H_ */
