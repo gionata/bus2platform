@@ -255,11 +255,11 @@ int main(int argc, char *argv[])
 	mPconflictModel->writeModelCPLEX("modelMinPConflict_CPLEX.lp");
 	cerr << "  Costruzione di MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
-	mPconflictModel->verbose(IMPORTANT);
-//	mPconflictModel->initialSolution(warmStart);
+	mPconflictModel->verbose(NORMAL);
+	mPconflictModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mPconflictModel->setTimeout(600);
+	mPconflictModel->setTimeout(5);
 	mPconflictModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -291,11 +291,11 @@ int main(int argc, char *argv[])
 	mmdModel->writeModelCPLEX("modelMaxMinDistance_CPLEX.lp");
 	cerr << "  Costruzione di MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
-	mmdModel->verbose(IMPORTANT);//IMPORTANT
+	mmdModel->verbose(NORMAL);//IMPORTANT
 //	mmdModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mmdModel->setTimeout(300);
+	mmdModel->setTimeout(20);
 	mmdModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -303,7 +303,7 @@ int main(int argc, char *argv[])
 	cerr << "    Objective function: " << mmdModel->objectiveFunction() << endl;
 	cerr << "    Iterations: " << mmdModel->totalIter() << endl;
 	cerr << "    Nodes: " << mmdModel->totalNodes() << "\n" << endl;
-	if (mmdModel->solved() || true) {
+	if (mmdModel->solved()) {
 		svg_output = "MathModelMaxMinDistance.svg";
 		mmdModel->solution(solution);
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
@@ -319,6 +319,7 @@ int main(int argc, char *argv[])
 	delete []warmStart;
 
 	// system("pause");
+	// system("read");
 
 	/*
 	begin = clock();

@@ -22,8 +22,17 @@ TimeSlots::TimeSlots(void)
 
 TimeSlots::~TimeSlots(void)
 {
-	if (_timeSlots)
-		delete _timeSlots;
+	for (std::vector < TimeAvailability * >::const_iterator t =
+	            _times.begin(); t != _times.end(); t++) {
+	  	delete *t;
+	}
+	
+}
+
+
+void TimeSlots::destroy(void) {
+	delete(this);
+	TimeSlots::_timeSlots = 0;
 }
 
 TimeAvailability *TimeSlots::getTimeAvailability(CalendarDate *day,

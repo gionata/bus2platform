@@ -34,7 +34,7 @@ MathModelBP::MathModelBP(GraphModel &graphs): MathModel(graphs)
 	setLinkConstraints();
 	int lb = _graphs.sets().lowerBoundNumberGates();
 	setLbNoGates(lb);
-	setSOS1();
+	//setSOS1();
 	set_add_rowmode(_lp, FALSE);
 
 	_presolveOpts =
@@ -144,6 +144,8 @@ bool MathModelBP::setIncompatibilityConstraints()
 		sprintf(_col_or_row_name, "incomp_clique_%d", soss + 1);
 		set_row_name(_lp, row_no, _col_or_row_name);
 #endif
+		add_SOS(_lp, NULL, 1, 1, _sos1Cardinality[soss],
+		        _colno[soss], NULL);
 	}
 
 	return true;
@@ -280,6 +282,8 @@ bool MathModelBP::solution(int *&gates) const
 	}
 	// controlla, per ogni piattaforma
 	for (int p = 0; p < _graphs.G().size(); p++) {
+		if (!used[p])
+			continue;
 		// che ogni sosta
 		for (vector<size_t>::const_iterator i = gate_dwell[p].begin(); i != gate_dwell[p].end(); i++) {
 			// sia assegnabile alla piattaforma

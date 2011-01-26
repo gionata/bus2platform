@@ -62,6 +62,7 @@ GraphModel::~GraphModel(void)
 	}
 
 	delete[]_sos1;
+	delete _sos1_corresponding_gate;
 
 	for (unsigned int i = 0; i < _numEdgesC; i++)
 		delete (*_compGates)[i];
