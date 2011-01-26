@@ -38,14 +38,15 @@ MathModelColoring::MathModelColoring(GraphModel &graphs): MathModel(graphs)
 	setLbNoGates(lb);
 	// setUbNoGates(ub);
 	// setReduceFractionalSols();
-	setSOS1();
+	//setSOS1();
 	set_add_rowmode(_lp, FALSE);
 	_presolveOpts = //PRESOLVE_NONE;
 	    //
 	    PRESOLVE_ROWS | PRESOLVE_COLS | PRESOLVE_LINDEP |
 	    PRESOLVE_SOS |
 	    PRESOLVE_REDUCEGCD | PRESOLVE_PROBEFIX | PRESOLVE_PROBEREDUCE |
-	    PRESOLVE_COLDOMINATE | PRESOLVE_ROWDOMINATE | PRESOLVE_BOUNDS;
+	    PRESOLVE_COLDOMINATE | PRESOLVE_ROWDOMINATE | PRESOLVE_BOUNDS |
+	    PRESOLVE_IMPLIEDSLK;
 	//
 }
 
@@ -156,6 +157,8 @@ bool MathModelColoring::setIncompatibilityConstraints()
 		sprintf(_col_or_row_name, "incomp_clique_%d", soss + 1);
 		set_row_name(_lp, row_no, _col_or_row_name);
 #endif
+		add_SOS(_lp, NULL, 1, 1, _sos1Cardinality[soss],
+		        _colno[soss], NULL);
 	}
 
 	return true;
@@ -257,7 +260,9 @@ bool MathModelColoring::solution(int *&gates) const
 		gate_dwell[platform].push_back(d);
 	}
 	// controlla, per ogni piattaforma
-	for (int p = 0; p < _graphs.G().size(); p++) {
+	for (int p = 0; p < _graphs.G().size(); p++) { int xxx = 0;
+		if (!used[p])
+			continue;
 		// che ogni sosta
 		for (vector<size_t>::const_iterator i = gate_dwell[p].begin(); i != gate_dwell[p].end(); i++) {
 			// sia assegnabile alla piattaforma

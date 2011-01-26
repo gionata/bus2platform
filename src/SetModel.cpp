@@ -184,6 +184,7 @@ SetModel::~SetModel()
 	}
 
 	delete _B;
+	TimeSlots::getInstance().destroy();;
 }
 
 void SetModel::timeIntervals()

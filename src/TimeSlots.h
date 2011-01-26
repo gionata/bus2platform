@@ -18,6 +18,7 @@ public:
 	//TimeSlots &getInstance();
 	TimeAvailability *getTimeAvailability(CalendarDate *day, ptime begin,
 	                                      ptime end);
+	void destroy(void);
 private:
 	TimeSlots(void);
 	~TimeSlots(void);

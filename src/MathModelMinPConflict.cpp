@@ -71,7 +71,7 @@ MathModelMinPConflict::MathModelMinPConflict(GraphModel &graphs): MathModel(grap
 	_sr.add(SolutionInformation("linkLPtime (ms)", "Time to construct the link constraints", int_long, &(mstime)));
 
 	begin = clock();
-	setSOS1();
+	// setSOS1();
 	end = clock();
 	mstime = (double)(end - begin) / (CLOCKS_PER_SEC / 1000);
 	_sr.add(SolutionInformation("sos1LPtime (ms)", "Time to construct the SOS1 constraints", int_long, &(mstime)));
@@ -231,6 +231,8 @@ bool MathModelMinPConflict::setIncompatibilityConstraints()
 		sprintf(_col_or_row_name, "incomp_clique_%d", soss + 1);
 		set_row_name(_lp, _currentRow++, _col_or_row_name);
 #endif
+		add_SOS(_lp, NULL, 1, 1, _sos1Cardinality[soss],
+		        _colno[soss], NULL);
 	}
 
 	return true;
@@ -356,6 +358,8 @@ bool MathModelMinPConflict::solution(int *&gates)  const
 	}
 	// controlla, per ogni piattaforma
 	for (int p = 0; p < _graphs.G().size(); p++) {
+		if (!used[p])
+			continue;
 		// che ogni sosta
 		for (vector<size_t>::const_iterator i = gate_dwell[p].begin(); i != gate_dwell[p].end(); i++) {
 			// sia assegnabile alla piattaforma

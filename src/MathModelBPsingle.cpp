@@ -34,7 +34,7 @@ MathModelBPsingle::MathModelBPsingle(GraphModel &graphs): MathModel(graphs)
 	setLinkConstraints();
 	int lb = _graphs.sets().lowerBoundNumberGates();
 	setLbNoGates(lb);
-	setSOS1();
+	// setSOS1();
 	set_add_rowmode(_lp, FALSE);
 	_presolveOpts =
 	    PRESOLVE_ROWS | PRESOLVE_COLS | PRESOLVE_LINDEP |
@@ -69,20 +69,26 @@ lprec *MathModelBPsingle::createLP(unsigned int numVars, unsigned int numConstra
 		(*_assignment)[xik_idx].second =
 		    target(*ei, _graphs.graphH());
 		set_binary(_lp, variableIndex, TRUE);
+#ifndef _NO_LP_NAMES
 		//strcpy(_col_or_row_name, _H_edge_name[*ei].c_str());
 		strcpy(_col_or_row_name, _H_edge_name[xik_idx].c_str());
 		set_col_name(_lp, variableIndex, _col_or_row_name);
+#endif
 	}
 
 	for (int i = _uk_start; i <= _numVars; i++) {
 		set_obj(_lp, i, i - _uk_start + 1);
 		set_binary(_lp, i, TRUE);
+#ifndef _NO_LP_NAMES
 		sprintf(_col_or_row_name, "u_%d", i - _uk_start + 1);
 		set_col_name(_lp, i, _col_or_row_name);
+#endif
 	}
 
+#ifndef _NO_LP_NAMES
 	set_row_name(_lp, 0, "PlatformXdistance");
-
+#endif
+	
 	return _lp;
 }
 
@@ -97,8 +103,10 @@ bool MathModelBPsingle::setAssignmentConstraints()
 
 	/* for each dwell */
 	for (unsigned int i = 0; i < _numDwells; i++) {
+#ifndef _NO_LP_NAMES
 		sprintf(_col_or_row_name, "dwell_%d", i + 1);
 		set_row_name(_lp, i + 1, _col_or_row_name);
+#endif
 		graph_traits < GraphH >::out_edge_iterator out_i, out_end;
 
 		unsigned count = 0;
@@ -123,12 +131,16 @@ bool MathModelBPsingle::setIncompatibilityConstraints()
 
 	for (int soss = 0; soss < _numInterestingCliques; soss++) {
 		row_no++;
-		sprintf(_col_or_row_name, "incomp_clique_%d", soss + 1);
 		set_rowex(_lp, row_no, _sos1Cardinality[soss], _row_values,
 		          _colno[soss]);
 		set_constr_type(_lp, row_no, LE);
 		set_rh(_lp, row_no, 1.0);
+#ifndef _NO_LP_NAMES
+		sprintf(_col_or_row_name, "incomp_clique_%d", soss + 1);
 		set_row_name(_lp, row_no, _col_or_row_name);
+#endif
+		add_SOS(_lp, NULL, 1, 1, _sos1Cardinality[soss],
+		        _colno[soss], NULL);
 	}
 
 	return true;
@@ -155,8 +167,10 @@ bool MathModelBPsingle::setLinkConstraints()
 			set_constr_type(_lp, row_no, LE);
 			set_rh(_lp, row_no, 0.0);
 			VertexDescriptorH i = source(e, _graphs.graphH());
+#ifndef _NO_LP_NAMES
 			sprintf(_col_or_row_name, "link_x_%d_%d_to_u", (_graphs.B()[_H_vertex_index[i]])->dwellNumber(), k + 1);
 			set_row_name(_lp, row_no, _col_or_row_name);
+#endif
 		}
 	}
 	_row_values[1] = 1.;
@@ -169,14 +183,18 @@ bool MathModelBPsingle::setSOS1()
 	int index;
 
 	for (int soss = 0; soss < _numInterestingCliques; soss++) {
-
+#ifndef _NO_LP_NAMES
 		sprintf(_col_or_row_name, "SOS_%d", soss + 1);
 		index =
 		    add_SOS(_lp, _col_or_row_name, 1, 1, _sos1Cardinality[soss],
 		            _colno[soss], NULL);
-
-
+#else
+		index =
+		    add_SOS(_lp, NULL, 1, 1, _sos1Cardinality[soss],
+		            _colno[soss], NULL);
+#endif
 	}
+
 	return true;
 }
 
@@ -199,8 +217,10 @@ bool MathModelBPsingle::setLbNoGates(int lb)
 	delete[]columns_no;
 	set_constr_type(_lp, row_no, GE);
 	set_rh(_lp, row_no, double (lb));
+#ifndef _NO_LP_NAMES
 	sprintf(_col_or_row_name, "lower_bound");
 	set_row_name(_lp, row_no, _col_or_row_name);
+#endif
 
 	return true;
 }
@@ -272,6 +292,8 @@ bool MathModelBPsingle::solution(int *&gates) const
 	}
 	// controlla, per ogni piattaforma
 	for (int p = 0; p < _graphs.G().size(); p++) {
+		if (!used[p])
+			continue;
 		// che ogni sosta
 		for (vector<size_t>::const_iterator i = gate_dwell[p].begin(); i != gate_dwell[p].end(); i++) {
 			// sia assegnabile alla piattaforma
