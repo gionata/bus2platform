@@ -74,7 +74,9 @@ public:
 		_assignment = new std::vector < std::pair < int, int > >(_graphs.numEdgesH());
 	}
 	~MathModel() {
+#ifndef _NO_LP_NAMES
 		delete[]_col_or_row_name;
+#endif
 
 		for (int soss = 0; soss < _numInterestingCliques; soss++) {
 			delete[]_colno[soss];

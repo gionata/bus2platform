@@ -17,6 +17,7 @@
 #include "MathModelMinPConflict.h"
 #include "IntervalPackingFinishFirst.h"
 #include "IntervalPackingFirstFit.h"
+#include "IterativeTimeHorizonMath.h"
 #include "GanttDiagram.h"
 #include "SolutionReport.h"
 
@@ -315,6 +316,45 @@ int main(int argc, char *argv[])
 		delete(gd);
 	}
 	delete mmdModel;
+
+	/*
+	 *  IterativeTimeHorizonMath
+	 */
+	cerr << "/*" << endl;
+	cerr << " * mIterativeTimeHorizonMath" << endl;
+	cerr << " */\n" << endl;
+	cerr << "Risoluzione iterativa del modello matematico per min conflitto." << endl;
+	begin = clock();
+	IterativeTimeHorizonMath *mIterativeTimeHorizonMath = new IterativeTimeHorizonMath(gModel);
+	end = clock();
+	mIterativeTimeHorizonMath->solveX();
+	/*
+	mPconflictModel->writeModelLP_solve("modelMinPConflict.lp");
+	mPconflictModel->writeModelCPLEX("modelMinPConflict_CPLEX.lp");
+	cerr << "  Costruzione di MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
+	mPconflictModel->verbose(NORMAL);
+	mPconflictModel->initialSolution(warmStart);
+	end = clock();
+	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+	mPconflictModel->setTimeout(5);
+	mPconflictModel->solveX();
+	end = clock();
+	cerr << "  Soluzione del MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+	cerr << "    Time (lp->solve()): " << mPconflictModel->elapsedTime() << "ms." << endl;
+	cerr << "    Objective function: " << mPconflictModel->objectiveFunction() << " (probabilita')" << endl;
+	cerr << "    Iterations: " << mPconflictModel->totalIter() << endl;
+	cerr << "    Nodes: " << mPconflictModel->totalNodes() << "\n" << endl;
+	if (mPconflictModel->solved() || true) {
+		svg_output = "MathModelMinPConflict.svg";
+		mPconflictModel->solution(solution);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
+
+		delete[]solution;
+		delete(gd);
+	}
+	delete mPconflictModel;
+	*/
 
 	delete []warmStart;
 
