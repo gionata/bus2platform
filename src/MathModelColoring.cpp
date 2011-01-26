@@ -245,7 +245,7 @@ bool MathModelColoring::solution(int *&gates) const
 	//     verifica di ammissibilita' della soluzione     //
 	//                                                    //
 	////////////////////////////////////////////////////////
-	vector < vector <size_t> > gate_dwell (_objectiveFunction);
+	vector < vector <size_t> > gate_dwell (_graphs.G().size());
 	bool used[_graphs.G().size()];
 	for (int i = 0; i < _graphs.G().size(); i++) {
 		used[i] = false;
@@ -260,7 +260,7 @@ bool MathModelColoring::solution(int *&gates) const
 		gate_dwell[platform].push_back(d);
 	}
 	// controlla, per ogni piattaforma
-	for (int p = 0; p < _graphs.G().size(); p++) { int xxx = 0;
+	for (int p = 0; p < _graphs.G().size(); p++) {
 		if (!used[p])
 			continue;
 		// che ogni sosta
