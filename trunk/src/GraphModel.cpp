@@ -28,8 +28,6 @@ GraphModel::GraphModel(SetModel &s): _sets(s), _B(s.B()), _G(s.G())
 	_numCompGates = 0;
 	_numVerticesC = _numDwells;
 	_Cptr = new GraphC(_numVerticesC);
-//    _linkXiYij = new std::map < size_t, std::set < int > * >();
-//    _linkXjYij = new std::map < size_t, std::set < int > * >();
 	_numMaximalCliques = 0;
 	_numEdgesC = 0;
 	set_graph_C();
@@ -44,19 +42,7 @@ GraphModel::GraphModel(SetModel &s): _sets(s), _B(s.B()), _G(s.G())
 GraphModel::~GraphModel(void)
 {
 
-	/*for (std::map < size_t, std::set < int >*>::iterator i =
-	            _linkXiYij->begin(); i != _linkXiYij->end(); i++) {
-	    delete i->second;
-	}
-
-	for (std::map < size_t, std::set < int >*>::iterator j =
-	            _linkXjYij->begin(); j != _linkXjYij->end(); j++) {
-	    delete j->second;
-	}
-
-	delete _linkXiYij;
-	delete _linkXjYij;*/
-
+	///*
 	for (unsigned int i = 0; i < _sets.numMaximalCliques(); i++) {
 		delete[]_sos1[i];
 	}
@@ -71,6 +57,7 @@ GraphModel::~GraphModel(void)
 
 	delete _Hptr;
 	delete _Cptr;
+	//*/
 }
 
 void
@@ -104,7 +91,6 @@ GraphModel::set_graph_H(void)
 		string gname = string(name);
 		_H_vertex_name.push_back(gname);
 		(*gitr)->vertexIndex(gate++);
-
 	}
 
 	i = 0;

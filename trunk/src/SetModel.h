@@ -23,6 +23,7 @@
 class SetModel {
 public:
 	SetModel(char *filename);
+	SetModel(Buses &B, Gates &G);
 	~SetModel();
 
 	Buses &B() const;

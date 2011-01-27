@@ -14,6 +14,16 @@ Bus::Bus(int id, int dwellNumber, ptime arrival, ptime departure,
 	_gates = gates;
 }
 
+Bus::Bus(Bus &dwell, int id, Gates *gates):
+		has_id(id),
+		_arrival(dwell._arrival),
+		_departure(dwell._departure),
+		_occupacyPeriod(dwell._arrival, dwell._departure),
+		_dwellNumber(dwell._dwellNumber), // nome della sosta
+		_gates(gates)
+{
+}
+
 Bus::~Bus()
 {
 	if (_gates)
