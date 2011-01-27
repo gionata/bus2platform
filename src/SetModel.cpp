@@ -149,8 +149,35 @@ SetModel::SetModel(char *filename)
 	}
 }
 
+SetModel::SetModel(Buses &B, Gates &G): _B(&B), _G(&G)
+{
+	TimeSlots &timeSlots = TimeSlots::getInstance();
+
+	// ordina _B per tempo di inizio e fine degli intervalli di sosta
+	sort(_B->begin(), _B->end(), BusPtrSort());
+
+	// aggiorna gli id associati ad ogni sosta
+	int idx = 0;
+	for (Buses::iterator b = _B->begin(); b != _B->end(); b++)
+		(*b)->id(idx++);
+
+	// genera il vettore dei tempi
+	timeIntervals();
+	_numMaximalCliques = 0;
+	_maximalCliquesAtGate =
+	    new std::vector < std::vector < std::set < int > * > >();
+
+	int k = 0;
+	for (Gates::iterator gateIter = _G->begin(); gateIter != _G->end();
+	        gateIter++) {
+		(*gateIter)->id(k + _B->size());
+		findMaximalCliques(k++);
+	}
+}
+
 SetModel::~SetModel()
 {
+/*
 	for (Intervals::const_iterator i = _I->begin(); i != _I->end(); i++) {
 		delete (*i);
 	}
@@ -185,6 +212,7 @@ SetModel::~SetModel()
 
 	delete _B;
 	TimeSlots::getInstance().destroy();;
+*/
 }
 
 void SetModel::timeIntervals()

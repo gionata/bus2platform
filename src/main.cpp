@@ -361,22 +361,5 @@ int main(int argc, char *argv[])
 	// system("pause");
 	// system("read");
 
-	/*
-	begin = clock();
-	MathModelMaxTotalDistance *tdModel = new MathModelMaxTotalDistance(gModel);
-	tdModel->solveX();
-	end = clock();
-	cerr << "MathModelMaxTotalDistance in " << (end -
-			begin) /
-		(double)CLOCKS_PER_SEC << " secondi." << endl;
-	svg_output = "MathModelMaxTotalDistance.svg";
-	tdModel->solution(solution);
-	gd = new GanttDiagram(svg_output.c_str(), problemSets.G(),
-					  problemSets.B(), solution);
-	delete[]solution;
-	delete(gd);
-	delete tdModel;
-	*/
-
 	return 0;
 }

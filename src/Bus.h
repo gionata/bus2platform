@@ -25,6 +25,7 @@ public:
 
 	Bus(int id, int dwellNumber, ptime arrival, ptime departure,
 	    Gates *gates = 0);
+	Bus(Bus &dwell, int id, Gates *gates);
 	~Bus();
 	const ptime arrival() const;
 	const ptime departure() const;
