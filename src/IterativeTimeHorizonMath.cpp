@@ -5,8 +5,6 @@
 
 #include "IterativeTimeHorizonMath.h"
 
-#include "GanttDiagram.h"
-
 using namespace std;
 using namespace boost;
 
@@ -26,7 +24,12 @@ IterativeTimeHorizonMath::~IterativeTimeHorizonMath()
 
 bool IterativeTimeHorizonMath::solution(int *&gates) const
 {
-  return true;
+	gates = new int[_graphs.B().size()];
+	for (int i = 0; i < _graphs.B().size(); i++)
+		gates[i] = _graphs.B()[i]->platform();
+	// delete[] gates;
+
+	return true;
 }
 
 bool IterativeTimeHorizonMath::initialSolution(int *startingSolution)
@@ -44,7 +47,7 @@ bool IterativeTimeHorizonMath::solveX()
 	/* Per ogni ogni intervallo di pianificazione */
 	for (p_curr = _opening; p_curr < _closing; p_prev = p_curr, p_curr += minutes(30)) {
 		ptime end = p_curr + minutes(60);
-		cout << "   Pianifico in [" << p_curr << ", " << end << "] considerando [" << p_prev << ", " << end << "]" << endl;
+		// cout << "   Pianifico in [" << p_curr << ", " << end << "] considerando [" << p_prev << ", " << end << "]" << endl;
 
 		/* genera il nuovo insieme delle soste */
 		Buses dwellsWithinPeriod;
@@ -101,19 +104,10 @@ bool IterativeTimeHorizonMath::solveX()
 		for (int i = 0; i < dwellsWithinPeriod.size(); i++) {
 			_graphs.B()[mapVectorId[i]]->assigned(true);
 			_graphs.B()[mapVectorId[i]]->platform(pSolution[i]);
-			cout << _graphs.B()[mapVectorId[i]]->id() << " " << _graphs.B()[mapVectorId[i]]->platform() << endl;
 		}
 	}
 
 	_clock_end = clock();
-
-	int *gates = new int[_graphs.B().size()];
-	for (int i = 0; i < _graphs.B().size(); i++)
-		gates[i] = _graphs.B()[i]->platform();
-	string svg_output = "IterativeTimeHorizonMath.svg";
-	GanttDiagram *gd = new GanttDiagram(svg_output.c_str(), _graphs.G(), _graphs.B(), gates);
-	delete[] gates;
-	delete(gd);
 	
 	return true;
 }
