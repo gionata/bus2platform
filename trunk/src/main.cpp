@@ -357,7 +357,7 @@ bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int *&warm
 		mPconflictModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mPconflictModel->setTimeout(15);
+	mPconflictModel->setTimeout(1800);
 	mPconflictModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -405,7 +405,7 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&wa
 		mmdModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mmdModel->setTimeout(20);
+	mmdModel->setTimeout(1800);
 	mmdModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -461,3 +461,4 @@ bool iterativeTimeHorizonMath(SetModel &problemSets, GraphModel &gModel, int *&w
 	
 	return ret;
 }
+

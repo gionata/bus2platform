@@ -29,6 +29,10 @@ bool IterativeTimeHorizonMath::solution(int *&gates) const
 		gates[i] = _graphs.B()[i]->platform();
 	// delete[] gates;
 
+	for (int i = 0; i < _graphs.B().size(); i++) {
+			_graphs.B()[i]->assigned(false);
+	}
+
 	return true;
 }
 
