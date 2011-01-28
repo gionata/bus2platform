@@ -5,6 +5,8 @@
 
 #include "IterativeTimeHorizonMath.h"
 
+#include "GanttDiagram.h"
+
 using namespace std;
 using namespace boost;
 
@@ -34,8 +36,11 @@ bool IterativeTimeHorizonMath::initialSolution(int *startingSolution)
 
 bool IterativeTimeHorizonMath::solveX()
 {
+	int *solution = 0;
+	bool controlPrevious = false;
 	ptime p_prev = _opening;
 	ptime p_curr;
+	_clock_begin = clock();
 	/* Per ogni ogni intervallo di pianificazione */
 	for (p_curr = _opening; p_curr < _closing; p_prev = p_curr, p_curr += minutes(30)) {
 		ptime end = p_curr + minutes(60);
@@ -69,25 +74,46 @@ bool IterativeTimeHorizonMath::solveX()
 			}
 		}
 
-		if (dwellsWithinPeriod.size() == 0)
+		if (dwellsWithinPeriod.size() == 0) {
+			controlPrevious = true;
 			continue;
+		}
 
 		SetModel pSet(dwellsWithinPeriod, platformsWithinPeriod);
 		GraphModel pGraph(pSet);
 		MathModel *mPconflictModel = new MathModelMinPConflict(pGraph);
-		// Forza gli assegnamenti generati all'iterazione precedente
-//TODO implementare
+
+		/*
+		if (controlPrevious) {
+			// Forza gli assegnamenti generati all'iterazione precedente
+		}
+		*/
 		
 		//cout << "MathModel generato" << endl;
 		// Risolvi il modello
-		mPconflictModel->verbose(NORMAL);
+		mPconflictModel->verbose(IMPORTANT); // NORMAL);
 		mPconflictModel->setTimeout(5);
 		mPconflictModel->solveX();
-		cout << "MathModel risolto" << endl;
 
 		// Imposta gli assegnamenti determinati nell'iterazione corrente
-//TODO implementare		
+		int *pSolution = 0;
+		mPconflictModel->solution(pSolution);
+		for (int i = 0; i < dwellsWithinPeriod.size(); i++) {
+			_graphs.B()[mapVectorId[i]]->assigned(true);
+			_graphs.B()[mapVectorId[i]]->platform(pSolution[i]);
+			cout << _graphs.B()[mapVectorId[i]]->id() << " " << _graphs.B()[mapVectorId[i]]->platform() << endl;
+		}
 	}
+
+	_clock_end = clock();
+
+	int *gates = new int[_graphs.B().size()];
+	for (int i = 0; i < _graphs.B().size(); i++)
+		gates[i] = _graphs.B()[i]->platform();
+	string svg_output = "IterativeTimeHorizonMath.svg";
+	GanttDiagram *gd = new GanttDiagram(svg_output.c_str(), _graphs.G(), _graphs.B(), gates);
+	delete[] gates;
+	delete(gd);
 	
 	return true;
 }

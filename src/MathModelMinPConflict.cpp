@@ -70,11 +70,13 @@ MathModelMinPConflict::MathModelMinPConflict(GraphModel &graphs): MathModel(grap
 	mstime = (double)(end - begin) / (CLOCKS_PER_SEC / 1000);
 	_sr.add(SolutionInformation("linkLPtime (ms)", "Time to construct the link constraints", int_long, &(mstime)));
 
+	/*
 	begin = clock();
-	// setSOS1();
+	setSOS1();
 	end = clock();
 	mstime = (double)(end - begin) / (CLOCKS_PER_SEC / 1000);
 	_sr.add(SolutionInformation("sos1LPtime (ms)", "Time to construct the SOS1 constraints", int_long, &(mstime)));
+	*/
 
 	set_add_rowmode(_lp, FALSE);
 
@@ -106,11 +108,21 @@ lprec *MathModelMinPConflict::createLP(unsigned int numVars, unsigned int numCon
 	for (tie(eiH, edge_endH) = edges(_graphs.graphH()); eiH != edge_endH; ++eiH) {
 		size_t xik_idx = _H_edge_index[*eiH];
 		int variableIndex = xik_idx + _xik_start;
-		(*_assignment)[xik_idx].first =
+		int dwellVertex = (*_assignment)[xik_idx].first =
 		    source(*eiH, _graphs.graphH());
-		(*_assignment)[xik_idx].second =
+		int platformVertex = (*_assignment)[xik_idx].second =
 		    target(*eiH, _graphs.graphH());
 		set_binary(_lp, variableIndex, TRUE);
+
+		if (_graphs.B()[(*_assignment)[xik_idx].first]->assigned() && _graphs.B()[(*_assignment)[xik_idx].first]->platform() == platformVertex - _numDwells) {
+			set_bounds(_lp, variableIndex, 1.0, 1.0);
+			cout << "dwellVertex: " << dwellVertex
+				<< ", platformVertex - _numDwells: " << platformVertex - _numDwells
+				<< ", variableIndex: " << variableIndex << endl;
+		
+		} else
+			set_bounds(_lp, variableIndex, 0.0, 1.0);
+		
 #ifndef _NO_LP_NAMES
 		// strcpy(_col_or_row_name, _H_edge_name[*eiH].c_str());
 		strcpy(_col_or_row_name, _H_edge_name[xik_idx].c_str());

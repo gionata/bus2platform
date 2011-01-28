@@ -20,7 +20,9 @@ Bus::Bus(Bus &dwell, int id, Gates *gates):
 		_departure(dwell._departure),
 		_occupacyPeriod(dwell._arrival, dwell._departure),
 		_dwellNumber(dwell._dwellNumber), // nome della sosta
-		_gates(gates)
+		_gates(gates),
+		_assigned(dwell._assigned),
+		_platform(dwell._platform)
 {
 }
 
