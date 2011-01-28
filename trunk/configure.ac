@@ -1,5 +1,5 @@
 AC_PREREQ([2.67])
-AC_INIT([gap_graph], [20101020], [massi@diiga.univpm.it])
+AC_INIT([gap_graph], [1.0.0-20110128], [massi@diiga.univpm.it])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
 AC_CONFIG_SRCDIR([src/Bus.cpp])

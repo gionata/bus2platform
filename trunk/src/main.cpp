@@ -35,13 +35,14 @@
 using namespace std;
 using namespace boost;
 
-bool intervalPackingFirstFirst(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name);
-bool intervalPackingFinishFirst(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name);
-bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name);
-bool mathModelBP(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name);
-bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name);
-bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name);
-bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name);
+bool intervalPackingFirstFirst(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
+bool intervalPackingFinishFirst(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
+bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
+bool mathModelBP(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
+bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
+bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
+bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
+bool iterativeTimeHorizonMath(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 
 int main(int argc, char *argv[])
 {
@@ -71,59 +72,22 @@ int main(int argc, char *argv[])
 	int *warmStart = 0;
 	string svg_output;
 
-	// intervalPackingFirstFirst(problemSets, gModel, &warmStart, instance_name);
+	intervalPackingFirstFirst(problemSets, gModel, warmStart, instance_name);
 
-	// intervalPackingFinishFirst(problemSets, gModel, &warmStart, instance_name);
+	intervalPackingFinishFirst(problemSets, gModel, warmStart, instance_name);
 
-	// mathModelColoring(problemSets, gModel, &warmStart, instance_name);
+	mathModelColoring(problemSets, gModel, warmStart, instance_name);
 
-	// mathModelBP(problemSets, gModel, &warmStart, instance_name);
+	mathModelBP(problemSets, gModel, warmStart, instance_name);
 
-	// mathModelBPsingle(problemSets, gModel, &warmStart, instance_name);
+	mathModelBPsingle(problemSets, gModel, warmStart, instance_name);
 
-	// mathModelMinPConflict(problemSets, gModel, &warmStart, instance_name);
+	iterativeTimeHorizonMath(problemSets, gModel, warmStart, instance_name);
 
-	// mathModelMaxMinDistance(problemSets, gModel, &warmStart, instance_name);
+	mathModelMinPConflict(problemSets, gModel, warmStart, instance_name);
+
+	mathModelMaxMinDistance(problemSets, gModel, warmStart, instance_name);
 	
-	/*
-	 *  IterativeTimeHorizonMath
-	 */
-	cerr << "/*" << endl;
-	cerr << " * mIterativeTimeHorizonMath" << endl;
-	cerr << " */\n" << endl;
-	cerr << "Risoluzione iterativa del modello matematico per min conflitto." << endl;
-	begin = clock();
-	IterativeTimeHorizonMath *mIterativeTimeHorizonMath = new IterativeTimeHorizonMath(gModel);
-	end = clock();
-	mIterativeTimeHorizonMath->solveX();
-	/*
-	mPconflictModel->writeModelLP_solve("modelMinPConflict.lp");
-	mPconflictModel->writeModelCPLEX("modelMinPConflict_CPLEX.lp");
-	cerr << "  Costruzione di MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
-	mPconflictModel->verbose(NORMAL);
-	mPconflictModel->initialSolution(warmStart);
-	end = clock();
-	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mPconflictModel->setTimeout(5);
-	mPconflictModel->solveX();
-	end = clock();
-	cerr << "  Soluzione del MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	cerr << "    Time (lp->solve()): " << mPconflictModel->elapsedTime() << "ms." << endl;
-	cerr << "    Objective function: " << mPconflictModel->objectiveFunction() << " (probabilita')" << endl;
-	cerr << "    Iterations: " << mPconflictModel->totalIter() << endl;
-	cerr << "    Nodes: " << mPconflictModel->totalNodes() << "\n" << endl;
-	if (mPconflictModel->solved() || true) {
-		svg_output = "MathModelMinPConflict.svg";
-		mPconflictModel->solution(solution);
-		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
-
-		delete[]solution;
-		delete(gd);
-	}
-	delete mPconflictModel;
-	*/
-
 	delete []warmStart;
 
 	/*
@@ -138,7 +102,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-bool intervalPackingFirstFirst(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name)
+bool intervalPackingFirstFirst(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
 {
 	int *solution = 0;
 	string svg_output;
@@ -166,10 +130,10 @@ bool intervalPackingFirstFirst(SetModel &problemSets, GraphModel &gModel, int **
 	if (ret = (firstFit->solved())) {
 		svg_output = "IntervalPackingFirstFit.svg";
 		firstFit->solution(solution);
-		if (!*warmStart) {
-			*warmStart = new int[problemSets.B().size()];
+		if (!warmStart) {
+			warmStart = new int[problemSets.B().size()];
 		}
-		memcpy(*warmStart, solution, problemSets.B().size() * sizeof(int));
+		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(),
 		                      problemSets.B(), solution);
 		delete[]solution;
@@ -182,7 +146,7 @@ bool intervalPackingFirstFirst(SetModel &problemSets, GraphModel &gModel, int **
 	return ret;
 }
 
-bool intervalPackingFinishFirst(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name)
+bool intervalPackingFinishFirst(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
 {
 	int *solution = 0;
 	string svg_output;
@@ -210,10 +174,10 @@ bool intervalPackingFinishFirst(SetModel &problemSets, GraphModel &gModel, int *
 	if (ret = (finishFirst->solved())) {
 		svg_output = "IntervalPackingFinishFirst.svg";
 		finishFirst->solution(solution);
-		if (!*warmStart) {
-			*warmStart = new int[problemSets.B().size()];
+		if (!warmStart) {
+			warmStart = new int[problemSets.B().size()];
 		}
-		memcpy(*warmStart, solution, problemSets.B().size() * sizeof(int));
+		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(),
 		                      problemSets.B(), solution);
 		delete[]solution;
@@ -226,7 +190,7 @@ bool intervalPackingFinishFirst(SetModel &problemSets, GraphModel &gModel, int *
 	return ret;
 }
 
-bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name)
+bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
 {
 	int *solution = 0;
 	string svg_output;
@@ -259,10 +223,10 @@ bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int **warmStar
 		svg_output = "MathModelColoring.svg";
 		colModel->solution(solution);
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
-		if (!*warmStart) {
-			*warmStart = new int[problemSets.B().size()];
+		if (!warmStart) {
+			warmStart = new int[problemSets.B().size()];
 		}
-		memcpy(*warmStart, solution, problemSets.B().size() * sizeof(int));
+		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
 		delete[]solution;
 		delete(gd);
 	}
@@ -271,7 +235,7 @@ bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int **warmStar
 	return ret;
 }
 
-bool mathModelBP(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name)
+bool mathModelBP(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
 {
 	int *solution = 0;
 	string svg_output;
@@ -304,10 +268,10 @@ bool mathModelBP(SetModel &problemSets, GraphModel &gModel, int **warmStart, str
 		svg_output = "MathModelBP.svg";
 		bpModel->solution(solution);
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
-		if (!*warmStart) {
-			*warmStart = new int[problemSets.B().size()];
+		if (!warmStart) {
+			warmStart = new int[problemSets.B().size()];
 		}
-		memcpy(*warmStart, solution, problemSets.B().size() * sizeof(int));
+		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
 		delete[]solution;
 		delete(gd);
 	}
@@ -316,7 +280,7 @@ bool mathModelBP(SetModel &problemSets, GraphModel &gModel, int **warmStart, str
 	return ret;
 }
 
-bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name)
+bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
 {
 	int *solution = 0;
 	string svg_output;
@@ -339,8 +303,8 @@ bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int **warmStar
 	cerr << "  Costruzione di MathModelBPsingle in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
 	bpModelsingle->verbose(IMPORTANT);
-	if (*warmStart)
-		bpModelsingle->initialSolution(*warmStart);
+	if (warmStart)
+		bpModelsingle->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelBPsingle dopo " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	bpModelsingle->solveX();
@@ -355,9 +319,9 @@ bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int **warmStar
 		bpModelsingle->solution(solution);
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
 		if (!warmStart) {
-			*warmStart = new int[problemSets.B().size()];
+			warmStart = new int[problemSets.B().size()];
 		}
-		memcpy(*warmStart, solution, problemSets.B().size() * sizeof(int));
+		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
 		delete[]solution;
 		delete(gd);
 	}
@@ -366,7 +330,7 @@ bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int **warmStar
 	return ret;
 }
 
-bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name)
+bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
 {
 	int *solution = 0;
 	string svg_output;
@@ -389,8 +353,8 @@ bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int **warm
 	cerr << "  Costruzione di MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
 	mPconflictModel->verbose(NORMAL);
-	if (*warmStart)
-		mPconflictModel->initialSolution(*warmStart);
+	if (warmStart)
+		mPconflictModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	mPconflictModel->setTimeout(15);
@@ -414,14 +378,13 @@ bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int **warm
 	return ret;
 }
 
-bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int **warmStart, string instance_name)
+bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
 {
 	int *solution = 0;
 	string svg_output;
 	bool ret = false;
 	clock_t begin, end;
 	GanttDiagram *gd;
-
 
 	/*
 	 * MathModelMaxMinDistance
@@ -438,8 +401,8 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int **wa
 	cerr << "  Costruzione di MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	cerr << "  Il modello viene risolto in tempo maggiore. Settaggio soluzione iniziale." << endl;
 	mmdModel->verbose(NORMAL);//IMPORTANT
-	if (*warmStart)
-		mmdModel->initialSolution(*warmStart);
+	if (warmStart)
+		mmdModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	mmdModel->setTimeout(20);
@@ -454,10 +417,10 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int **wa
 		svg_output = "MathModelMaxMinDistance.svg";
 		mmdModel->solution(solution);
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
-		if (!*warmStart) {
-			*warmStart = new int[problemSets.B().size()];
+		if (!warmStart) {
+			warmStart = new int[problemSets.B().size()];
 		}
-		memcpy(*warmStart, solution, problemSets.B().size() * sizeof(int));
+		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
 		delete[]solution;
 		delete(gd);
 	}
@@ -466,3 +429,35 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int **wa
 	return ret;
 }
 
+bool iterativeTimeHorizonMath(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
+{
+	int *solution = 0;
+	string svg_output;
+	bool ret = false;
+	clock_t begin, end;
+	GanttDiagram *gd;
+
+	/*
+	 *  IterativeTimeHorizonMath
+	 */
+	cerr << "/*" << endl;
+	cerr << " * mIterativeTimeHorizonMath" << endl;
+	cerr << " */\n" << endl;
+	cerr << "Risoluzione iterativa del modello matematico per min conflitto." << endl;
+	begin = clock();
+	IterativeTimeHorizonMath *mIterativeTimeHorizonMath = new IterativeTimeHorizonMath(gModel);
+	mIterativeTimeHorizonMath->solveX();
+	end = clock();
+	cerr << "  Soluzione del MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+	if (ret = (mIterativeTimeHorizonMath->solved())) {
+		svg_output = "IterativeTimeHorizonMath.svg";
+		mIterativeTimeHorizonMath->solution(solution);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
+
+		delete[]solution;
+		delete(gd);
+	}
+	delete mIterativeTimeHorizonMath;
+	
+	return ret;
+}

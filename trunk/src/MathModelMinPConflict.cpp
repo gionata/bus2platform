@@ -116,10 +116,6 @@ lprec *MathModelMinPConflict::createLP(unsigned int numVars, unsigned int numCon
 
 		if (_graphs.B()[(*_assignment)[xik_idx].first]->assigned() && _graphs.B()[(*_assignment)[xik_idx].first]->platform() == platformVertex - _numDwells) {
 			set_bounds(_lp, variableIndex, 1.0, 1.0);
-			cout << "dwellVertex: " << dwellVertex
-				<< ", platformVertex - _numDwells: " << platformVertex - _numDwells
-				<< ", variableIndex: " << variableIndex << endl;
-		
 		} else
 			set_bounds(_lp, variableIndex, 0.0, 1.0);
 		
