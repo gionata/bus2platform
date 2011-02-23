@@ -48,8 +48,9 @@ bool IterativeTimeHorizonMath::solveX()
 	ptime p_prev = _opening;
 	ptime p_curr;
 	_clock_begin = clock();
+	int interval = 0;
 	/* Per ogni ogni intervallo di pianificazione */
-	for (p_curr = _opening; p_curr < _closing; p_prev = p_curr, p_curr += minutes(30)) {
+	for (p_curr = _opening; p_curr < _closing; p_prev = p_curr, p_curr += minutes(30), interval++) {
 		ptime end = p_curr + minutes(60);
 		// cout << "   Pianifico in [" << p_curr << ", " << end << "] considerando [" << p_prev << ", " << end << "]" << endl;
 
@@ -100,15 +101,26 @@ bool IterativeTimeHorizonMath::solveX()
 		// Risolvi il modello
 		mPconflictModel->verbose(IMPORTANT); // NORMAL);
 		mPconflictModel->setTimeout(5);
+
+		char itrNo[4];
+		char fn[40];
+		sprintf(itrNo, "%03d", interval); 
+		strcpy(fn, "modelIterativeMPC_");
+		strcat(fn, itrNo);
+		strcat(fn, ".lp");
+		mPconflictModel->writeModelLP_solve(fn);
 		mPconflictModel->solveX();
 
-		// Imposta gli assegnamenti determinati nell'iterazione corrente
-		int *pSolution = 0;
-		mPconflictModel->solution(pSolution);
-		for (int i = 0; i < dwellsWithinPeriod.size(); i++) {
-			_graphs.B()[mapVectorId[i]]->assigned(true);
-			_graphs.B()[mapVectorId[i]]->platform(pSolution[i]);
-		}
+		if (mPconflictModel->solved()) {
+			// Imposta gli assegnamenti determinati nell'iterazione corrente
+			int *pSolution = 0;
+			mPconflictModel->solution(pSolution);
+			for (int i = 0; i < dwellsWithinPeriod.size(); i++) {
+				_graphs.B()[mapVectorId[i]]->assigned(true);
+				_graphs.B()[mapVectorId[i]]->platform(pSolution[i]);
+			}
+		} else
+			return false;
 	}
 
 	_clock_end = clock();
@@ -145,3 +157,4 @@ IterativeTimeHorizonMath::findTotalHorizon()
 		}
 	}
 }
+

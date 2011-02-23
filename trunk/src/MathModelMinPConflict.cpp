@@ -314,6 +314,9 @@ bool MathModelMinPConflict::setSOS1()
 
 bool MathModelMinPConflict::solution(int *&gates)  const
 {
+	if (!_solved)
+		return false;
+
 	gates = new int[_numDwells];
 	if (_presolveOpts != PRESOLVE_NONE) {
 		int Norig_columns, Norig_rows;
