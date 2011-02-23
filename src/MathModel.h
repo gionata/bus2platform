@@ -104,21 +104,20 @@ public:
 		status = solve(_lp);
 		_clock_end = clock();
 
-		_objectiveFunction = get_objective(_lp);
-		_total_iter = get_total_iter(_lp);
-		_total_nodes = get_total_nodes(_lp);
-
 		std::cerr << "Status: " << status << " " << get_statustext(_lp, status) << std::endl;
 		if (status == OPTIMAL || status == SUBOPTIMAL || status == FEASFOUND)
 			_solved = true;
 		else
 			_solved = false;
+		
+		if (_solved == true) {
+			_objectiveFunction = get_objective(_lp);
+			_total_iter = get_total_iter(_lp);
+			_total_nodes = get_total_nodes(_lp);
 
-		if (status == FALSE) {
-			return false;
-		}
-
-		return true;
+			return true;
+		} else
+			return true;
 	}
 
 	unsigned char writeModelLP_solve(char *filename) {

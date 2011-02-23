@@ -338,6 +338,10 @@ bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int *&warm
 	clock_t begin, end;
 	GanttDiagram *gd;
 
+	// per sicurezza:
+	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+		(*dwellItr)->assigned(false);
+
 	/*
 	 *  MathModelMinPConflict
 	 */
@@ -436,6 +440,10 @@ bool iterativeTimeHorizonMath(SetModel &problemSets, GraphModel &gModel, int *&w
 	bool ret = false;
 	clock_t begin, end;
 	GanttDiagram *gd;
+
+	// per sicurezza:
+	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+		(*dwellItr)->assigned(false);
 
 	/*
 	 *  IterativeTimeHorizonMath
