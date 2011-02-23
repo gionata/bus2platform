@@ -32,6 +32,8 @@
 #include <string>
 #include <ctime>
 
+#include <omp.h>
+
 using namespace std;
 using namespace boost;
 
@@ -71,22 +73,36 @@ int main(int argc, char *argv[])
 	int *solution = 0;
 	int *warmStart = 0;
 	string svg_output;
-
+#pragma omp parallel
+{
+#pragma omp single nowait
+ {
+	#pragma omp task
 	intervalPackingFirstFirst(problemSets, gModel, warmStart, instance_name);
 
+	#pragma omp task
 	intervalPackingFinishFirst(problemSets, gModel, warmStart, instance_name);
 
+	#pragma omp task
 	mathModelColoring(problemSets, gModel, warmStart, instance_name);
 
+	#pragma omp task
 	mathModelBP(problemSets, gModel, warmStart, instance_name);
 
+	#pragma omp task
 	mathModelBPsingle(problemSets, gModel, warmStart, instance_name);
 
+	#pragma omp task
 	iterativeTimeHorizonMath(problemSets, gModel, warmStart, instance_name);
 
+	#pragma omp task
 	mathModelMinPConflict(problemSets, gModel, warmStart, instance_name);
 
+	#pragma omp task
 	mathModelMaxMinDistance(problemSets, gModel, warmStart, instance_name);
+ }
+}
+#pragma omp taskwait
 	
 	delete []warmStart;
 
@@ -109,6 +125,10 @@ bool intervalPackingFirstFirst(SetModel &problemSets, GraphModel &gModel, int *&
 	bool ret = false;
 	clock_t begin, end;
 	GanttDiagram *gd;
+
+	// per sicurezza:
+	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+		(*dwellItr)->assigned(false);
 
 	/*
 	 * EURISTICA IntervalPackingFirstFirst
@@ -154,6 +174,10 @@ bool intervalPackingFinishFirst(SetModel &problemSets, GraphModel &gModel, int *
 	clock_t begin, end;
 	GanttDiagram *gd;
 	
+	// per sicurezza:
+	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+		(*dwellItr)->assigned(false);
+
 	/*
 	 * EURISTICA IntervalPackingFinishFirst
 	 */
@@ -198,6 +222,10 @@ bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 	clock_t begin, end;
 	GanttDiagram *gd;
 	
+	// per sicurezza:
+	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+		(*dwellItr)->assigned(false);
+
 	/*
 	 * MathModelColoring
 	 */
@@ -243,6 +271,10 @@ bool mathModelBP(SetModel &problemSets, GraphModel &gModel, int *&warmStart, str
 	clock_t begin, end;
 	GanttDiagram *gd;
 
+	// per sicurezza:
+	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+		(*dwellItr)->assigned(false);
+
 	/*
 	 * MathModelBP
 	 */
@@ -287,6 +319,10 @@ bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 	bool ret = false;
 	clock_t begin, end;
 	GanttDiagram *gd;
+
+	// per sicurezza:
+	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+		(*dwellItr)->assigned(false);
 
 	/*
 	 * MathModelBPsingle
@@ -361,7 +397,7 @@ bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int *&warm
 		mPconflictModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mPconflictModel->setTimeout(1800);
+	mPconflictModel->setTimeout(180); // 1800
 	mPconflictModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -389,6 +425,10 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&wa
 	bool ret = false;
 	clock_t begin, end;
 	GanttDiagram *gd;
+	
+	// per sicurezza:
+	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+		(*dwellItr)->assigned(false);
 
 	/*
 	 * MathModelMaxMinDistance
@@ -409,7 +449,7 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&wa
 		mmdModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mmdModel->setTimeout(1800);
+	mmdModel->setTimeout(180); //1800
 	mmdModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
