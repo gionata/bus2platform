@@ -1,0 +1,21 @@
+graph G {
+	rankdir=LR;
+	{spines = false; overlap=compress}
+	node [shape=circle];
+
+	0[label="b1"];
+	1[label="b2"];
+	2[label="b3"];
+	3[label="b4"];
+	4[label="b5"];
+	5[label="b6"];
+	0--1 [label="0"];
+	0--2 [label="20"];
+	0--4 [label="0"];
+	0--5 [label="20"];
+	1--2 [label="0"];
+	1--5 [label="0"];
+	2--3 [label="10"];
+	3--5 [label="10"];
+}
+

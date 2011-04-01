@@ -1,0 +1,33 @@
+graph G {
+	rankdir=LR;
+	{spines = false; overlap=compress}
+	node [shape=circle];
+
+	subgraph cluster_B {
+//		rankdir=TB;
+		
+		b1;
+		b2;
+		b3;
+		b4;
+		b5;
+		b6;
+
+		label = "Bus";
+	}
+
+	subgraph cluster_G {
+//		rankdir=TB;
+
+		g1;
+		g2;
+		g3;
+
+		label = "Gate";
+	}
+
+	{b1;b2;b3;b4;b5;b6}--g1;
+	{b3;b4}--g2;
+	{b5;b6}--g3;
+//	{clusterrank=same; cluster_B; cluster_G;}
+}
