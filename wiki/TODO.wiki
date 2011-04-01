@@ -5,6 +5,8 @@ ToDo list.
  * Descrizione del problema
     * Dominio applicativo
     * Porre in rilievo la rilevanza del problema (neve)
+    * Handling deviations in dwell times properly is important to avoid propagation of delays.
+
 
  * Stato dell'arte con riferimenti a problemi analoghi
    * Non studiato in letteratura
@@ -29,6 +31,8 @@ ToDo list.
    * Modelli matematici di dim polinomiale
    * Metodo esatto (ris. mod. mat.) e euristici (da fare)
    * ...
+   * Our computational results with real-life data indicate that our algorithm significantly reduces the number of replanning steps and special recovery measures during the day of operation.
+
 
  * Riferimenti bibliografici
      * De Werrà - Modello di list coloring per max stable set
