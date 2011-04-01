@@ -1,0 +1,80 @@
+\begin{tikzpicture}[>=latex',join=bevel,]
+%%
+  \definecolor{c1}{rgb}{0.85,0.30,0.30}%
+  \definecolor{c2}{rgb}{0.30,0.85,0.30}%
+  \definecolor{c3}{rgb}{0.30,0.30,0.85}%
+  \definecolor{c4}{rgb}{0.85,0.45,0.00}%
+%%
+  \pgfsetlinewidth{1bp}
+%
+  % Node: 0
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \node (0) at (123bp,19bp) [draw,circle,fill=c3] {$b_1$};
+  \draw (123bp,10bp) node [anchor=north] {[\color{c3}3\color{black},\color{c4}4\color{black}]};
+\end{scope}
+  % Node: 1
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \node (1) at (242bp,46bp) [draw,circle,fill=c2] {$b_2$};
+  \draw (242bp,38bp) node [anchor=north] {[\color{c2}2\color{black},\color{c3}3\color{black},\color{c4}4\color{black}]};
+\end{scope}
+  % Node: 2
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \node (2) at (28bp,95bp) [draw,circle,fill=c4] {$b_3$};
+  \draw (28bp,87bp) node [anchor=north] {[\color{c2}2\color{black},\color{c3}3\color{black},\color{c4}4\color{black}]};
+\end{scope}
+  % Node: 3
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \node (3) at (28bp,217bp) [draw,circle,fill=c1] {$b_4$};
+  \draw (28bp,225bp) node [anchor=south] {[\color{c1}1\color{black},\color{c2}2\color{black},\color{c3}3\color{black},\color{c4}4\color{black}]};
+\end{scope}
+  % Node: 4
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \node (4) at (294bp,156bp) [draw,circle,fill=c3] {$b_5$};
+  \draw (302bp,148bp) node [anchor=west] {[\color{c3}3\color{black},\color{c4}4\color{black}]};
+\end{scope}
+  % Node: 5
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \node (5) at (123bp,293bp) [draw,circle,fill=c2] {$b_6$};
+  \draw (123bp,301bp) node [anchor=south] {[\color{c1}1\color{black},\color{c2}2\color{black},\color{c3}3\color{black},\color{c4}4\color{black}]};
+\end{scope}
+  % Node: 6
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \node (6) at (242bp,266bp)[draw,circle,fill=c1] {$b_7$};
+  \draw (242bp,274bp) node [anchor=south] {[\color{c1}1\color{black},\color{c2}2\color{black},\color{c3}3\color{black},\color{c4}4\color{black}]};
+\end{scope}
+\pgfsetcolor{black}
+  % Edge: 0 -- 1
+  \draw [] (0) .. controls (134bp,20bp) and (231bp,45bp)  .. (1);
+  % Edge: 0 -- 2
+  \draw [] (0) .. controls (108bp,28bp) and (43bp,86bp)  .. (2);
+  % Edge: 1 -- 2
+  \draw [] (1) .. controls (221bp,47bp) and (49bp,94bp)  .. (2);
+  % Edge: 1 -- 3
+  % \draw [] (224bp,60bp) .. controls (184bp,92bp) and (85bp,171bp)  .. node {$$} (45bp,203bp);
+  \draw [] (1) .. controls (225bp,57bp) and (45bp,206bp)  .. (3);
+  % Edge: 1 -- 4
+  \draw [] (1) .. controls (243bp,53bp) and (292bp,149bp)  .. (4);
+  % Edge: 2 -- 3
+  \draw [] (2) .. controls (28bp,120bp) and (28bp,192bp)  .. (3);
+  % Edge: 2 -- 4
+  \draw [] (2) .. controls (50bp,97bp) and (272bp,154bp)  .. (4);
+  % Edge: 3 -- 4
+  \draw [] (3) .. controls (50bp,207bp) and (272bp,158bp)  .. (4);
+  % Edge: 3 -- 5
+  \draw [] (3) .. controls (41bp,227bp) and (109bp,283bp)  .. (5);
+  % Edge: 4 -- 5
+  \draw [] (4) .. controls (281bp,166bp) and (136bp,283bp)  .. (5);
+  % Edge: 4 -- 6
+  \draw [] (4) .. controls (290bp,169bp) and (246bp,253bp)  .. (6);
+  % Edge: 5 -- 6
+  \draw [] (5) .. controls (145bp,291bp) and (220bp,268bp)  .. (6);
+
+%
+\end{tikzpicture}

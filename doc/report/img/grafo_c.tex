@@ -1,0 +1,30 @@
+% Start of code
+\begin{tikzpicture}[>=latex',join=bevel,scale=0.5]
+%%
+\definecolor{c1}{rgb}{0.70,0.25,0.25}%
+\definecolor{c2}{rgb}{0.25,0.70,0.25}%
+\definecolor{c3}{rgb}{0.25,0.25,0.70}%
+%
+\node (1) at (34bp,282bp) [draw,circle,fill=c2] {$b_2$};
+  \node (0) at (104bp,370bp) [draw,circle,fill=c1] {$b_1$};
+  \node (3) at (81bp,106bp) [draw,circle,fill=c1] {$b_4$};
+  \node (2) at (81bp,194bp) [draw,circle,fill=c3] {$b_3$};
+  \node (5) at (81bp,18bp) [draw,circle,fill=c3] {$b_6$};
+  \node (4) at (170bp,282bp) [draw,circle,fill=c2] {$b_5$};
+  \draw [] (2) ..controls (81bp,161bp) and (81bp,139bp)  .. (3);
+  \pgfsetstrokecolor{black}
+  \draw (96bp,150bp) node {10};
+  \draw [] (0) ..controls (97bp,318bp) and (88bp,246bp)  .. (2);
+  \draw (107bp,282bp) node {20};
+  \draw [] (3) ..controls (81bp,73bp) and (81bp,51bp)  .. (5);
+  \draw (96bp,62bp) node {10};
+  \draw [] (0) ..controls (129bp,337bp) and (146bp,314bp)  .. (4);
+  \draw (147bp,326bp) node {0};
+  \draw [] (0) ..controls (78bp,337bp) and (60bp,314bp)  .. (1);
+  \draw (81bp,326bp) node {0};
+  \draw [] (1) ..controls (51bp,249bp) and (63bp,227bp)  .. (2);
+  \draw (67bp,238bp) node {0};
+%
+\end{tikzpicture}
+% End of code
+
