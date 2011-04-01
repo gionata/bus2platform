@@ -319,6 +319,7 @@ bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 	bool ret = false;
 	clock_t begin, end;
 	GanttDiagram *gd;
+	warmStart = 0;
 
 	// per sicurezza:
 	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
