@@ -16,12 +16,17 @@
   \draw[thick,blue] (112bp,102bp) -- (112bp,382bp) -- (196bp,382bp) -- (196bp,102bp) -- cycle;
   \draw (154bp,370bp) node {Gate};
 \end{scope}
-	\node (1) at (50bp,316bp) [draw,circle] {$1$};
+  \node (1) at (50bp,316bp) [draw,circle] {$1$};
   \node (2) at (50bp,230bp) [draw,circle] {$2$};
   \node (3) at (50bp,144bp) [draw,circle] {$3$};
-  \node (4) at (154bp,316bp) [draw,circle,fill=red,opacity=0.5] {$1$};
-  \node (5) at (154bp,230bp) [draw,circle,fill=blue,opacity=0.5] {$2$};
-  \node (6) at (154bp,144bp) [draw,circle,fill=green,opacity=0.5] {$3$};
+  \node (4) at (154bp,316bp) [draw,circle,fill=c1,opacity=0.7] {$1$};
+  \node (5) at (154bp,230bp) [draw,circle,fill=c2,opacity=0.7] {$2$};
+  \node (6) at (154bp,144bp) [draw,circle,fill=c3,opacity=0.7] {$3$};
+
+  \draw (154bp,316bp) node {$1$};
+  \draw (154bp,230bp) node {$2$};
+  \draw (154bp,144bp) node {$3$};
+
   \path[] (1) edge (4);
   \path[] (1) edge (5);
   \path[] (2) edge (4);

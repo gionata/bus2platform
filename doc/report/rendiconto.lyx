@@ -517,7 +517,7 @@ Metodi di Ottimizzazione
 \begin_inset Quotes eld
 \end_inset
 
-Modelli e Medoti per il Supporto alle Decisioni
+Modelli e Metodi per il Supporto alle Decisioni
 \begin_inset Quotes erd
 \end_inset
 
@@ -539,7 +539,7 @@ Metodi per l'Istradamento dei Veicoli
 
 \begin_layout Standard
 Al termine del secondo anno le attività svolte sono state le analisi dei
- problemi d'interesse per la società cofinaziante il Dottorato di Ricerca,
+ problemi d'interesse per la società cofinanziante il Dottorato di Ricerca,
  realizzato attraverso l'ispezione dei software realizzati dalla PluService
  stessa, dalla analisi dei requisiti per la risoluzione di problemi concreti
  e non solo teorici.
@@ -966,7 +966,7 @@ corse bis
 , cioè le corse sono corse che vengono svolte da 2 o più autobus per effettuare
  lo stesso servizio, su piattaforme adiacenti.
  Posiziona le corse appartenenti a linee che includono almeno un veicolo
- snodato sulle piattatforme che accettano mezzi snodati.
+ snodato sulle piattaforme che accettano mezzi snodati.
  Se una corsa con snodati ha delle corse bis allora queste sono considerate
  come corse con snodati.
  L'algoritmo permette inoltre di associare una linea esclusivamente ad un
@@ -996,7 +996,7 @@ ldots{}
 ) e quindi per tempo di partenza.
  L'algoritmo poi assegna nell'ordine le corse, senza possibilità di backtracking
 , alla prima piattaforma disponibile in quell'intervallo di tempo.
- Esso assomiglia ad un First Fit che ha l'obiettivo di minizzare il numero
+ Esso assomiglia ad un First Fit che ha l'obiettivo di minimizzare il numero
  di piattaforme utilizzate.
  L'algoritmo non garantisce l'ottimalità della soluzione trovata e, per
  alcune istanze che hanno soluzioni ammissibili, potrebbe non trovarne.
@@ -1132,7 +1132,7 @@ key "tbrtcrp100"
 status open
 
 \begin_layout Plain Layout
-Definizione degli aspetti generali per l'individuazioe di problematiche
+Definizione degli aspetti generali per l'individuazione di problematiche
  simili
 \end_layout
 
@@ -1504,8 +1504,8 @@ Alcuni autori modellano il TPP come un problema di
 \lang english
 Graph Coloring
 \lang italian
- su grafi di conflitto, altri usano tecniche tradizonali della ricerca operativa
- e altri la programmazione per vincoli.
+ su grafi di conflitto, altri usano tecniche tradizionali della ricerca
+ operativa e altri la programmazione per vincoli.
 \end_layout
 
 \begin_layout Standard
@@ -1513,7 +1513,7 @@ Graph Coloring
 status open
 
 \begin_layout Plain Layout
-DAP o Dock-to-door assingment
+DAP o Dock-to-door assignment
 \end_layout
 
 \end_inset
@@ -1554,7 +1554,7 @@ key "pereira2008survey"
 \end_inset
 
 .
- La tendenza attuale predilige metodi euristici che impiegano poca memeria
+ La tendenza attuale predilige metodi euristici che impiegano poca memoria
  e poco tempo di calcolo, ma quando l'ottimizzazione del codice è importante
  si ricorre frequentemente a tecniche di coloring.
  In 
@@ -1569,10 +1569,10 @@ key "Zeitlhofer20031411"
  registri quanti disponibili, se tale soluzione esiste.
  Essi descrivono il caso di processori con varie unità funzionali in grado
  di eseguire un sottoinsieme di istruzioni.
- Lo scheduling delle instruzioni è definito e esse possono essere elaborate
+ Lo scheduling delle istruzioni è definito e esse possono essere elaborate
  solo da un sottoinsieme di registri.
- Benché il list-coloring sia un problema NP-hard, Zeitlhofer and Wess sfuttano
- alcune proprietà dei grafi fegli intervalli per determinare soluzioni in
+ Benché il list-coloring sia un problema NP-hard, Zeitlhofer and Wess sfruttano
+ alcune proprietà dei grafi degli intervalli per determinare soluzioni in
  tempi ragionevoli, evitando di esplorare l'intero albero di ricerca.
 \end_layout
 
@@ -2281,7 +2281,7 @@ ione.
 \end_inset
 
  appartiene alla classe dei grafi perfetti quindi il numero cromatico è
- uguale al numero di clique e il problema di determare il numero di clique
+ uguale al numero di clique e il problema di determinare il numero di clique
  di un grafo degli intervalli è risolubile in tempo polinomiale.
  
 \begin_inset ERT
@@ -3060,7 +3060,7 @@ reference "fig:Intervalli-di-occupazione1"
 
 \end_inset
 
- Le compatibilià sosta-piattaforma del problema in esame sono rappresentate
+ Le compatibilità sosta-piattaforma del problema in esame sono rappresentate
  in fig.
 \begin_inset space ~
 \end_inset
@@ -3115,9 +3115,11 @@ status open
 
 
 \backslash
-centering
+makebox[0.65
 \backslash
-input{img/fasce_orarie1}
+textwidth][c]{
+\backslash
+input{img/fasce_orarie1}}
 \end_layout
 
 \end_inset
@@ -3164,9 +3166,11 @@ status open
 
 
 \backslash
-centering
+makebox[0.31
 \backslash
-input{img/relazioni_L1}
+textwidth][c]{
+\backslash
+input{img/relazioni_L1}}
 \end_layout
 
 \end_inset
@@ -3181,11 +3185,21 @@ name "fig:relazioni_L1"
 
 \end_inset
 
-Relazioni 
-\begin_inset Formula $L$
+Relazioni di compatibilità 
+\begin_inset Formula $L(v_{i})$
 \end_inset
 
- di compatibilà soste-piattaforme
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+soste-piattaforme
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3347,9 +3361,19 @@ status open
 
 \begin_layout Plain Layout
 \noindent
-\begin_inset Graphics
-	filename img/K_3_list_3_coloring_istanza.svg
-	scale 75
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[0.45
+\backslash
+textwidth][c]{
+\backslash
+input{img/K_3_list_3_coloring_istanza}}
+\end_layout
 
 \end_inset
 
@@ -3378,7 +3402,20 @@ Istanza del problema di list-coloring
 \end_inset
 
 
-\begin_inset Formula $\longrightarrow$
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+parbox[c]{0.5cm}{$
+\backslash
+longrightarrow$
+\backslash
+vspace{3cm}}
+\end_layout
+
 \end_inset
 
 
@@ -3392,9 +3429,19 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/K_3_list_3_coloring_mis_istanza.svg
-	scale 75
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[0.50
+\backslash
+textwidth][c]{
+\backslash
+input{img/K_3_list_3_coloring_mis_istanza}}
+\end_layout
 
 \end_inset
 
@@ -3461,9 +3508,19 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/K_3_list_3_coloring_soluzione.svg
-	scale 75
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[0.45
+\backslash
+textwidth][c]{
+\backslash
+input{img/K_3_list_3_coloring_soluzione}}
+\end_layout
 
 \end_inset
 
@@ -3492,7 +3549,20 @@ Soluzione list-coloring
 \end_inset
 
 
-\begin_inset Formula $\longleftarrow$
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+parbox[c]{0.5cm}{$
+\backslash
+longleftarrow$
+\backslash
+vspace{3cm}}
+\end_layout
+
 \end_inset
 
 
@@ -3506,9 +3576,19 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/K_3_list_3_coloring_mis_soluzione.svg
-	scale 75
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[0.5
+\backslash
+textwidth][c]{
+\backslash
+input{img/K_3_list_3_coloring_mis_soluzione}}
+\end_layout
 
 \end_inset
 
@@ -5486,7 +5566,7 @@ x_{ik}\geq x_{j\, k+1} &  & k=\max_{k}\{k+1,\, k\in G\},\, j\in BIS(i)\label{eq:
 \end_layout
 
 \begin_layout Standard
-Il modello presuppone che i gate adiacenti abbiano indici adiiacenti.
+Il modello presuppone che i gate adiacenti abbiano indici adiacenti.
  
 \end_layout
 
@@ -5924,7 +6004,7 @@ La pianificazione dell'assegnamento per una giornata può essere ottenuta
 
 \begin_layout Standard
 L'istanza reale, contente dati relativi all'autostazione di Bologna, su
- cui sono stati effettuati i primi test computazionali degli algorimi per
+ cui sono stati effettuati i primi test computazionali degli algoritmi per
  la soluzione dei modelli proposti presenta in una giornata 229 soste di
  corse in partenza da assegnare a 24 gate.
  Le prime soste iniziano ad impegnare un gate alle 5.35 del mattino e l'ultima
@@ -6012,8 +6092,8 @@ reference "sub:Minimizzazione-gate"
 .
  Questo problema si risolve in tempi contenuti rispetto agli altri problemi
  descritti nei paragrafi precedenti.
- L'intervallo di pianificazione di una giornata è suddiso in fasce di pianificaz
-ione (approccio 
+ L'intervallo di pianificazione di una giornata è suddiviso in fasce di
+ pianificazione (approccio 
 \emph on
 multiple time slot
 \emph default
@@ -6030,7 +6110,7 @@ reference "alg:time_slice"
 \end_layout
 
 \begin_layout Standard
-In questo modo si semplifica notevolmente il problema e nel caso cosiderato
+In questo modo si semplifica notevolmente il problema e nel caso considerato
  il numero massimo di soste presenti nei modelli di ottimizzazione si è
  ridotto da 229 a non più di 24.
  La fascia di punta massima, fra le 13.30 e le 14.00, dell'istanza considerata
@@ -6316,7 +6396,7 @@ I problemi possono essere affrontati impiegando l'algoritmo di pianificazione
 \begin_inset Quotes eld
 \end_inset
 
-worm-start
+warm-start
 \begin_inset Quotes erd
 \end_inset
 
