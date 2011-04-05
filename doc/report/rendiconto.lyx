@@ -5,6 +5,11 @@
 \textclass report
 \begin_preamble
 \usepackage[ruled,vlined,lined,boxed,linesnumbered]{algorithm2e}
+\renewcommand{\listalgorithmcfname}{Elenco degli algoritmi}%
+\renewcommand{\algorithmcfname}{Algoritmo}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{Procedura}
+\renewcommand{\@algocf@funcname}{Funzione}
 \usepackage[x11names, rgb]{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{snakes,arrows,shapes}
