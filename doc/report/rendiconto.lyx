@@ -6112,6 +6112,62 @@ reference "alg:time_slice"
 \end_inset
 
 .
+ La fig.
+ mostra graficamente come siano legati fra loro i sottoproblemi, le soluzioni
+ e le istanze dei problemi successivi al primo sottoproblema.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\backslash
+input{img/iterative_horizon}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Algoritmo iterativo: legami fra istanze e soluzioni
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Algoritmo-iterativo_legami_ist_sol"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
