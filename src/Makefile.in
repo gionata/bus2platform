@@ -210,7 +210,7 @@ gap_graph_SOURCES = Bus.cpp Calendar.cpp CalendarDate.cpp GanttDiagram.cpp Gate.
 gap_graph_LDFLAGS = 
 gap_graph_LDADD = -lcairo -llpsolve55 -lm
 #gap_graph_CXXFLAGS=-fopenmp -O3 --fast-math -march=native -mtune=native -s -Wno-write-strings -D_NO_LP_NAMES
-gap_graph_CXXFLAGS = -O3 --fast-math -march=native -mtune=native -s -Wno-write-strings -D_NO_LP_NAMES
+gap_graph_CXXFLAGS = -Ofast -march=native -mtune=native -s -Wno-write-strings -D_NO_LP_NAMES
 all: all-am
 
 .SUFFIXES:

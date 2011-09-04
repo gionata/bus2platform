@@ -358,3 +358,8 @@ unsigned int SetModel::numMaximalCliques() const
 {
 	return _numMaximalCliques;
 }
+
+
+void SetModel::performances_airo2011(int * solution, unsigned int used_platform, unsigned int min_interval_distance, double cprob_lin, double cprob_exp) const
+{
+}
