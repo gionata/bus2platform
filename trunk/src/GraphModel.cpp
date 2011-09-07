@@ -450,4 +450,102 @@ void GraphModel::debugWriteC()
 	delete instance_name;
 }
 
+bool GraphModel::solutionFeasibility(int *&gates, const char *header) const {
+		std::ofstream outf("solution_details", std::ios::app);
+		unsigned int used_platforms = 0;
+		double min_interval = 30000.;
+		double conflict_sum = 0.;
+
+		outf << header << std::endl;
+
+		outf << "Gates assignments:";
+		for (int i = 0; i < _B.size(); i++)
+			outf << "\t" << gates[i];
+		outf << std::endl;
+
+		std::vector < std::vector <size_t> > gate_dwell (_G.size());
+		bool used[_G.size()];
+		for (int i = 0; i < _G.size(); i++) {
+			used[i] = false;
+		}
+		// setta il vettore gate_dwell
+		for (int d = 0; d < _numDwells; d++) {
+			size_t platform = gates[d];
+			if (!used[platform]) {
+				used[platform] = true;
+				used_platforms++;
+				// gate_dwell[platform]= new vector<size_t>();
+			}
+			gate_dwell[platform].push_back(d);
+		}
+		outf << "No. used gates:\t" << used_platforms << std::endl;
+		outf << "Cij:";
+		// controlla, per ogni piattaforma
+		for (int p = 0; p < _G.size(); p++) {
+			if (!used[p])
+				continue;
+
+			// sort gate_dwell[p] by arrival time
+			size_t tmp;
+			for (int a = 1; a < gate_dwell[p].size(); a++)
+				for (int b = gate_dwell[p].size()-1; b >= a; b--)
+					if (_B[gate_dwell[p][b-1]]->arrival() > _B[gate_dwell[p][b]]->arrival()) {
+						tmp = gate_dwell[p][b-1];
+						gate_dwell[p][b-1] = gate_dwell[p][b];
+						gate_dwell[p][b] = tmp;
+					}
+			// per debug
+			/*for (int a = 0; a < gate_dwell[p].size(); a++)
+				std::cerr << _graphs.B()[gate_dwell[p][a]]->dwellNumber() << " ";
+			std::cerr << "\n";*/
+			// che ogni sosta
+			for (std::vector<size_t>::const_iterator i = gate_dwell[p].begin(); i != gate_dwell[p].end(); i++) {
+				// sia assegnabile alla piattaforma
+				if (! _B[*i]->compatible(_G[p])) {
+					std::cerr << "sosta " << _B[*i]->dwellNumber() << " non compatibile con piattaforma "<< p + 1 << std::endl;
+					exit(1);
+					return false;
+				}
+				// non interferisca con nessuna delle soste successive
+				if (*i != gate_dwell[p].back()) {
+					std::vector<size_t>::const_iterator j = i;
+					j++;
+					for (; j != gate_dwell[p].end(); j++) {
+						if (_B[*i]->occupacyPeriod().intersects(_B[*j]->occupacyPeriod())) {
+							std::cerr << "piattaforma " << p + 1 << ", sosta " <<
+							     _B[*i]->dwellNumber() << " interferisce con " << _B[*j]->dwellNumber() << std::endl;
+							exit(1);
+							return false;
+						}
+					}
+				}
+			}
+
+			// calcola distanza minima e probabilità di conflitto
+			for (int i = 0; i < gate_dwell[p].size() - 1; i++) {
+				//time_period period_i = _graphs.B()[i]->occupacyPeriod();
+				//time_period period_j = _graphs.B()[i + 1]->occupacyPeriod();
+
+				ptime a_j = _B[gate_dwell[p][i + 1]]->arrival();
+				ptime d_i = _B[gate_dwell[p][i]]->departure();
+				time_duration td = (a_j - d_i);
+				double cij =
+					    60 * td.hours() + td.minutes() +
+					    (double) td.seconds() / 60;
+				conflict_sum += cij;
+
+				if (cij < min_interval)
+					min_interval = cij;
+				outf << "\t" << cij;
+			}
+		}
+		outf << std::endl;
+		outf << "conflict_sum:\t" << conflict_sum << std::endl;
+		outf << "min_interval:\t" << min_interval << std::endl;
+		outf << std::endl;
+		outf.close();
+
+		return true;
+	}
+
 //#endif

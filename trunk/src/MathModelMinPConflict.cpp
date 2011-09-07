@@ -3,6 +3,7 @@
  *  \author Gionata Massi <massi@diiga.univpm.it>
  */
 #include "MathModelMinPConflict.h"
+#include <ctime>
 #include <cmath>
 
 using namespace std;
@@ -177,6 +178,13 @@ bool MathModelMinPConflict::setObjectiveFunction()
 	    _graphs.numEdgesC() *
 #endif
 	    (_D - _d);
+/*
+	std::ofstream outf("solution_details", std::ios::app);
+	outf << "D:\t" << _D << std::endl;
+	outf << "d:\t" << _d << std::endl;
+	outf << "den: " << den << std::endl;
+	outf.close();
+*/
 
 	for (tie(eiC, ei_endC) = edges(_graphs.graphC()); eiC != ei_endC; ++eiC) {
 		size_t yij_idx = _C_edge_index[*eiC];

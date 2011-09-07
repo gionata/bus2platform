@@ -103,6 +103,9 @@ public:
 		return _H_edge_index;
 	}
 
+
+	bool solutionFeasibility(int *&gates, const char *header) const;
+
 	/* Debug related methods */
 //#ifdef _DEBUG
 	void debugWriteH();

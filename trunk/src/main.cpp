@@ -18,6 +18,7 @@
 #include "IntervalPackingFinishFirst.h"
 #include "IntervalPackingFirstFit.h"
 #include "IterativeTimeHorizonMath.h"
+#include "IterativeTimeHorizonMathMD.h"
 #include "GanttDiagram.h"
 #include "SolutionReport.h"
 
@@ -32,6 +33,10 @@
 #include <string>
 #include <ctime>
 
+#ifndef CLOCKS_PER_SEC
+#define CLOCKS_PER_SEC 1000
+#endif
+
 #include <omp.h>
 
 using namespace std;
@@ -45,6 +50,7 @@ bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 bool iterativeTimeHorizonMath(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
+bool iterativeTimeHorizonMathMD(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 
 int main(int argc, char *argv[])
 {
@@ -62,7 +68,7 @@ int main(int argc, char *argv[])
 	begin = clock();
 	SetModel problemSets(argv[1]);
 	end = clock();
-	cerr << "  Insiemi B e G generati in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms.\n" << endl;
+cerr << "  Insiemi B e G generati in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms.\n" << endl;
 
 	cerr << "Generazione grafi di assegnamento (H) e compatibilita' (C) e maximal cliques" << endl;
 	begin = clock();
@@ -94,6 +100,10 @@ int main(int argc, char *argv[])
 
 	#pragma omp task
 	iterativeTimeHorizonMath(problemSets, gModel, warmStart, instance_name);
+
+	#pragma omp task
+	iterativeTimeHorizonMathMD
+	(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp task
 	mathModelMinPConflict(problemSets, gModel, warmStart, instance_name);
@@ -250,11 +260,18 @@ bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 	if (ret = (colModel->solved())) {
 		svg_output = "MathModelColoring.svg";
 		colModel->solution(solution);
+		colModel->solutionFeasibility(solution, "MathModelColoring");
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
 		if (!warmStart) {
 			warmStart = new int[problemSets.B().size()];
 		}
 		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
+		unsigned int used_platform;
+		unsigned int min_interval_distance;
+		double cprob_lin;
+		double cprob_exp;
+		problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp);
+
 		delete[]solution;
 		delete(gd);
 	}
@@ -304,6 +321,8 @@ bool mathModelBP(SetModel &problemSets, GraphModel &gModel, int *&warmStart, str
 			warmStart = new int[problemSets.B().size()];
 		}
 		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
+		bpModel->solutionFeasibility(solution, "MathModelBP");
+
 		delete[]solution;
 		delete(gd);
 	}
@@ -359,6 +378,7 @@ bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 			warmStart = new int[problemSets.B().size()];
 		}
 		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
+		bpModelsingle->solutionFeasibility(solution, "MathModelBPsingle");
 		delete[]solution;
 		delete(gd);
 	}
@@ -410,6 +430,8 @@ bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int *&warm
 		svg_output = "MathModelMinPConflict.svg";
 		mPconflictModel->solution(solution);
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
+
+		mPconflictModel->solutionFeasibility(solution, "MathModelMinPConflict");
 
 		delete[]solution;
 		delete(gd);
@@ -466,6 +488,8 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&wa
 			warmStart = new int[problemSets.B().size()];
 		}
 		memcpy(warmStart, solution, problemSets.B().size() * sizeof(int));
+		mmdModel->solutionFeasibility(solution, "MathModelMaxMinDistance");
+
 		delete[]solution;
 		delete(gd);
 	}
@@ -503,11 +527,50 @@ bool iterativeTimeHorizonMath(SetModel &problemSets, GraphModel &gModel, int *&w
 		mIterativeTimeHorizonMath->solution(solution);
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
 
+		gModel.solutionFeasibility(solution, "IterativeMPC");
 		delete[]solution;
 		delete(gd);
 	}
 	delete mIterativeTimeHorizonMath;
 	
+	return ret;
+}
+
+bool iterativeTimeHorizonMathMD(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
+{
+	int *solution = 0;
+	string svg_output;
+	bool ret = false;
+	clock_t begin, end;
+	GanttDiagram *gd;
+
+	// per sicurezza:
+	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+		(*dwellItr)->assigned(false);
+
+	/*
+	 *  IterativeTimeHorizonMathMD
+	 */
+	cerr << "/*" << endl;
+	cerr << " * mIterativeTimeHorizonMathMD" << endl;
+	cerr << " */\n" << endl;
+	cerr << "Risoluzione iterativa del modello matematico per max min distance." << endl;
+	begin = clock();
+	IterativeTimeHorizonMathMD *mIterativeTimeHorizonMath = new IterativeTimeHorizonMathMD(gModel);
+	mIterativeTimeHorizonMath->solveX();
+	end = clock();
+	cerr << "  Soluzione del MathModelMinPConflictMD in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+	if (ret = (mIterativeTimeHorizonMath->solved())) {
+		svg_output = "IterativeTimeHorizonMathMD.svg";
+		mIterativeTimeHorizonMath->solution(solution);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
+
+		gModel.solutionFeasibility(solution, "IterativeMPC_MD");
+		delete[]solution;
+		delete(gd);
+	}
+	delete mIterativeTimeHorizonMath;
+
 	return ret;
 }
 

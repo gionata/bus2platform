@@ -54,6 +54,8 @@ am_gap_graph_OBJECTS = gap_graph-Bus.$(OBJEXT) \
 	gap_graph-IntervalEndpoint.$(OBJEXT) \
 	gap_graph-IntervalPackingFinishFirst.$(OBJEXT) \
 	gap_graph-IntervalPackingFirstFit.$(OBJEXT) \
+	gap_graph-IterativeTimeHorizonMath.$(OBJEXT) \
+	gap_graph-IterativeTimeHorizonMathMD.$(OBJEXT) \
 	gap_graph-ListColoringTreeSearch.$(OBJEXT) \
 	gap_graph-main.$(OBJEXT) gap_graph-MathModelBP.$(OBJEXT) \
 	gap_graph-MathModelBPsingle.$(OBJEXT) \
@@ -66,8 +68,7 @@ am_gap_graph_OBJECTS = gap_graph-Bus.$(OBJEXT) \
 	gap_graph-SolutionAlgorithm.$(OBJEXT) \
 	gap_graph-SolutionReport.$(OBJEXT) \
 	gap_graph-TimeAvailability.$(OBJEXT) \
-	gap_graph-TimeSlots.$(OBJEXT) \
-	gap_graph-IterativeTimeHorizonMath.$(OBJEXT)
+	gap_graph-TimeSlots.$(OBJEXT)
 gap_graph_OBJECTS = $(am_gap_graph_OBJECTS)
 gap_graph_DEPENDENCIES =
 gap_graph_LINK = $(CXXLD) $(gap_graph_CXXFLAGS) $(CXXFLAGS) \
@@ -206,7 +207,25 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-gap_graph_SOURCES = Bus.cpp Calendar.cpp CalendarDate.cpp GanttDiagram.cpp Gate.cpp GraphModel.cpp has_id.cpp Interval.cpp IntervalEndpoint.cpp IntervalPackingFinishFirst.cpp IntervalPackingFirstFit.cpp IterativeTimeHorizonMath.h ListColoringTreeSearch.cpp main.cpp MathModelBP.cpp MathModelBPsingle.cpp MathModelColoring.cpp MathModel.cpp MathModelMaxMinDistance.cpp MathModelMaxTotalDistance.cpp MathModelMinPConflict.cpp SetModel.cpp SolutionAlgorithm.cpp SolutionReport.cpp TimeAvailability.cpp TimeSlots.cpp           Bus.h BusTime.h CalendarDate.h Calendar.h GanttDiagram.h gap.h Gate.h GraphModel.h has_id.h IntervalEndpoint.h Interval.h IntervalPackingFinishFirst.h IntervalPackingFirstFit.h IterativeTimeHorizonMath.cpp ListColoringTreeSearch.h MathModelBP.h MathModelBPsingle.h MathModelColoring.h MathModel.h MathModelMaxMinDistance.h MathModelMaxTotalDistance.h MathModelMinPConflict.h SetModel.h SolutionAlgorithm.h SolutionReport.h TimeAvailability.h TimeSlots.h
+gap_graph_SOURCES = Bus.cpp Calendar.cpp CalendarDate.cpp \
+	GanttDiagram.cpp Gate.cpp GraphModel.cpp has_id.cpp \
+	Interval.cpp IntervalEndpoint.cpp \
+	IntervalPackingFinishFirst.cpp IntervalPackingFirstFit.cpp \
+	IterativeTimeHorizonMath.cpp IterativeTimeHorizonMathMD.cpp \
+	ListColoringTreeSearch.cpp main.cpp MathModelBP.cpp \
+	MathModelBPsingle.cpp MathModelColoring.cpp MathModel.cpp \
+	MathModelMaxMinDistance.cpp MathModelMaxTotalDistance.cpp \
+	MathModelMinPConflict.cpp SetModel.cpp SolutionAlgorithm.cpp \
+	SolutionReport.cpp TimeAvailability.cpp TimeSlots.cpp Bus.h \
+	BusTime.h CalendarDate.h Calendar.h GanttDiagram.h gap.h \
+	Gate.h GraphModel.h has_id.h IntervalEndpoint.h Interval.h \
+	IntervalPackingFinishFirst.h IntervalPackingFirstFit.h \
+	IterativeTimeHorizonMath.h IterativeTimeHorizonMathMD.h \
+	ListColoringTreeSearch.h MathModelBP.h MathModelBPsingle.h \
+	MathModelColoring.h MathModel.h MathModelMaxMinDistance.h \
+	MathModelMaxTotalDistance.h MathModelMinPConflict.h SetModel.h \
+	SolutionAlgorithm.h SolutionReport.h TimeAvailability.h \
+	TimeSlots.h
 gap_graph_LDFLAGS = 
 gap_graph_LDADD = -lcairo -llpsolve55 -lm
 #gap_graph_CXXFLAGS=-fopenmp -O3 --fast-math -march=native -mtune=native -s -Wno-write-strings -D_NO_LP_NAMES
@@ -303,6 +322,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-IntervalPackingFinishFirst.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-IntervalPackingFirstFit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-IterativeTimeHorizonMathMD.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-ListColoringTreeSearch.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-MathModel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-MathModelBP.Po@am__quote@
@@ -486,6 +506,34 @@ gap_graph-IntervalPackingFirstFit.obj: IntervalPackingFirstFit.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IntervalPackingFirstFit.cpp' object='gap_graph-IntervalPackingFirstFit.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-IntervalPackingFirstFit.obj `if test -f 'IntervalPackingFirstFit.cpp'; then $(CYGPATH_W) 'IntervalPackingFirstFit.cpp'; else $(CYGPATH_W) '$(srcdir)/IntervalPackingFirstFit.cpp'; fi`
+
+gap_graph-IterativeTimeHorizonMath.o: IterativeTimeHorizonMath.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -MT gap_graph-IterativeTimeHorizonMath.o -MD -MP -MF $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Tpo -c -o gap_graph-IterativeTimeHorizonMath.o `test -f 'IterativeTimeHorizonMath.cpp' || echo '$(srcdir)/'`IterativeTimeHorizonMath.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Tpo $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IterativeTimeHorizonMath.cpp' object='gap_graph-IterativeTimeHorizonMath.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-IterativeTimeHorizonMath.o `test -f 'IterativeTimeHorizonMath.cpp' || echo '$(srcdir)/'`IterativeTimeHorizonMath.cpp
+
+gap_graph-IterativeTimeHorizonMath.obj: IterativeTimeHorizonMath.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -MT gap_graph-IterativeTimeHorizonMath.obj -MD -MP -MF $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Tpo -c -o gap_graph-IterativeTimeHorizonMath.obj `if test -f 'IterativeTimeHorizonMath.cpp'; then $(CYGPATH_W) 'IterativeTimeHorizonMath.cpp'; else $(CYGPATH_W) '$(srcdir)/IterativeTimeHorizonMath.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Tpo $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IterativeTimeHorizonMath.cpp' object='gap_graph-IterativeTimeHorizonMath.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-IterativeTimeHorizonMath.obj `if test -f 'IterativeTimeHorizonMath.cpp'; then $(CYGPATH_W) 'IterativeTimeHorizonMath.cpp'; else $(CYGPATH_W) '$(srcdir)/IterativeTimeHorizonMath.cpp'; fi`
+
+gap_graph-IterativeTimeHorizonMathMD.o: IterativeTimeHorizonMathMD.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -MT gap_graph-IterativeTimeHorizonMathMD.o -MD -MP -MF $(DEPDIR)/gap_graph-IterativeTimeHorizonMathMD.Tpo -c -o gap_graph-IterativeTimeHorizonMathMD.o `test -f 'IterativeTimeHorizonMathMD.cpp' || echo '$(srcdir)/'`IterativeTimeHorizonMathMD.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/gap_graph-IterativeTimeHorizonMathMD.Tpo $(DEPDIR)/gap_graph-IterativeTimeHorizonMathMD.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IterativeTimeHorizonMathMD.cpp' object='gap_graph-IterativeTimeHorizonMathMD.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-IterativeTimeHorizonMathMD.o `test -f 'IterativeTimeHorizonMathMD.cpp' || echo '$(srcdir)/'`IterativeTimeHorizonMathMD.cpp
+
+gap_graph-IterativeTimeHorizonMathMD.obj: IterativeTimeHorizonMathMD.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -MT gap_graph-IterativeTimeHorizonMathMD.obj -MD -MP -MF $(DEPDIR)/gap_graph-IterativeTimeHorizonMathMD.Tpo -c -o gap_graph-IterativeTimeHorizonMathMD.obj `if test -f 'IterativeTimeHorizonMathMD.cpp'; then $(CYGPATH_W) 'IterativeTimeHorizonMathMD.cpp'; else $(CYGPATH_W) '$(srcdir)/IterativeTimeHorizonMathMD.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/gap_graph-IterativeTimeHorizonMathMD.Tpo $(DEPDIR)/gap_graph-IterativeTimeHorizonMathMD.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IterativeTimeHorizonMathMD.cpp' object='gap_graph-IterativeTimeHorizonMathMD.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-IterativeTimeHorizonMathMD.obj `if test -f 'IterativeTimeHorizonMathMD.cpp'; then $(CYGPATH_W) 'IterativeTimeHorizonMathMD.cpp'; else $(CYGPATH_W) '$(srcdir)/IterativeTimeHorizonMathMD.cpp'; fi`
 
 gap_graph-ListColoringTreeSearch.o: ListColoringTreeSearch.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -MT gap_graph-ListColoringTreeSearch.o -MD -MP -MF $(DEPDIR)/gap_graph-ListColoringTreeSearch.Tpo -c -o gap_graph-ListColoringTreeSearch.o `test -f 'ListColoringTreeSearch.cpp' || echo '$(srcdir)/'`ListColoringTreeSearch.cpp
@@ -682,20 +730,6 @@ gap_graph-TimeSlots.obj: TimeSlots.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TimeSlots.cpp' object='gap_graph-TimeSlots.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-TimeSlots.obj `if test -f 'TimeSlots.cpp'; then $(CYGPATH_W) 'TimeSlots.cpp'; else $(CYGPATH_W) '$(srcdir)/TimeSlots.cpp'; fi`
-
-gap_graph-IterativeTimeHorizonMath.o: IterativeTimeHorizonMath.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -MT gap_graph-IterativeTimeHorizonMath.o -MD -MP -MF $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Tpo -c -o gap_graph-IterativeTimeHorizonMath.o `test -f 'IterativeTimeHorizonMath.cpp' || echo '$(srcdir)/'`IterativeTimeHorizonMath.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Tpo $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IterativeTimeHorizonMath.cpp' object='gap_graph-IterativeTimeHorizonMath.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-IterativeTimeHorizonMath.o `test -f 'IterativeTimeHorizonMath.cpp' || echo '$(srcdir)/'`IterativeTimeHorizonMath.cpp
-
-gap_graph-IterativeTimeHorizonMath.obj: IterativeTimeHorizonMath.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -MT gap_graph-IterativeTimeHorizonMath.obj -MD -MP -MF $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Tpo -c -o gap_graph-IterativeTimeHorizonMath.obj `if test -f 'IterativeTimeHorizonMath.cpp'; then $(CYGPATH_W) 'IterativeTimeHorizonMath.cpp'; else $(CYGPATH_W) '$(srcdir)/IterativeTimeHorizonMath.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Tpo $(DEPDIR)/gap_graph-IterativeTimeHorizonMath.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IterativeTimeHorizonMath.cpp' object='gap_graph-IterativeTimeHorizonMath.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-IterativeTimeHorizonMath.obj `if test -f 'IterativeTimeHorizonMath.cpp'; then $(CYGPATH_W) 'IterativeTimeHorizonMath.cpp'; else $(CYGPATH_W) '$(srcdir)/IterativeTimeHorizonMath.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
