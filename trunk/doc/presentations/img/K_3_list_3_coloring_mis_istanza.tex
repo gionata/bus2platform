@@ -1,0 +1,28 @@
+\definecolor{c1}{rgb}{0.70,0.25,0.25}%
+\definecolor{c2}{rgb}{0.25,0.70,0.25}%
+\definecolor{c3}{rgb}{0.25,0.25,0.70}%
+
+\begin{tikzpicture}[y=0.80pt, x=0.8pt,yscale=1]
+\begin{scope}
+  %nodi
+  \node (11) at ( 50bp, 50bp) [draw,circle] {$1$\textcolor{c1}{1}};
+  \node (12) at ( 80bp, 70bp) [draw,circle] {$1$\textcolor{c2}{2}};
+  \node (21) at (110bp,50bp) [draw,circle] {$2$\textcolor{c1}{1}};
+  \node (23) at (170bp,90bp) [draw,circle] {$2$\textcolor{c3}{3}};
+  \node (31) at (  80bp,  102bp) [draw,circle] {$3$\textcolor{c1}{1}};
+  \node (32) at (110bp,  122bp) [draw,circle] {$3$\textcolor{c2}{2}};
+  \node (33) at (140bp,  142bp) [draw,circle] {$3$\textcolor{c3}{3}};
+
+  %archi 
+  \path[] (11) edge (21);
+  \path[] (11) edge (31);
+  \path[] (21) edge (31);
+  \path[] (12) edge (32);
+  \path[] (23) edge (33);
+  \path[] (11) edge (12);
+  \path[] (21) edge (23);
+  \path[] (31) edge (32);
+  \draw[] (31) ..controls (80bp,127bp) and (105bp,152bp)  ..  (33);
+  \path[] (32) edge (33);
+\end{scope}
+\end{tikzpicture}

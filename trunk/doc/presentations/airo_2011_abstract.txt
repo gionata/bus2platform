@@ -1,0 +1,66 @@
+Dear Gionata Massi,
+thank you for submitting your abstract.
+
+Please carefully check the information below to be the one you intended to  
+submit us.
+Paper Title: Robust platform assignment in bus stations
+Speaker: Gionata Massi, Dipartimento di Ingegneria Informatica, Gestionale e  
+dell'Automazione - Università Politecnica delle Marche
+Co-Authors:
+Gianluca Morganti Dipartimento di Ingegneria Informatica, Gestionale e  
+dell'Automazione - Università Politecnica delle Marche,
+Ferdinando Pezzella Dipartimento di Ingegneria Informatica, Gestionale e  
+dell'Automazione - Università Politecnica delle Marche,
+      ,
+
+
+Abstract:
+The assignment of buses arriving to available gates is a major issue during  
+the daily operations in a bus station. Such a problem is known in literature  
+as Gate Assignment Problem and consists, given the daily bus schedule, in  
+determining the best feasible assignment of the buses to the gates based on  
+certain preference criteria. In order for a solution to be feasible at least  
+two constraints have to be satisfied: each bus must be assigned to one and  
+only one platform and two buses whose time intervals of platform occupation  
+overlap cannot be assigned to the same platform [1].
+Problems similar to gate assignment in bus stations arise in the management  
+of airports, train stations, ports, freight villages and so on. There are  
+also strong similarities with the register assignment problem in Digital  
+Signal Processors [2].
+In the bus station case, manager may require that the bus-platform assignment  
+plan occupies the minimum number of platforms during the planning horizon.  
+For this problem we propose a novel formulation as a restricted-coloring  
+problem of an interval graph and an integer linear programming model to solve  
+it.
+Trip delays such as early or late arrivals and late departures are a frequent  
+occurrence in actual day to day bus station operations and it is often not  
+possible to assign such buses to their original platforms. For this reason we  
+considered a mathematical programming model to increase the robustness of the  
+solutions by the minimization of the probability that buses assigned to the  
+same gate may be "in conflict" [3].
+Finally, in order to generate a good solution in a reasonable computation  
+time, we also propose a heuristic algorithm, based on the idea to solve the  
+problem by dividing it into smaller sub-problems, using a receding horizon  
+control, and then reconstructing the complete solution.
+Computational experiments on a real bus station with 24 platform and more  
+than 200 bus trips have been performed showing the effectiveness of the  
+approach.
+
+Keywords:
+Bus station management, Gate assignment, Restricted coloring, Interval  
+graphs, Heuristic methods
+
+References:
+[1].1.	B. Adenso-Díaz, “Rule-based system for platform assignment in bus  
+stations,” in Multidisciplinary Scheduling: Theory and Applications.  
+Springer US, pp. 369–379, 2005.
+[2].2.	T. Zeitlhofer and B. Wess, “List-coloring of interval graphs with  
+application to register assignment for heterogeneous register-set  
+architectures,” Signal Processing, vol. 83, no. 7, pp. 1411 – 1425, 2003.
+[3].3.	A. Lim and F. Wang, “Robust airport gate assignment,” in ICTAI 05.  
+17th IEEE International Conference on Tools with Artificial Intelligence, pp.  
+74 –81, 2005.
+
+
+
+Submitted on Saturday, April 30, 2011 - 11:58
