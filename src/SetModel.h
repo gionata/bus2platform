@@ -32,7 +32,7 @@ public:
 	std::vector < std::vector < std::set < int > * > > & maximalCliques() const;
 	unsigned int numMaximalCliques() const;
 	int lowerBoundNumberGates();
-	void performances_airo2011(int * solution, unsigned int used_platform, unsigned int min_interval_distance, double cprob_lin, double cprob_exp) const;
+	void performances_airo2011(int *solution, unsigned int &used_platform, unsigned int &min_interval_distance, double &cprob_lin, double &cprob_exp) const;
 
 private:
 	Buses *_B;

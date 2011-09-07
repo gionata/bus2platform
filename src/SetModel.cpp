@@ -360,6 +360,16 @@ unsigned int SetModel::numMaximalCliques() const
 }
 
 
-void SetModel::performances_airo2011(int * solution, unsigned int used_platform, unsigned int min_interval_distance, double cprob_lin, double cprob_exp) const
+void SetModel::performances_airo2011(int * solution, unsigned int &used_platform, unsigned int &min_interval_distance, double &cprob_lin, double &cprob_exp) const
 {
+	int gates = _G->size();
+	int dwells = _B->size();
+	bool * used = new bool [gates];
+	for (int i = 0; i < dwells ; i++) {
+		used[solution[i]] = true;
+	}
+	used_platform = 0;
+	for (int j = 0; j < gates; j++)
+		if (used[j])
+			used_platform++;
 }

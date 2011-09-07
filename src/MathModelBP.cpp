@@ -65,12 +65,13 @@ lprec *MathModelBP::createLP(unsigned int numVars, unsigned int numConstraints)
 
 	graph_traits < GraphH >::edge_iterator ei, edge_end;
 	for (tie(ei, edge_end) = edges(_graphs.graphH()); ei != edge_end; ++ei) {
-		size_t xik_idx = _H_edge_index[*ei];
+		typename graph_traits < GraphH >::edge_descriptor arc = *ei;
+		size_t xik_idx = _H_edge_index[arc];
 		int variableIndex = xik_idx + _xik_start;
 		(*_assignment)[xik_idx].first =
-		    source(*ei, _graphs.graphH());
+		    source(arc, _graphs.graphH());
 		(*_assignment)[xik_idx].second =
-		    target(*ei, _graphs.graphH());
+		    target(arc, _graphs.graphH());
 		set_binary(_lp, variableIndex, TRUE);
 
 #ifndef _NO_LP_NAMES

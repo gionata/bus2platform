@@ -71,12 +71,13 @@ lprec *MathModelColoring::createLP(unsigned int numVars, unsigned int numConstra
 
 	graph_traits < GraphH >::edge_iterator ei, edge_end;
 	for (tie(ei, edge_end) = edges(_graphs.graphH()); ei != edge_end; ++ei) {
-		size_t xik_idx = _H_edge_index[*ei];
+		typename graph_traits < GraphH >::edge_descriptor arc = *ei;
+		size_t xik_idx = _H_edge_index[arc];
 		int variableIndex = xik_idx + _xik_start;
 		(*_assignment)[xik_idx].first =
-		    source(*ei, _graphs.graphH());
+		    source(arc, _graphs.graphH());
 		(*_assignment)[xik_idx].second =
-		    target(*ei, _graphs.graphH());
+		    target(arc, _graphs.graphH());
 		set_binary(_lp, variableIndex, TRUE);
 
 #ifndef _NO_LP_NAMES
@@ -245,6 +246,12 @@ bool MathModelColoring::solution(int *&gates) const
 	//     verifica di ammissibilita' della soluzione     //
 	//                                                    //
 	////////////////////////////////////////////////////////
+
+	unsigned int used_platforms = 0;
+	double min_interval = 30000;
+	double conflict_prob_linear;
+	double conflict_prob_exp;
+
 	vector < vector <size_t> > gate_dwell (_graphs.G().size());
 	bool used[_graphs.G().size()];
 	for (int i = 0; i < _graphs.G().size(); i++) {
@@ -255,6 +262,7 @@ bool MathModelColoring::solution(int *&gates) const
 		size_t platform = gates[d];
 		if (!used[platform]) {
 			used[platform] = true;
+			used_platforms++;
 			// gate_dwell[platform]= new vector<size_t>();
 		}
 		gate_dwell[platform].push_back(d);
@@ -263,6 +271,16 @@ bool MathModelColoring::solution(int *&gates) const
 	for (int p = 0; p < _graphs.G().size(); p++) {
 		if (!used[p])
 			continue;
+
+		// sort gate_dwell[p] by arrival time
+		size_t tmp;
+		for (int a = 1; a < gate_dwell[p].size(); a++)
+			for (int b = gate_dwell[p].size()-1; b >= a; b--)
+				if (_graphs.B()[gate_dwell[p][b-1]]->arrival() > _graphs.B()[gate_dwell[p][b]]->arrival()) {
+					tmp = gate_dwell[p][b-1];
+					gate_dwell[p][b-1] = gate_dwell[p][b];
+					gate_dwell[p][b] = tmp;
+				}
 		// che ogni sosta
 		for (vector<size_t>::const_iterator i = gate_dwell[p].begin(); i != gate_dwell[p].end(); i++) {
 			// sia assegnabile alla piattaforma
@@ -282,6 +300,22 @@ bool MathModelColoring::solution(int *&gates) const
 					}
 				}
 			}
+		}
+		// calcola distanza minima e probabilità di conflitto
+		for (int i = 0; i < gate_dwell[p].size() - 1; i++) {
+			time_period period_i = _graphs.B()[i]->occupacyPeriod();
+			time_period period_j = _graphs.B()[i + 1]->occupacyPeriod();
+
+			ptime a_j = _graphs.B()[i + 1]->arrival();
+			ptime d_i = _graphs.B()[i]->departure();
+			time_duration td = (a_j - d_i);
+			double cij =
+				    60 * td.hours() + td.minutes() +
+				    (double) td.seconds() / 60;
+
+			if (cij < min_interval)
+				min_interval = cij;
+
 		}
 	}
 

@@ -3,12 +3,12 @@
  *  \author Gionata Massi <massi@diiga.univpm.it>
  */
 
-#include "IterativeTimeHorizonMath.h"
+#include "IterativeTimeHorizonMathMD.h"
 
 using namespace std;
 using namespace boost;
 
-IterativeTimeHorizonMath::IterativeTimeHorizonMath(GraphModel &graphs):
+IterativeTimeHorizonMathMD::IterativeTimeHorizonMathMD(GraphModel &graphs):
 	_graphs(graphs),
 	_H(graphs.graphH()),
 	_C(graphs.graphC())
@@ -17,12 +17,13 @@ IterativeTimeHorizonMath::IterativeTimeHorizonMath(GraphModel &graphs):
 	findTotalHorizon();
 }
 
-IterativeTimeHorizonMath::~IterativeTimeHorizonMath()
+
+IterativeTimeHorizonMathMD::~IterativeTimeHorizonMathMD()
 {
 	delete _assignment;
 }
 
-bool IterativeTimeHorizonMath::solution(int *&gates) const
+bool IterativeTimeHorizonMathMD::solution(int *&gates) const
 {
 	gates = new int[_graphs.B().size()];
 	for (int i = 0; i < _graphs.B().size(); i++)
@@ -36,12 +37,12 @@ bool IterativeTimeHorizonMath::solution(int *&gates) const
 	return true;
 }
 
-bool IterativeTimeHorizonMath::initialSolution(int *startingSolution)
+bool IterativeTimeHorizonMathMD::initialSolution(int *startingSolution)
 {
 
 }
 
-bool IterativeTimeHorizonMath::solveX()
+bool IterativeTimeHorizonMathMD::solveX()
 {
 	int *solution = 0;
 	bool controlPrevious = false;
@@ -50,8 +51,8 @@ bool IterativeTimeHorizonMath::solveX()
 	_clock_begin = clock();
 	int interval = 0;
 	/* Per ogni ogni intervallo di pianificazione */
-	for (p_curr = _opening; p_curr < _closing; p_prev = p_curr, p_curr += minutes(60), interval++) {
-		ptime end = p_curr + minutes(120);
+	for (p_curr = _opening; p_curr < _closing; p_prev = p_curr, p_curr += minutes(30), interval++) {
+		ptime end = p_curr + minutes(60);
 		// cout << "   Pianifico in [" << p_curr << ", " << end << "] considerando [" << p_prev << ", " << end << "]" << endl;
 
 		/* genera il nuovo insieme delle soste */
@@ -89,7 +90,7 @@ bool IterativeTimeHorizonMath::solveX()
 
 		SetModel pSet(dwellsWithinPeriod, platformsWithinPeriod);
 		GraphModel pGraph(pSet);
-		MathModel *mPconflictModel = new MathModelMinPConflict(pGraph);
+		MathModel *mMaxMinDistance = new MathModelMaxMinDistance(pGraph);
 
 		/*
 		if (controlPrevious) {
@@ -99,22 +100,22 @@ bool IterativeTimeHorizonMath::solveX()
 		
 		//cout << "MathModel generato" << endl;
 		// Risolvi il modello
-		mPconflictModel->verbose(IMPORTANT); // NORMAL);
-		mPconflictModel->setTimeout(5);
+		mMaxMinDistance->verbose(IMPORTANT); // NORMAL);
+		mMaxMinDistance->setTimeout(30);
 
 		char itrNo[4];
 		char fn[40];
 		sprintf(itrNo, "%03d", interval); 
-		strcpy(fn, "modelIterativeMPC_");
+		strcpy(fn, "modelIterativeMMD_");
 		strcat(fn, itrNo);
 		strcat(fn, ".lp");
-		mPconflictModel->writeModelLP_solve(fn);
-		mPconflictModel->solveX();
+		mMaxMinDistance->writeModelLP_solve(fn);
+		mMaxMinDistance->solveX();
 
-		if (mPconflictModel->solved()) {
+		if (mMaxMinDistance->solved()) {
 			// Imposta gli assegnamenti determinati nell'iterazione corrente
 			int *pSolution = 0;
-			mPconflictModel->solution(pSolution);
+			mMaxMinDistance->solution(pSolution);
 			for (int i = 0; i < dwellsWithinPeriod.size(); i++) {
 				_graphs.B()[mapVectorId[i]]->assigned(true);
 				_graphs.B()[mapVectorId[i]]->platform(pSolution[i]);
@@ -129,7 +130,7 @@ bool IterativeTimeHorizonMath::solveX()
 }
 
 void
-IterativeTimeHorizonMath::findTotalHorizon()
+IterativeTimeHorizonMathMD::findTotalHorizon()
 {
 	_opening = ptime (date(2020,Jan,21), time_duration(7,10,0));
 	_closing = ptime (date(1980,Jan,21), time_duration(7,10,0));
@@ -157,4 +158,3 @@ IterativeTimeHorizonMath::findTotalHorizon()
 		}
 	}
 }
-
