@@ -2410,6 +2410,17 @@ in L(i)
 
 
 \backslash
+only<1-5>{
+\backslash
+
+\backslash
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 only<6>{y_{ij}
 \backslash
 in
@@ -2691,7 +2702,7 @@ only<4>{The variable $y_{ij}$ must be 1 if services $i$ and $j$ are assigned
 
 
 \backslash
-only<5>{Variables}
+only<5->{Variables}
 \end_layout
 
 \end_inset
@@ -2832,7 +2843,18 @@ in L(i)
 
 
 \backslash
-only<6>{y_{ij}
+only<1-4>{
+\backslash
+
+\backslash
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<5>{y_{ij}
 \backslash
 in
 \backslash
@@ -2857,7 +2879,7 @@ in E
 
 
 \backslash
-only<7->{ 
+only<6->{ 
 \backslash
 red{0 
 \backslash
@@ -2916,7 +2938,7 @@ Instance
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2926,7 +2948,7 @@ No.
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2985,8 +3007,15 @@ Operation hours
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \align center
-Models
+Models sizes
 \end_layout
 
 \begin_layout Standard
@@ -3374,7 +3403,7 @@ He
 status open
 
 \begin_layout Plain Layout
-Receding Horizon Heuristics, same notebook
+Receding Horizon Heuristics, time windows: 1hour
 \end_layout
 
 \end_inset
@@ -3546,21 +3575,21 @@ status open
 
 
 \backslash
-only<1>{Current solution}
+only<1>{Current solution}%
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-only<2>{Model 1 solution}
+only<2>{Model 1 solution}%
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-only<3>{Model 2 solution}
+only<3>{Model 2 solution}%
 \end_layout
 
 \begin_layout Plain Layout
