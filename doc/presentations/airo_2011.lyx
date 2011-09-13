@@ -28,6 +28,13 @@
 %per pagina note da stampare
 %\usepackage{handoutWithNotes}
 %\pgfpagesuselayout{4 on 1 with notes}[a4paper,border shrink=5mm]
+
+%\usepackage{footnote}
+%\makesavenoteenv{tabular}
+
+
+\newcommand{\blu}[1]{{\usebeamercolor[fg]{structure} #1}}
+\newcommand{\red}[1]{{\usebeamercolor[fg]{alerted text} #1}}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -121,6 +128,7 @@ Robust Platform Assignment in Bus Stations
 \begin_layout Author
 
 \series bold
+\lang italian
 G.
  Massi
 \series default
@@ -132,6 +140,7 @@ G.
 \begin_layout Institute
 
 \size scriptsize
+\lang italian
 Dipartimento
 \shape italic
 \size footnotesize
@@ -140,6 +149,8 @@ Dipartimento
 \end_inset
 
 Università Politecnica delle Marche
+\lang english
+
 \begin_inset Newline newline
 \end_inset
 
@@ -173,8 +184,6 @@ Brescia, Italy - September 6--9, 2011
 status open
 
 \begin_layout Plain Layout
-
-\lang italian
 The following causes the table of contents to be shown at the beginning
  of every subsection.
  Delete this, if you do not want it.
@@ -275,8 +284,6 @@ tableofcontents[currentsection,currentsubsection]
 status open
 
 \begin_layout Plain Layout
-
-\lang italian
 If you wish to uncover everything in a step-wise fashion, uncomment the
  following command:
 \end_layout
@@ -388,8 +395,9 @@ note{%
 
 This talk will cover a description of the problem and then a formulation
  as graph problem.
- There will be presented the proposal of three mathematical models to solve
- the problem and a case of study.
+ There will be proposed three mathematical models to describe the problem.
+ Will be shown a case of study and preliminary results of a simple solution
+ approach and some conclusions remarks.
 \end_layout
 
 \begin_layout Plain Layout
@@ -408,8 +416,6 @@ Platform Assignment Problem in Bus Stations
 status open
 
 \begin_layout Plain Layout
-
-\lang italian
 Bus-Platform assignment
 \end_layout
 
@@ -457,7 +463,7 @@ Calculate
 \end_layout
 
 \begin_layout Itemize
-A optimum bus-platform assignment
+An optimal bus-platform assignment
 \end_layout
 
 \begin_layout Standard
@@ -512,8 +518,8 @@ end{itemize}
 
 \begin_layout Plain Layout
 
-We can describe the problem as an input out relashion where in input we
- have:
+We can describe the problem in term of input/out.
+ In input we have:
 \end_layout
 
 \begin_layout Plain Layout
@@ -551,47 +557,8 @@ end{itemize}
 
 \begin_layout Plain Layout
 
-As output we want a feasible assignement, where 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{itemize}
-\end_layout
-
-\begin_layout Plain Layout
-
-  
-\backslash
-item every bus must be assigned to one compatible platform;
-\end_layout
-
-\begin_layout Plain Layout
-
-  
-\backslash
-item no two buses can be assigned to the same platform concurrently;
-\end_layout
-
-\begin_layout Plain Layout
-
-  
-\backslash
-item and other constraints are satisfied.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{itemize}
-\end_layout
-
-\begin_layout Plain Layout
-
-and that it is optimal with respect to one ore more objectives.
+In output we want a assignement.
+ It must be feasible and optimal with respect to one ore more objectives.
 \end_layout
 
 \begin_layout Plain Layout
@@ -616,7 +583,15 @@ Some objectives
 \end_layout
 
 \begin_layout FrameSubtitle
-Objectives
+Objectives of 
+\begin_inset Quotes eld
+\end_inset
+
+Gate Assignment Problems
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -637,7 +612,11 @@ alert<2->{
 
 \end_inset
 
-to minimise the number of platforms used
+to 
+\lang british
+minimise
+\lang english
+ the number of platforms used
 \begin_inset ERT
 status open
 
@@ -664,8 +643,12 @@ alert<3->{
 
 \end_inset
 
-to minimise the deviations between the planned assignments and those actually
- made during the service
+to 
+\lang british
+minimise
+\lang english
+ the deviations between the planned assignments and those actually made
+ during the service
 \begin_inset ERT
 status open
 
@@ -680,17 +663,90 @@ status open
 \end_layout
 
 \begin_layout Itemize
-to minimise the number of unassigned buses (platforms considered as scarce
- resource);
+to 
+\lang british
+minimise
+\lang english
+ the number of unassigned buses (platforms considered as scarce resource);
 \end_layout
 
 \begin_layout Itemize
-to maximise a preference function expressed by bus companies or station
- management;
+to 
+\lang british
+maximise
+\lang english
+ a preference function expressed by bus companies or station management;
 \end_layout
 
 \begin_layout Itemize
-to minimise the distance walked by users.
+to 
+\lang british
+minimise
+\lang english
+ the distance walked by users.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+For similar problems, in particular the gate assignment problem, literature
+ and integrating companies are proposing several conflicting objectives.
+\end_layout
+
+\begin_layout Plain Layout
+
+The bus station of our case is using a software that attemps to minimize
+ the number of platform used because the management intented to rent unused
+ platform.
+\end_layout
+
+\begin_layout Plain Layout
+
+To pursue this objective, unfortunatly, can lead to unexpected changes during
+ the service that distroy the assignment.
+ To find a new assignment feasible assignment, accetable by customers and
+ bus drivers, is an hard problem.
+ So another objective is to develop a robust assignment.
+ Robust means that small change in the arrival and departur time of a bus
+ service will not affect the assignment feasibility.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Other aims are 
+\backslash
+ldots{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+We focus on the minimization of the number of used platform and on the robustnes
+s.
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout BeginFrame
@@ -711,7 +767,7 @@ Services with overlapping occupation time intervals cannot be assigned to
 \end_layout
 
 \begin_layout Itemize
-A platform is compatible with a subset of services;
+A platform is compatible with a subset of services.
 \end_layout
 
 \begin_layout Standard
@@ -724,8 +780,11 @@ The concept of service-platform compatibility allows to model and manage
 \begin_layout Itemize
 
 \size footnotesize
-All platforms must have a manoeuvring area big enough for the buses used
- for the assigned services (e.g.
+All platforms must have a 
+\lang british
+manoeuvring
+\lang english
+ area big enough for the buses used for the assigned services (e.g.
  articulated buses);
 \end_layout
 
@@ -741,6 +800,27 @@ Some platforms have to be reserved for a certain company or route;
 Some platforms have to be disabled during certain time slots.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout BeginFrame
 Previous works
 \end_layout
@@ -751,11 +831,15 @@ Literature review
 
 \begin_layout Itemize
 The bus assignment problem has not received much attention in the literature
- with the notable exception of Adenso-Díaz, 2005 (Oviedo bus station case).
+ with the notable exception of 
+\lang british
+Adenso-Díaz
+\lang english
+, 2005 (Oviedo bus station case).
 \end_layout
 
 \begin_layout Itemize
-Similar problems that have been well studied are the assignment of aircrafts
+Similar problems that have been well studied are the assignment of aircraft
  to airport gates (Lim & Wang, 2005) and of trains to railway platforms.
 \end_layout
 
@@ -765,8 +849,33 @@ The bus assignment problem also has strong similarities with the problem
  2003).
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
-Restricted graph colouring formulation
+Restricted graph 
+\lang british
+colouring
+\lang english
+ formulation
 \end_layout
 
 \begin_layout BeginFrame
@@ -774,7 +883,11 @@ Graph formulation
 \end_layout
 
 \begin_layout FrameSubtitle
-Restricted colouring of an interval graph
+Restricted 
+\lang british
+colouring
+\lang english
+ of an interval graph
 \end_layout
 
 \begin_layout Standard
@@ -790,7 +903,15 @@ Each service corresponds to a node; set of nodes
 \end_layout
 
 \begin_layout Itemize
-Each platform corresponds to a colour; set of colours 
+Each platform corresponds to a 
+\lang british
+colour
+\lang english
+; set of 
+\lang british
+colours
+\lang english
+ 
 \begin_inset Formula $C$
 \end_inset
 
@@ -798,8 +919,11 @@ Each platform corresponds to a colour; set of colours
 \end_layout
 
 \begin_layout Itemize
-Each node has a list of colours corresponding to compatible platforms; set
- 
+Each node has a list of 
+\lang british
+colours
+\lang english
+ corresponding to compatible platforms; set 
 \begin_inset Formula $L$
 \end_inset
 
@@ -823,8 +947,12 @@ There is an arc between service
 \end_layout
 
 \begin_layout Standard
-A proper graph colouring (that respects the constraints of time non-overlap
- and service-platform compatibility) is a feasible solution to the problem.
+A proper graph 
+\lang british
+colouring
+\lang english
+ (that respects the constraints of time non-overlap and service-platform
+ compatibility) is a feasible solution to the problem.
 \end_layout
 
 \begin_layout BeginFrame
@@ -1206,7 +1334,11 @@ Graph formulation - an example
 \end_layout
 
 \begin_layout FrameSubtitle
-Restricted colouring of an interval graph and a tranformation 
+Restricted 
+\lang british
+colouring
+\lang english
+ of an interval graph and a transformation 
 \end_layout
 
 \begin_layout Standard
@@ -1460,7 +1592,11 @@ Graph formulation - an example
 \end_layout
 
 \begin_layout FrameSubtitle
-Maximum stable set and restricted colouring of an interval graph
+Maximum stable set and restricted 
+\lang british
+colouring
+\lang english
+ of an interval graph
 \end_layout
 
 \begin_layout Standard
@@ -1656,14 +1792,10 @@ Components
 \begin_layout Itemize
 An interval graph is a perfect graph: in particular the chromatic number
  
-\lang italian
-
 \begin_inset Formula $\chi$
 \end_inset
 
-
-\lang english
- equals to the dimension of the maximal clique 
+ equals to the order of the maximum clique 
 \begin_inset Formula $\omega$
 \end_inset
 
@@ -1712,12 +1844,19 @@ and the ordering
 \end_layout
 
 \begin_layout Standard
-In this way, the colouring constraints change into stable set constraints;
- the latter are stronger than the simple disjunctive constraints 
+In this way, the 
+\lang british
+colouring
+\lang english
+ constraints change disjunctive constraints 
 \begin_inset Formula $x_{ik}+x_{jk}\leq1$
 \end_inset
 
-.
+ into stable set inequalities 
+\begin_inset Formula $\sum_{i\in\mathcal{Q}}x_{ik}\leq1$
+\end_inset
+
+; the latter are stronger than the former and reduce the system size.
 \end_layout
 
 \begin_layout Section
@@ -1849,9 +1988,9 @@ only<4>{The variable $u_{k}$ must be 1 if at least one service is assigned
 
 \backslash
 only<5>{The number of platforms used has to be greater than or equal to
- a lower bound computed $
+ a lower bound ($
 \backslash
-chi$ in polynomial time}
+chi$) computed in polynomial time}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1871,8 +2010,6 @@ only<6>{Variables are binary}
 \end_layout
 
 \begin_layout Standard
-
-\lang italian
 \begin_inset ERT
 status open
 
@@ -1921,7 +2058,11 @@ Model 2: max min time arrival-departure gap
 \end_layout
 
 \begin_layout BeginFrame
-Maximisation of the minimum arrival-departure gap
+
+\lang british
+Maximisation
+\lang english
+ of the minimum arrival-departure gap
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -1944,7 +2085,11 @@ If this gap is too small, a delay in the departure of a bus could cause
 \end_layout
 
 \begin_layout BeginFrame
-Maximisation of the minimum arrival-departure gap
+
+\lang british
+Maximisation
+\lang english
+ of the minimum arrival-departure gap
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -1994,11 +2139,11 @@ The variable
 \begin_inset Formula $j$
 \end_inset
 
- are occuping a same platform, and is 0 otherwise.
+ are occupying a same platform, and is 0 otherwise.
 \begin_inset Formula 
 \[
 y_{ij}=\begin{cases}
-1 & \text{if services }i\text{ and \ensuremath{j} are occuping a same platform}\\
+1 & \text{if services }i\text{ and \ensuremath{j}are occuping a same platform}\\
 0 & \text{otherwise}
 \end{cases}
 \]
@@ -2017,7 +2162,11 @@ The variable
 \end_layout
 
 \begin_layout BeginFrame
-Maximisation of the minimum arrival-departure gap
+
+\lang british
+Maximisation
+\lang english
+ of the minimum arrival-departure gap
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -2064,16 +2213,17 @@ only<3>{Services on the same platform have to be compatible with each other,
 
 
 \backslash
-only<4>{Force the variable $y_{ij}$ to be 1 if services $i$ and $j$ are
- assigned to the platform $k$}
+only<4>{The variable $y_{ij}$ must be 1 if services $i$ and $j$ are assigned
+ to the platform $k$}
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-only<5>{When $y_{ij}$ is 1 than force $w$ to be less or equal to the gap
- $c_{ij}$ between services $i$ and $j$}
+only<5>{When the variable $y_{ij}$ is 1 then the variable $w$ must be less
+ or equal to the arrival-depature gap $c_{ij}$ between services $i$ and
+ $j$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2093,8 +2243,6 @@ only<6->{Variables}
 \end_layout
 
 \begin_layout Standard
-
-\lang italian
 \begin_inset ERT
 status open
 
@@ -2105,20 +2253,227 @@ status open
 scriptsize
 \end_layout
 
-\end_inset
+\begin_layout Plain Layout
 
 
-\begin_inset Formula 
-\begin{eqnarray*}
-\max & w\\
-\pause\sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\\
-\pause\sum_{i\in\mathcal{Q}}x_{ik}\leq1 &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\\
-\pause x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall(i,\, j)\in\mathcal{E},\,\forall k\in\left(L(i)\cap L(j)\right)\\
-\pause w+M\, y_{ij}-c_{ij}\, y_{ij}\leq M &  & \forall(i,\, j)\in\mathcal{E}\\
-\pause x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\\
-y_{ij}\in\{0,\,1\} &  & \forall(i,\, j)\in\mathcal{E}\\
-w\geq0
-\end{eqnarray*}
+\backslash
+begin{eqnarray*}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+max & w
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+pause
+\backslash
+sum_{k
+\backslash
+in L(i)}x_{ik}=1 &  & 
+\backslash
+forall i
+\backslash
+in V
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+pause
+\backslash
+sum_{i
+\backslash
+in
+\backslash
+mathcal{Q}}x_{ik}
+\backslash
+leq1 &  & 
+\backslash
+forall k
+\backslash
+in C,
+\backslash
+,
+\backslash
+forall
+\backslash
+mathcal{Q}
+\backslash
+in
+\backslash
+mathcal{Q}_{k}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+pause x_{ik}+x_{jk}-y_{ij}
+\backslash
+leq1 &  & 
+\backslash
+forall(i,
+\backslash
+, j)
+\backslash
+in E,
+\backslash
+,
+\backslash
+forall k
+\backslash
+in
+\backslash
+left(L(i)
+\backslash
+cap L(j)
+\backslash
+right)
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+pause w+M
+\backslash
+, y_{ij}-c_{ij}
+\backslash
+, y_{ij}
+\backslash
+leq M &  & 
+\backslash
+forall(i,
+\backslash
+, j)
+\backslash
+in E
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+pause x_{ik}
+\backslash
+in
+\backslash
+{0,
+\backslash
+,1
+\backslash
+} &  & 
+\backslash
+forall i
+\backslash
+in V,
+\backslash
+,
+\backslash
+forall k
+\backslash
+in L(i)
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<6>{y_{ij}
+\backslash
+in
+\backslash
+{0,
+\backslash
+,1
+\backslash
+} &  & 
+\backslash
+forall(i,
+\backslash
+, j)
+\backslash
+in E
+\backslash
+
+\backslash
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<7->{ 
+\backslash
+red{0 
+\backslash
+leq y_{ij} 
+\backslash
+leq 1} &  & 
+\backslash
+forall(i,
+\backslash
+, j)
+\backslash
+in E
+\backslash
+
+\backslash
+ }
+\end_layout
+
+\begin_layout Plain Layout
+
+w
+\backslash
+geq0
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+end{eqnarray*}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+normalsize
+\end_layout
 
 \end_inset
 
@@ -2195,11 +2550,15 @@ normalsize
 
 \end_deeper
 \begin_layout Subsection
-Model 3: min conflict probability between bus services
+Model 3: min conflict conflict measure between bus services
 \end_layout
 
 \begin_layout BeginFrame
-Minimisation of the conflict probability of the assignments
+
+\lang british
+Minimisation
+\lang english
+ of an assignments conflict measure 
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -2207,7 +2566,10 @@ Rationale: robust platform assignment
 \end_layout
 
 \begin_layout Itemize
-The bus assignment problem can be modeled also as a problem of minimisation
+The bus assignment problem can be modeled also as a problem of 
+\lang british
+minimisation
+\lang english
  of the probability that services assigned to the same gate can be 
 \begin_inset Quotes eld
 \end_inset
@@ -2221,15 +2583,15 @@ in conflict
 
 \begin_layout Itemize
 Let 
-\begin_inset Formula $D=\max_{\mathcal{E}}c_{ij}$
+\begin_inset Formula $D=\max_{E}c_{ij}$
 \end_inset
 
  and 
-\begin_inset Formula $d=\min_{\mathcal{E}}c_{ij}$
+\begin_inset Formula $d=\min_{E}c_{ij}$
 \end_inset
 
 .
- The probability of conflict 
+ A conflict measure 
 \begin_inset Formula $p_{ij}$
 \end_inset
 
@@ -2270,7 +2632,11 @@ A measure of the conflict of the plan assignment is used as objective function
 \end_layout
 
 \begin_layout BeginFrame
-Minimisation of the conflict probability of the assignments
+
+\lang british
+Minimisation
+\lang english
+ of an assignments conflict measure 
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -2294,7 +2660,7 @@ status open
 
 
 \backslash
-only<1>{Minimise the conflict probability}
+only<1>{Minimise the conflict measure}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2317,8 +2683,8 @@ only<3>{Services on the same platform have to be compatible with each other,
 
 
 \backslash
-only<4>{Force the variable $y_{ij}$ to be 1 if services $i$ and $j$ are
- assigned to the platform $k$}
+only<4>{The variable $y_{ij}$ must be 1 if services $i$ and $j$ are assigned
+ to the platform $k$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2338,8 +2704,6 @@ only<5>{Variables}
 \end_layout
 
 \begin_layout Standard
-
-\lang italian
 \begin_inset ERT
 status open
 
@@ -2347,31 +2711,176 @@ status open
 
 
 \backslash
-scriptsize
+scriptsize 
+\backslash
+begin{eqnarray*} 
+\backslash
+max & 
+\backslash
+frac{1}{|E|
+\backslash
+,(D-d)} & 
+\backslash
+sum_{(i,j)
+\backslash
+in E}(D-c_{ij})
+\backslash
+,
+\backslash
+sum_{k
+\backslash
+in G}y_{ij}
+\backslash
+
+\backslash
+ 
+\backslash
+pause
+\backslash
+sum_{k
+\backslash
+in L(i)}x_{ik}=1 &  & 
+\backslash
+forall i
+\backslash
+in V
+\backslash
+
+\backslash
+ 
+\backslash
+pause
+\backslash
+sum_{i
+\backslash
+in
+\backslash
+mathcal{Q}}x_{ik}
+\backslash
+leq1 &  & 
+\backslash
+forall k
+\backslash
+in C,
+\backslash
+,
+\backslash
+forall
+\backslash
+mathcal{Q}
+\backslash
+in
+\backslash
+mathcal{Q}_{k}
+\backslash
+
+\backslash
+ 
+\backslash
+pause x_{ik}+x_{jk}-y_{ij}
+\backslash
+leq1 &  & 
+\backslash
+forall(i,
+\backslash
+, j)
+\backslash
+in E,
+\backslash
+,
+\backslash
+forall k
+\backslash
+in
+\backslash
+left(L(i)
+\backslash
+cap L(j)
+\backslash
+right)
+\backslash
+
+\backslash
+ 
+\backslash
+pause x_{ik}
+\backslash
+in
+\backslash
+{0,
+\backslash
+,1
+\backslash
+} &  & 
+\backslash
+forall i
+\backslash
+in V,
+\backslash
+,
+\backslash
+forall k
+\backslash
+in L(i)
+\backslash
+
+\backslash
+
 \end_layout
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{eqnarray*}
-\max & \frac{1}{|\mathcal{E}|\,(D-d)} & \sum_{(i,j)\in\mathcal{E}}(D-c_{ij})\,\sum_{k\in G}y_{ij}\\
-\pause\sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\\
-\pause\sum_{i\in\mathcal{Q}}x_{ik}\leq1 &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\\
-\pause x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall(i,\, j)\in\mathcal{E},\,\forall k\in\left(L(i)\cap L(j)\right)\\
-\pause x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\\
-y_{ij}\in\{0,\,1\} &  & \forall(i,\, j)\in\mathcal{E}
-\end{eqnarray*}
-
-\end_inset
-
-
-\begin_inset ERT
-status open
 
 \begin_layout Plain Layout
 
 
+\backslash
+only<6>{y_{ij}
+\backslash
+in
+\backslash
+{0,
+\backslash
+,1
+\backslash
+} &  & 
+\backslash
+forall(i,
+\backslash
+, j)
+\backslash
+in E
+\backslash
+
+\backslash
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<7->{ 
+\backslash
+red{0 
+\backslash
+leq y_{ij} 
+\backslash
+leq 1} &  & 
+\backslash
+forall(i,
+\backslash
+, j)
+\backslash
+in E
+\backslash
+
+\backslash
+ }
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{eqnarray*} 
 \backslash
 normalsize
 \end_layout
@@ -2392,6 +2901,11 @@ A case study
 
 \begin_layout FrameSubtitle
 Bologna bus station daily operation
+\end_layout
+
+\begin_layout Standard
+\align center
+Instance
 \end_layout
 
 \begin_layout Standard
@@ -2478,15 +2992,14 @@ Models
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="5">
+<lyxtabular version="3" rows="4" columns="4">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2513,20 +3026,11 @@ Constraints
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bin Variables
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-CPU times (s)
+Bin Variables
 \end_layout
 
 \end_inset
@@ -2546,7 +3050,7 @@ Model 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-5220
+5520
 \end_layout
 
 \end_inset
@@ -2560,20 +3064,11 @@ Model 1
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5520
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.72
+5520
 \end_layout
 
 \end_inset
@@ -2593,7 +3088,7 @@ Model 2
 \begin_inset Text
 
 \begin_layout Plain Layout
-30624
+30484
 \end_layout
 
 \end_inset
@@ -2602,16 +3097,7 @@ Model 2
 \begin_inset Text
 
 \begin_layout Plain Layout
-624407
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5496
+624904
 \end_layout
 
 \end_inset
@@ -2620,7 +3106,7 @@ Model 2
 \begin_inset Text
 
 \begin_layout Plain Layout
-75
+5496
 \end_layout
 
 \end_inset
@@ -2640,7 +3126,7 @@ Model 3
 \begin_inset Text
 
 \begin_layout Plain Layout
-30624
+30483
 \end_layout
 
 \end_inset
@@ -2649,16 +3135,7 @@ Model 3
 \begin_inset Text
 
 \begin_layout Plain Layout
-599509
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5496
+599917
 \end_layout
 
 \end_inset
@@ -2667,7 +3144,7 @@ Model 3
 \begin_inset Text
 
 \begin_layout Plain Layout
-17
+5496
 \end_layout
 
 \end_inset
@@ -2690,7 +3167,465 @@ Bologna bus station daily operation
 
 \begin_layout Standard
 \align center
-table 2
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Platforms
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Min gap
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Conflict pr.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Time
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ex/He
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $15$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.38\cdot10^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.72''
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ex
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+LP_SOLVE, Intel Core i3 330M @ 2.13GHz, 4 GB 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $24$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $19$
+\end_inset
+
+'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.57\cdot10^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\approx$
+\end_inset
+
+17''
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+He
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Receding Horizon Heuristics, same notebook
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $24$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $12$
+\end_inset
+
+'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.55\cdot10^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\approx$
+\end_inset
+
+34''
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+He
+\begin_inset Formula $^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Current
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $19$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.12\cdot10^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+He
+\begin_inset Formula $^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+A case study
+\end_layout
+
+\begin_layout FrameSubtitle
+Bologna bus station daily operation (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<1>{Current solution}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<2>{Model 1 solution}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<3>{Model 2 solution}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<4>{Model 3 solution}
+\end_layout
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<1>{
+\backslash
+include{img/sol_reale}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<2>{
+\backslash
+include{img/sol_model1}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<3>{
+\backslash
+include{img/sol_model2}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<4>{
+\backslash
+include{img/sol_model3}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{A picture is worth a thousand words!}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2735,19 +3670,23 @@ Future works
 
 \begin_deeper
 \begin_layout Itemize
-reformulation: symmetry breaking;
+Reformulations: symmetry breaking
 \end_layout
 
 \begin_layout Itemize
-algorithms for solving more efficiently the models;
+Algorithms for solving more efficiently the models
 \end_layout
 
 \begin_layout Itemize
-heuristics and meta-heuristics;
+Heuristics and meta-heuristics
 \end_layout
 
 \begin_layout Itemize
-collection and experiments on more instances.
+Collection of more instances and new experiments
+\end_layout
+
+\begin_layout Itemize
+Simulation
 \end_layout
 
 \end_deeper
@@ -2765,6 +3704,205 @@ vskip0pt plus.5fill
 \end_inset
 
 
+\end_layout
+
+\begin_layout BeginPlainFrame
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size huge
+Thank you for your attention!
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+Any questions?
+\end_layout
+
+\begin_layout BeginFrame
+References
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+beamertemplatearticlebibitems
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Adenso-Diaz2005"
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+B.
+ Adenso-Díaz.
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+newblock
+\end_layout
+
+\end_inset
+
+ 
+\emph on
+Rule-based system for platform assignment in bus stations.
+\emph default
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+newblock
+\end_layout
+
+\end_inset
+
+ In 
+\emph on
+Proc.
+ of
+\emph default
+ Multidisciplinary Scheduling: Theory and Applications.
+ Springer US, pp.
+ 369–379, 2005 
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Lim2005"
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+A.
+ Lim and F.
+ Wang.
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+newblock
+\end_layout
+
+\end_inset
+
+ Robust airport gate assignment.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+newblock
+\end_layout
+
+\end_inset
+
+ In 
+\emph on
+Proc.
+ of 
+\emph default
+ICTAI 05.
+ 17th IEEE International Conference on Tools with Artificial Intelligence,
+ pp.
+ 74 –81, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Zeitlhofer2003"
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+T.
+ Zeitlhofer and B.
+ Wess.
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+newblock
+\end_layout
+
+\end_inset
+
+ List-coloring of interval graphs with application to register assignment
+ for heterogeneous register-set architectures.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+newblock
+\end_layout
+
+\end_inset
+
+ Signal Processing, vol.
+ 83, no.
+ 7, pp.
+ 1411 – 1425, 2003.
 \end_layout
 
 \begin_layout EndFrame
