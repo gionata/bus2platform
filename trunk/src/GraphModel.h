@@ -112,6 +112,9 @@ public:
 	void debugWriteC();
 //#endif
 
+	// Data una coppia di indici dei vertici x_ik e x_jk restituisce l'indice del lato y_ij
+	//boost::property_map < GraphC, boost::edge_index_t >::type HClink(boost::property_map <
+
 
 
 private:

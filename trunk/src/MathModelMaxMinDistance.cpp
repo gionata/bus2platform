@@ -15,6 +15,13 @@ MathModelMaxMinDistance::MathModelMaxMinDistance(GraphModel &graphs): MathModel(
 	unsigned _numEdgesC = _graphs.numEdgesC();
 	unsigned _linkConstraints = _graphs.numCompGates();
 
+	_presolveOpts =
+	    PRESOLVE_ROWS | PRESOLVE_COLS | PRESOLVE_LINDEP |
+	    PRESOLVE_SOS |
+	    PRESOLVE_REDUCEGCD | PRESOLVE_PROBEFIX | PRESOLVE_PROBEREDUCE |
+	    PRESOLVE_COLDOMINATE | PRESOLVE_ROWDOMINATE | PRESOLVE_BOUNDS;
+
+
 	_numVars = _numEdgesH + _numEdgesC + 1;
 	_numConstraints = _numDwells +     /* Assignment */
 	                  _numInterestingCliques +   /* Incompatibility */
@@ -44,11 +51,6 @@ MathModelMaxMinDistance::MathModelMaxMinDistance(GraphModel &graphs): MathModel(
 	setLinkMConstraints();
 	//setSOS1();
 	set_add_rowmode(_lp, FALSE);
-	_presolveOpts =
-	    PRESOLVE_ROWS | PRESOLVE_COLS | PRESOLVE_LINDEP |
-	    PRESOLVE_SOS |
-	    PRESOLVE_REDUCEGCD | PRESOLVE_PROBEFIX | PRESOLVE_PROBEREDUCE |
-	    PRESOLVE_COLDOMINATE | PRESOLVE_ROWDOMINATE | PRESOLVE_BOUNDS;
 }
 
 MathModelMaxMinDistance::~MathModelMaxMinDistance(void)
@@ -66,42 +68,44 @@ lprec *MathModelMaxMinDistance::createLP(unsigned int numVars,
 
 	set_add_rowmode(_lp, TRUE);
 
+#ifndef _NO_LP_NAMES
 	set_lp_name(_lp, "MaxMinDistance");
+#endif
 	set_maxim(_lp);
 
-	//GraphH &H = _graphs.graphH();
-	//GraphC &C = _graphs.graphC();
+	graph_traits < GraphH >::edge_iterator eiH, edge_endH;
+	for (tie(eiH, edge_endH) = edges(_graphs.graphH()); eiH != edge_endH; ++eiH) {
+		size_t xik_idx = _H_edge_index[*eiH];
+		int variableIndex = xik_idx + _xik_start;
+		int dwellVertex = (*_assignment)[xik_idx].first =
+		    source(*eiH, _graphs.graphH());
+		int platformVertex = (*_assignment)[xik_idx].second =
+		    target(*eiH, _graphs.graphH());
+		set_binary(_lp, variableIndex, TRUE);
 
-	{
-		graph_traits < GraphH >::edge_iterator ei, edge_end;
-		for (tie(ei, edge_end) = edges(_graphs.graphH()); ei != edge_end; ++ei) {
-			size_t xik_idx = _H_edge_index[*ei];
-			int variableIndex = xik_idx + _xik_start;
-			(*_assignment)[xik_idx].first =
-			    source(*ei, _graphs.graphH());
-			(*_assignment)[xik_idx].second =
-			    target(*ei, _graphs.graphH());
-			set_binary(_lp, variableIndex, TRUE);
+		if (_graphs.B()[(*_assignment)[xik_idx].first]->assigned() && _graphs.B()[(*_assignment)[xik_idx].first]->platform() == platformVertex - _numDwells) {
+			set_bounds(_lp, variableIndex, 1.0, 1.0);
+		} else
+			set_bounds(_lp, variableIndex, 0.0, 1.0);
+		
 #ifndef _NO_LP_NAMES
-			//strcpy(_col_or_row_name, _H_edge_name[*ei].c_str());
-			strcpy(_col_or_row_name, _H_edge_name[xik_idx].c_str());
-			set_col_name(_lp, variableIndex, _col_or_row_name);
+		// strcpy(_col_or_row_name, _H_edge_name[*eiH].c_str());
+		strcpy(_col_or_row_name, _H_edge_name[xik_idx].c_str());
+		set_col_name(_lp, variableIndex, _col_or_row_name);
 #endif
-		}
+
 	}
 
-	{
-		graph_traits < GraphC >::edge_iterator ei, edge_end;
-		for (tie(ei, edge_end) = edges(_graphs.graphC()); ei != edge_end; ++ei) {
-			size_t yij_idx = _C_edge_index[*ei];
-			size_t variableIndex = yij_idx + _yij_start;
-			// set_binary(_lp, variableIndex, TRUE);
-			set_bounds(_lp, variableIndex, 0.0, 1.0);
+	graph_traits < GraphC >::edge_iterator eiC, edge_endC;
+	for (tie(eiC, edge_endC) = edges(_graphs.graphC()); eiC != edge_endC; ++eiC) {
+		size_t yij_idx = _C_edge_index[*eiC];
+		int variableIndex = yij_idx + _yij_start;
+		set_binary(_lp, variableIndex, TRUE);
+		set_bounds(_lp, variableIndex, 0.0, 1.0);
 #ifndef _NO_LP_NAMES
-			strcpy(_col_or_row_name, _C_edge_name[yij_idx].c_str());
-			set_col_name(_lp, variableIndex, _col_or_row_name);
+		strcpy(_col_or_row_name, _C_edge_name[yij_idx].c_str());
+		set_col_name(_lp, variableIndex, _col_or_row_name);
 #endif
-		}
 	}
 
 #ifndef _NO_LP_NAMES
@@ -119,7 +123,9 @@ bool MathModelMaxMinDistance::setObjectiveFunction()
 	}
 
 	_currentRow = 0;
+#ifndef _NO_LP_NAMES
 	set_row_name(_lp, _currentRow, "MaxMinDistance");
+#endif
 	_currentRow++;
 
 	return true;

@@ -52,6 +52,8 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&wa
 bool iterativeTimeHorizonMath(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 bool iterativeTimeHorizonMathMD(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 
+bool real_solution(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
+
 int main(int argc, char *argv[])
 {
 	if (argc < 2) {
@@ -79,15 +81,18 @@ cerr << "  Insiemi B e G generati in " << (end - begin) / (double)(CLOCKS_PER_SE
 	int *solution = 0;
 	int *warmStart = 0;
 	string svg_output;
+	
+	real_solution(problemSets, gModel, warmStart, instance_name);
+	
 #pragma omp parallel
 {
 #pragma omp single nowait
  {
 	#pragma omp task
-	intervalPackingFirstFirst(problemSets, gModel, warmStart, instance_name);
+	//intervalPackingFirstFirst(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp task
-	intervalPackingFinishFirst(problemSets, gModel, warmStart, instance_name);
+	//intervalPackingFinishFirst(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp task
 	mathModelColoring(problemSets, gModel, warmStart, instance_name);
@@ -418,7 +423,7 @@ bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int *&warm
 		mPconflictModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mPconflictModel->setTimeout(180); // 1800
+	mPconflictModel->setTimeout(10); // 1800
 	mPconflictModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMinPConflict in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -472,7 +477,7 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&wa
 		mmdModel->initialSolution(warmStart);
 	end = clock();
 	cerr << "  Soluzione iniziale per MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
-	mmdModel->setTimeout(180); //1800
+	mmdModel->setTimeout(10); //1800
 	mmdModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelMaxMinDistance in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -570,6 +575,55 @@ bool iterativeTimeHorizonMathMD(SetModel &problemSets, GraphModel &gModel, int *
 		delete(gd);
 	}
 	delete mIterativeTimeHorizonMath;
+
+	return ret;
+}
+
+bool real_solution(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
+{
+	int *solution = 0;
+	string svg_output;
+	bool ret = false;
+	GanttDiagram *gd;
+	
+	int id_Corsa[] = {33, 34, 35, 39, 40, 41, 42, 43, 44, 45, 46, 48, 49, 50, 51, 52, 53, 54, 55, 57, 58, 59, 60, 61, 68, 69, 70, 74, 76, 82, 85, 87, 91, 93, 94, 96, 100, 102, 103, 104, 105, 106, 107, 108, 148, 149, 150, 151, 152, 153, 154, 155, 156, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 170, 171, 173, 174, 175, 177, 178, 179, 180, 181, 182, 200, 220, 233, 235, 236, 237, 238, 239, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 319, 344, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 369, 370, 371, 372, 373, 374, 376, 377, 378, 379, 392, 393, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 421, 422, 423, 424, 425, 426, 427, 428, 429, 431, 432, 433, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 550, 552, 553, 559, 728, 1121, 1334, 1338, 1404, 1405, 1406, 1408, 1410, 1438, 1521, 1524, 1530, 1611, 1816};
+
+	int id_Gate[] = {12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 10, 10, 9, 9, 9, 9, 9, 11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 7, 6, 11, 11, 10, 11, 11, 11, 11, 11, 11, 11, 11, 7, 12, 12, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 8, 7, 7, 7, 16, 16, 7, 16, 16, 16, 16, 16, 16, 16, 16, 16, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 17, 22, 18, 17, 18, 17, 17, 24, 17, 23, 17, 18, 18, 18, 18, 22, 18, 18, 18, 18, 17, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 19, 19, 19, 19, 19, 19, 19, 19, 19, 18, 19, 19, 19, 19, 19, 19, 19, 19, 8, 10, 7, 6, 20, 18, 13, 9, 8, 8, 8, 8, 16, 16, 9, 19, 6, 21, 15};
+	
+	//for (int i = 0; i < problemSets.G().size(); i++)
+	//	cout << problemSets.G()[i]->gateNumber() << endl;
+
+	solution = new int[problemSets.B().size()];
+	for (int i = 0; i < problemSets.B().size(); i++) {
+		for (int j = 0; j < problemSets.B().size(); j++) {
+			if ( id_Corsa[i] == problemSets.B()[j]->dwellNumber() ) {
+				solution[j] = id_Gate[i] - 1;
+				break;
+			}
+		}
+	}
+			
+	//for (int i = 0; i < problemSets.B().size(); i++) {
+	//	cout << problemSets.B()[i]->dwellNumber() << " " << problemSets.G()[solution[i]]->gateNumber() << endl;
+	//}
+
+
+	// per sicurezza:
+	for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+		(*dwellItr)->assigned(false);
+
+	cerr << "/*" << endl;
+	cerr << " * Real provided solution" << endl;
+	cerr << " */\n" << endl;
+	cerr << "..." << endl;
+	
+	svg_output = "reale.svg";
+	gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
+
+	gModel.solutionFeasibility(solution, "reale");
+	
+	delete[]solution;
+	delete(gd);
 
 	return ret;
 }
