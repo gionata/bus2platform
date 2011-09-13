@@ -51,8 +51,8 @@ bool IterativeTimeHorizonMathMD::solveX()
 	_clock_begin = clock();
 	int interval = 0;
 	/* Per ogni ogni intervallo di pianificazione */
-	for (p_curr = _opening; p_curr < _closing; p_prev = p_curr, p_curr += minutes(30), interval++) {
-		ptime end = p_curr + minutes(60);
+	for (p_curr = _opening; p_curr < _closing; p_prev = p_curr, p_curr += minutes(60), interval++) {
+		ptime end = p_curr + minutes(120);
 		// cout << "   Pianifico in [" << p_curr << ", " << end << "] considerando [" << p_prev << ", " << end << "]" << endl;
 
 		/* genera il nuovo insieme delle soste */
@@ -101,7 +101,7 @@ bool IterativeTimeHorizonMathMD::solveX()
 		//cout << "MathModel generato" << endl;
 		// Risolvi il modello
 		mMaxMinDistance->verbose(IMPORTANT); // NORMAL);
-		mMaxMinDistance->setTimeout(30);
+		mMaxMinDistance->setTimeout(5);
 
 		char itrNo[4];
 		char fn[40];

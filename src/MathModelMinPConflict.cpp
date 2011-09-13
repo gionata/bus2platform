@@ -9,7 +9,7 @@
 using namespace std;
 using namespace boost;
 
-// #define LINEAR_FUNCT
+#define LINEAR_FUNCT
 
 MathModelMinPConflict::MathModelMinPConflict(GraphModel &graphs): MathModel(graphs), _D(0.0), _d(100000.0), _sr()
 {
@@ -147,13 +147,19 @@ bool MathModelMinPConflict::setObjectiveFunction()
 
 	boost::graph_traits < GraphC >::edge_iterator eiC, ei_endC;
 
+	std::ofstream outf("solution_details", std::ios::app);
+
 	double cost [_graphs.numEdgesC()];
 	for (tie(eiC, ei_endC) = edges(_graphs.graphC()); eiC != ei_endC; ++eiC) {
 		size_t yij_idx = _C_edge_index[*eiC];
 
 #ifdef LINEAR_FUNCT
 		cost[yij_idx] =_C_edge_weight[yij_idx];
+		if (_graphs.B().size() == 229) 
+			outf << _C_edge_weight[yij_idx] << "\t" << std::endl;
+		
 #else
+
 		double conflict = 0.0;
 		if (_C_edge_weight[yij_idx] <= 0)
 			conflict = 1.0;
@@ -178,13 +184,16 @@ bool MathModelMinPConflict::setObjectiveFunction()
 	    _graphs.numEdgesC() *
 #endif
 	    (_D - _d);
-/*
-	std::ofstream outf("solution_details", std::ios::app);
-	outf << "D:\t" << _D << std::endl;
-	outf << "d:\t" << _d << std::endl;
-	outf << "den: " << den << std::endl;
-	outf.close();
-*/
+
+	if (_graphs.B().size() == 229) {
+//		std::ofstream outf("solution_details", std::ios::app);
+		outf << "D:\t" << _D << std::endl;
+		outf << "d:\t" << _d << std::endl;
+		outf << "|F|:\t" << _graphs.numEdgesC() << std::endl;
+		outf << "den: " << den << std::endl;
+//		outf.close();
+	}
+
 
 	for (tie(eiC, ei_endC) = edges(_graphs.graphC()); eiC != ei_endC; ++eiC) {
 		size_t yij_idx = _C_edge_index[*eiC];
@@ -204,6 +213,8 @@ bool MathModelMinPConflict::setObjectiveFunction()
 	set_row_name(_lp, _currentRow, "ConflictProbability");
 #endif
 	_currentRow++;
+
+	outf.close();
 
 	return true;
 }
