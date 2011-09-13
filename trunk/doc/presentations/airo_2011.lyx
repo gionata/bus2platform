@@ -2143,7 +2143,7 @@ The variable
 \begin_inset Formula 
 \[
 y_{ij}=\begin{cases}
-1 & \text{if services }i\text{ and \ensuremath{j}are occuping a same platform}\\
+1 & \text{if services }i\text{ and \ensuremath{j} are occuping a same platform}\\
 0 & \text{otherwise}
 \end{cases}
 \]
