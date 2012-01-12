@@ -2726,7 +2726,7 @@ scriptsize
 \backslash
 begin{eqnarray*} 
 \backslash
-max & 
+min & 
 \backslash
 frac{1}{|E|
 \backslash
