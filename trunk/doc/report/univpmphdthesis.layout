@@ -1,0 +1,373 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass{PhD thesis of Universita' Politecnica delle Marche}
+# univpmphdthesis textclass definition file.
+# Gionata Massi <g.massi@univpm.it>, 2011/12/22.
+
+Format 35
+Input scrclass.inc
+Input numreport.inc
+
+Sides                   2
+PageStyle               Headings
+
+NoStyle Abstract
+
+
+Style Chapter
+	LabelString          "\thechapter"
+	TocLevel 0
+End
+
+
+Style Bibliography
+	TopSep                4
+	LabelString           "Bibliography"
+	LabelFont
+	  Series              Bold
+	  Size                Largest
+	EndFont
+End
+
+Style PhD_School
+  Category         FrontMatter
+  Margin           Dynamic
+  LatexType        Command
+  InTitle          1
+  LatexName        phdschool
+  ParSkip          0.2
+  TopSep           0.9
+  BottomSep        0.2
+  ParSep           1
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Small
+    Color          Blue
+  EndFont
+End
+
+
+Style PhD_Faculty
+  Category         FrontMatter
+  Margin           Dynamic
+  LatexType        Command
+  InTitle          1
+  LatexName        phdfaculty
+  ParSkip          0.1
+  TopSep           0.2
+  BottomSep        0.2
+  ParSep           1
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Small
+    Color          Blue
+  EndFont
+End
+
+Style PhD_Curriculum
+  Category         FrontMatter
+  Margin           Dynamic
+  LatexType        Command
+  InTitle          1
+  LatexName        phdcurriculum
+  ParSkip          0.1
+  TopSep           0.2
+  BottomSep        0.2
+  ParSep           1
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Small
+    Color          Blue
+  EndFont
+End
+
+Style PhD_Title
+  Category         FrontMatter
+  Margin           Dynamic
+  LatexType        Command
+  InTitle          1
+  LatexName        phdtitle
+  ParSkip          0.4
+  TopSep           0.9
+  BottomSep        0.5
+  ParSep           1
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Large
+    Color          Blue
+  EndFont
+End
+
+Style PhD_SubTitle
+  Category         FrontMatter
+  Margin           Dynamic
+  LatexType        Command
+  InTitle          1
+  LatexName        phdsubtitle
+  ParSkip          0.4
+  TopSep           0.9
+  BottomSep        0.5
+  ParSep           1
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Medium
+    Color          Blue
+  EndFont
+End
+
+Style PhD_Author
+  Category         FrontMatter
+  Margin           Static
+  LatexType        Command
+  InTitle          1
+  LatexName        phdauthor
+  ParSkip          0.4
+  TopSep           1.3
+  BottomSep        0.7
+  ParSep           0.7
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Large
+    Color          Blue
+  EndFont
+End
+
+Style PhD_Advisor
+  Category         FrontMatter
+  Margin           Static
+  LatexType        Command
+  InTitle          1
+  LatexName        phdadvisor
+  ParSkip          0.4
+  TopSep           1.3
+  BottomSep        0.7
+  ParSep           0.7
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Large
+    Color          Blue
+  EndFont
+End
+
+Style PhD_CoAdvisor
+  Category         FrontMatter
+  Margin           Static
+  LatexType        Command
+  InTitle          1
+  LatexName        phdcoadvisor
+  ParSkip          0.4
+  TopSep           1.3
+  BottomSep        0.7
+  ParSep           0.7
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Large
+    Color          Blue
+  EndFont
+End
+
+Style PhD_CurriculumAdvisor
+  Category         FrontMatter
+  Margin           Static
+  LatexType        Command
+  InTitle          1
+  LatexName        phdcurriculumadvisor
+  ParSkip          0.4
+  TopSep           1.3
+  BottomSep        0.7
+  ParSep           0.7
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Large
+    Color          Blue
+  EndFont
+End
+
+
+Style PhD_Cycle
+  Category         FrontMatter
+  Margin           Static
+  LatexType        Command
+  InTitle          1
+  LatexName        phdcycle
+  ParSkip          0.4
+  TopSep           1.3
+  BottomSep        0.7
+  ParSep           0.7
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Small
+    Color          Blue
+  EndFont
+End
+
+Style PhD_ThesisDedication
+  Category         FrontMatter
+  Margin           Static
+  LatexType        Command
+  InTitle          1
+  LatexName        thesisdedication
+  ParSkip          0.4
+  TopSep           1.3
+  BottomSep        0.7
+  ParSep           0.7
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Medium
+    Color          Blue
+  EndFont
+End
+
+Style PhD_Location
+  Category         FrontMatter
+  Margin           Static
+  LatexType        Command
+  InTitle          1
+  LatexName        phdlocation
+  ParSkip          0.4
+  TopSep           1.3
+  BottomSep        0.7
+  ParSep           0.7
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Largest
+    Color          Blue
+  EndFont
+End
+
+Style PhD_Time
+  Category         FrontMatter
+  Margin           Static
+  LatexType        Command
+  InTitle          1
+  LatexName        phdtime
+  ParSkip          0.4
+  TopSep           1.3
+  BottomSep        0.7
+  ParSep           0.7
+  Align            Center
+  LabelType        No_Label
+  OptionalArgs     1
+
+  # standard font definition
+  Font 
+    Size           Largest
+    Color          Blue
+  EndFont
+End
+
+Style PhD_Thesis_Acknowledge
+	Category              FrontMatter
+	Margin                Static
+	LatexType             Environment
+	LatexName             thesisacknowledge
+	NextNoIndent          1
+	ItemSep               0
+	TopSep                0.2
+	BottomSep             0
+	ParSep                0
+	Align                 Block
+	LabelType             Top_Environment
+	LabelString           "Acknowledgements"
+	LabelSep              M
+	Font
+	  Size                Small
+	EndFont
+	LabelFont
+	  Size                Small
+	  Shape               Italic
+	EndFont
+End
+
+Style PhD_Thesis_Abstract
+	Category              FrontMatter
+	Margin                Static
+	LatexType             Environment
+	LatexName             thesisabstract
+	NextNoIndent          1
+	ItemSep               0
+	TopSep                0.2
+	BottomSep             0
+	ParSep                0
+	Align                 Block
+	LabelType             Top_Environment
+	LabelString           "Abstract"
+	LabelSep              M
+	Font
+	  Size                Small
+	EndFont
+	LabelFont
+	  Size                Small
+	  Shape               Italic
+	EndFont
+End
+
+Style PhD_TOC
+	Category	FrontMatter
+	Margin		First_Dynamic
+	Align		Left
+	LatexType	Command
+	LatexName	thesistoc
+	LeftMargin	xx
+	TopSep		0.4
+	BottomSep	0.4
+	LabelType	Static
+	LabelSep	x
+	LabelString	"TOC"
+	LabelFont
+	  Family	Typewriter
+	  Color		Blue
+	EndFont  
+End
+
+Preamble
+	\usepackage{lmodern}
+	\errorcontextlines=9
+EndPreamble
