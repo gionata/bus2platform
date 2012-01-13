@@ -1,0 +1,6942 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass univpmphdthesis
+\begin_preamble
+\usepackage[ruled,vlined,lined,boxed,linesnumbered]{algorithm2e}
+\usepackage[x11names, rgb]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\end_preamble
+\options a4print,lof,lot
+\use_default_options true
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf2
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\pdf_author "Gionata Massi <g.massi@univpm.it>"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout PhD School
+Scuola di Dottorato di Ricerca in Scienze dell'Ingegneria
+\end_layout
+
+\begin_layout PhD Faculty
+Facoltà di Ingegneria
+\end_layout
+
+\begin_layout PhD Curriculum
+Curriculum in Ingegneria Informatica, Gestionale e dell'Automazione
+\end_layout
+
+\begin_layout PhD Title
+Optimal Bus Station Management
+\end_layout
+
+\begin_layout PhD Author
+Gionata Massi
+\end_layout
+
+\begin_layout PhD Advisor
+Prof.
+\begin_inset space ~
+\end_inset
+
+Ferninando Pezzella
+\end_layout
+
+\begin_layout PhD CurriculumAdvisor
+Prof.
+\begin_inset space ~
+\end_inset
+
+Sauro Longhi
+\end_layout
+
+\begin_layout PhD Cycle
+10
+\end_layout
+
+\begin_layout PhD Location
+Ancona
+\end_layout
+
+\begin_layout PhD Time
+Gennaio 2012
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\backslash
+frontmatter{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Grazie a tutti!
+\end_layout
+
+\begin_layout PhD Thesis Abstract
+Riassunto
+\end_layout
+
+\begin_layout PhD TOC
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+mainmatter{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Section
+Transport infrastructure and facilities
+\end_layout
+
+\begin_layout Section
+Roads and graphs
+\end_layout
+
+\begin_layout Section
+Management of a bus terminal 
+\end_layout
+
+\begin_layout Standard
+With an eye to improve the services on offer, in terms of the information
+ provided to travellers and the receptive capacities of the bus lines, the
+ Coach Terminal decided to create a system for automatic management of the
+ square so as to optimise the use of departure terminals.
+ The project, which was drawn up in an invitation to tender, was carried
+ out by a Temporary Association of Companies: Solari Udine who supplied
+ LED panels, Pluservice who supplied the management software part, access
+ control and hand-held terminals for the station managers, Aristea who carried
+ out the installation works.
+ The experience gained from “manual” management of the terminal processes
+ was transformed into an advanced automatic management system, for better
+ control of the coach station, improved performance and better supply of
+ information.
+\end_layout
+
+\begin_layout Standard
+Automated coach station management system The project as a whole is made
+ up of 6 integrated and interacting subsystems: Access control system, to
+ regulate access to the coach station square by automatic operation of a
+ bar.
+ The access control system is able to read the vehicle number plate and
+ the weight of the various vehicles accessing the coach station square.
+ The need for an optical number plate reader arose due to the high number
+ of vehicles passing through the station, by the heterogeneous nature of
+ the owner companies and by the different services offered by these companies.
+ Detection of the weight of the vehicle makes it possible to apply different
+ levels of number plate reading, for example a heavy vehicle can access
+ the controlled area directly, whereas a van or car will only be able to
+ access the area if the number plate is recognised.
+ Optimisation program for management of departure gates: minimises the use
+ of gates for departures of bus lines; the application starts from the scheduled
+ timetable, but also has to manage in real time any anomalies such as delays
+ or cancellation of services, sending the necessary information to the electroni
+c display panels for users and those directing the busses.
+ Electronic panels displaying information for users, fitted in the departure
+ area and along the departure walkways.
+ The information is dynamic and provides all significant details both for
+ services departing normally and in the event of anomalies that involve
+ delays or the cancellation of services.
+ Dynamic panels automatically directing busses to the departure gates: the
+ driver entering the square reads the gate assigned for departure of his
+ service on the panel provided.
+ An intercom located in the panel area allows the driver to contact the
+ station manager to deal with critical situations, for example severe delays
+ in the service so that the gate is no longer assigned.
+ Hand held terminal for the station manager and central server managing
+ the entire system: all system operations are carried out using a hand-held
+ terminal used by the station manager which, via a wi-fi connection, allows
+ full management of the processes, interaction with the programs, management
+ of anomalies.
+ Loudspeaker system: in the square and inside the waiting area, using vocal
+ synthesis, for improved communication to users of any anomalies with respect
+ to the scheduled service (delays, cancellation of services, ...)
+\end_layout
+
+\begin_layout Standard
+To this system is added management of 2 supplementary services provided
+ by Pluservice: Web access for agencies and carriers to communicate changes
+ in the daily schedule Information system for the visually impared: connected
+ to the central system, this provides information in real time by means
+ of a Toll-free telephone number.
+\end_layout
+
+\begin_layout Section
+Transport management problems
+\end_layout
+
+\begin_layout Chapter
+Gate Assignment
+\end_layout
+
+\begin_layout Section
+Definizione del problema
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Problem setting
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+L'autostazione
+\end_layout
+
+\begin_layout Standard
+Un'
+\emph on
+autostazione
+\emph default
+ (bus terminal) è un'infrastruttura di trasporto in cui convergono veicoli
+ adibiti al trasporto pubblico di persone ed è il luogo dove i passeggeri
+ aspettano, salgono a bordo e scendono dagli autobus.
+ Le dimensioni sono maggiori rispetto a quelle di una 
+\emph on
+fermata
+\emph default
+ dell'autobus, che può essere un'area sul ciglio della strada sufficientemente
+ ampia per permettere ad un autobus di fermarsi.
+ Essa può essere una 
+\emph on
+stazione terminale
+\emph default
+ in cui hanno inizio e fine alcuni percorsi di linea, o una 
+\emph on
+stazione di transito
+\emph default
+ in cui i percorsi non hanno termine ma possono proseguire in direzione
+ di altre fermate.
+ L'infrastruttura ha lo scopo di permettere ai passeggeri di effettuare
+ facilmente il cambio di mezzo di trasporto o di percorso e può fornire
+ loro servizi quali tabelloni informativi, sale d'aspetto, bar, servizi
+ igienici, deposito bagagli, posteggi di taxi e biglietterie.
+ Deve, altresì, facilitare le operazioni di manovra dei veicoli, deve poter
+ fungere da scalo per le corse in transito e da capolinea per quelle terminali.
+\end_layout
+
+\begin_layout Standard
+I passeggeri salgono e scendono dagli autobus in zone dette 
+\emph on
+piattaforme 
+\emph default
+o anche 
+\emph on
+gate
+\emph default
+ (platform o anche bus loading area o berth).
+ Le piattaforme possono essere disposte secondo vari schemi che influenzano
+ sia l'accessibilità da parte dei veicoli di varie tipologie che il tempo
+ minimo in cui un veicolo occupa al piattaforma.
+ Questo tempo è diverso per veicoli che iniziano o terminano il servizio
+ nell'autostazione e per veicoli che sono in transito.
+ Le piattaforme possono essere assegnate in maniera fissa alle linee o alle
+ singole corse, oppure possono essere assegnate in modo flessibile se l'autostaz
+ione ha un sistema dinamico di informazione che permetta agli utenti (passeggeri
+ e conducenti) di conoscere in anticipo la piattaforma in cui fermerà l'autobus.
+ La seconda modalità di utilizzo richiede un minor numero di piattaforme
+ che corrsiponde, a parità di piattaforme disponibili, ad un utilizzo più
+ efficiente del piazzale (un numero maggiore di servizi di trasporto), ma
+ non fornisce al passeggero e al conducente la comodità di conoscere la
+ piattaforma con largo anticipo in quanto la piattaforma di arrivo o partenza
+ del veicolo è soggetta a variazioni dinamiche rispetto al servizio programmato
+ dovute alle caratteristiche stocastiche dei tempi di arrivo e partenza
+ degli autobus, e a eventi anomali come la cancellazione di corse, la creazione
+ di nuove corse o situazioni di avaria di veicoli o altri eventi imprevedibili.
+\end_layout
+
+\begin_layout Standard
+Il problema affrontato in questa tesi è quello di determinare assegnamenti
+ delle fermate delle corse alle piattaforme, che possono essere definite
+ in anticipo in base alle tabelle orarie delle corse in un certo periodo
+ di tempo e possono essere riassegnate in modo dinamico avvalendosi dei
+ dati in tempo reale sulla posizione dei veicoli.
+ L'assegnamento variabile richiede un numero minore di piattaforme e il
+ sistema di informazione ai passeggeri che permetta agli utenti di conoscere
+ in anticipo la piattaforma in cui fermerà l'autobus.
+ Gli assegnamenti di un gate ad un veicolo possono essere soggetti a vari
+ vincoli di compatibilità.
+ La gestione manuale dei processi della stazione risulta sempre più complessa
+ al crescere del numero di servizi di trasporto e di piattaforme da gestire
+ fino a diventare impraticabile per un operatore umano e una politica di
+ assegnamento non corretta può comportare forte disagli ai passeggeri ed
+ agli autisti, compromettendo il buon funzionamento dell'autostazione.
+\end_layout
+
+\begin_layout Subsection
+Le modalità di erogazione dei servizi di trasporto
+\end_layout
+
+\begin_layout Standard
+Una 
+\emph on
+linea
+\emph default
+ (line) è un servizio di trasporto operato su uno specifico percorso, che
+ collega un capolinea di partenza ad un capolinea di destinazione passando
+ per delle fermate intermedie, o su più percorsi.
+ Una linea ha definita la frequenza delle corse, per ogni fascia oraria,
+ e i tempi di partenza dal capolinea e di passaggio presso ogni fermata
+ sono espansi nella tabella oraria.
+\end_layout
+
+\begin_layout Standard
+I servizi di trasporto di una linea sono operati da una 
+\emph on
+compagnia di trasporto
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Una 
+\emph on
+corsa
+\emph default
+ (trip o run) è il movimento di un veicolo dall'inizio di una linea o percorso
+ alla fine di esso.
+ 
+\end_layout
+
+\begin_layout Standard
+Una 
+\emph on
+fermata
+\emph default
+ (bus stop o bus stand) può disporre di pensilina e posti a sedere e di
+ tabelloni o pannelli per fornire informazioni di servizio come le tabelle
+ orarie ed eventualmente i dati in tempo reale sui veicoli in arrivo.
+\end_layout
+
+\begin_layout Standard
+La 
+\emph on
+tabella oraria
+\emph default
+ (schedule) definisce per ogni corsa il tempo di partenza dal capolinea
+ d'inizio, il tempo di passaggio presso ogni fermata intermedia e il tempo
+ di arrivo al capolinea di fine corsa.
+\end_layout
+
+\begin_layout Standard
+La tabella oraria specifica quali servizi saranno garantiti in un dato 
+\emph on
+periodo 
+\emph default
+che ha una data di inizio e di fine e che specifica precisi giorni della
+ settimana.
+ L'orario delle corse può subire modifiche rispetto alla pianificazione
+ del 
+\emph on
+periodo
+\emph default
+ per far fronte richieste particolari in alcuni 
+\emph on
+giorni
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Vi sono diverse 
+\emph on
+tipologie di veicoli
+\emph default
+ che meglio si adattano a svolgere alcuni servizi.
+ Ogni corsa ha definita una lista di tipologie di veicolo compatibili.
+\end_layout
+
+\begin_layout Standard
+Le piattaforme di una autostazione, e l'autostazione stessa, possono non
+ essere disponibili in determinate fasce orarie di un periodo o di un giorno
+ particolare.
+\end_layout
+
+\begin_layout Standard
+Nel prosieguo utilizzeremo il termine 
+\emph on
+fermata
+\emph default
+ per indicare l'intervallo temporale in cui una piattaforma deve essere
+ considerata occupata dal veicolo che esegue una corsa.
+ Tale intervallo deve includere gli istanti di arrivo e di ripartenza del
+ veicolo, che saranno distanti almeno quanto il tempo minimo di servizio
+ dei passeggeri più il tempo necessario ad impegnare e disimpegnare la piattafor
+ma, e un buffer temporale per permettere ai mezzi di operare in sicurezza.
+ Più tale buffer è ampio e più il sistema di gestione delle piattaforme
+ sarà in grado di far fronte agli scostamenti dei tempi di fermata programmati
+ che si verificano durante l'esercizio.
+ L'ampiezza dei buffer temporali in alcune soluzioni è sceto in funzione
+ della fascia oraria, in quanto il numero di passeggeri da servire e di
+ autobus in fermata nell'autostazione varia rispetto al tempo e presenta
+ in genere due picchi in concomitanza delle ore di punta (peak hours), la
+ mattina e il tardo pomeriggio.
+ L'intervallo temporale in cui la piattaforma deve essere considerata occupata
+ dal sistema di gestione delle piattaforme è funzione del tempo minimo necessari
+o al veicolo per effettuare l'imbarco e lo sbarco dei passeggeri, del tempo
+ necessario ad occupare e liberare la piattaforma e della fascia oraria.
+ Una fermata è compatibile solo con alcune piattaforme e ciò dipende da
+ vari motivi quali la capacità del gate o le politiche del gestore dell'autostaz
+ione.
+\end_layout
+
+\begin_layout Standard
+I problemi di assegnamento delle fermate dei bus alle piattaforme che si
+ presentano l'uno durante la fase di pianificazione e l'altro durante l'esercizi
+o.
+ Il primo problema consiste nel decidere a quale piattaforma (anche detta
+ gate) deve essere assegnato un autobus in arrivo, partenza o fermata temporanea
+ noto l’orario delle corse.
+ L'altro problema consiste nel variare alcuni assegnamenti durante l’esercizio
+ per far fronte a eventi imprevisti che rendono il piano inattuabile.
+ 
+\end_layout
+
+\begin_layout Standard
+Problemi simili sono noti nella letteratura scientifica come Gate Assignment
+ Problem (GAP) e consistono nel determinare un assegnamento ammissibile
+ di mezzi a gate che sia il migliore possibile in base a dei criteri di
+ preferenza.
+ Affinché il problema sia ammissibile devono essere soddisfatti almeno due
+ vincoli: ogni fermata di un mezzo deve essere assegnata ad un gate e due
+ mezzi i cui intervalli temporali di occupazione del gate (fermata) si sovrappon
+gano non possono essere assegnati ad uno stesso gate.
+\end_layout
+
+\begin_layout Standard
+Il problema del GAP viene di norma affrontato in due fasi.
+ La prima fase consiste nella pianificazione degli assegnamenti, basata
+ sugli orari schedulati di partenza ed arrivo dei mezzi ed eventualmente
+ di relazioni di compatibilità fra mezzo e gate.
+ I dati sono fissati e la pianificazione viene detta 
+\begin_inset Quotes eld
+\end_inset
+
+statica
+\begin_inset Quotes erd
+\end_inset
+
+.
+ I piani statici possono essere generati 
+\begin_inset Quotes eld
+\end_inset
+
+off-line
+\begin_inset Quotes erd
+\end_inset
+
+, in tempi che possono protrarsi anche per ore.
+ Le istanze del problema consistono nella lista dei mezzi che dovranno fermatare
+ nell'autostazione comprensiva dell'intervallo di occupazione del gate,
+ nella lista dei gate ed eventualmente nelle compatibilità ed anche nelle
+ preferenze espresse delle compagnie di trasporto rispetto ai gate.
+ La soluzione consiste in un assegnamento ammissibile che soddisfi tutti
+ i vincoli e che sia 
+\begin_inset Quotes eld
+\end_inset
+
+buono
+\begin_inset Quotes erd
+\end_inset
+
+ rispetto agli obiettivi stabiliti.
+ La seconda fase avviene durante l'esercizio e consiste nel modificare l'assegna
+mento prodotto dalla pianificazione statica per far fronte alle variazioni
+ degli intervalli temporali delle fermate dei bus o alla creazione di corse
+ aggiuntive.
+ Il sistema di riassegnamento deve reagire in tempi di, al massimo, pochi
+ secondi.
+\end_layout
+
+\begin_layout Standard
+Il problema può avere molti criteri di preferenza, sia relativamente alla
+ stessa autostazione che per autostazioni con politiche di assegnamento
+ diversi, perciò risulta difficile stabilire una o più funzioni obiettivo
+ generali che permettano di verificare l'ottimalità di una soluzione.
+ Un software per il supporto alle decisioni per tale problema deve determinare
+ una soluzione che sia di compromesso fra i differenti obiettivi e che soddisfi
+ tutti i vincoli del problema.
+ Da un punto di vista pratico uno dei requisiti più importanti è che il
+ piano di assegnamento deve essere poco sensibile a piccoli cambiamenti
+ dei dati in ingresso.
+ L'incertezza sui dati in ingresso è causata da una serie di possibili eventi,
+ come ad esempio l'arrivo in ritardo di un bus che causa uno spostamento
+ del tempo di fermata in avanti.
+ Se i bus che devono arrivare sullo stesso gate non sono sufficientemente
+ lontani nel tempo ed un bus arriva in ritardo si può verificare una catena
+ di ritardi di tutte le fermate dei bus che erano stati assegnati a quel
+ gate.
+ Questo fatto è del tutto indesiderabile perché comporta disagi ai passeggeri
+ ed agli autisti, che devono spostarsi su altri gate e possono subire ritardi,
+ ed al capostazione che deve effettuare una rischedulazione degli assegnamenti.
+ Assegnamenti poco robusti sono molto sensibili agli incidenti durante l'eserciz
+io ed i piani di assegnamento possono diventare inammissibili anche per
+ anticipi o ritardi di pochi minuti, rendendo necessaria la generazione
+ di un nuovo piano di assegnamento in tempo reale.
+ Un piano di assegnamento robusto dovrebbe invece dare luogo ad un numero
+ minore di situazioni che richiedono riassegnamenti e dà la possibilità
+ al capostazione di intervenire prontamente per effettuare piccole modifiche
+ sul piano.
+ Si ritiene che un piano robusto dovrebbe avere un forte impatto sull'efficienza
+ dell'autostazione e sulla soddisfazione dei passeggeri.
+\end_layout
+
+\begin_layout Standard
+Il problema consiste nel determinare la piattaforma di una autostazione
+ in cui deve fermatare un veicolo, nel rispetto di vincoli di varia natura.
+\end_layout
+
+\begin_layout Standard
+Il decisore è il capostazione, il quale deve valutare attentamente i criteri
+ di assegnamento fermata-piattaforma in quanto tale scelta influenza notevolment
+e la qualità del servizio offerto.
+\end_layout
+
+\begin_layout Standard
+Scelte mal ponderate procurano insoddisfazione e proteste da parte dei passegger
+i, che si troveranno costretti a spostarsi da una parte all'altra dell'autostazi
+one, e da parte delle compagnie di trasporto, che possono subire ritardi
+ in conseguenza alla congestione provocata dalla mancanza di un assegnamento
+ corretto.
+\end_layout
+
+\begin_layout Standard
+L'assegnamento deve sottostare a vincoli di diversa natura e pertanto in
+ generale si possono effettuare solo alcuni assegnamenti di un veicolo in
+ fermata ad una piattaforma fra tutti i possibili.
+\end_layout
+
+\begin_layout Standard
+Le piattaforme sono compatibili sono con alcuni mezzi o servizi.
+ Ad esempio alcune piattaforme potrebbero essere riservate a servizi internazion
+ali, altre potrebbero essere riservate a servizi di linea ed altre ancora
+ destinate al parcheggio temporaneo.
+\end_layout
+
+\begin_layout Standard
+I mezzi o servizi sono compatibili sono con alcune piattaforme che rispettano
+ particolari requisiti, ad esempio alcuni servizi devono essere associati
+ a piattaforme con particolari caratteristiche come l'accessibilità per
+ utenti disabili ed i mezzi di dimensioni maggiori devono essere assegnati
+ a piattaforme con sufficiente spazio di manovra (questa considerazione
+ si applica ad esempio al caso di mezzi snodati).
+ Una fermata inoltre deve effettuarsi su una piattaforma che sia abilitata
+ nell'intervallo temporale della fermata stessa.
+\end_layout
+
+\begin_layout Standard
+Un ulteriore complicazione si verifica quando le piattaforme potrebbero
+ essere in numero in numero non sufficiente ad accogliere tutte le corse
+ in fermata (piattaforme come risorsa scarsa) e occorre decidere il sottoinsieme
+ di corse che devono essere assegnate.
+\end_layout
+
+\begin_layout Standard
+La qualità del piano di assegnamento si può misurare in base alle preferenze
+ espresse dalle compagnie di trasporto determinate dalle esigenze dei loro
+ utenti o ad altri fattori.
+ Ad esempio gli utenti di servizi a lunga percorrenza potrebbero gradire
+ che la piattaforma sia prossima a servizi igienici o servizi accessori
+ quali punti di ristoro mentre gli utenti in transito che devono effettuare
+ un'altra corsa potrebbero voler che la piattaforma della partenza del mezzo
+ da prendere sia vicina a quella in cui sono scesi.
+ Si potrebbe volere che le corse bis siano posizionate su piattaforme adiacenti,
+ oppure che i servizi offerti da una certa compagnia partano solo da un
+ gruppo di piattaforme.
+ Per evitare un affollamento eccessivo sui marciapiedi si potrebbe voler
+ far partire servizi a lunga percorrenza da piattaforme non adiacenti.
+ Per consentire altre operazioni si potrebbe imporre di non utilizzare una
+ piattaforma in determinate fasce orarie.
+\end_layout
+
+\begin_layout Standard
+Fra i possibili piani generalmente è da preferire quello che sia suscettibile
+ del minor numero di variazioni degli assegnamenti per far fronte al verificarsi
+ di eventi non pianificati quali ritardi o anticipi di servizi o creazione
+ di nuove corse.
+ 
+\end_layout
+
+\begin_layout Section
+Literature review: models and state-of-the-art algorithms
+\end_layout
+
+\begin_layout Standard
+Le applicazioni reali a noi note sono il software GatePlanner della Pluservice
+ e il software usato per la gestione dalla autostazione di Oviedo.
+\end_layout
+
+\begin_layout Paragraph
+GatePlanner
+\end_layout
+
+\begin_layout Standard
+Il software GatePlanner di Pluservice prevede l'assegnamento statico delle
+ piattaforme utilizzando un algoritmo costruttivo senza backtracking.
+ La pianificazione viene effettuata per ogni giorno, considerando il tempo
+ di partenza della corsa 
+\begin_inset Formula $t_{p}$
+\end_inset
+
+, il tempo di anticipo rispetto all'orario di partenza a partire da cui
+ la piattaforma deve risultare occupata 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ e il tempo di ritardo rispetto all'orario di partenza fino a cui la piattaforma
+ deve risultare occupata 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+.
+ La finestra temporale di occupazione della piattaforma è dunque 
+\begin_inset Formula $[t_{p}-t_{1},\, t_{p}+t_{2}]$
+\end_inset
+
+.
+ L'algoritmo produce una soluzione che che rispetta i vincoli di collocazione
+ di ogni corsa e di non occupazione simultanea di uno stessa piattaforma.
+ L'algoritmo considera inoltre altri vincoli.
+ Posiziona le 
+\begin_inset Quotes eld
+\end_inset
+
+corse bis
+\begin_inset Quotes erd
+\end_inset
+
+, cioè le corse sono corse che vengono svolte da 2 o più autobus per effettuare
+ lo stesso servizio, su piattaforme adiacenti.
+ Posiziona le corse appartenenti a linee che includono almeno un veicolo
+ snodato sulle piattaforme che accettano mezzi snodati.
+ Se una corsa con snodati ha delle corse bis allora queste sono considerate
+ come corse con snodati.
+ L'algoritmo permette inoltre di associare una linea esclusivamente ad un
+ sottoinsieme di piattaforme, cioè tutte le corse della linea devono partire
+ da una delle piattaforme predefinite.
+ In modo analogo per ogni piattaforma sono stabilite le linee che possono
+ partire da essa.
+ Infine l'uso di una piattaforma può essere interdetto in determinate fasce
+ orarie della giornata.
+\end_layout
+
+\begin_layout Standard
+Le corse vengono ordinate in base ai vincoli imposti (corse con snodati,
+ corse bis
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ldots{}
+\end_layout
+
+\end_inset
+
+) e quindi per tempo di partenza.
+ L'algoritmo poi assegna nell'ordine le corse, senza possibilità di backtracking
+, alla prima piattaforma disponibile in quell'intervallo di tempo.
+ Esso assomiglia ad un First Fit che ha l'obiettivo di minimizzare il numero
+ di piattaforme utilizzate.
+ L'algoritmo non garantisce l'ottimalità della soluzione trovata può fallire
+ nel determinare una soluzione ammissibie su alcune istanze che invece ne
+ hanno.
+\end_layout
+
+\begin_layout Paragraph
+Sistema in uso nell'autostazione di Oviedo
+\end_layout
+
+\begin_layout Standard
+L'assegnamento delle piattaforme nelle stazioni di bus è trattato in
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Adenso-Diaz2005"
+
+\end_inset
+
+, in cui l'autore descrive il sistema di supporto alle decisioni realizzato
+ per la gestione del bus terminal di Oviedo, in Spagna.
+ L'autostazione è composta di 44 piattaforme e gestisce circa 1100 servizi
+ al giorno.
+ Il sistema utilizzato per l'assegnamento delle piattaforme è composto da
+ due moduli, uno 
+\begin_inset Quotes eld
+\end_inset
+
+off-line
+\begin_inset Quotes erd
+\end_inset
+
+ per la pianificazione statica e l'altro 
+\begin_inset Quotes eld
+\end_inset
+
+on-line
+\begin_inset Quotes erd
+\end_inset
+
+ per far fronte al caso dinamico.
+ La pianificazione statica viene generata da un sistema Rule-Based che implement
+a due tipologie di regole.
+ Le prime, dette direct rules, rappresentano i vincoli che devono essere
+ necessariamente soddisfatti dalla soluzione (hard constraints) mentre le
+ seconde, dette approximate rules, rappresentano le preferenze che il capostazio
+ne attribuisce all'assegnamento di una piattaforma ad un servizio.
+ Le preferenze possono indicare ad esempio quanto è utile assegnare un bus
+ ad una piattaforma in base alla provenienza o alla destinazione, alla compagnia
+ che effettua il servizio, alla dimensione dell'autobus o al tempo di fermata.
+ Questo secondo gruppo di regole può essere usato, inoltre, per tentare
+ di lasciare disimpegnate le piattaforme adiacenti a quelli da cui partono
+ bus a lunga percorrenza.
+ Il capostazione stabilisce le regole da introdurre nel sistema e la loro
+ utilità (espressa con un numero intero compreso fra 1 e 9).
+ L'algoritmo proposto genera il piano di assegnamento che massimizza la
+ somma dei pesi delle regole scelte.
+ Le istanze reali dell'autostazione di Oviedo vengono risolte in circa 10'
+ su un Pentium III.
+ Il caso dinamico viene affrontato sempre con un sistema a regole che ha
+ per input il piano e le regole.
+ Quando uno degli assegnamenti del piano statico non può essere attuato
+ allora il sistema rende inammissibile l'assegnamento e aggiunge la regola
+ di trovare un assegnamento del bus da riallocare che sia il più vicino
+ possibile alla piattaforma precedentemente programmata.
+\end_layout
+
+\begin_layout Paragraph
+Letteratura scientifica
+\end_layout
+
+\begin_layout Standard
+La letteratura scientifica propone molte pubblicazioni sul trasporto su
+ gomma e sulle autostazioni ma generalmente gli studi sono funzionali alla
+ quantificazione della qualità dei servizi offerti ed alla progettazione
+ dei layout.
+ Scarso è, invece, il contributo sui problemi di ottimizzazione o di soddisfacim
+ento dei vincoli emergenti nei terminal del trasporto su gomma.
+ Le pubblicazioni scientifiche che trattano della gestione delle piattaforme
+ all'interno delle autostazioni, per quanto emerge dalle ricerche effettuate,
+ si limitano al già citato
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Adenso-Diaz2005"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Per fissare la terminologia e valutare la qualità dei servizi offerta dalle
+ autostazioni si seguirà quanto esposto nella parte
+\begin_inset space ~
+\end_inset
+
+7 di 
+\emph on
+Transit Capacity and Quality of Service Manual
+\emph default
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "tbrtcrp100"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Problematiche analoghe
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Definizione degli aspetti generali per l'individuazione di problematiche
+ simili
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Problematiche simili a quella di assegnare le fermate alle piattaforme delle
+ autostazioni emergono nella gestione dei terminal aeroportuali, nelle stazioni
+ ferroviarie, e nei porti, interporti o altre strutture adibite allo stoccaggio
+ temporaneo e al caricamento di veicoli.
+ Forti sono le analogie anche con il problema di allocazione dei registri
+ di DSP (Digital Signal Processor) e con il problema di ottimizzazione dell'uso
+ dei registri di un processore durante il processo di compilazione.
+ Elemento comune nei vari problemi sono la presenza di un luogo fisico in
+ cui vengono convogliate persone, beni da trasportare o dati (in inglese
+ spesso definito terminal o hub nel caso di problemi di trasporto, register
+ nel caso di dati), un insieme di veicoli o unità di informazione (aircraft,
+ train, truck, o variable
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ldots{}
+\end_layout
+
+\end_inset
+
+) ed un insieme di risorse spaziali che non possono essere occupate nello
+ stesso tempo da più di un veicolo o dato (platform, gate, track, register);
+ inoltre i tempi di fermata dei veicoli (per le effettuare le operazioni
+ di carico e scarico dei passeggeri o delle merci) o i tempi di vita dei
+ dati sono fissate (scheduled, o ideal, arrival e departure time, oppure
+ lifetime) e durante l'esercizio potrebbero essere soggette a variazioni
+ per il verificarsi di eventi non prevedibili a priori (ritardi, interruzioni\SpecialChar \ldots{}
+).
+ Altra caratteristica comune è quella per cui gli assegnamenti potrebbero
+ essere soggetti a vincoli 
+\begin_inset Quotes eld
+\end_inset
+
+locali
+\begin_inset Quotes erd
+\end_inset
+
+, che coinvolgano le compatibilità fra operazioni da assegnare e risorsa
+ o fra due o operazioni.
+ Ad esempio nel contesto dell'ottimizzazione dell'uso di piattaforme queste
+ sono compatibili solo alcuni tipi di veicoli per ragioni geometriche e
+ di spazi di manovra mentre nel caso dell'ottimizzazione del codice macchina
+ il problema definito come 
+\emph on
+register assignment
+\emph default
+ consiste nel determinare l'assegnamento variabile-registro in un processore
+ avente registri eterogenei: alcuni registri possono eseguire solo alcune
+ alcune istruzioni.
+ A causa della struttura del processore e del flusso di dati, stabiliti
+ dal tipo di istruzione, dal flusso di istruzioni e dallo scheduler del
+ compilatore, una variabile può essere associata solo ad alcuni registri
+ ed i tempi di permanenza sono fissati.
+ Altro aspetto comune è che il tempo di occupazione dipende dalla risorsa
+ o anche dall'assegnamento stesso: il tempo di carico e scarico di merci
+ o passeggeri dipende infatti sia dal tipo di veicolo e che dalla piattaforma
+ così come il tempo di esecuzione di un'istruzione può estendersi per un
+ numero diverso di cicli di clock rispetto ad altre istruzioni o in base
+ a quale unità di calcolo stia eseguendo la stessa istruzione.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+e di estensioni temporali diverse fra loro (non modellabili con grafo unit
+ interval).
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Paragraph
+Airport Gate Assignment
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+GAP
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il problema che emerge nel caso aeroportuale consiste nell'assegnare i velivoli
+ ai gate dell'aeroporto in modo da utilizzare in modo efficiente le porte
+ d'imbarco/sbarco.
+ Il problema è noto come Aircraft Gate Assignment Problem (GAP) e una rassegna
+ recente sullo stato dell'arte e sui recenti sviluppi del GAP nell'ambito
+ aeroportuale è presentata in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Dorndorf2007fgs"
+
+\end_inset
+
+.
+ Gli autori descrivono alcuni modelli matematici proposti per il problema
+ di assegnare voli a gate basati su modelli di scheduling e dichiarano che
+ probabilmente uno dei problemi più rilevanti ma scarsamente investigato
+ dalla letteratura scientifica è quello della costruzione di assegnamenti
+ detti robusti o stabili, che possono essere non ottimi rispetto agli obiettivi
+ stabiliti ma che si avvicinano ad essi in termini di prestazioni assolute
+ e che permettono di tenere in conto possibili perturbazioni dei dati d'ingresso.
+ Le formulazioni proposte considerano come obiettivo la minimizzazione del
+ percorso effettuato dai passeggeri all'interno del terminal, modellato
+ come un 
+\begin_inset Quotes eld
+\end_inset
+
+Quadratic Assignment Problem
+\begin_inset Quotes erd
+\end_inset
+
+ (QAP).
+ Il QAP a grandi dimensioni è un problema di difficile soluzione e spesso
+ viene affrontato mediante tecniche euristiche.
+ Altri modelli matematici fanno ricorso alla programmazione lineare intera
+ (PLI) e all'ottimizzazione su rete.
+ I modelli di PLI vengono risolti in modo esatto per problemi di piccole
+ dimensioni, utilizzando particolari tecniche di Branch&Bound e, nel caso
+ di problemi reali, attraverso l'impiego di tecniche meta-euristiche, quale
+ la tabu search, la simulated annealing e gli algoritmi genetici.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Per la soluzione del GAP in letteratura sono state proposte anche tecniche
+ che fanno riferimento ai Sistemi Esperti e ai Sistemi Rule Based quali
+ strumenti di pianificazione.
+ Alcuni autori hanno sviluppato modelli e framework di simulazione del processo
+ di arrivo e partenza degli aerei nel terminal per valutare la bontà dei
+ piani proposti.
+ Altri autori, infine, fanno ricorso a tecniche di ottimizzazione stocastica.
+\end_layout
+
+\end_inset
+
+Il problema nel caso degli aeroporti è stato affrontato a partire dalla
+ metà degli anni 1980 e l'obiettivo considerato principale è minimizzare
+ la distanza totale percorsa a piedi dai passeggeri nel terminal.
+ In 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "mangoubi1985oga"
+
+\end_inset
+
+ si propone una tecnica di soluzione esatta che fa uso di un modello di
+ programmazione lineare intera, di cui risolvono il rilassamento lineare;
+ in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "hamzawi1986map"
+
+\end_inset
+
+ viene presentato uno dei primi lavori che fa uso di calcolatori elettronici
+ per la pianificazione dei gate e in
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Brazile1988"
+
+\end_inset
+
+ è proposto un sistema esperto 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+realizzato in Prolog 
+\end_layout
+
+\end_inset
+
+ che opera in due fasi.
+ La prima fase consiste nel generare quotidianamente i piani di assegnamento.
+ La seconda fase consiste nel modificare i piani in tempo reale cercando
+ di effettuare il minor numero di riassegnamenti.
+ Con
+\begin_inset CommandInset citation
+LatexCommand citet
+key "gosling1990des"
+
+\end_inset
+
+ si introduce un'altra delle prime applicazioni in questo settore.
+ In
+\begin_inset CommandInset citation
+LatexCommand citet
+key "srihari1991esm"
+
+\end_inset
+
+ si presenta una rassegna sui sistemi esperti.
+ In 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "cheng1997kba"
+
+\end_inset
+
+ si presenta l'integrazione di un sistema rule-based con una procedura euristica
+ di assegnamento.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "yan1998nmg"
+
+\end_inset
+
+ utilizzano invece un modello di ottimizzazione su rete.
+ In 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "haghani1998oga"
+
+\end_inset
+
+ e in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bolat2000ppr"
+
+\end_inset
+
+ il GAP è modellato come un QAP.
+ In
+\begin_inset CommandInset citation
+LatexCommand citet
+key "yan2001omo"
+
+\end_inset
+
+ si considerano in funzione obiettivo anche i tempi di attesa dei passeggeri,
+ attraverso una formulazione di programmazione zero-uno multi-obiettivo.
+ Si presenta un framework di simulazione, testato sui dati dell'aeroporto
+ di Taipei, che analizza gli effetti dei ritardi stocastici dei voli.
+ In 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "lim2005ags"
+
+\end_inset
+
+ viene introdotto il concetto di finestre temporali nella modellazione del
+ GAP.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lim2005"
+
+\end_inset
+
+ viene formulato un modello matematico che considera la robustezza del piano
+ di assegnamento definendo una probabilità di conflitto fra due aerei che
+ occupano lo stesso gate.
+ Gli autori propongono un algoritmo euristico ibrido che impiega una tabu
+ search ed una ricerca locale.
+\end_layout
+
+\begin_layout Paragraph
+Train Platforming Problem 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TPP
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il problema nel caso ferroviario consiste nell'assegnare i treni ai binari
+ di una stazione ferroviaria in modo da avere degli assegnamenti compatibili
+ con l'istradamento dei treni.
+ Il problema viene identificato come Train Platforming Problem (TPP) e survey
+ recenti sono
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "caprara2007passenger"
+
+\end_inset
+
+ e, di carattere più generale,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lusby-railway"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Alcuni autori modellano il TPP come un problema di Graph Coloring su grafi
+ di conflitto, altri usano tecniche tradizionali della ricerca operativa
+ e altri la programmazione per vincoli.
+\end_layout
+
+\begin_layout Paragraph
+Dock Assignment Problem 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+DAP o Dock-to-door assignment
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il problema nel caso di caricamento di camion o altri veicoli da magazzini
+ è classificato come Dock Assignment Problem (DAP).
+ Il problema appare poco studiato e molte soluzioni sono mutate dal GAP.
+\end_layout
+
+\begin_layout Paragraph
+Register-assignment
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Register-assignment
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I problemi di Register-assignment o Register-allocation sono descritti in
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "pereira2008survey"
+
+\end_inset
+
+.
+ La tendenza attuale predilige metodi euristici che impiegano poca memoria
+ e poco tempo di calcolo, ma quando l'ottimizzazione del codice è importante
+ si ricorre frequentemente a tecniche di coloring.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zeitlhofer20031411"
+
+\end_inset
+
+ l'assegnamento dei registri diviene un problema decisionale di restricted-color
+ing (list-coloring nel titolo scelto degli autori), la cui soluzione determina
+ un assegnamento che richiede al massimo tanti registri quanti disponibili,
+ se tale soluzione esiste.
+ Essi descrivono il caso di processori con varie unità funzionali in grado
+ di eseguire un sottoinsieme di istruzioni.
+ Lo scheduling delle istruzioni è definito e esse possono essere elaborate
+ solo da un sottoinsieme di registri.
+ Benché il restricted-coloring sia un problema NP-hard, Zeitlhofer and Wess
+ sfruttano alcune proprietà dei grafi degli intervalli per determinare soluzioni
+ in tempi ragionevoli, evitando di esplorare l'intero albero di ricerca.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+Analisi della letteratura di rescheduling
+\end_layout
+
+\begin_layout Itemize
+Aircraft Rescheduling Problem
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Railway Rescheduling Problem (RRP)
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Nuove formulazioni e modelli
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+New formulations and models
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il problema di assegnare fermate a piattaforme può essere formulato in vari
+ modi, ognuno dei quali si presta meglio alla ottimizzazione di un determinata
+ funzione obiettivo.
+ In particolare verranno proposte delle formulazioni su grafi.
+\end_layout
+
+\begin_layout Subsection
+Minimizzazione del numero di gate utilizzati
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Problema
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il gestore di un'autostazione potrebbe richiedere che il piano di assegnamento
+ fermate-piattaforme occupi durante l'orizzonte di pianificazione il numero
+ minimo possibile di piattaforme.
+ Una politica di gestione che considera questo obiettivo permette di ridurre
+ le spese di gestione ed eventualmente di produrre ulteriore profitto.
+ Il maggiore profitto si può ottenere accogliendo un numero maggiore di
+ servizi fino a saturare la capacità dell'autostazione o con l'affitto le
+ piattaforme inutilizzate ad altri operatori di trasporto.
+ Tale politica di gestione permette di utilizzare al massimo l'area del
+ piazzale dell'autostazione, aumentando la densità di servizi, ma la soluzione
+ prodotta potrebbe essere poco robusta.
+ Il software GatePlanner di Pluservice, infatti, considera l'obiettivo quello
+ di minimizzare il numero di piattaforme in uso durante una giornata.
+ La scelta di tale obiettivo è motivata, inoltre, dal fatto che l'eventuale
+ se ci sono piattaforme non utilizzate esse possono essere impigate per
+ scali di servizi e soste di veicoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Approccio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per questo obiettivo proponiamo:
+\end_layout
+
+\begin_layout Itemize
+la formulazione del problema come problema di restricted-coloring di un
+ grafo degli intervalli;
+\end_layout
+
+\begin_layout Itemize
+un modello matematico, che per quanto noto agli autori è innovativo, per
+ la risoluzione del problema di restricted-coloring;
+\end_layout
+
+\begin_layout Itemize
+un algoritmo esatto ed efficiente (tratto da
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zeitlhofer20031411"
+
+\end_inset
+
+ con l'aggiunta di vincoli locali sulle corse 
+\begin_inset Quotes eld
+\end_inset
+
+bis
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection
+Formulazione del problema
+\end_layout
+
+\begin_layout Standard
+Per modellare il problema si considerino l'insieme delle piattaforme 
+\begin_inset Formula $C=\{c_{1},\,\ldots,\, c_{m}\}$
+\end_inset
+
+, l'insieme delle fermate dei bus da pianificare 
+\begin_inset Formula $V=\{v_{1},\,\ldots,\, v_{n}\}$
+\end_inset
+
+, e, per ogni fermata 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+, i tempi 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ tempo di inizio fermata schedulato del bus 
+\begin_inset Formula $i$
+\end_inset
+
+ (scheduled arriving time) e 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ tempo di fine fermata schedulato del bus 
+\begin_inset Formula $i$
+\end_inset
+
+ (scheduled departured time) e la lista 
+\begin_inset Formula $L(v_{i})$
+\end_inset
+
+ delle piattaforme compatibili con la fermata 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+.
+ L'intervallo 
+\begin_inset Formula $(a_{i},\, d_{i})$
+\end_inset
+
+ definisce l'intervallo di occupazione di una piattaforma da parte della
+ fermata 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+.
+ Due fermate 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+ e 
+\begin_inset Formula $v_{j}$
+\end_inset
+
+ i cui intervalli temporali di occupazione del gate si sovrappongono necessariam
+ente non possono essere assegnati alla stessa piattaforma.
+ Sia 
+\begin_inset Formula $G=(V,\, E)$
+\end_inset
+
+ il grafo di interferenza delle fermate, avente 
+\begin_inset Formula $V$
+\end_inset
+
+ insieme dei nodi e 
+\begin_inset Formula $E$
+\end_inset
+
+ insieme degli archi, costruito in modo che esiste un arco da ogni fermata
+ ad ogni altra fermata tale che gli intervalli temporali abbiano intersezione
+ non vuota.
+ Il grafo non è orientato e gli archi 
+\begin_inset Formula $(v_{i},\, v_{j})\in E$
+\end_inset
+
+ sono le coppie non ordinate 
+\begin_inset Formula $v_{i}\in V,\, v_{j}\in V\,:\,(a_{i},\, d_{i})\cap(a_{j},\, d_{j})\neq\emptyset$
+\end_inset
+
+.
+ Tale grafo è una rappresentazione di un insieme di intervalli e appartiene
+ alla classe dei grafi degli intervalli.
+ Si ricorda che un grafo degli intervalli è un grafo perfetto per cui il
+ numero cromatico 
+\begin_inset Formula $\chi$
+\end_inset
+
+ è uguale alla dimensione della cricca massima 
+\begin_inset Formula $\omega$
+\end_inset
+
+.
+ Sia 
+\begin_inset Formula $\mathcal{Q}=[Q_{1},Q_{2},\ldots,Q_{r}]$
+\end_inset
+
+ una decomposizione in cricche massimali costruito in modo che la matrice
+ delle cricche sia ordinata secondo la consecutive one property (C1P).
+ L'ordinamento può essere sfruttato efficientemente per potare l'albero
+ di ricerca in modo da evitare l'esplorazione di stati 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+delle spazio di ricerca
+\end_layout
+
+\end_inset
+
+ già esplorati.
+ Ogni elemento 
+\begin_inset Formula $Q_{t}$
+\end_inset
+
+ contiene l'insieme delle fermate incompatibili fra loro e per la modellazione
+ e risoluzione del problema è possibile non considerare gli insiemi di cardinali
+tà 1 (nodi isolati).
+ Le componenti e l'ordinamento del vettore 
+\begin_inset Formula $\mathcal{Q}$
+\end_inset
+
+ possono essere determinate in tempo polinomiale 
+\begin_inset Formula $O(n\log n)$
+\end_inset
+
+ usando algoritmi come quello di 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wang1994"
+
+\end_inset
+
+.
+ Il problema di assegnamento dei veicoli alle piattaforme è esprimibile
+ come problema di restricted-coloring definito sul grafo degli intervalli
+ 
+\begin_inset Formula $G=(V,\, E)$
+\end_inset
+
+ con compatibilità 
+\begin_inset Formula $L\,:\, V\rightarrow2^{C}$
+\end_inset
+
+, dove 
+\begin_inset Formula $V$
+\end_inset
+
+ rappresenta l'insieme dei vertici, 
+\begin_inset Formula $C$
+\end_inset
+
+ l'insieme dei colori, e 
+\begin_inset Formula $L(v_{i})$
+\end_inset
+
+ la lista di compatibilità la fermata rappresentata dal vertice 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+ e le piattaforme.
+ Ogni fermata corrisponde ad un vertice, ogni piattaforma ad un colore.
+\end_layout
+
+\begin_layout Standard
+Risolvere il problema di produrre un assegnamento fermate-piattaforme di
+ costo viene ricondotto al problema di cercare una colorazione propria dei
+ nodi del grafo in cui il colore assegnato al nodo sia compatibile col nodo
+ stesso.
+\end_layout
+
+\begin_layout Paragraph
+Esempio
+\end_layout
+
+\begin_layout Standard
+Si consideri, ad esempio, di dover assegnare alle sette fermate dei servizi
+ in tab.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:fermate_e_compatibilita"
+
+\end_inset
+
+, in cui i numeri identificanti i servizi sono ordinati per tempo di inizio
+ dell'intervallo di fermata.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\color black
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Servizio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arrivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Partenza
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Compatibilità
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color blue
+3
+\color inherit
+, 
+\color magenta
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color green
+2
+\color inherit
+, 
+\color blue
+3
+\color inherit
+, 
+\color magenta
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color green
+2
+\color inherit
+, 
+\color blue
+3
+\color inherit
+, 
+\color magenta
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color red
+1
+\color inherit
+, 
+\color green
+2
+\color inherit
+, 
+\color blue
+3
+\color inherit
+, 
+\color magenta
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color blue
+3
+\color inherit
+, 
+\color magenta
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color red
+1
+\color inherit
+, 
+\color green
+2
+\color inherit
+, 
+\color blue
+3
+\color inherit
+, 
+\color magenta
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color red
+1
+\color inherit
+, 
+\color green
+2
+\color inherit
+, 
+\color blue
+3
+\color inherit
+, 
+\color magenta
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:fermate_e_compatibilita"
+
+\end_inset
+
+Orari delle fermate e compatibilità con le piattaforme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nella fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Intervalli-temporali"
+
+\end_inset
+
+ sono rappresentati i sette intervalli temporali delle fermate come barre
+ rettangolari di lunghezza proporzionale alla durata dell'intervallo.
+ Le bare sono disposte su quattro livelli in modo che su ogni livello non
+ siano presenti sovrapposizioni.
+ La disposizione sui livelli rappresenterebbe una possibile soluzione al
+ problema se tutte le fermate fossero compatibili con tutte le piattaforme.
+ A partire dagli intervalli è possibile costruire un grafo in cui ogni intervall
+o corrisponde un vertice ed esiste un lato se due intervalli hanno intersezione
+ non vuota.
+ Il grafo 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+ è un grafo degli intervalli: rappresenta l'intersezione di un multiinsieme
+ di intervalli definiti sulla retta reale.
+ Ogni intervallo del multiinsieme corrisponde ad un vertice e due vertici
+ sono connessi da un lato se e solo se gli intervalli corrispondenti hanno
+ intersezione non vuota.
+ Il numero minimo di livelli necessari e sufficienti per disegnare gli intervall
+i senza sovrapposizioni corrisponde alla dimensione della cricca massima.
+ Sia 
+\begin_inset Formula $\mathcal{Q}_{G}$
+\end_inset
+
+ l'insieme di tutte le cricca massimali distinte.
+ Il grafo si può esprimere come il grafo unione delle cricca massimali:
+ 
+\begin_inset Formula $G=\cup_{Q\in\mathcal{Q}_{G}}Q$
+\end_inset
+
+ .
+ Si noti che il numero di cricca massimali di un grafo degli intervalli
+ è minore o uguale alla cardinalità dell'insieme dei nodi.
+ Il problema della ricerca di tutte le cricca massimali di un grafo degli
+ intervalli è un problema polinomiale.
+\end_layout
+
+\begin_layout Standard
+Dato un grafo degli intervalli con 
+\begin_inset Formula $n$
+\end_inset
+
+ intervalli, sia la sequenza ordinata degli estremi 
+\begin_inset Formula $d_{1},d_{2},\ldots,d_{2n}$
+\end_inset
+
+ con 
+\begin_inset Formula $d_{i}<d_{j}$
+\end_inset
+
+ per 
+\begin_inset Formula $1\leq i<j\leq2n$
+\end_inset
+
+.
+ Tutti gli intervalli che hanno intersezione non nulla con l'intervallo
+ aperto 
+\begin_inset Formula $(d_{i},d_{i+l})$
+\end_inset
+
+ formano una cricca massimale se e solo se 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ è un estremo sinistro e 
+\begin_inset Formula $d_{i+l}$
+\end_inset
+
+ è un estremo destro, non necessariamente dello stesso intervallo.
+\end_layout
+
+\begin_layout Standard
+I grafi degli intervalli appartengono alla classe più generale dei cosidetti
+ grafi perfetti, grafi per cui vale che il numero di cricca è uguale al
+ numero cromatico (
+\begin_inset Formula $\omega(G)=\chi(G)$
+\end_inset
+
+) e il numero di stabilità è uguale a quello di partizioni in cricche 
+\begin_inset Formula $\alpha(G)=k(G)$
+\end_inset
+
+..
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering{
+\backslash
+input{img/intervals_and_graph}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Intervalli-temporali"
+
+\end_inset
+
+Intervalli temporali e grafo degli intervalli corrispondente
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Nella fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Grafo-intervallo"
+
+\end_inset
+
+ sono rappresentati il grafo degli intervalli, le liste di compatibilità,
+ le cricche massimali ed una soluzione ammissibile del problema di restricted-co
+loring.
+ Si noti che i vertici sono numerati secondo un 
+\emph on
+ordine perfetto
+\emph default
+.
+ Le liste di colori ammissibili per ogni vertice sono elencate vicino al
+ vertice stesso.
+ Le cricche massimali sono evidenziate dalle linee tratteggiate.
+ Si noti che il numero cromatico (il grafo è 4-colorabile) coincide con
+ il numero di cricca, che vale 4, e questo permette di dedurre che la soluzione
+ è ottima.
+ Le cricche massimali sono {1,2,3}, {2,3,4,5}, {4,5,6} e {5,6,7}.
+ I vertici {2,3,4,5,6} sono presenti su più di una cricca massimale e per
+ questo sono chiamati vertici d'interfaccia, mentre i rimanenti vertici
+ {1, 7} formano una cricca con tutti i loro vicini e sono detti vertici
+ simpliciali.
+ Una volta colorati i vertici d'interfaccia è possibile determinare una
+ colorazione univoca dei vertici rimanenti, ad esempio scegliendo il primo
+ colore disponibile.
+ Ciò permette di non esplorare soluzioni ridondanti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering{
+\backslash
+input{img/interval_graph}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Grafo-intervallo"
+
+\end_inset
+
+Istanza di restricted-coloring e una sua soluzione
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ Per modellare ulteriori restrizioni sulle soluzioni ammissibili, quali
+ quelli sulle corse bis o sull'incompatibilità di fermate sullo stesso gate,
+ occorre aggiungere vincoli o vincoli locali sui colori, come nei problemi
+ noti come precoloring extension.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Calcolo del lower bound
+\end_layout
+
+\begin_layout Standard
+Al fine di certificare l'ottimalità di una soluzione trovata e dunque risparmiar
+e tempo computazionale in un algoritmo di enumerazione delle soluzioni deve
+ essere stimato il numero minimo di piattaforme necessarie ad accogliere
+ tutte le fermate.
+ Una stima per difetto del numero di piattaforme permette, inoltre, di capire
+ immediatamente se un insieme di fermate è sicuramente non gestibile dall'autost
+azione.
+ Il numero minimo di piattaforme è il numero di colori soluzione del problema
+ di restricted-coloring, il quale numero è maggiore o uguale al numero cromatico
+ del problema di graph-coloring definito sullo stesso grafo 
+\begin_inset Formula $G=(V,\, E)$
+\end_inset
+
+.
+ Il problema di determinare il numero cromatico è infatti un rilassamento
+ del problema di restricted-coloring in cui sono stati eliminati i vincoli
+ di compatibilità.
+ Il grafo 
+\begin_inset Formula $G=(V,\, E)$
+\end_inset
+
+ appartiene alla classe dei grafi perfetti quindi il numero cromatico è
+ uguale al numero di cricca e determinare il numero di clique di un grafo
+ degli intervalli è risolubile in tempo polinomiale.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+`E}
+\end_layout
+
+\end_inset
+
+ sufficiente, ad esempio calcolare la cardinalità massima degli insiemi
+ 
+\begin_inset Formula $Q_{r}$
+\end_inset
+
+ determinati in alg.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cliques_interferenti"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb] %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output} %
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{La lista ordinata $T$ degli estremi temporali degli intervalli di
+ fermata} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{L'insieme delle lista di fermate che interferiscono $
+\backslash
+mathcal{Q}$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $r = 1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $
+\backslash
+mathcal{Q} = 
+\backslash
+emptyset$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $Q_{r} = 
+\backslash
+emptyset$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $prec = arrival$ 
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Per ogni istante temporale
+\backslash
+ldots} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$t 
+\backslash
+in T$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		Poni $i = t.fermata$ 
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{se l'istante corrente rappresenta un arrivo}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{$t.type = arrival$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+tcc{la fermata 
+\backslash
+`e nel gruppo di interferenti}%
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $Q_r = Q_r 
+\backslash
+cup i$ 
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $prec = arrival$ 
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+			} 
+\backslash
+Else {%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$prec = arrival 
+\backslash
+, 
+\backslash
+wedge 
+\backslash
+, |Q| > 1$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $
+\backslash
+mathcal{Q} = 
+\backslash
+mathcal{Q} 
+\backslash
+cup Q_r$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $Q_{r+1} = Q_r 
+\backslash
+setminus i$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $r=r+1$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $prec = departure$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+			} %
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+%	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$
+\backslash
+mathcal{Q}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Insiemi di fermate interferenti (clique massimali)}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{cliques_interferenti}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un altro modo di determinare tale valore consiste nel contare il numero
+ massimo di intervalli temporali che si sovrappongono.
+ L'algoritmo richiede la lista ordinata degli istanti temporali di arrivo
+ e partenza delle fermate e deve poter determinare se si tratta di un arrivo
+ o di una partenza ed è formalizzato in alg.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "bp_lb"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb] %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output} %
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{La lista ordinata $T$ degli estremi temporali degli intervalli di
+ fermata} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{Il numero massimo di sovrapposizioni delle fermate $s$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $s = 0$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $s
+\backslash
+_correnti = 0$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $prec = arrival$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Per ogni istante temporale} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$t 
+\backslash
+in T$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{se l'istante corrente rappresenta un arrivo}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{$t.type = arrival$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+tcc{si sovrappone un nuovo intervallo}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			Poni $s
+\backslash
+_correnti = s
+\backslash
+_correnti+1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+			Poni $prec = arrival$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+		} 
+\backslash
+Else { %
+\end_layout
+
+\begin_layout Plain Layout
+
+			%
+\backslash
+If{$prec = arrival$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$s < s
+\backslash
+_correnti$} {Poni $s = s
+\backslash
+_correnti$ 
+\backslash
+; }
+\end_layout
+
+\begin_layout Plain Layout
+
+			%}
+\end_layout
+
+\begin_layout Plain Layout
+
+			Poni $s
+\backslash
+_correnti = s
+\backslash
+_correnti-1$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+			Poni $prec = departure$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$s$
+\backslash
+;}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Massimo numero di intervalli sovrapposti}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{bp_lb}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se la lista degli estremi degli intervalli è fornita in ordine non decrescente
+ l'algoritmo ha complessità temporale lineare 
+\begin_inset Formula $O(n)$
+\end_inset
+
+, altrimenti è la complessità e quella dell'algoritmo di ordinamento, in
+ genere 
+\begin_inset Formula $O(n\log n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Modello matematico
+\end_layout
+
+\begin_layout Standard
+Il problema del restricted-coloring può essere formulato su un grafo 
+\begin_inset Formula $\mathcal{G}(\mathcal{V},\mathcal{E})=G+K_{m}$
+\end_inset
+
+ ottenuto dal grafo di interferenza delle fermate 
+\begin_inset Formula $G=(V,\, E)$
+\end_inset
+
+ e dalle compatibilità con le piattaforme 
+\begin_inset Formula $L(v),\, v\in V$
+\end_inset
+
+.
+ Per costruire il grafo 
+\begin_inset Formula $\mathcal{G}$
+\end_inset
+
+ si prendano 
+\begin_inset Formula $m$
+\end_inset
+
+ copie 
+\begin_inset Formula $G^{1},\ldots,G^{m}$
+\end_inset
+
+ di 
+\begin_inset Formula $G$
+\end_inset
+
+, una per colore, dove 
+\begin_inset Formula $G^{i}$
+\end_inset
+
+ ha insieme dei nodi 
+\begin_inset Formula $V_{i}=\{(v,c)\,|\, v\in V\}$
+\end_inset
+
+ e insieme degli archi 
+\begin_inset Formula $E_{i}=\left\{ \left((v,i),(w,i)\right)\,|\,(v,w)\in E\right\} $
+\end_inset
+
+, e si costruisca la clique sui nodi 
+\begin_inset Formula $(v,1),(v,2),\ldots,(v,c)$
+\end_inset
+
+ per ogni 
+\begin_inset Formula $v\in V$
+\end_inset
+
+.
+ Si rimuovano dal grafo i nodi 
+\begin_inset Formula $(v,c)\,|\, v\in V,\, c\notin L(v)$
+\end_inset
+
+ (e tutti gli archi di 
+\begin_inset Formula $\mathcal{E}$
+\end_inset
+
+ a esso collegati).
+\end_layout
+
+\begin_layout Standard
+L'insieme 
+\begin_inset Formula $\mathcal{V}^{k}$
+\end_inset
+
+ ha quindi il nodo 
+\begin_inset Formula $(v_{i},\, c_{k})$
+\end_inset
+
+ se la fermata 
+\begin_inset Formula $v_{i}\in V$
+\end_inset
+
+ che occupa una piattaforma nell'intervallo temporale 
+\begin_inset Formula $(a_{i},\, d_{i})$
+\end_inset
+
+ può essere assegnata alla piattaforma 
+\begin_inset Formula $c_{k}\in C$
+\end_inset
+
+.
+ Tale nodo 
+\begin_inset Formula $(v_{i},\, c_{k})$
+\end_inset
+
+ forma una cricca di ordine 
+\begin_inset Formula $|L(v_{i})|$
+\end_inset
+
+ con tutti gli altri vertici 
+\begin_inset Formula $(v_{i},\, c_{h})$
+\end_inset
+
+ dove 
+\begin_inset Formula $c_{h}\ni L(v_{i})$
+\end_inset
+
+ .
+ Fissato un colore gli archi 
+\begin_inset Formula $\mathcal{E}^{k}$
+\end_inset
+
+ modellano le incompatibilità fra fermate.
+ Ogni sottografo indotto 
+\begin_inset Formula $\mathcal{G}^{K}=(\mathcal{V}^{k},\mathcal{E}^{k})$
+\end_inset
+
+ è un grafo degli intervalli isomorfo ad un sottografo indotto di 
+\begin_inset Formula $G$
+\end_inset
+
+, che esprime il vincolo che per ogni possibile colore (piattaforma) 
+\begin_inset Formula $c_{k}$
+\end_inset
+
+ che può essere assegnato ai vertici (fermate) compatibili col colore 
+\begin_inset Formula $v_{i}|c_{k}\in L(v_{i})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Una soluzione ammissibile per il problema di restricted-coloring su 
+\begin_inset Formula $G$
+\end_inset
+
+ è un insieme stabile di 
+\begin_inset Formula $\mathcal{G}$
+\end_inset
+
+ di cardinalità 
+\begin_inset Formula $n$
+\end_inset
+
+ e, per costruzione di 
+\begin_inset Formula $\mathcal{G}$
+\end_inset
+
+ non possono esistere insiemi stabili di cardinalità maggiore in quanto
+ ogni insieme stabile avrà un solo nodo 
+\begin_inset Formula $(v_{i},c_{k})$
+\end_inset
+
+ per ogni 
+\begin_inset Formula $c_{k}\in C$
+\end_inset
+
+.
+ Il problema di restricted-coloring su 
+\begin_inset Formula $G$
+\end_inset
+
+ è equivalente al problema di determinazione di un massimo insieme stabile
+ su 
+\begin_inset Formula $\mathcal{G}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Si considerino cioè per ogni piattaforma 
+\begin_inset Formula $k$
+\end_inset
+
+ il sottografo indotto 
+\begin_inset Formula $H^{k}=(V^{k},\,\{c_{k}\},\, A^{k})$
+\end_inset
+
+ di 
+\begin_inset Formula $H$
+\end_inset
+
+, in cui 
+\begin_inset Formula $V^{k}\subseteq V$
+\end_inset
+
+ ha per elementi tutte e sole le fermate che possono essere assegnate alla
+ piattaforma 
+\begin_inset Formula $k$
+\end_inset
+
+ ed 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+
+\begin_inset Formula $E^{k}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+ l'insieme dei lati incidenti in 
+\begin_inset Formula $k$
+\end_inset
+
+, ed il sottografo indotto del grafo di interferenza delle fermate 
+\begin_inset Formula $G^{k}=(V^{k},\, E^{k})$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ad esempio si supponga di dover allocare le fermate 1, 2, 3 definite dagli
+ intervalli (1,4), (2, 5) e (3,6) ai gate 1, 2, 3 aventi tempi di servizio
+ [0, 7], [0, 7] e [1,5], senza presenza di ulteriori vincoli di allocazione.
+ I parametri sono riassunti in tab.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Istanza-gap-1"
+
+\end_inset
+
+.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Determinare una soluzione per questa istanza è banale ma la rappresentazione
+ dei grafi permette di visualizzare bene le trasformazioni tra problemi
+ e soluzioni.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Servizio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arrivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Partenza
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Compatibilità
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1, 2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1, 3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1, 2, 3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Istanza-gap-1"
+
+\end_inset
+
+Istanza di esempio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La rappresentazione delle fasce orarie di occupazione può essere effettuata
+ mediante un diagramma a barre come in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Intervalli-di-occupazione1"
+
+\end_inset
+
+ Le compatibilità fermata-piattaforma del problema in esame sono rappresentate
+ in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:relazioni_L1"
+
+\end_inset
+
+, mentre il grafo di compatibilità risulta essere quello in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Intervalli-di-occupazione1"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[0.65
+\backslash
+textwidth][c]{
+\backslash
+input{img/fasce_orarie1}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Intervalli-di-occupazione1"
+
+\end_inset
+
+Intervalli di fermata e grafo d'interferenza 
+\begin_inset Formula $G$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[0.31
+\backslash
+textwidth][c]{
+\backslash
+input{img/relazioni_L1}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:relazioni_L1"
+
+\end_inset
+
+Compatibilità 
+\begin_inset Formula $L(v_{i})$
+\end_inset
+
+
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Relazioni di compatibilità 
+\begin_inset Formula $L(v_{i})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+fermate-piattaforme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Istanza di esempio del problema
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+L'istanza del problema di partenza viene ricondotta ad un problema 
+\begin_inset Formula $\mathcal{I}=[G(V,E),\, L]$
+\end_inset
+
+ di restricted-coloring con parametri 
+\begin_inset Formula $G$
+\end_inset
+
+ ed 
+\begin_inset Formula $L$
+\end_inset
+
+, come indicato in fig
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Istanza-di-list-coloring"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il grafo 
+\begin_inset Formula $G$
+\end_inset
+
+ e le informazioni contenute in 
+\begin_inset Formula $L$
+\end_inset
+
+ permettono di generare il grafo 
+\begin_inset Formula $\mathcal{G}$
+\end_inset
+
+ che corrisponde all'istanza 
+\begin_inset Formula $\mathcal{I}'$
+\end_inset
+
+ di un problema di insiemi stabili.
+ L'istanza è rappresentata in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Istanza-mis"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Una soluzione, fra le tre possibili, del problema del massimo insieme stabile
+ è presentata in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Soluzione-Massimo-Insieme"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Per passare dalla soluzione del problema del massimo insieme stabile di
+ 
+\begin_inset Formula $\mathcal{G}$
+\end_inset
+
+ ad una soluzione del problema di list coloring è sufficiente colorare ogni
+ vertice 
+\begin_inset Formula $v\in V$
+\end_inset
+
+ di 
+\begin_inset Formula $G$
+\end_inset
+
+ con il colore del vertice 
+\begin_inset Formula $(v,c)\in\mathcal{V}$
+\end_inset
+
+ di 
+\begin_inset Formula $\mathcal{G}$
+\end_inset
+
+ selezionato nella soluzione, come presentato in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Soluzione-list-coloring"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[0.45
+\backslash
+textwidth][c]{
+\backslash
+input{img/K_3_list_3_coloring_istanza}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Istanza-di-list-coloring"
+
+\end_inset
+
+Istanza del problema di list-coloring 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+parbox[c]{0.5cm}{$
+\backslash
+longrightarrow$
+\backslash
+vspace{3cm}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[0.50
+\backslash
+textwidth][c]{
+\backslash
+input{img/K_3_list_3_coloring_mis_istanza}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Istanza-mis"
+
+\end_inset
+
+Istanza del problema del massimo insieme stabile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Formula $\downarrow$
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[0.45
+\backslash
+textwidth][c]{
+\backslash
+input{img/K_3_list_3_coloring_soluzione}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Soluzione-list-coloring"
+
+\end_inset
+
+Soluzione list-coloring
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+parbox[c]{0.5cm}{$
+\backslash
+longleftarrow$
+\backslash
+vspace{3cm}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[0.5
+\backslash
+textwidth][c]{
+\backslash
+input{img/K_3_list_3_coloring_mis_soluzione}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Soluzione-Massimo-Insieme"
+
+\end_inset
+
+Soluzione Massimo Insieme Stabile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Trasformazioni-del-problema"
+
+\end_inset
+
+Trasformazioni del problema
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'insieme di archi 
+\begin_inset Formula $\mathcal{E}^{k}$
+\end_inset
+
+ contiene le coppie non ordinate di fermate incompatibili fra loro e compatibili
+ colla piattaforma 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ Le decisioni da prendere sono gli assegnamenti delle fermate alle piattaforme.
+\end_layout
+
+\begin_layout Standard
+Per passare ad un modello di programmazione lineare intera si consideri
+ una variabile binaria
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{ik}=\begin{cases}
+1 & \text{se e solo se la sosta \ensuremath{v_{i}}}\text{ è assegnata alla piattaforma }k\\
+0 & \text{altrimenti}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+che rappresenta la scelta del vertice 
+\begin_inset Formula $(v_{i},c_{k})$
+\end_inset
+
+ nel massimo insieme stabile.
+\end_layout
+
+\begin_layout Standard
+\noindent
+I vincoli di assegnamento impongono che ogni fermata sia assegnata ad una
+ sola piattaforma (colore, nei problemi di graph coloring):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{k\in L(i)}x_{ik}=1\qquad\forall i\in V
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I vincoli di non sovrapposizione delle fermate, cioè che non si possono
+ assegnare ad una piattaforma due fermate in partenza i cui intervalli temporali
+ di occupazione si sovrappongano, possono essere espressi genericamente
+ da
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{ik}+x_{jk}\leq1\qquad\forall k\in\left(L(i)\cap L(j)\right),\,\forall(i,\, j)\in\mathcal{E}^{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'ultimo insieme di vincoli descrive l'incompatibilità delle fermate in
+ modo naturale, ma il rilassamento lineare generalmente fornisce soluzioni
+ distanti dall'ottimo (vedi
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "caprara1998properties"
+
+\end_inset
+
+).
+ Inoltre il numero di vincoli è elevato e la complessità dell'algoritmo
+ risolutivo comunemente impiegato per problemi di PL, cresce al crescere
+ del numero di vincoli.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`E
+\end_layout
+
+\end_inset
+
+ possibile formulare in modo più compatto e stringente i vincoli di incompatibil
+ità mediante l'uso del vettore 
+\begin_inset Formula $\mathcal{Q}_{k}$
+\end_inset
+
+ definito in alg.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cliques_incompatibili_per_colore"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i\in\mathcal{Q}}x_{ik}\leq1\qquad\forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb] %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output} %
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{La lista ordinata $T$ degli estremi temporali degli intervalli di
+ fermata} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{Il vettore contenente gli insiemi delle fermate incompatibili $
+\backslash
+mathcal{Q}_k$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Per ogni piattaforma $k$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$k 
+\backslash
+in C$}{ %
+\end_layout
+
+\begin_layout Plain Layout
+
+		Poni $
+\backslash
+mathcal{Q}_{k} = 
+\backslash
+emptyset$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Poni $Q = 
+\backslash
+emptyset$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Poni $prec = arrival$ 
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{Per ogni istante temporale
+\backslash
+ldots} %
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+ForEach{$t 
+\backslash
+in T$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+			Poni $i = t.fermata$ 
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+tcc{
+\backslash
+ldots di una fermata assegnabile al gate k} %
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{$(i, k) 
+\backslash
+in A$}{ %
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+tcc{se l'istante corrente rappresenta un arrivo}%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$t.type = arrival$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+tcc{la fermata 
+\backslash
+`e nel gruppo di incompatibili}%
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $Q = Q 
+\backslash
+cup i$ 
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $prec = arrival$ 
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+				} 
+\backslash
+Else {%
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+If{$prec = arrival 
+\backslash
+, 
+\backslash
+wedge 
+\backslash
+, |Q| > 1$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+						Poni $
+\backslash
+mathcal{Q}_{k} = 
+\backslash
+mathcal{Q}_{k} 
+\backslash
+cup Q$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $Q = Q 
+\backslash
+setminus i$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $prec = departure$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				} %
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$
+\backslash
+mathcal{Q}_{k}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Insiemi di fermate incompatibili relative alle piattaforme}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{cliques_incompatibili_per_colore}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In funzione obiettivo si considerano i colori (piattaforme) utilizzati,
+ modellati da una variabile binaria
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u_{k}=\begin{cases}
+1 & \text{se e solo se la piattaforma \ensuremath{k}}\text{ è assegnata ad almeno una sosta }\\
+0 & \text{altrimenti}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Per legare la variabile 
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ agli assegnamenti 
+\begin_inset Formula $x_{ik}$
+\end_inset
+
+ occorre aggiungere le disuguaglianze
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u_{k}\geq x_{ik}\qquad\forall k\in C,\forall i\in L^{-1}(k)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+I vincoli sopra esposti permettono di definire il domino delle 
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ come variabili continue, 
+\begin_inset Formula $0\leq u_{k}\leq1\,\forall k\in C$
+\end_inset
+
+, e esse continueranno ad assumere valori nell'insieme 
+\begin_inset Formula ${0,1}^{|C|}$
+\end_inset
+
+.
+ Per ridurre il numero di disequazioni è possibile considerare tutti i vincoli
+ che coinvolgono una stessa piattaforma 
+\begin_inset Formula $k$
+\end_inset
+
+ giungendo a
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+|L^{-1}(k)|u_{k}\geq\sum_{i\in L^{-1}(k)}\, x_{ik}\qquad\forall k\in C
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\noindent
+I vincoli sono meno stringenti ma si presentano in numero minore.
+ Prove sperimentali hanno mostrato che la risoluzione del modello con meno
+ vincoli migliora i tempi di calcolo.
+ 
+\end_layout
+
+\end_inset
+
+Il modello per la risoluzione del problema di minimizzazione del numero
+ di piattaforme utilizzate è il seguente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\min & z^{col}=\sum_{k\in C}c_{k}\, u_{k}\label{eq:min_gates_pesati}\\
+\sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\label{eq:vincolo_assegnamento_0}\\
+\sum_{i\in\mathcal{Q}}x_{ik}\leq1 &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\label{eq:vincolo_compatibilita_bus_0}\\
+\sum_{i\in L^{-1}(k)}\, x_{ik}\leq|L^{-1}(k)|\, u_{k} &  & \forall k\in C\label{eq:uk_maggiore_xik}\\
+\sum_{k\in C}\, u_{k}\geq s\label{eq:lower_bound_gates}\\
+x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\label{eq:x_ik_dominio}\\
+u_{k}\in\{0,\,1\} &  & \forall k\in C\label{eq:u_ik_dominio}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il modello proposto impiega la variabile
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ che vale 1 se il gate k è occupato da almeno una corsa, altrimenti vale
+ 0.
+ Il vincolo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:vincolo_assegnamento_0"
+
+\end_inset
+
+ impone che ogni fermata sia assegnata ad una piattaforma.
+ Il vincolo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:vincolo_compatibilita_bus_0"
+
+\end_inset
+
+ dichiara che le fermate su uno stesso gate devono essere compatibili fra
+ loro, ovvero devono occupare il gate in intervalli di tempo che non si
+ sovrappongono.
+ Le variabili 
+\begin_inset Formula $x_{ik}$
+\end_inset
+
+ coinvolte in un gruppo di vincoli di questo tipo appartengono ad un insieme
+ chiamato Special Order Set di tipo 1 (SOS1).
+ La caratteristica degli SOS1 è che al più una di queste variabili può assumere
+ un valore strettamente positivo mentre le altre devono essere nulle.
+ L'utilizzo di variabili di questo tipo in un algoritmo di Branch and Bound
+ permette di ridurre lo spazio di ricerca e quindi il tempo di calcolo.
+ Le disequazioni espresse dal vincolo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:uk_maggiore_xik"
+
+\end_inset
+
+ forzano la variabile
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ al valore 1 se almeno una fermata è assegnata alla piattaforma 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ Il vincolo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lower_bound_gates"
+
+\end_inset
+
+ dichiara che il numero di piattaforme usate sarà maggiore o uguale ad un
+ lower bound (che può essere calcolato in tempo polinomiale con l'alg.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "bp_lb"
+
+\end_inset
+
+).
+ Il lower bound permette di certificare l'ottimalità della soluzione e riduce
+ pertanto il numero di stati che devono essere esplorati dall'algoritmo
+ di risoluzione del modello matematico.
+ I domini delle variabili 
+\begin_inset Formula $x_{ik}$
+\end_inset
+
+ e 
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ sono dichiarati di vincoli
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:x_ik_dominio"
+
+\end_inset
+
+ e
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:u_ik_dominio"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il modello può essere reso ancora più compatto eliminando i vincoli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:uk_maggiore_xik"
+
+\end_inset
+
+ e legando la variabile 
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ alle variabili 
+\begin_inset Formula $x_{ik}$
+\end_inset
+
+ nelle disequazioni 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:vincolo_compatibilita_bus_0"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\min & z^{col}=\sum_{k\in C}c_{k}\, u_{k}\label{eq:min_gates_pesati-2}\\
+\sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\label{eq:vincolo_assegnamento_0-2}\\
+\sum_{i\in\mathcal{Q}}x_{ik}\leq u_{k} &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\label{eq:vincolo_compatibilita_bus_0-2}\\
+\sum_{k\in C}\, u_{k}\geq s\label{eq:lower_bound_gates-1}\\
+x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\label{eq:x_ik_dominio-2}\\
+u_{k}\in\{0,\,1\} &  & \forall k\in C\label{eq:u_ik_dominio-2}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per minimizzare il numero di piattaforme è sufficiente assegnare ai parametri
+ 
+\begin_inset Formula $c_{k}$
+\end_inset
+
+ il valore 1, mentre se si hanno preferenze sulla scelta delle piattaforme
+ da utilizzare occorre 
+\begin_inset Quotes eld
+\end_inset
+
+pesarle
+\begin_inset Quotes erd
+\end_inset
+
+ assegnando ai parametri 
+\begin_inset Formula $c_{k}$
+\end_inset
+
+ un valore non negativo.
+ La funzione obiettivo 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:min_gates_pesati"
+
+\end_inset
+
+ nel primo caso esprime il numero di piattaforme occupate, mentre nel secondo
+ caso fornisce un indice del costo di utilizzo delle piattaforme.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Pesare i gate permette di ridurre le simmetrie nelle soluzioni.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il modello è stato costruito a partire dal modello di PLI standard di Bin
+ Packing, eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:min_gates_pesati"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:vincolo_assegnamento_0"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:uk_maggiore_xik"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:x_ik_dominio"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:u_ik_dominio"
+
+\end_inset
+
+.
+ A tale modello è stato aggiunto un lower bound esplicito (eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lower_bound_gates"
+
+\end_inset
+
+) ed il vincolo di compatibilità (eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:vincolo_compatibilita_bus_0"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Le prestazioni di un algoritmo di Branch&Bound per risolvere un tale modello
+ si rivelano inefficienti quando il limite inferiore sul numero di piattaforme
+ è minore dell'ottimo in quanto nel caso peggiore di 
+\begin_inset Formula $m$
+\end_inset
+
+ piattaforme compatibili con tutte le 
+\begin_inset Formula $n$
+\end_inset
+
+ fermate esistono 
+\begin_inset Formula $m!$
+\end_inset
+
+ soluzioni ottime equivalenti ed il metodo del Branch&Bound non migliora
+ di molto le prestazioni dell'enumerazione completa.
+\end_layout
+
+\begin_layout Paragraph
+Caso particolare: ogni fermata è assegnabile ad ogni piattaforma e non sono
+ presenti altre restrizioni
+\end_layout
+
+\begin_layout Standard
+In tale caso il problema è risolubile con algoritmi polinomiali, tempo lineare
+ 
+\begin_inset Formula $O(|V|+|E|)$
+\end_inset
+
+, per la colorazione dei grafi degli intervalli (vedi 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "golumbic2004algorithmic"
+
+\end_inset
+
+ cap.
+ 8).
+\end_layout
+
+\begin_layout Standard
+Un semplice algoritmo greedy, come il First Fist, produce una soluzione
+ ottima.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb] %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output} %
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{Un'istanza $I = (V, C)$, dove $v_i=(a_i,
+\backslash
+ d_i)$ è fermata e $c_i$ piattaforma} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{Una soluzione (ottima) per $I$, se $
+\backslash
+omega(G(V)) 
+\backslash
+leq |C|$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	Ordina le fermate per tempo di arrivo ($a_1 
+\backslash
+leq a_2 
+\backslash
+leq 
+\backslash
+ldots 
+\backslash
+leq a_m$)
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $j = 1$ e $w_0 = L$
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Per ogni fermata} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{$i = 1$ 
+\backslash
+KwTo $m$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{k è la prima piattaforma libera che può essere occupata da $i$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		Poni $k = 
+\backslash
+min(
+\backslash
+{h 
+\backslash
+colon 1 
+\backslash
+leq h 
+\backslash
+leq j, 
+\backslash
+, a_i 
+\backslash
+geq w_h
+\backslash
+} 
+\backslash
+cup 
+\backslash
+{j + 1
+\backslash
+})$
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{$k > |C|$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+tcc{Non esistono soluzioni ammissibili}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			termina
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+		} 
+\backslash
+Else { %
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{$k = j + 1$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+tcc{Usa una nuova piattaforma}%
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $j = j+1$ e $w_j = 0$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+			} 
+\backslash
+Else { %
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $j = k$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+			} %
+\end_layout
+
+\begin_layout Plain Layout
+
+			Poni la fermata $i$ nella piattaforma $j$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+			Poni $w_j = d_i$
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {gli assegnamenti
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{First Fit per la colorazione dei vertici di un grafo degli intervalli}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{ff-coloring}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In tal caso il grafo che rappresenta la relazione di compatibilità tra fermate
+ e piattaforme è un grafo biparto completo 
+\begin_inset Formula $K_{|V|,|C|}$
+\end_inset
+
+ e tutti i grafi 
+\begin_inset Formula $G^{k}$
+\end_inset
+
+ sono uguali a 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Per mostrale le analogie con il modello sopra esposto proponiamo un modello
+ matematico usato per la colorazione di un grafo qualsiasi (vedi
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MéndezDíaz2006826"
+
+\end_inset
+
+), che è il seguente
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\min & \mbox{colours}=\sum_{k\in C}u_{k}\label{eq:min_gates_pesati-1}\\
+\sum_{k\,:\,(i,\, k)\in E}x_{ik}=1 &  & \forall i\in V\label{eq:vincolo_assegnamento_0-1}\\
+x_{ik}+x_{jk}\leq u_{k} &  & \forall k\in\left(L(i)\cap L(j)\right),\,\forall(i,\, j)\in\mathcal{E}^{k}\label{eq:vincolo_compatibilita_bus_0-1}\\
+\sum_{(i,\, k)\in A}\, x_{ik}\geq u_{k} &  & \forall k\in C\label{eq:uk_maggiore_xik-1}\\
+u_{k}\geq u_{k+1} &  & 1\leq k\leq|C|-1\label{eq:symmetry-breaking}\\
+x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\label{eq:x_ik_dominio-1}\\
+u_{k}\in\{0,\,1\} &  & \forall k\in C\label{eq:u_ik_dominio-1}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La variabile binaria 
+\begin_inset Formula $x_{ik}$
+\end_inset
+
+ indica l'assegnamento del colore 
+\begin_inset Formula $k$
+\end_inset
+
+ al vertice 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ La variabile binaria 
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ indica l'uso del colore 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ L'equazione
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:vincolo_assegnamento_0-1"
+
+\end_inset
+
+ assegna esattamente un colore ad ogni vertice e le disequazioni
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:vincolo_compatibilita_bus_0-1"
+
+\end_inset
+
+ assicurano che a vertici adiacenti siano colorati diversamente.
+ Allo scopo di evitare molte soluzioni equivalenti sono introdotte le disequazio
+ni
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:uk_maggiore_xik-1"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:symmetry-breaking"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Altri modelli possono essere formulati considerando il solo grafo di compatibili
+tà o il suo complemento ma sarebbero comunque necessarie le liste 
+\begin_inset Formula $L(i)$
+\end_inset
+
+ che ad ogni fermata (vertice del grafo) 
+\begin_inset Formula $i$
+\end_inset
+
+ associano i colori compatibili (gate) o incompatibili.
+ Il problema nel che si ha considerando il solo grafo di compatibilità,
+ che è appartiene alla classe dei grafi di comparabilità, è detto Minimum
+ Clique Partition Problem o Clique Cover Problem e consiste nel partizionare
+ il grafo nel numero minore possibile di clique.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb]%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output}%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{un'istanza $H = (B, G, E)$ di GA}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{il grafo di compatibilità delle fermate $C = (B, F)$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F = 
+\backslash
+emptyset$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{per ogni gate $k$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$k 
+\backslash
+in G$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{per ogni fermata $i$ che può essere assegnata al gate $k$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+ForEach{$i 
+\backslash
+in B : (i, k) 
+\backslash
+in E$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+tcc{per ogni fermata $j$ diversa da $i$ che può essere assegnata al gate
+ $k$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+ForEach{$j 
+\backslash
+in B : (j, k) 
+\backslash
+in E 
+\backslash
+wedge j > i$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+tcc{se gli intervalli di occupazione delle fermate $i$ e $j$ sono disgiunte}%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$[a_i, d_i] 
+\backslash
+cap [a_j, d_j] = 
+\backslash
+emptyset$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+tcc{calcola il peso dell'arco $(i,j)$ }%
+\end_layout
+
+\begin_layout Plain Layout
+
+					$c_{ij} = 
+\backslash
+max 
+\backslash
+{a_i - d_j,
+\backslash
+, a_j - d_i
+\backslash
+}$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+tcc{aggiungi l'arco $(i,j)$ all'insieme $F$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+					$F = F 
+\backslash
+cup 
+\backslash
+{(i,
+\backslash
+,j)
+\backslash
+}$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+				}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	}%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$C = (B, F)$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Costruzione del grafo di interferenza delle fermate}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{alg:bcg}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Massimizzazione della distanza minima fra arrivi e partenza sullo stesso
+ gate
+\end_layout
+
+\begin_layout Standard
+La formulazione precedente non considera una distanza temporale minima che
+ deve intercorrere fra due fermate su uno stesso gate.
+ Tale distanza minima, se piccola, potrebbe causare un effetto di propagazione
+ a catena dei ritardi delle fermate assegnate allo stesso gate e potrebbe
+ richiedere una rischedulazione che coinvolge varie corse.
+ La formulazione proposta in questo sottoparagrafo considera l'intervallo
+ temporale più piccolo che intercorre fra due fermate sullo stesso gate.
+ Il modello del paragrafo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Massimizzazione-delle-distanze"
+
+\end_inset
+
+ viene modificato introducendo una variabile, indicata con 
+\begin_inset Formula $m$
+\end_inset
+
+, che rappresenta la distanza temporale minima fra due fermate sullo stesso
+ gate.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\max\, z^{dm}=m\label{eq:max_m}\\
+\sum_{k\,:\,(i,\, k)\in E}x_{ik}=1 &  & \forall i\in B\label{eq:sosta_assegnata}\\
+\sum_{i\in\mathcal{Q}_{\overline{F}_{k}}:|\mathcal{Q}_{\overline{F}_{k}}|\geq2}x_{ik}\leq1 &  & \forall k\in G\label{eq:incomp_bp}\\
+x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall(i,\, j)\in F\,\forall k:(i,k),(j,k)\in E\label{eq:fine_linearizzazione}\\
+m+M\, y_{ij}-c_{ij}\, y_{ij}\leq M &  & \forall(i,\, j)\in F\label{eq:m_minimo}\\
+x_{ik}\in\{0,\,1\} &  & \forall(i,\, k)\in E\label{eq:dom_xik}\\
+0\leq y_{ij}\leq1 &  & \forall(i,\, j)\in F\label{eq:lim_yij}\\
+m\geq0\label{eq:m}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I vincoli
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:sosta_assegnata"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:fine_linearizzazione"
+
+\end_inset
+
+ sono gli stessi di quelli adoperati nel modello proposto nel paragrafo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Massimizzazione-delle-distanze"
+
+\end_inset
+
+ così come i domini e i limiti espressi in
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:dom_xik"
+
+\end_inset
+
+ e
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lim_yij"
+
+\end_inset
+
+.
+ Le differenze rispetto al modello per la massimizzazione della somme delle
+ distanze fra fermate sono nell'aggiunta della variabile continua e non
+ negativa 
+\begin_inset Formula $m$
+\end_inset
+
+ (eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:m"
+
+\end_inset
+
+) che è minore di ogni distanza temporale 
+\begin_inset Formula $c_{ij}$
+\end_inset
+
+ fra la la distanza di due fermate su uno stesso gate.
+ L'eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:m_minimo"
+
+\end_inset
+
+ fa uso di una costante 
+\begin_inset Formula $M$
+\end_inset
+
+ che fa si che la 
+\begin_inset Formula $m$
+\end_inset
+
+ non sia vincolata quando i bus 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+ partono da gate diversi.
+ Il valore da assegnare a tale costante deve essere maggiore del tempo massimo
+ che intercorre fra due fermate che possono occupare uno stesso gate.
+ La funzione obiettivo 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:max_m"
+
+\end_inset
+
+ assicura che 
+\begin_inset Formula $m$
+\end_inset
+
+ assuma il valore dell'intervallo minimo di tempo fra due fermate su uno
+ stesso gate.
+\end_layout
+
+\begin_layout Subsection
+Minimizzazione della probabilità di conflitto degli assegnamenti fermate-gate
+\end_layout
+
+\begin_layout Standard
+Il GAP può essere modellato anche come problema di minimizzazione della
+ probabilità che fermate assegnate allo stesso gate possano essere 
+\begin_inset Quotes eld
+\end_inset
+
+in conflitto
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Siano 
+\begin_inset Formula $D=\max_{F}c_{ij}$
+\end_inset
+
+ e 
+\begin_inset Formula $d=\min_{F}c_{ij}$
+\end_inset
+
+.
+ La probabilità di conflitto 
+\begin_inset Formula $p_{ij}$
+\end_inset
+
+ fra due fermate 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+ che possono occupare uno stesso gate si può definire come
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{ij}=\frac{D-c_{ij}}{D-d}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La quantità 
+\begin_inset Formula $p_{ij}$
+\end_inset
+
+ è un numero compreso fra zero, quando la distanza temporale fra due fermate
+ che possono essere assegnate allo stesso gate è massima, e uno quando tale
+ intervallo è minimo.
+ Una misura del conflitto del piano di assegnamento è data da
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z^{p}=\frac{1}{|F|}\sum_{(i,j)\in F}p_{ij}y_{ij}=\frac{1}{|F|\,(D-d)}\sum_{(i,j)\in F}(D-c_{ij})\, y_{ij}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il modello matematico del problema diventa quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\min\, z^{p}=\frac{1}{|F|\,(D-d)}\sum_{(i,j)\in F}(D-c_{ij})\,\sum_{k\in G}y_{ij}\label{eq:min_conflitto}\\
+\sum_{k\,:\,(i,\, k)\in E}x_{ik}=1 &  & \forall i\in B\label{eq:inizio_vincoli_4}\\
+\sum_{i\in\mathcal{Q}_{\overline{F}_{k}}:|\mathcal{Q}_{\overline{F}_{k}}|\geq2}x_{ik}\leq1 &  & \forall k\in G\\
+\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{ik}-y_{ij}\geq0 &  & \forall(i,\, j)\in F\\
+\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{jk}-y_{ij}\geq0 &  & \forall(i,\, j)\in F\\
+\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall(i,\, j)\in F\\
+x_{ik}\in\{0,\,1\} &  & \forall(i,\, k)\in E\\
+0\leq y_{ij}\leq1 &  & \forall(i,\, j)\in F\label{eq:fine_vincoli_4}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La funzione obiettivo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:min_conflitto"
+
+\end_inset
+
+ rappresenta una misura, compresa tra zero ed uno, di quanto l'assegnamento
+ è robusto rispetto alle variazioni dell'input.
+ I vincoli
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:inizio_vincoli_4"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:fine_vincoli_4"
+
+\end_inset
+
+ sono analoghi a quelli
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:vincolo_assegnamento"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:limiti_y"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Corse bis assegnate a gate adiacenti
+\end_layout
+
+\begin_layout Standard
+Per consentire agli utenti di un servizio di salire a bordo di un veicolo
+ che effettua una corsa 
+\begin_inset Quotes eld
+\end_inset
+
+bis
+\begin_inset Quotes erd
+\end_inset
+
+ senza doversi spostare da una parte all'altra dell'autostazione è desiderabile
+ che le fermate delle corse bis siano assegnate a gate adiacenti.
+ Questo requisito può essere modellato con il seguente insieme di vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+x_{ik}\geq x_{j\, k-1} &  & k=\min_{k}\{k-1,\, k\in G\},\, j\in BIS(i)\label{eq:bis_primo_gate}\\
+x_{ik}\geq x_{i\, k-1}+x_{j\, k+1} &  & \forall k\in G,\, j\in BIS(i)\label{eq:bis_gate_in_mezzo}\\
+x_{ik}\geq x_{j\, k+1} &  & k=\max_{k}\{k+1,\, k\in G\},\, j\in BIS(i)\label{eq:bis_ultimo_gate}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il modello presuppone che i gate adiacenti abbiano indici adiacenti.
+ 
+\end_layout
+
+\begin_layout Standard
+Si fa notare che altre tipologie di vincolo come l'assegnamento delle corse
+ coperte da mezzi snodati sono gestite in modo implicito nella generazione
+ degli archi 
+\begin_inset Formula $E$
+\end_inset
+
+.
+ Gli stessi archi gestiscono il concetto di gate disabilitato in un intervallo
+ temporale.
+\end_layout
+
+\begin_layout Subsection
+Esclusione degli assegnamenti
+\end_layout
+
+\begin_layout Standard
+I modelli matematici presentati possono essere estesi per considerare i
+ criteri di esclusione di assegnamenti fermata-gate ammissibili.
+ Per penalizzare l'assegnamento indesiderato di una fermata su un gate si
+ può aggiungere al modello una penalità (un vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+soft
+\begin_inset Quotes erd
+\end_inset
+
+) in funzione obiettivo, che ha i termini:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+-\sum_{(i,k)\in E}p_{ik}x_{ik} & \text{{se\,\ il\,\ problema\,è\,\ di\,\ massimo}}\\
++\sum_{(i,k)\in E}p_{ik}x_{ik} & \text{{se\,\ il\,\ problema\,è\,\ di\,\ minimo}}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se 
+\begin_inset Formula $p_{ik}$
+\end_inset
+
+ è nullo esso non influisce sull'assegnamento, mentre un valore positivo
+ grande permette di escludere l'assegnamento della fermata 
+\begin_inset Formula $i$
+\end_inset
+
+ al gate 
+\begin_inset Formula $k$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Developed algorithms
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Algoritmi-modello"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Algoritmo di pianificazione statica
+\end_layout
+
+\begin_layout Standard
+I modelli matematici proposti nel paragrafo 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "sec:Formulazione-del-problema"
+
+\end_inset
+
+ possono essere risolti mediante librerie software di ottimizzazione in
+ grado di risolvere di problemi di programmazione lineare mista.
+ Tra le librerie sono state provate IBM ILOG CPLEX
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "cplex2008usm"
+
+\end_inset
+
+, GNU Linear Programming Toolkit
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "glpk09website"
+
+\end_inset
+
+ e LP_Solve
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "lpsolve09website"
+
+\end_inset
+
+.
+ L'impiego di uno di questi risolutori è da valutare in base alle dimensioni
+ del problema, alle performance attese e al budget per l'acquisto della
+ licenza dei risolutori commerciali.
+ Il programma realizzato per la soluzione del GAP statico impiega la libreria
+ COIN-OR Open Solver Interface
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "coinor-osi-website"
+
+\end_inset
+
+ che permette di utilizzare uno dei risolutori citati senza dover modificare
+ e ricompilare il codice sorgente.
+\end_layout
+
+\begin_layout Standard
+Tutti i modelli proposti hanno sono definiti sui grafi 
+\begin_inset Formula $C=(B,\, F)$
+\end_inset
+
+ ed 
+\begin_inset Formula $H=(B,\, G,\, H)$
+\end_inset
+
+.
+ Il grafo 
+\begin_inset Formula $H=(B,\, G,\, H)$
+\end_inset
+
+ si costruisce direttamente dai dati in input.
+ E' quindi possibile costruire il grafo di compatibilità fra fermate mediante
+ l'algoritmo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:bcg"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb]%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output}%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{un'istanza $H = (B, G, E)$ di GA}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{il grafo di compatibilità delle fermate $C = (B, F)$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F = 
+\backslash
+emptyset$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{per ogni gate $k$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$k 
+\backslash
+in G$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{per ogni fermata $i$ che può essere assegnata al gate $k$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+ForEach{$i 
+\backslash
+in B : (i, k) 
+\backslash
+in E$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+tcc{per ogni fermata $j$ diversa da $i$ che può essere assegnata al gate
+ $k$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+ForEach{$j 
+\backslash
+in B : (j, k) 
+\backslash
+in E 
+\backslash
+wedge j > i$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+tcc{se gli intervalli di occupazione delle fermate $i$ e $j$ sono disgiunte}%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$[a_i, d_i] 
+\backslash
+cap [a_j, d_j] = 
+\backslash
+emptyset$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+tcc{calcola il peso dell'arco $(i,j)$ }%
+\end_layout
+
+\begin_layout Plain Layout
+
+					$c_{ij} = 
+\backslash
+max 
+\backslash
+{a_i - d_j,
+\backslash
+, a_j - d_i
+\backslash
+}$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+tcc{aggiungi l'arco $(i,j)$ all'insieme $F$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+					$F = F 
+\backslash
+cup 
+\backslash
+{(i,
+\backslash
+,j)
+\backslash
+}$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+				}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	}%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$C = (B, F)$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Costruzione del grafo di compatibilità delle fermate}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{alg:bcg}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La pianificazione dell'assegnamento per una giornata può essere ottenuta
+ risolvendo il modello matematico con i dati dell'intera giornata.
+ Purtroppo il tempo di risoluzione aumenta esponenzialmente all'aumentare
+ del numero di corse e di gate quindi può risultare più efficiente dividere
+ l'intervallo di pianificazione in più fasce orarie all'interno della stessa
+ giornata.
+\end_layout
+
+\begin_layout Standard
+L'istanza reale, contente dati relativi all'autostazione di Bologna, su
+ cui sono stati effettuati i primi test computazionali degli algoritmi per
+ la soluzione dei modelli proposti presenta in una giornata 229 fermate
+ di corse in partenza da assegnare a 24 gate.
+ Le prime fermate iniziano ad impegnare un gate alle 5.35 del mattino e l'ultima
+ partenza rilascia il gate alle 20.25 su un intervallo temporale esteso per
+ 14 ore e 45 minuti.
+ Considerando intervalli di 30' si ha il carico orario (numero di fermate
+ rispetto al tempo) illustrato in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:dom_xik"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename img/diagramma_carico.png
+	width 13cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Diagramma di carico (fermate/fascia oraria)
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:carico"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al fine di generare una buona soluzione in tempi ridotti si propone un algoritmo
+ euristico.
+ L'algoritmo sviluppato sfrutta l'idea di risolvere problemi complessi dividendo
+li in problemi più piccoli per poi ricostruire la soluzione completa.
+ I problemi più piccoli sono generati partizionando l'orizzonte di pianificazion
+e in intervalli di breve durata e quindi con poche fermate.
+ Viene inoltre scelto un sottoinsieme di gate sufficiente a soddisfare la
+ richiesta di tutte le fermate.
+ Per far ciò si risolve il problema di minimizzazione dei gate impiegati
+ nell'intero orizzonte di pianificazione utilizzando il modello descritto
+ nel paragrafo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Minimizzazione-gate"
+
+\end_inset
+
+.
+ Questo problema si risolve in tempi contenuti rispetto agli altri problemi
+ descritti nei paragrafi precedenti.
+ L'intervallo di pianificazione di una giornata è suddiviso in fasce di
+ pianificazione (approccio 
+\emph on
+multiple time slot
+\emph default
+) di 30 minuti ed i modelli proposti sono risolti per ogni fascia oraria
+ come illustrato in alg.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:time_slice"
+
+\end_inset
+
+.
+ La fig.
+ mostra graficamente come siano legati fra loro i sottoproblemi, le soluzioni
+ e le istanze dei problemi successivi al primo sottoproblema.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\backslash
+input{img/iterative_horizon}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Algoritmo iterativo: legami fra istanze e soluzioni
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Algoritmo-iterativo_legami_ist_sol"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questo modo si semplifica notevolmente il problema e nel caso considerato
+ il numero massimo di fermate presenti nei modelli di ottimizzazione si
+ è ridotto da 229 a non più di 24.
+ La fascia di punta massima, fra le 13.30 e le 14.00, dell'istanza considerata
+ ha infatti 24 fermate.
+ La riduzione delle dimensioni del problema permette una risoluzione esatta
+ dei modelli matematici anche impiegando librerie gratuite e scaricabili
+ dalla rete.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb]%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKw{To}{to}%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{un'istanza $H = (B, G, E)$ di GA e una lista di istanti $p_1, 
+\backslash
+ldots, p_P$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{gli assegnamenti fermate-gate nella giornata da pianificare}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{per ogni intervallo $[p_{p-1}, p_p]$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$p = 1$ 
+\backslash
+To $P$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{considera solo le fermate $B_p$ che occuperanno un gate nell'intervallo
+ $p$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		$B_p = 
+\backslash
+{b 
+\backslash
+in B : d_b 
+\backslash
+geq p_{p-1} 
+\backslash
+wedge a_b 
+\backslash
+leq p_p 
+\backslash
+}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{considera solo i gate $G_p$ che sono abilitati nell'intervallo $p$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		$G_p = 
+\backslash
+{g 
+\backslash
+in G : g$ è abilitato in $[p_{p-1}, p_p]$ e almeno una fermata $b 
+\backslash
+in B_p$ può essere assegnata a $g 
+\backslash
+}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{sotto-grafi indotti}
+\end_layout
+
+\begin_layout Plain Layout
+
+		genera $C_p = (B_p, F_b)$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		genera $H_p = (B_p, G_p, E_p)$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		genera il modello matematico del problema
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		imposta gli upper bound delle $
+\backslash
+{x_{ik}
+\backslash
+}$ per forzare gli assegnamenti ottenuti con la precedente iterazione
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		risolvi il modello
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		imposta gli assegnamenti ottenuti nella soluzione complessiva
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return l'insieme di assegnamenti {$
+\backslash
+{x_{ik} : x_{ik}^* = 1
+\backslash
+}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Risoluzione iterativa su più intervalli di pianificazione}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{alg:time_slice}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Algoritmo di rischedulazione
+\end_layout
+
+\begin_layout Standard
+Per poter riassegnare i gate il sistema è necessario disporre in tempo reale
+ delle informazioni relative allo stato delle fermate, ovvero degli orari
+ effettivi di arrivo e partenza delle corse, e dello stato di occupazione
+ dei gate.
+\end_layout
+
+\begin_layout Standard
+La rischedulazione è necessaria quando si verificano i seguenti casi:
+\end_layout
+
+\begin_layout Itemize
+creazione di nuove corse non contemplate nella pianificazione;
+\end_layout
+
+\begin_layout Itemize
+aggiunta di veicoli ad una corsa (corse bis);
+\end_layout
+
+\begin_layout Itemize
+ritardi o anticipi tali da determinare sovrapposizioni di fermate su uno
+ stesso gate;
+\end_layout
+
+\begin_layout Standard
+I problemi possono essere affrontati impiegando l'algoritmo di pianificazione
+ statica con i dati modificati.
+ Se il problema richiede la generazione di assegnamenti non considerati
+ (nuove corse) al modello matematico vanno aggiungente dinamicamente nuove
+ variabili e nuovi vincoli che rappresentano la situazione corrente, altrimenti
+ occorre modificare i vincoli di compatibilità.
+ Se si usa la tecnica detta 
+\begin_inset Quotes eld
+\end_inset
+
+warm-start
+\begin_inset Quotes erd
+\end_inset
+
+ (partenza a caldo) fornendo al risolutore il piano statico (ora inammissibile)
+ e si termina alla prima soluzione ammissibile si dovrebbe giungere rapidamente
+ ad una soluzione simile a quella data.
+ Con partenza 
+\begin_inset Quotes eld
+\end_inset
+
+a caldo
+\begin_inset Quotes erd
+\end_inset
+
+ s'intende la procedura che permette di intraprendere il processo di ricerca
+ di una soluzione ammissibile a partire da una soluzione fornita.
+ Il processo di ricerca non fornisce, però, la garanzia di trovare una soluzione.
+\end_layout
+
+\begin_layout Standard
+Una tecnica generale che permette di verificare l'esistenza di una soluzione
+ ammissibile e, se esiste, di determinarla, è il backtracking.
+ Tale tecnica considera tutti i possibili assegnamenti, scegliendo e disfacendo
+ gli assegnamenti che non soddisfano i vincoli.
+ Consiste nell'esplorazione di strutture ad albero in cui i nodi rappresentano
+ delle soluzioni parziali (nodi non terminali) o complete (foglie) e tiene
+ traccia di tutti i nodi e tutti i rami (scelta di un assegnamento) visitati
+ in precedenza, in modo da poter tornare indietro al più vicino nodo che
+ conteneva un cammino ancora inesplorato nel caso che la ricerca nel ramo
+ attuale non abbia successo.
+\end_layout
+
+\begin_layout Subsubsection*
+Conflitto dovuto a modifica dell'intervallo di fermata
+\end_layout
+
+\begin_layout Standard
+Quando due fermate si trovano ad essere in conflitto perché gli intervalli
+ di occupazione del gate si sovrappongono si può effettuare un riassegnamento
+ con l'obiettivo di spostare la fermata su un gate che sia il più vicino
+ possibile.
+ Per far ciò è necessario stimare il tempo di occupazione del gate da parte
+ delle nuove fermate e trovare il gate più vicino che sia libero in uno
+ dei due intervalli, quindi si può assegnare la fermata dell'intervallo
+ prescelto al gate individuato.
+\end_layout
+
+\begin_layout Standard
+Se non è possibile individuare un gate libero negli intervalli di occupazione
+ stimati occorre effettuare almeno due cambiamenti negli assegnamenti prodotti
+ nella pianificazione statica.
+ Un obiettivo perseguibile è quello di introdurre il minor numero di cambiamenti
+ rispetto al piano.
+ Per far ciò devono essere ricalcolate le compatibilità fra le fermate e
+ si deve procedere a ritroso nella ricerca con l'algoritmo di backtracking.
+ Occorre disfare iterativamente una delle scelte di assegnamento della pianifica
+zione statica e tentare di costruire una soluzione ammissibile a partire
+ dagli assegnamenti parziali.
+ Se non si può generare una soluzione ammissibile a partire dagli assegnamenti
+ dati si sale di un livello e disfacendo un assegnamento.
+\end_layout
+
+\begin_layout Subsubsection*
+Creazione di nuovi servizi
+\end_layout
+
+\begin_layout Standard
+Sono nuovi servizi le corse non contemplate nella pianificazione statica.
+ Le nuove fermate possono essere assegnate immediatamente ai gate disponibili,
+ stimando il tempo di occupazione dei gate da parte delle nuove fermate.
+ Qualora non sia possibile assegnare le nuove fermate si deve procedere
+ alla costruzione di nuove soluzioni con la tecnica del backtracking partendo
+ dalla soluzione della pianificazione statica e modificando opportunamente
+ il modello per tener conto delle nuove variabili (possibili assegnamenti)
+ e dei nuovi vincoli di compatibilità.
+ E' possibile impiegare il metodo per la pianificazione statica generando
+ il nuovo modello e partendo nella ricerca di una nuova soluzione da quella
+ del piano statico in cui le nuove corse non sono assegnate.
+\end_layout
+
+\begin_layout Subsubsection*
+Creazione di corse bis
+\end_layout
+
+\begin_layout Standard
+Le corse bis sono nuove corse che vanno trattate con l'accorgimento di essere
+ posizionate su gate adiacenti o, se ciò non è possibile, su gate prossimi
+ a quello della corsa padre.
+\end_layout
+
+\begin_layout Section
+Computational experiments
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Chapter
+Dial A Ride
+\end_layout
+
+\begin_layout Section
+Problem setting
+\end_layout
+
+\begin_layout Section
+Literature review: models and state-of-the-art algorithms
+\end_layout
+
+\begin_layout Section
+Developed algorithms
+\end_layout
+
+\begin_layout Section
+Computational experiments
+\end_layout
+
+\begin_layout Chapter
+Parking
+\end_layout
+
+\begin_layout Section
+Problem setting
+\end_layout
+
+\begin_layout Section
+Formulation and model
+\end_layout
+
+\begin_layout Section
+Developed algorithms
+\end_layout
+
+\begin_layout Section
+Computational experiments
+\end_layout
+
+\begin_layout Chapter
+Concluding remarks
+\end_layout
+
+\begin_layout Section
+Gate Assignment
+\end_layout
+
+\begin_layout Section
+Dial A Ride
+\end_layout
+
+\begin_layout Section
+Parking
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+backmatter{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "IEEEabrv,bib/gate_assignment"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
