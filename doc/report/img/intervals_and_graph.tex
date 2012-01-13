@@ -1,5 +1,12 @@
-\begin{tikzpicture}
-\clip (0.5,0.95) rectangle (14.05,4.55);
+%%%\documentclass{article}
+%%%\usepackage[x11names, rgb]{xcolor}
+%%%\usepackage{tikz}
+%%%\usetikzlibrary{decorations,arrows,shapes}
+%%%\begin{document}
+%%%
+\begin{tikzpicture}[scale=0.85]
+%\clip (0.5,0.95) rectangle (14.05,4.55);
+\clip (0.5,-0.25) rectangle (14.5,4.55);
 %%
   \definecolor{c1}{rgb}{0.85,0.30,0.30}%
   \definecolor{c2}{rgb}{0.30,0.85,0.30}%
@@ -8,67 +15,86 @@
 %%
 {\footnotesize
 
+\draw (0.75,0.25) -> (14.25,0.25);
+\foreach \x in {0,...,14}
+     		\draw (\x,0.2) -- (\x,0.3)
+			node[anchor=north] {\x};
 
 \color{c1}% 
 
-\draw (0.75cm, 1.25cm) node {\color{c1}1};
+%\draw (0.75cm, 1.25cm) node {\color{c1}1};
 
-\fill (5,1) -- (10,1) -- (10,1.5) -- (5,1.5);%
+%\fill (5,1) -- (10,1) -- (10,1.5) -- (5,1.5);%
 \color{black}
 \draw [line width=0.016cm] (5,1) -- (10,1) -- (10,1.5) -- (5,1.5) -- (5,1);%
 \draw [line width=0.016cm] (7.5cm,1.25cm) circle (0.30cm);%
-\node (4) at (7.5cm,1.25cm) [circle] {$b_4$};
+\node (4) at (7.5cm,1.25cm) [circle] {$4$};
 
-\color{c1}
-\fill (11,1) -- (13,1) -- (13,1.5) -- (11,1.5);%
+\draw (5,0.25) node [anchor=south] {$a_4$};
+\draw (10,0.25) node [anchor=south] {$d_4$};
+
+%\color{c1}
+%\fill (11,1) -- (13,1) -- (13,1.5) -- (11,1.5);%
 \color{black}
 \draw [line width=0.016cm] (11,1) -- (13,1) -- (13,1.5) -- (11,1.5) -- (11,1);%
 \draw [line width=0.016cm] (12cm,1.25cm) circle (0.30cm);%
-\node (7) at (12cm,1.25cm) [circle] {$b_7$};
+\node (7) at (12cm,1.25cm) [circle] {$7$};
 
-\color{c2}% 
+\draw (11,0.25) node [anchor=south] {$a_7$};
+\draw (13,0.25) node [anchor=south] {$d_7$};
 
-\draw (0.75cm, 2.25cm) node {\color{c2}2};
-
-\fill (2,2) -- (7,2) -- (7,2.5) -- (2,2.5);%
+%\color{c2}% 
+%\draw (0.75cm, 2.25cm) node {\color{c2}2};
+%\fill (2,2) -- (7,2) -- (7,2.5) -- (2,2.5);%
 \color{black}
 \draw [line width=0.016cm] (2,2) -- (7,2) -- (7,2.5) -- (2,2.5) -- (2,2);%
 \draw [line width=0.016cm] (4.5cm,2.25cm) circle (0.30cm);%
-\node (2) at (4.5cm,2.25cm) [circle] {$b_2$};
+\node (2) at (4.5cm,2.25cm) [circle] {$2$};
 
-\color{c2}% 
-\fill (9,2) -- (12,2) -- (12,2.5) -- (9,2.5);%
+\draw (2,0.25) node [anchor=south] {$a_2$};
+\draw (7,0.25) node [anchor=south] {$d_2$};
+
+%\color{c2}% 
+%\fill (9,2) -- (12,2) -- (12,2.5) -- (9,2.5);%
 \color{black}
 \draw [line width=0.016cm] (9,2) -- (12,2) -- (12,2.5) -- (9,2.5) -- (9,2);%
 \draw [line width=0.016cm] (10.5cm,2.25cm) circle (0.30cm);%
-\node (6) at (10.5cm,2.25cm) [circle] {$b_6$};
+\node (6) at (10.5cm,2.25cm) [circle] {$6$};
 
-\color{c3}% 
+\draw ( 9,0.25) node [anchor=south] {$a_6$};
+\draw (12,0.25) node [anchor=south] {$d_6$};
 
-\draw (0.75cm, 3.25cm) node {\color{c3}3};
-
-\fill (1,3) -- (4,3) -- (4,3.5) -- (1,3.5);%
+%\color{c3}% 
+%\draw (0.75cm, 3.25cm) node {\color{c3}3};
+%\fill (1,3) -- (4,3) -- (4,3.5) -- (1,3.5);%
 \color{black}
 \draw [line width=0.016cm] (1,3) -- (4,3) -- (4,3.5) -- (1,3.5) -- (1,3);%
 \draw [line width=0.016cm] (2.5cm,3.25cm) circle (0.30cm);%
-\node (1) at (2.5cm,3.25cm) [circle] {$b_1$};
+\node (1) at (2.5cm,3.25cm) [circle] {$1$};
 
-\color{c3}
-\fill (6,3) -- (14,3) -- (14,3.5) -- (6,3.5);%
+\draw (1,0.25) node [anchor=south] {$a_1$};
+\draw (4,0.25) node [anchor=south] {$d_1$};
+
+%\color{c3}
+%\fill (6,3) -- (14,3) -- (14,3.5) -- (6,3.5);%
 \color{black}
 \draw [line width=0.016cm] (6,3) -- (14,3) -- (14,3.5) -- (6,3.5) -- (6,3);%
 \draw [line width=0.016cm] (10cm,3.25cm) circle (0.30cm);%
-\node (5) at (10cm,3.25cm) [circle] {$b_5$};
+\node (5) at (10cm,3.25cm) [circle] {$5$};
 
-\color{c4}% 
+\draw ( 6,0.25) node [anchor=south] {$a_5$};
+\draw (14,0.25) node [anchor=south] {$d_5$};
 
-\draw (0.75cm, 4.25cm) node {\color{c4}4};
-
-\fill (3,4) -- (8,4) -- (8,4.5) -- (3,4.5);%
+%\color{c4}% 
+%\draw (0.75cm, 4.25cm) node {\color{c4}4};
+%\fill (3,4) -- (8,4) -- (8,4.5) -- (3,4.5);%
 \color{black}
 \draw [line width=0.016cm] (3,4) -- (8,4) -- (8,4.5) -- (3,4.5) -- (3,4);%
 \draw [line width=0.016cm] (5.5cm,4.25cm) circle (0.30cm);%
-\node (3) at (5.5cm,4.25cm) [circle] {$b_3$};
+\node (3) at (5.5cm,4.25cm) [circle] {$3$};
+
+\draw (3,0.25) node [anchor=south] {$a_3$};
+\draw (8,0.25) node [anchor=south] {$d_3$};
   
 \draw [] (1) .. controls (2.53474977942105cm,3.24131255514474cm) and (4.46525022057895cm,2.25868744485526cm)  .. (2);
 \draw [] (1) .. controls (2.54710815303312cm,3.2552342392259cm) and (5.45289184696688cm,4.2447657607741cm)  .. (3);
@@ -84,3 +110,5 @@
 \draw [] (6) .. controls (10.5078272707543cm,2.2465212129981cm) and (11.9921727292457cm,1.2534787870019cm)  .. (7);
 }
 \end{tikzpicture}
+%%%
+%%%\end{document}
