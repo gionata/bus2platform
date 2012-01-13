@@ -2270,7 +2270,7 @@ status open
 \end_layout
 
 \begin_layout Subsubsection
-Calcolo del lower bound
+Calcolo della limitazione inferiore
 \end_layout
 
 \begin_layout Standard
@@ -4808,20 +4808,28 @@ reference "eq:vincolo_compatibilita_bus_0"
 \begin_layout Standard
 Le prestazioni di un algoritmo di Branch&Bound per risolvere un tale modello
  si rivelano inefficienti quando il limite inferiore sul numero di piattaforme
- è minore dell'ottimo in quanto nel caso peggiore di 
+ è minore dell'ottimo.
+ Se si analizza il caso con le piattaforme compatibili con tutte le fermate
+ si nota che per ogni soluzione che impiega 
 \begin_inset Formula $m$
 \end_inset
 
- piattaforme compatibili con tutte le 
-\begin_inset Formula $n$
-\end_inset
-
- fermate esistono 
+ piattaforme esistono 
 \begin_inset Formula $m!$
 \end_inset
 
- soluzioni ottime equivalenti ed il metodo del Branch&Bound non migliora
- di molto le prestazioni dell'enumerazione completa.
+ soluzioni equivalenti ottenute permutando le piattaforme tra loro.
+ Essendo, inoltre, il numero di piattaforme disponibili generalmente maggiore
+ di quante sufficienti, si crea un'ulteriore generazione di soluzioni equivalent
+i ed il metodo del Branch&Bound non migliora di molto le prestazioni dell'enumer
+azione completa.
+\end_layout
+
+\begin_layout Standard
+Un modo per eliminare, almeno in parte, le simmetrie del modello è quello
+ di preassegnare alcune piattaforme.
+ E' infatti possibile chiedere al capostazione di collocare i servizi che
+ interferiscono nella cricca massima e risolvere il nuovo problema.
 \end_layout
 
 \begin_layout Paragraph
