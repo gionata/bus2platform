@@ -95,25 +95,32 @@ cerr << "  Insiemi B e G generati in " << (end - begin) / (double)(CLOCKS_PER_SE
 	//intervalPackingFinishFirst(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp task
+	warmStart = 0;
 	mathModelColoring(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp task
+	warmStart = 0;
 	mathModelBP(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp task
+	warmStart = 0;
 	mathModelBPsingle(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp task
+	warmStart = 0;
 	iterativeTimeHorizonMath(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp task
+	warmStart = 0;
 	iterativeTimeHorizonMathMD
 	(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp task
+	warmStart = 0;
 	mathModelMinPConflict(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp task
+	warmStart = 0;
 	mathModelMaxMinDistance(problemSets, gModel, warmStart, instance_name);
  }
 }
@@ -597,7 +604,7 @@ bool real_solution(SetModel &problemSets, GraphModel &gModel, int *&warmStart, s
 	for (int i = 0; i < problemSets.B().size(); i++) {
 		for (int j = 0; j < problemSets.B().size(); j++) {
 			if ( id_Corsa[i] == problemSets.B()[j]->dwellNumber() ) {
-				solution[j] = id_Gate[i] - 1;
+				solution[j] = id_Gate[i] - 1 - 4;
 				break;
 			}
 		}
