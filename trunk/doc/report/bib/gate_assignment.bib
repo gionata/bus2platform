@@ -29,6 +29,7 @@
   author = {Blanco, Raquel and Tuya, Javier and Adenso-D{\'i}az, Belarmino},
   title = {A bi-level DSS for assignment planning: the case of platform allocation
 	in bus stations},
+  note = {Articolo non pubblicato},
   year = {2003},
   doi = {@ARTICLE{bolat2000ppr, author = {Bolat, A.}, title = {{Procedures for providing robust gate assignments for arriving aircrafts}}, journal = {European Journal of Operational Research}, year = {2000}, volume = {120}, pages = {63--80}, number = {1}, publisher = {Elsevier} } @ARTICLE{bolat2000ppr, author = {Bolat, A.}, title = {{Procedures for providing robust gate assignments for arriving aircrafts}}, journal = {European Journal of Operational Research}, year = {2000}, volume = {120}, pages = {63--80}, number = {1}, publisher = {Elsevier} } @ARTICLE{bolat2000ppr, author = {Bolat, A.}, title = {{Procedures for providing robust gate assignments for arriving aircrafts}}, journal = {European Journal of Operational Research}, year = {2000}, volume = {120}, pages = {63--80}, number = {1}, publisher = {Elsevier} }},
   file = {:adenso-diaz2003_reassignment.pdf:PDF},
@@ -445,12 +446,14 @@
   publisher = {Springer}
 }
 
-@ARTICLE{Lim2005,
+@INPROCEEDINGS{Lim2005,
   author = {Lim, A. and Fan Wang},
   title = {Robust airport gate assignment},
+  booktitle = {Tools with Artificial Intelligence, 2005. ICTAI 05. 17th IEEE International
+	Conference on},
   year = {2005},
-  pages = {8 pp.-81},
-  month = {Nov.},
+  pages = {8 pp. -81},
+  month = {nov.},
   abstract = {In this paper, we propose a new strategy for the robust constraint
 	resource assignment problem and apply it to solve the robust airport
 	gate assignment (RAGA). RAGA attempts to accurately build an evaluation
@@ -467,36 +470,53 @@
 	Experimental results on the real-life test data from Hong Kong International
 	Airport demonstrate that the proposed RAGA model provides a valuable
 	tool for the airport to improve its robustness in uncertain operations},
-  booktitle = {Tools with Artificial Intelligence, 2005. ICTAI 05. 17th IEEE International
-	Conference on},
   doi = {10.1109/ICTAI.2005.110},
-  file = {:lim2005raga.pdf:PDF},
   issn = {1082-3409},
-  keywords = {airports, scheduling, search problems, stochastic programmingaircraft
-	schedule, aircraft-to-gate assignment, binary programming model,
-	evaluation criteria, hybrid meta-heuristic, local search, partition-based
-	search space encoding, real-time arrival time, real-time departure
-	time, robust airport gate assignment, stochastic programming model,
-	tabu search},
-  owner = {Gionata},
-  timestamp = {2010.01.21}
+  keywords = {aircraft schedule;aircraft-to-gate assignment;binary programming model;evaluation
+	criteria;hybrid meta-heuristic;local search;partition-based search
+	space encoding;real-time arrival time;real-time departure time;robust
+	airport gate assignment;stochastic programming model;tabu search;airports;scheduling;search
+	problems;stochastic programming;}
 }
 
-@ARTICLE{lpsolve09website,
+@MISC{lpsolve09website,
   author = {lp\_solve},
   title = {{a Mixed Integer Linear Programming (MILP) solver}},
-  year = {2009},
+  year = {2011},
   note = {Available online at \url{http://lpsolve.sourceforge.net/}, last accessed:
 	16/11/09},
   url = {http://lpsolve.sourceforge.net/}
 }
 
 @ARTICLE{lusby-railway,
-  author = {Lusby, R.M. and Larsen, J. and Ehrgott, M. and Ryan, D.},
-  title = {{Railway track allocation: models and methods}},
+  author = {Lusby, Richard and Larsen, Jesper and Ehrgott, Matthias and Ryan,
+	David},
+  title = {Railway track allocation: models and methods},
   journal = {OR Spectrum},
-  pages = {1--41},
-  publisher = {Springer}
+  year = {2011},
+  volume = {33},
+  pages = {843-883},
+  note = {10.1007/s00291-009-0189-0},
+  abstract = {Efficiently coordinating the movement of trains on a railway network
+	is a central part of the planning process for a railway company.
+	This paper reviews models and methods that have been proposed in
+	the literature to assist planners in finding train routes. Since
+	the problem of routing trains on a railway network entails allocating
+	the track capacity of the network (or part thereof) over time in
+	a conflict-free manner, all studies that model railway track allocation
+	in some capacity are considered relevant. We hence survey work on
+	the train timetabling, train dispatching, train platforming, and
+	train routing problems, group them by railway network type, and discuss
+	track allocation from a strategic, tactical, and operational level.},
+  affiliation = {Department of Management Engineering, Technical University of Denmark,
+	2800 Kongens Lyngby, Denmark},
+  issn = {0171-6468},
+  issue = {4},
+  keyword = {Business and Economics},
+  owner = {gim-i3},
+  publisher = {Springer Berlin / Heidelberg},
+  timestamp = {2012.01.19},
+  url = {http://dx.doi.org/10.1007/s00291-009-0189-0}
 }
 
 @ARTICLE{mangoubi1985oga,
@@ -537,14 +557,44 @@
   year = {2008}
 }
 
-@ARTICLE{srihari1991esm,
-  author = {Srihari, K. and Muthukrishnan, R.},
-  title = {{An expert system methodology for aircraft-gate assignment}},
-  journal = {Computers \& industrial engineering},
+@ARTICLE{Srihari1991esm,
+  author = {K. Srihari and R. Muthukrishnan},
+  title = {An expert system methodology for aircraft-gate assignment},
+  journal = {{Computers \&amp; Industrial Engineering}},
   year = {1991},
   volume = {21},
-  pages = {101--105},
-  publisher = {Pergamon Press}
+  pages = {101 -- 105},
+  number = {1-4},
+  abstract = {The aircraft-gate assignment problem is a significant concern in airline
+	operations. This paper addresses the use of knowledge based expert
+	systems to help solve the aircraft-gate assignment problem. The problem
+	is described and the factors that need to be considered in aircraft-gate
+	assignment are identified and delineated. The expert system's architecture
+	is presented and its working is described.},
+  doi = {10.1016/0360-8352(91)90071-D},
+  issn = {0360-8352},
+  owner = {gim-i3},
+  timestamp = {2012.01.19},
+  url = {http://www.sciencedirect.com/science/article/pii/036083529190071D}
+}
+
+@ARTICLE{Su1993123,
+  author = {Y.Y. Su and K. Srihari},
+  title = {A knowledge based aircraft-gate assignment advisor},
+  journal = {Computers \&amp; Industrial Engineering},
+  year = {1993},
+  volume = {25},
+  pages = {123 -- 126},
+  number = {1-4},
+  abstract = {An expert system based solution to the aircraft-gate assignment problem
+	is discussed. The prototype system developed works as a planning
+	tool. It assists in the strategic planning of schedules and with
+	projected aircraft-gate assignments.},
+  doi = {10.1016/0360-8352(93)90236-Q},
+  issn = {0360-8352},
+  owner = {gim-i3},
+  timestamp = {2012.01.19},
+  url = {http://www.sciencedirect.com/science/article/pii/036083529390236Q}
 }
 
 @PHDTHESIS{Tang2006,
@@ -594,6 +644,36 @@
 	conclusions and suggestions are given.},
   advisor = {Shangyao Yan},
   url = {http://thesis.lib.ncu.edu.tw/ETD-db/ETD-search/getfile?URN=91342015&filename=91342015.pdf}
+}
+
+@ARTICLE{Tang2010,
+  author = {Tang, Ching-Hui and Yan, Shangyao and Hou, Yu-Zhou},
+  title = {A gate reassignment framework for real time flight delays},
+  journal = {4OR: A Quarterly Journal of Operations Research},
+  year = {2010},
+  volume = {8},
+  pages = {299-318},
+  note = {10.1007/s10288-009-0112-1},
+  abstract = {Flight delays (such as early or late arrivals and late departures)
+	are a frequent occurrence in actual day to day airport operations
+	and it is often not possible to assign such flights to their original
+	gates. Flight delay information may also vary with time. As a consequence,
+	the airport authority needs to reassign flights to different gates
+	in real-time. The traditional manual flight reassignment method is
+	neither efficient nor effective in cases with variable flight delay
+	information, and the reassignment is frequently time constrained.
+	Consequently, in this study the goal is to develop a gate reassignment
+	framework, and a systematic computerized tool, for repeatedly handling
+	gate reassignments given varied flight delay information. The results
+	of a test case related to Taiwan international airport operations,
+	show that the proposed framework performs well.},
+  affiliation = {Department of Air Transportation, Kainan University, Taoyuan, 33857
+	Taiwan},
+  issn = {1619-4500},
+  issue = {3},
+  keyword = {Business and Economics},
+  publisher = {Springer Berlin / Heidelberg},
+  url = {http://dx.doi.org/10.1007/s10288-009-0112-1}
 }
 
 @BOOK{Administration.2003,
