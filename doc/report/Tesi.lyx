@@ -4,7 +4,14 @@
 \begin_header
 \textclass univpmphdthesis
 \begin_preamble
+%%%
 \usepackage[ruled,vlined,lined,boxed,linesnumbered]{algorithm2e}
+\renewcommand{\listalgorithmcfname}{Elenco degli algoritmi}%
+\renewcommand{\algorithmcfname}{Algoritmo}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{Procedura}
+\renewcommand{\@algocf@funcname}{Funzione}
+%%%
 \usepackage[x11names, rgb]{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{snakes,arrows,shapes}
@@ -90,7 +97,8 @@ Curriculum in Ingegneria Informatica, Gestionale e dell'Automazione
 \end_layout
 
 \begin_layout PhD Title
-Optimal Bus Station Management
+Allocazione dinamica e pianificazione delle risorse nella gestione di una
+ autostazione
 \end_layout
 
 \begin_layout PhD Author
@@ -123,14 +131,31 @@ Ancona
 
 \begin_layout PhD Time
 Gennaio 2012
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
-}
+
 \backslash
-frontmatter{
+newpage
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frontmatter
 \end_layout
 
 \end_inset
@@ -154,7 +179,23 @@ status open
 
 }
 \backslash
-mainmatter{
+listofalgorithms%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
 \end_layout
 
 \end_inset
@@ -247,11 +288,7 @@ Transport management problems
 \end_layout
 
 \begin_layout Chapter
-Gate Assignment
-\end_layout
-
-\begin_layout Section
-Definizione del problema
+Allocazione delle piattaforme in un'autostazione
 \begin_inset Note Note
 status open
 
@@ -264,7 +301,7 @@ Problem setting
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 L'autostazione
 \end_layout
 
@@ -312,35 +349,34 @@ gate
  (platform o anche bus loading area o berth).
  Le piattaforme possono essere disposte secondo vari schemi che influenzano
  sia l'accessibilità da parte dei veicoli di varie tipologie che il tempo
- minimo in cui un veicolo occupa al piattaforma.
+ minimo in cui un veicolo occupa la piattaforma.
  Questo tempo è diverso per veicoli che iniziano o terminano il servizio
  nell'autostazione e per veicoli che sono in transito.
  Le piattaforme possono essere assegnate in maniera fissa alle linee o alle
  singole corse, oppure possono essere assegnate in modo flessibile se l'autostaz
 ione ha un sistema dinamico di informazione che permetta agli utenti (passeggeri
  e conducenti) di conoscere in anticipo la piattaforma in cui fermerà l'autobus.
- La seconda modalità di utilizzo richiede un minor numero di piattaforme
- che corrsiponde, a parità di piattaforme disponibili, ad un utilizzo più
- efficiente del piazzale (un numero maggiore di servizi di trasporto), ma
- non fornisce al passeggero e al conducente la comodità di conoscere la
- piattaforma con largo anticipo in quanto la piattaforma di arrivo o partenza
- del veicolo è soggetta a variazioni dinamiche rispetto al servizio programmato
- dovute alle caratteristiche stocastiche dei tempi di arrivo e partenza
- degli autobus, e a eventi anomali come la cancellazione di corse, la creazione
- di nuove corse o situazioni di avaria di veicoli o altri eventi imprevedibili.
+ Siccome le piattaforme sono risorse scarse e costose è preferibile la seconda
+ modalità di utilizzo che richiede un minor numero di piattaforme in quanto
+ permette un utilizzo più efficiente del piazzale (un numero maggiore di
+ servizi di trasporto, a parità di piattaforme disponibili) ma non fornisce
+ al passeggero e al conducente la comodità di conoscere la piattaforma con
+ largo anticipo e richiede di decidere gli assegnamenti fermata-piattaforma.
+ La piattaforma di arrivo o partenza del veicolo è soggetta a variazioni
+ dinamiche rispetto al servizio programmato dovute alle caratteristiche
+ stocastiche dei tempi di arrivo e partenza degli autobus, e a eventi anomali
+ come la cancellazione di corse, la creazione di nuove corse o situazioni
+ di avaria di veicoli o altri eventi imprevedibili.
 \end_layout
 
 \begin_layout Standard
 Il problema affrontato in questa tesi è quello di determinare assegnamenti
  delle fermate delle corse alle piattaforme, che possono essere definite
  in anticipo in base alle tabelle orarie delle corse in un certo periodo
- di tempo e possono essere riassegnate in modo dinamico avvalendosi dei
- dati in tempo reale sulla posizione dei veicoli.
- L'assegnamento variabile richiede un numero minore di piattaforme e il
- sistema di informazione ai passeggeri che permetta agli utenti di conoscere
- in anticipo la piattaforma in cui fermerà l'autobus.
- Gli assegnamenti di un gate ad un veicolo possono essere soggetti a vari
- vincoli di compatibilità.
+ di tempo e possono essere riassegnate in modo dinamico avvalendosi, possibilmen
+te, dei dati in tempo reale sulla posizione dei veicoli.
+ Gli assegnamenti di un veicolo ad una piattaforma possono essere soggetti
+ a vari vincoli di compatibilità.
  La gestione manuale dei processi della stazione risulta sempre più complessa
  al crescere del numero di servizi di trasporto e di piattaforme da gestire
  fino a diventare impraticabile per un operatore umano e una politica di
@@ -348,7 +384,7 @@ Il problema affrontato in questa tesi è quello di determinare assegnamenti
  agli autisti, compromettendo il buon funzionamento dell'autostazione.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Le modalità di erogazione dei servizi di trasporto
 \end_layout
 
@@ -451,7 +487,7 @@ ma, e un buffer temporale per permettere ai mezzi di operare in sicurezza.
  Più tale buffer è ampio e più il sistema di gestione delle piattaforme
  sarà in grado di far fronte agli scostamenti dei tempi di fermata programmati
  che si verificano durante l'esercizio.
- L'ampiezza dei buffer temporali in alcune soluzioni è sceto in funzione
+ L'ampiezza dei buffer temporali, in alcune soluzioni, è scelto in funzione
  della fascia oraria, in quanto il numero di passeggeri da servire e di
  autobus in fermata nell'autostazione varia rispetto al tempo e presenta
  in genere due picchi in concomitanza delle ore di punta (peak hours), la
@@ -469,9 +505,9 @@ ione.
 I problemi di assegnamento delle fermate dei bus alle piattaforme che si
  presentano l'uno durante la fase di pianificazione e l'altro durante l'esercizi
 o.
- Il primo problema consiste nel decidere a quale piattaforma (anche detta
- gate) deve essere assegnato un autobus in arrivo, partenza o fermata temporanea
- noto l’orario delle corse.
+ Il primo problema consiste nel decidere a quale piattaforma deve essere
+ assegnato un autobus in arrivo, partenza o fermata temporanea noto l’orario
+ delle corse.
  L'altro problema consiste nel variare alcuni assegnamenti durante l’esercizio
  per far fronte a eventi imprevisti che rendono il piano inattuabile.
  
@@ -510,8 +546,8 @@ off-line
 \begin_inset Quotes erd
 \end_inset
 
-, in tempi che possono protrarsi anche per ore.
- Le istanze del problema consistono nella lista dei mezzi che dovranno fermatare
+, in tempi di elaborazione che possono protrarsi anche per ore.
+ Le istanze del problema consistono nella lista dei mezzi che dovranno fermare
  nell'autostazione comprensiva dell'intervallo di occupazione del gate,
  nella lista dei gate ed eventualmente nelle compatibilità ed anche nelle
  preferenze espresse delle compagnie di trasporto rispetto ai gate.
@@ -547,10 +583,10 @@ Il problema può avere molti criteri di preferenza, sia relativamente alla
  L'incertezza sui dati in ingresso è causata da una serie di possibili eventi,
  come ad esempio l'arrivo in ritardo di un bus che causa uno spostamento
  del tempo di fermata in avanti.
- Se i bus che devono arrivare sullo stesso gate non sono sufficientemente
- lontani nel tempo ed un bus arriva in ritardo si può verificare una catena
- di ritardi di tutte le fermate dei bus che erano stati assegnati a quel
- gate.
+ Se i bus che devono arrivare sullo stessa stessa piattaforma non sono sufficien
+temente lontani nel tempo ed un bus arriva in ritardo si può verificare
+ una catena di ritardi di tutte le fermate dei bus che erano stati assegnati
+ a quella piattaforma.
  Questo fatto è del tutto indesiderabile perché comporta disagi ai passeggeri
  ed agli autisti, che devono spostarsi su altri gate e possono subire ritardi,
  ed al capostazione che deve effettuare una rischedulazione degli assegnamenti.
@@ -567,8 +603,17 @@ io ed i piani di assegnamento possono diventare inammissibili anche per
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Il problema consiste nel determinare la piattaforma di una autostazione
- in cui deve fermatare un veicolo, nel rispetto di vincoli di varia natura.
+ in cui deve fermare un veicolo, nel rispetto di vincoli di varia natura.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -643,7 +688,224 @@ Fra i possibili piani generalmente è da preferire quello che sia suscettibile
 \end_layout
 
 \begin_layout Section
+Il problema considerato
+\end_layout
+
+\begin_layout Standard
+Certe compagnie di trasporto preferiscono che i lovo veicoli siano assegnati
+ a certe aree del piazzale, se possibile, in modo che sia conveniente per
+ loro gestire le operazioni e allocare il personale.
+ Questo, ad esempio, perché potrebbero disporre di una biglietteria dislocata
+ vicino alle piattaforme.
+ Operatori che in gestiscono servizi che meglio si prestano ai trasporti
+ operati da certe compagnie potrebbero preferire che le corse delle compagnie
+ stesse siano allocate in piattaforme vicine al luogo in cui eroga il servizio.
+ Un gestore di un bar, ad esempio, potrebbe desiderare che le corse internaziona
+li, per cui sono previsti tempi di attesa maggiori e frequenti ritardi,
+ fermino in piattaforme prossime al bar.
+\end_layout
+
+\begin_layout Standard
+Durante le ore di picco, quando un gran numero di veicoli arriva o parte
+ più o meno contemporaneamente, possono verificarsi congestioni del traffico
+ nel piazzale se le piattaforme assegnate sono vicine tra loro e un veicolo
+ potrebbe restare in attesa di un veicolo che deve liberare la propria piattafor
+ma.
+\end_layout
+
+\begin_layout Standard
+Un buon assegnamento, quindi, non solo deve essere ammissibile ma deve inoltre
+ essere predisposto in modo da risultare comodo per i passeggeri, deve soddisfar
+e i richieste delle compagnie e degli operatori del terminal, deve ridurre
+ la congestione per facilitare le operazioni e deve essere robusto rispetto
+ a piccole variazioni delle corse.
+\end_layout
+
+\begin_layout Standard
+Il problema di assegnare i veicoli schedulati in arrivo e partenza alle
+ piattaforme disponibili è uno dei problemi più importanti nella gestione
+ delle operazioni di un terminal.
+ Nella pratica, i gestori di un'autostazione devono affrontare due tipi
+ di assegnamento: uno in fase di pianificazione degli assegnamenti ed un
+ di riassegnamento in tempo reale.
+\end_layout
+
+\begin_layout Standard
+Dato l'orario delle corse di ciascuna delle compagnie di trasporto operanti
+ nell'autostazione, il gestore deve definire quali veicoli assegnare a quali
+ piattaforme in un dato giorno, che in genere è un periodo compreso tra
+ le 12 e le 24 ore, e la pianificazione viene realizzata ogni qualvolta
+ cambiano gli orari delle linee operanti nell'autostazione.
+ Questa è la fase di pianificazione degli assegnamenti e avviene su base
+ stagionale per le corse urbane di linea.
+ Ci possono essere però molti veicoli di diverse compagnie operanti presso
+ l'autostazione che effettuano trasporti con cambi di programma frequenti,
+ così la necessità di ripianificare l'uso di alcuni servizi può essere più
+ frequente, e si possono verificare casi straordinari che determinano l'arrivo
+ e la partenza di un alto numero di veicoli, percui la pianificazione può
+ essere effettuata con cadenze più ravvicinate.
+ Il fatto che la preparazione si effettui poche volte fa sì che il tempo
+ per l'esecuzione del programma di assegnamento delle piattaforme possa
+ protarsi anche per ore.
+\end_layout
+
+\begin_layout Standard
+Un altro tipo assegmanento delle piattaforme è quello da effettuarsi in
+ tempo reale per far fronte alle variazioni degli orari di arrivo e partenza
+ dei veicoli che si verificano durante l'esercizo, cioè di modificare l'assegmen
+to a causa dei cambiamenti rispetto agli orari schedulati.
+ Ricostruire gli assegnamenti in tempo reale è un compito impegnativo per
+ il gestore dell'autostazione, perché l'assegnamento originale è già stato
+ prodotto e i cambiamenti ddgli orari di arrivo o di partenza posso rendere
+ il piano originale irrealizzabbile o, se fattibile, può influenzare molti
+ altri veicoli che dovranno usare la stessa piattaforma, soprattutto quando
+ gli orari dei mezzo sono vicini tra loro.
+ Gli obiettivi del riassegnamento sono quelle di produrre una schedula degli
+ assegnamenti che sia quanto più prossima a quella pianificata.
+ 
+\end_layout
+
+\begin_layout Standard
+La letterarura scientifica ha proposto, ad oggi, pochi lavori sul real-time
+ recovery degli assegnamenti, ad eccezione di 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blanco2003,Tang2010"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Le difficoltà di predisposizione di buon assegnamento
+\end_layout
+
+\begin_layout Standard
+Sono state propost molte metodologie per risolvere problemi analoghi a quello
+ presentato, come modelli di Programmazione Lineare Intera Mista (PLIM)
+ e Sistemi Esperti basati sulla conoscenza.
+ Ognuna di queste metodologie ha i propri vantaggi e le probrie difficoltà
+ nella realizzazione pratica.
+ Risolvere questi problemi in modo efficace ed efficiente è un problema
+ complesso e i problemi di ottimizzazione formulati appartengono alla classe
+ dei problemi 
+\begin_inset Formula $\mathcal{NP}$
+\end_inset
+
+-hard.
+\end_layout
+
+\begin_layout Standard
+Negli ultimi anni si sono realizzati enormi progressi nella soluzione esatta
+ di modelli di Programmazione Intera di problemi pratici con differenti
+ metodologie, spesso integrando tecniche impiegate in settori di ricerca
+ distinti.
+ Tecniche, anche molto recenti, per la risoluzione di problemi di PLIM sono
+ rese disponibili da sofisticati pacchetti software per la risoluzione di
+ problemi di programmazione matematica e alcuni di questi sono stati resi
+ disponibili gratuitamente.
+ Lo sviluppo di questi pacchetti permette di risolvere direttamente problemi
+ pratici impiegando direttamente il modello di programmazione matematica.
+ Per alcuni problemi come quello presentato, però, i modelli matematici
+ non si riescono a risolvere all'ottimo in tempi di calcolo ragionevolie
+ per questo è necessaria ulteriore ricerca sul tema.
+\end_layout
+
+\begin_layout Standard
+In realtà, ogni autostazione ha criteri propri sugli assegnamenti veicolo-piatta
+forma che sono determinati dagli interessi degli stackholders dell'autostazione
+ e predisporre un'applicazione che possa contemplare le esigenze specifiche
+ di tutti è un'impresa ardua.
+ Alcune autostazioni, ad esempio, richiedono che certe linee siano assegnate
+ a un'insieme specifico di piattaforme, se possibile, mentre altre non considera
+no tali restrizioni.
+ A causa delle varie considerazioni e del layout dell'autostazione i vincoli
+ sugli assegnamenti sono numerosi ed eterogenei e devono essere modellati
+ specificamente per ogni autostazione.
+ Come conseguenza il numero di parametri e di vincoli di un modello di PLIM
+ di un'istanza di un problema reale è solitamente troppo grande per essere
+ risolto con tecniche esatte basate direttamente sulla risoluzione del modello
+ matematico.
+ In aggiunta, un piano di assegnamento deve essere prodotto in un ragionevole
+ tempo di elaborazione e ciò è ancor più vero quando l'assegnamento deve
+ essere modificato in tempo reale per far fronte ad eventi imprevisti che
+ si realizzano nel corso delle operazioni del terminal.
+ Se il tempo di risoluzione dei modelli di PLIM risulta troppo irraggionevole,
+ allora la risoluzione esatta del modello non risulta applicabile in pratica
+\end_layout
+
+\begin_layout Standard
+Molti ricercatori hanno fatto ricorso alle tecniche di programmazione matematica
+, sviluppando modelli e metodologie per la risoluzione e/o hanno affidato
+ a tecniche metaeuristiche la risoluzione di istanze reali per migliorare
+ ridurre i tempi di elaborazione.
+ Un altro fattore che rende difficile l'uso di tecniche di PLIM è che la
+ modellizzazione del problema con gli strumenti della programmazione matematica
+ esigenze specifiche conoscenze di metodologie di modellazione di ricerca
+ operativa e di risoluzione dei problemi di ottimizzazione combinatoria.
+ Di conseguenza i Sistemi Esperti o i sistemi basati sulla conoscenza, che
+ sono metodologie tipiche dell'intelligenza artificiale, sono stati proposti
+ ed impiegati per risolvere il problema di determinare gli assegnamenti
+ giornalieri volo-gate negli aeroporti, ad esempio 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Adenso-Diaz2005,Blanco2003,Brazile1988,cheng1997kba,gosling1990des,hamzawi1986map,Su1993123"
+
+\end_inset
+
+.
+ I Sistemi Esperti sono stati applicati con successo a molti problemi che
+ presentano un numero combinatorio di soluzioni ammissibili per ottenere
+ una più rapida generazione delle soluzioni.
+ Essi si rivelano particolarmente adatti quando l'uso di euristiche per
+ generare una soluzione soddisfacente risulta appropriato.
+ Molti ricercatori, invece di usare metodologie di ottimizzazione, hanno
+ proposto tecniche in grado di generare velocemente soluzioni ammissibili
+ e appetibili per il committente con l'uso di euristiche.
+ 
+\end_layout
+
+\begin_layout Standard
+I Sistemi Esperti, tuttavia, sono utilizzati per la ricerca di soluzioni
+ soddisfacenti, ma non necessariamente ottimali, come affermato da 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "srihari1991esm"
+
+\end_inset
+
+.
+ Se il problema è visto come problema di ottimizzazione e non come problema
+ di ammissibilità, non c'è alcuna garanzia che i sistemi esperti possono
+ evitare di essere intrappolati ottimo locale.
+ È difficile dire quanto la soluzione soddisfacente è da ottimalità.
+ La parte più difficile del problema è nell'individuare le regole per guidare
+ il processo di assegnazione, a causa del gran numero di fattori da prendere
+ in considerazione come sottolineato da 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Su1993123"
+
+\end_inset
+
+.
+ Questi fattori possono rendere la ricerca euristica difficile e questo
+ può a sua volta influenzare la qualità della soluzione.
+\end_layout
+
+\begin_layout Chapter
+Rassegna bibliografica: modelli e stato dell'arte degli algoritmi 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Literature review: models and state-of-the-art algorithms
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -694,8 +956,8 @@ corse bis
  lo stesso servizio, su piattaforme adiacenti.
  Posiziona le corse appartenenti a linee che includono almeno un veicolo
  snodato sulle piattaforme che accettano mezzi snodati.
- Se una corsa con snodati ha delle corse bis allora queste sono considerate
- come corse con snodati.
+ Se una corsa con snodati ha delle corse bis allora entrambe queste sono
+ considerate come corse con snodati.
  L'algoritmo permette inoltre di associare una linea esclusivamente ad un
  sottoinsieme di piattaforme, cioè tutte le corse della linea devono partire
  da una delle piattaforme predefinite.
@@ -723,11 +985,12 @@ ldots{}
 ) e quindi per tempo di partenza.
  L'algoritmo poi assegna nell'ordine le corse, senza possibilità di backtracking
 , alla prima piattaforma disponibile in quell'intervallo di tempo.
- Esso assomiglia ad un First Fit che ha l'obiettivo di minimizzare il numero
- di piattaforme utilizzate.
- L'algoritmo non garantisce l'ottimalità della soluzione trovata può fallire
- nel determinare una soluzione ammissibie su alcune istanze che invece ne
- hanno.
+ Esso assomiglia ad un algoritmo di come quello First Fit per problemi di
+ Bin Packing che ha l'obiettivo di minimizzare il numero di piattaforme
+ utilizzate.
+ L'algoritmo euristico non garantisce l'ottimalità della soluzione trovata
+ neanche di essere in grado di determinare una soluzione ammissibie su alcune
+ istanze che invece ne hanno.
 \end_layout
 
 \begin_layout Paragraph
@@ -770,10 +1033,21 @@ on-line
  per far fronte al caso dinamico.
  La pianificazione statica viene generata da un sistema Rule-Based che implement
 a due tipologie di regole.
- Le prime, dette direct rules, rappresentano i vincoli che devono essere
- necessariamente soddisfatti dalla soluzione (hard constraints) mentre le
- seconde, dette approximate rules, rappresentano le preferenze che il capostazio
-ne attribuisce all'assegnamento di una piattaforma ad un servizio.
+ Le prime, dette 
+\emph on
+direct rules
+\emph default
+, rappresentano i vincoli che devono essere necessariamente soddisfatti
+ dalla soluzione (
+\emph on
+hard constraints
+\emph default
+) mentre le seconde, dette 
+\emph on
+approximate rules
+\emph default
+, rappresentano le preferenze che il capostazione attribuisce all'assegnamento
+ di un servizio ad una piattaforma.
  Le preferenze possono indicare ad esempio quanto è utile assegnare un bus
  ad una piattaforma in base alla provenienza o alla destinazione, alla compagnia
  che effettua il servizio, alla dimensione dell'autobus o al tempo di fermata.
@@ -856,7 +1130,7 @@ key "tbrtcrp100"
 \end_layout
 
 \begin_layout Paragraph
-Problematiche analoghe
+Problematiche analoghe affrontate in letteratura
 \end_layout
 
 \begin_layout Standard
@@ -959,7 +1233,7 @@ Airport Gate Assignment
 status open
 
 \begin_layout Plain Layout
-GAP
+AGAP
 \end_layout
 
 \end_inset
@@ -971,9 +1245,26 @@ GAP
 Il problema che emerge nel caso aeroportuale consiste nell'assegnare i velivoli
  ai gate dell'aeroporto in modo da utilizzare in modo efficiente le porte
  d'imbarco/sbarco.
- Il problema è noto come Aircraft Gate Assignment Problem (GAP) e una rassegna
- recente sullo stato dell'arte e sui recenti sviluppi del GAP nell'ambito
- aeroportuale è presentata in 
+ Il problema è noto come 
+\emph on
+Aircraft Gate Assignment Problem
+\emph default
+ o 
+\emph on
+Airport Gate Assignment Problem
+\emph default
+ (AGAP) e una rassegna recente sullo stato dell'arte e sui recenti sviluppi
+ del AGAP 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+nell'ambito aeroportuale
+\end_layout
+
+\end_inset
+
+ è presentata in 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Dorndorf2007fgs"
@@ -981,24 +1272,142 @@ key "Dorndorf2007fgs"
 \end_inset
 
 .
- Gli autori descrivono alcuni modelli matematici proposti per il problema
- di assegnare voli a gate basati su modelli di scheduling e dichiarano che
- probabilmente uno dei problemi più rilevanti ma scarsamente investigato
- dalla letteratura scientifica è quello della costruzione di assegnamenti
- detti robusti o stabili, che possono essere non ottimi rispetto agli obiettivi
- stabiliti ma che si avvicinano ad essi in termini di prestazioni assolute
- e che permettono di tenere in conto possibili perturbazioni dei dati d'ingresso.
- Le formulazioni proposte considerano come obiettivo la minimizzazione del
+ 
+\end_layout
+
+\begin_layout Standard
+Gli autori identificano ivincoli a cui deve sottostare una schedula ben
+ costruita:
+\end_layout
+
+\begin_layout Itemize
+un gate può servire un solo aereo alla volta;
+\end_layout
+
+\begin_layout Itemize
+devono essere rispettate delle richieste di servizio e devono essere considerate
+ delle restrizioni sull'utilizzo di gate adiacenti a quelli occupati;
+\end_layout
+
+\begin_layout Itemize
+un tempo minimo di occupazione del gate è da tenere in considerazione e
+ deve essere garantito un altro tempo minimo prima che il prossimo aereo
+ possa occupare il gate.
+\end_layout
+
+\begin_layout Standard
+Oltre a questi vincoli possono emergerne degli altri, ad esempio aerei l'assegna
+mento di un aereo grande ad un gate particolare può implicare che i gate
+ vicini posssano servire solo aerei piccoli, o addirittura essere completamente
+ disabilitati.
+\end_layout
+
+\begin_layout Standard
+Gli obiettivi tipici considerati in letteratura sono:
+\end_layout
+
+\begin_layout Itemize
+minimizzare il numero di aerei non assegnati a gate (quando i gate sono
+ una risorsa scarsa);
+\end_layout
+
+\begin_layout Itemize
+massimizzare le preferenze degli assegnamenti aereo-gate;
+\end_layout
+
+\begin_layout Itemize
+minimizzare la distanza percorsa a piedi dai passeggeri per spostarsi tra
+ terminal al gate (passeggeri in arrivo o partenza) e tra gate e gate (passegger
+i in transito);
+\end_layout
+
+\begin_layout Itemize
+minimizzare le deviazioni tra la schedula attuale rispetto a quella di riferimen
+to per ridurre i disagi ai passeggeri;
+\end_layout
+
+\begin_layout Itemize
+minimizzare il numero di trasporti degli aerei a terra per effettuare le
+ operazioni di manutenzione.
+\end_layout
+
+\begin_layout Standard
+L'esistenza di obiettivi così eterogenei e in constrasto fra loro rende
+ difficile la scelta di un buon compromesso fra i differenti obiettivi e
+ la soluzoine ottima determinata potrebbe potrebbe rivelarsi poco attraente.
+ I vincoli specifici rendono inoltre complessa la risoluzione del problema.
+ Gli autori evidenziano che probabilmente uno dei problemi più rilevanti
+ dal punto di vista pratico ma scarsamente investigato dalla letteratura
+ scientifica è quello della costruzione di assegnamenti detti robusti o
+ stabili, che possono essere non ottimi rispetto agli obiettivi stabiliti
+ ma che si avvicinano ad essi in termini di prestazioni assolute e che permetton
+o di tenere in conto possibili perturbazioni dei dati d'ingresso.
+\end_layout
+
+\begin_layout Standard
+I modelli proposti in letteratura possono essere classificati a seconda
+ della tipologia di modello, della funzione obiettivo e del modo di considerare
+ la variabile temporale.
+\end_layout
+
+\begin_layout Standard
+Il tempo può essere gestito con delle finestre temporali, singole o multiple.
+ Nel caso singolo si considera un gruppo di aerei che arriva in quel periodo
+ di tempo e si assegna ogni aereo ad un solo gate.
+ Il modello deve essere quindi risolto, indipendentemente l'uno dall'altro,
+ per ogni finestra temporale.
+ Nel caso multiplo l'intero intervallo temporale di pianificazione si divide
+ in più finestre di dimensione fissa e si risolve un modello multiperiodo.
+ La determinazione dell'ampiezza dell'intervallo deve essere scelta accuratament
+e in quanto influenza le dimensioni dei problemi da risolvere e il livello
+ di utilizzo dei gate.
+\end_layout
+
+\begin_layout Standard
+Gli obiettivi possono essere divisi in due grandi macrocategorie, quella
+ degli obiettivi orientati al comfort dei passeggeri e quella orientata
+ all'efficienza del terminal.
+\end_layout
+
+\begin_layout Standard
+Molti dei modelli proposti per l'AGAP sono modelli di assegnamento quadratico,
+ problema notoriamente 
+\begin_inset Formula $\mathcal{NP}$
+\end_inset
+
+-hard, dove il costo di assegnare 
+\begin_inset Formula $n$
+\end_inset
+
+ aerei ad 
+\begin_inset Formula $n$
+\end_inset
+
+ gate dipende dagli altri assegnamenti e dal flusso di passeggeri fra i
+ gate.
+ Il problema, nel caso di singole finestre temporali, può essere decritto
+ da un modello di programmazione lineare intera.
+ Nel caso di finestre temporali multiple si deve aggiungere un indice alle
+ variabili che indica in quale intervallo temporale avviene l'assegnamento.
+ 
+\end_layout
+
+\begin_layout Standard
+Gli autori propongono un nuovo modello basato sul 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Tradurre paragrafo 4.
+\end_layout
+
+\begin_layout Plain Layout
+Le formulazioni proposte considerano come obiettivo la minimizzazione del
  percorso effettuato dai passeggeri all'interno del terminal, modellato
- come un 
-\begin_inset Quotes eld
-\end_inset
-
-Quadratic Assignment Problem
-\begin_inset Quotes erd
-\end_inset
-
- (QAP).
+ come un “Quadratic Assignment Problem” (QAP).
  Il QAP a grandi dimensioni è un problema di difficile soluzione e spesso
  viene affrontato mediante tecniche euristiche.
  Altri modelli matematici fanno ricorso alla programmazione lineare intera
@@ -1007,6 +1416,14 @@ Quadratic Assignment Problem
  dimensioni, utilizzando particolari tecniche di Branch&Bound e, nel caso
  di problemi reali, attraverso l'impiego di tecniche meta-euristiche, quale
  la tabu search, la simulated annealing e gli algoritmi genetici.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -1025,7 +1442,7 @@ Per la soluzione del GAP in letteratura sono state proposte anche tecniche
 Il problema nel caso degli aeroporti è stato affrontato a partire dalla
  metà degli anni 1980 e l'obiettivo considerato principale è minimizzare
  la distanza totale percorsa a piedi dai passeggeri nel terminal.
- In 
+ In In 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "mangoubi1985oga"
@@ -1033,8 +1450,11 @@ key "mangoubi1985oga"
 \end_inset
 
  si propone una tecnica di soluzione esatta che fa uso di un modello di
- programmazione lineare intera, di cui risolvono il rilassamento lineare;
- in 
+ programmazione lineare intera, di cui risolvono il rilassamento lineare,
+ e di un'euristica greedy.
+ Le istanze provengono dalle operazioni del Toronto International Airport
+ e includono anche i.
+ In 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "hamzawi1986map"
@@ -1294,7 +1714,7 @@ Railway Rescheduling Problem (RRP)
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Chapter
 Nuove formulazioni e modelli
 \begin_inset Note Note
 status open
@@ -1315,7 +1735,389 @@ Il problema di assegnare fermate a piattaforme può essere formulato in vari
  In particolare verranno proposte delle formulazioni su grafi.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Standard
+Si ricorda che un grafo 
+\begin_inset Formula $G$
+\end_inset
+
+ è una coppia ordinata di insiemi 
+\begin_inset Formula $(V,\, E)$
+\end_inset
+
+ dove 
+\begin_inset Formula $V$
+\end_inset
+
+ è un insieme detto insieme dei vertici ed 
+\begin_inset Formula $E$
+\end_inset
+
+ è un insieme detto insieme degli archi o dei lati, tali che gli elementi
+ di 
+\begin_inset Formula $E$
+\end_inset
+
+ siano coppie di elementi di 
+\begin_inset Formula $V$
+\end_inset
+
+, ovvero 
+\begin_inset Formula $|E|\leq|V|^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Un arco è una coppia 
+\begin_inset Formula $(v,w)$
+\end_inset
+
+ di vertici in 
+\begin_inset Formula $V$
+\end_inset
+
+, cioè 
+\begin_inset Formula $v\in V$
+\end_inset
+
+ e 
+\begin_inset Formula $w\in V$
+\end_inset
+
+.
+ I vertici 
+\begin_inset Formula $u$
+\end_inset
+
+ e 
+\begin_inset Formula $v$
+\end_inset
+
+ si dicono adiacenti se sono connessi da un arco.
+\end_layout
+
+\begin_layout Standard
+Il grafo si dice orientato se 
+\begin_inset Formula $E$
+\end_inset
+
+ è una relazione binaria tra vertici mentre un grafo è non orientato se
+ l'insieme 
+\begin_inset Formula $E$
+\end_inset
+
+ è costituito da coppie non ordinate di vertici.
+\end_layout
+
+\begin_layout Standard
+In un grafo orientato, un arco 
+\begin_inset Formula $(w,v)$
+\end_inset
+
+ si dice incidente da 
+\begin_inset Formula $w$
+\end_inset
+
+ in 
+\begin_inset Formula $v$
+\end_inset
+
+.
+ Un vertice 
+\begin_inset Formula $w$
+\end_inset
+
+ si dice adiacente a 
+\begin_inset Formula $v$
+\end_inset
+
+ se e solo se 
+\begin_inset Formula $(v,w)\in E$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In un grafo non orientato il grado di un vertice è il numero di archi che
+ da esso si dipartono
+\end_layout
+
+\begin_layout Standard
+In un grafo orientato il grado entrante (uscente) di un vertice è il numero
+ di archi incidenti in (da) esso.
+\end_layout
+
+\begin_layout Standard
+In un grafo orientato il grado di un vertice è la somma del suo grado entrante
+ e del suo grado uscente.
+\end_layout
+
+\begin_layout Standard
+In alcuni casi ogni arco ha un peso (o costo) associato.
+ Il costo può essere determinato tramite una funzione di costo, 
+\begin_inset Formula $c:E\rightarrow\mathbb{R}$
+\end_inset
+
+, dove 
+\begin_inset Formula $\mathbb{\mathbb{R}}$
+\end_inset
+
+ è l’insieme dei numeri reali (o interi).
+\end_layout
+
+\begin_layout Standard
+Un sottografo di 
+\begin_inset Formula $G$
+\end_inset
+
+ è un grafo 
+\begin_inset Formula $H=(V^{*},E^{*})$
+\end_inset
+
+ tale che 
+\begin_inset Formula $V^{*}\subseteq V$
+\end_inset
+
+ e 
+\begin_inset Formula $E^{*}\subseteq E$
+\end_inset
+
+ ed essendo 
+\begin_inset Formula $H$
+\end_inset
+
+ un grafo deve valere che 
+\begin_inset Formula $E^{*}\subseteq V^{*}\times V^{*}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il sottografo di 
+\begin_inset Formula $G$
+\end_inset
+
+ indotto da 
+\begin_inset Formula $V^{*}$
+\end_inset
+
+ e il sottografo 
+\begin_inset Formula $H=(V^{*},E^{*})$
+\end_inset
+
+ tale che 
+\begin_inset Formula $E^{*}={(w,v)\in E|w,v\in V^{*}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Un grafo completo è un grafo che ha un arco tra ogni coppia di vertici.
+ Il numero di archi di un grafo completo è 
+\begin_inset Formula $|E|=\frac{|V|^{2}-|V|}{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Una cricca è un insieme
+\begin_inset Formula $V$
+\end_inset
+
+ di vertici tale che il sottografo indotto da 
+\begin_inset Formula $V$
+\end_inset
+
+ è un grafo completo.
+ La dimensione di una cricca è il numero di vertici che contiene.
+ Una cricca è massimale se non esiste nessun altra cricca in cui è contenuta.
+ Una cricca massima è quella cricca che ha dimensione massima.
+ Il numero di cricca 
+\begin_inset Formula $\omega(G)$
+\end_inset
+
+ è il numero di vertici di una cricca massima del grafo 
+\begin_inset Formula $G$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Una decomposizione in cricche di dimensione 
+\begin_inset Formula $k$
+\end_inset
+
+ è una partizione dei vertici 
+\begin_inset Formula $V=V_{1}\cup V_{2}\cup\ldots\cup V_{k}$
+\end_inset
+
+ tale che ogni 
+\begin_inset Formula $V_{i}$
+\end_inset
+
+ sia una cricca, i 
+\begin_inset Formula $V_{i}$
+\end_inset
+
+ siano insiemi disgiunti e ogni arco di 
+\begin_inset Formula $G$
+\end_inset
+
+ sia presente in almeno uno dei sottografi completi indotti.
+ Il numero di partizione in cricche di 
+\begin_inset Formula $G$
+\end_inset
+
+, indicato con 
+\begin_inset Formula $k(G)$
+\end_inset
+
+, è la dimensione della più piccola decomposizione in cricche di 
+\begin_inset Formula $G$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Un insieme stabile, o insieme indipendente, è un sottoinsieme 
+\begin_inset Formula $X$
+\end_inset
+
+ di vertici tali che nessuno dei quali sia adiacente agli altri.
+ Il numero di elementi dell'insieme di cardinalità massima è detto numero
+ di stabilità e si indica con 
+\begin_inset Formula $\alpha(G)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Una buona 
+\begin_inset Formula $c$
+\end_inset
+
+-colorazione è una partizione dei vertici 
+\begin_inset Formula $V=X_{1}+X_{2}+\ldots+X_{c}$
+\end_inset
+
+ tale che ogni 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+ sia un insieme stabile (il simbolo 
+\begin_inset Formula $+$
+\end_inset
+
+ indica l'unione di insiemi disgiunti).
+\end_layout
+
+\begin_layout Standard
+Il numero cromatico di 
+\begin_inset Formula $G$
+\end_inset
+
+, indicato con 
+\begin_inset Formula $\chi(G)$
+\end_inset
+
+ è il più piccolo 
+\begin_inset Formula $c$
+\end_inset
+
+ per cui esista una buona colorazione di 
+\begin_inset Formula $G$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il grafo complementare di 
+\begin_inset Formula $G$
+\end_inset
+
+ è il grafo 
+\begin_inset Formula $\overline{G}=(V,\overline{E})$
+\end_inset
+
+ dove 
+\begin_inset Formula $\overline{E}=\{(x,y)\in V\times V|x\neq y\wedge(x,y)\notin E\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Un grafo non orientato 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+) è bipartito se i suoi vertici possono essere partizionati in due insiemi
+ disgiunti 
+\begin_inset Formula $V_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $V_{2}$
+\end_inset
+
+ tali che ogni vertice è incidente in un nodo di un inseme e l'altro è incidente
+ ad un vertice dell'altro insieme.
+ Un grafo bipartito viene indicato con 
+\begin_inset Formula $G=(V_{1},V_{2},E)$
+\end_inset
+
+.
+ Un grafo bipartito è 2-colorabile.
+\end_layout
+
+\begin_layout Standard
+In generale per un grafo valgono le disequazioni
+\begin_inset Formula $\omega(G)\leq\chi(G)$
+\end_inset
+
+ e 
+\begin_inset Formula $\alpha(G)\leq k(G)$
+\end_inset
+
+.
+ Per il grafo complementare vale che 
+\begin_inset Formula $\omega(G)=\alpha(\overline{G})$
+\end_inset
+
+ e 
+\begin_inset Formula $\chi(G)=k(\overline{G})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il grafo 
+\begin_inset Formula $G=(V,\, E)$
+\end_inset
+
+ si dice perfetto se per ogni grafo indotto 
+\begin_inset Formula $G^{*}=(V^{*},\, E^{*})$
+\end_inset
+
+ vale 
+\begin_inset Formula $\omega(G^{*})=\chi(G^{*})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
 Minimizzazione del numero di gate utilizzati
 \end_layout
 
@@ -1401,8 +2203,101 @@ bis
 ).
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Formulazione del problema
+\end_layout
+
+\begin_layout Standard
+Il problema decisionale del restricted coloring di un grafo degli intervalli
+ è il seguente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "90col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Dati
+\end_layout
+
+\begin_layout Itemize
+un grafo degli intervalli 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+un insieme di colori 
+\begin_inset Formula $C$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+una famiglia di insiemi (liste di compatibilità) 
+\begin_inset Formula $\left\{ L(i)\right\} _{i\in V}$
+\end_inset
+
+ e
+\end_layout
+
+\begin_layout Itemize
+un numero positivo 
+\begin_inset Formula $\chi_{r}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+determinare il colore di ogni vertice 
+\begin_inset Formula $i\in V$
+\end_inset
+
+ tale che
+\end_layout
+
+\begin_layout Itemize
+nessuna coppia di vertici adiacenti sia dello stesso colore (colorazione
+ propria),
+\end_layout
+
+\begin_layout Itemize
+il colore assegnato ad ogni nodo 
+\begin_inset Formula $i\in V$
+\end_inset
+
+ sia presente nella lista di compatibilità 
+\begin_inset Formula $L(i)$
+\end_inset
+
+ e
+\end_layout
+
+\begin_layout Itemize
+il numero di colori usati sia minore o uguale a 
+\begin_inset Formula $\chi_{r}$
+\end_inset
+
+ .
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2269,7 +3164,7 @@ status open
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Section
 Calcolo della limitazione inferiore
 \end_layout
 
@@ -2887,8 +3782,8 @@ Se la lista degli estremi degli intervalli è fornita in ordine non decrescente
 .
 \end_layout
 
-\begin_layout Subsubsection
-Modello matematico
+\begin_layout Section
+Modello matematico basato sul modello di assegnamento
 \end_layout
 
 \begin_layout Standard
@@ -4739,8 +5634,8 @@ Pesare i gate permette di ridurre le simmetrie nelle soluzioni.
 \end_layout
 
 \begin_layout Standard
-Il modello è stato costruito a partire dal modello di PLI standard di Bin
- Packing, eq.
+Il modello è stato costruito a partire dal modello di PLI di Kantorovich
+ per il Bin Packing, eq.
 \begin_inset space ~
 \end_inset
 
@@ -4780,7 +5675,7 @@ reference "eq:u_ik_dominio"
 \end_inset
 
 .
- A tale modello è stato aggiunto un lower bound esplicito (eq.
+ A tale modello è stato aggiunto un limite inferiore esplicito (eq.
 \begin_inset space ~
 \end_inset
 
@@ -4822,7 +5717,7 @@ Le prestazioni di un algoritmo di Branch&Bound per risolvere un tale modello
  Essendo, inoltre, il numero di piattaforme disponibili generalmente maggiore
  di quante sufficienti, si crea un'ulteriore generazione di soluzioni equivalent
 i ed il metodo del Branch&Bound non migliora di molto le prestazioni dell'enumer
-azione completa.
+azione completa dovendo esplorare un albero pressoché completo.
 \end_layout
 
 \begin_layout Standard
@@ -5535,6 +6430,335 @@ end{algorithm}
 \end_layout
 
 \begin_layout Subsection
+Modello di Set Covering
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "90col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Dati
+\end_layout
+
+\begin_layout Itemize
+un grafo degli intervalli 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+un insieme di colori 
+\begin_inset Formula $C$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $|V|$
+\end_inset
+
+ liste di compatibilità 
+\begin_inset Formula $L(i)$
+\end_inset
+
+ e
+\end_layout
+
+\begin_layout Itemize
+un numero positivo 
+\begin_inset Formula $\chi_{r}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+determinare una partizione 
+\begin_inset Formula $\mathcal{P}=\left\{ P_{1},P_{2},\ldots,P_{\chi^{\prime}}\right\} $
+\end_inset
+
+ dei vertici 
+\begin_inset Formula $V$
+\end_inset
+
+ tale che
+\end_layout
+
+\begin_layout Itemize
+nessuna coppia di vertici adiacenti appartenga ad uno stesso gruppo (colorazione
+ propria),
+\end_layout
+
+\begin_layout Itemize
+ogni parril colore assegnato ad ogni nodo 
+\begin_inset Formula $i$
+\end_inset
+
+ sia presente nella lista di compatibilità 
+\begin_inset Formula $L(i)$
+\end_inset
+
+ e
+\end_layout
+
+\begin_layout Itemize
+il numero di partizioni usate 
+\begin_inset Formula $\chi^{\prime}$
+\end_inset
+
+ sia minore o uguale a 
+\begin_inset Formula $\chi_{r}$
+\end_inset
+
+ .
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+è il seguente
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\backslash
+min z^{col}=
+\backslash
+sum_{k
+\backslash
+in C}c_{k}
+\backslash
+, u_{k} 
+\backslash
+sum_{k
+\backslash
+in L(i)}x_{ik}=1 
+\backslash
+forall i
+\backslash
+in V 
+\backslash
+sum_{i
+\backslash
+in
+\backslash
+mathcal{Q}}x_{ik}
+\backslash
+leq1 
+\backslash
+forall k
+\backslash
+in C,
+\backslash
+,
+\backslash
+forall
+\backslash
+mathcal{Q}
+\backslash
+in
+\backslash
+mathcal{Q}_{k} 
+\backslash
+sum_{i
+\backslash
+in L^{-1}(k)}
+\backslash
+, x_{ik}
+\backslash
+leq|L^{-1}(k)|
+\backslash
+, u_{k} 
+\backslash
+forall k
+\backslash
+in C 
+\backslash
+sum_{k
+\backslash
+in C}
+\backslash
+, u_{k}
+\backslash
+geq s x_{ik}
+\backslash
+in
+\backslash
+{0,
+\backslash
+,1
+\backslash
+} 
+\backslash
+forall i
+\backslash
+in V,
+\backslash
+,
+\backslash
+forall k
+\backslash
+in L(i) u_{k}
+\backslash
+in
+\backslash
+{0,
+\backslash
+,1
+\backslash
+} 
+\backslash
+forall k
+\backslash
+in C 
+\end_layout
+
+\begin_layout Subsection
+Colorazione con Programmazione per Vincoli
+\end_layout
+
+\begin_layout Standard
+La Programmazione per Vincoli (Constraint Programming) è un paradigma di
+ programmazione per risolvere problemi combinatorici espressi con un linguaggio
+ di modellazione (descrittivo) espressivo mediante efficienti implementazioni
+ di algoritmi di risoluzione.
+\end_layout
+
+\begin_layout Standard
+Un'introduzione alla programmazione per vincoli è (citare P.
+ Stuckey, il libro) I due concetti fondamentali della programmazione per
+ vicoli sono la propagazione dei vincoli e la ricerca costruttiva.
+ La propagazione dei vincoli è un efficiente sistema che ha lo scopo di
+ ridurre il dominio delle variabili del problema sfruttando la semantica
+ dei vincoli del problema.
+ Il motore inferenziale è implementato attraverso algoritmi di filtraggio
+ che 
+\begin_inset Quotes eld
+\end_inset
+
+filtrano
+\begin_inset Quotes erd
+\end_inset
+
+ valori dal dominio di ogni variabile.
+ Quando la propagazione dei vincoli non riesce a rimuovere ulteriori valori
+ dal dominio delle variabili, incomincia la fase di ricerca costruttiva.
+ La ricerca costruttiva esplora l'albero di ricerca restringendo il dominio
+ di una variabile alla volta.
+ In sostanza, si esegue una ricerca nello spazio di soluzioni parziali.
+ La forma più semplice di ricerca costruttiva consiste nel selezionare una
+ variabile non assegnata, ossia a cui non sia ancora assegnato un valore
+ fra quelli del suo dominio, e procedere ad assegnarle uno dei valori disponibil
+i.
+ Questo modo di procedere nell'esplorazione dell'albero di ricerca è detto
+ etichettatura.
+ Iterando la propagazione dei vincoli e l'etchettatura, il risolutore dello
+ strumento di programmmazione per vincoli calcola la soluzione, o le soluzioni,
+ di un problema or dimostra che l'insieme delle soluzioni è vuoto.
+ La letteratura recente propone molti approcci che combinano le tenciche
+ classiche della ricerca operativa con quelle della programmazione per vincoli.
+\end_layout
+
+\begin_layout Standard
+I modelli di programmazione per vincoli del problema di colorazione propria
+ di grafi si basano sul vincolo 
+\emph on
+alldifferent
+\emph default
+, introdotto da Regin (1994) (citazione.....).
+ Questo vincolo impone che un insieme di variabili intere assumano valori
+ differenti tra loro e appartenenti ad uno stesso domino.
+ Punto di forsa del vincolo 
+\emph on
+alldifferent
+\emph default
+ è l'efficiente algoritmo di propagazione che è capace di ridurre il dominio
+ di ogni variabile utilizzando i risultati della teoria dell'accoppiamento
+ su grafi bipartiti.
+ Dato un grafo 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+, siano 
+\begin_inset Formula $\underbar{\chi}$
+\end_inset
+
+ e 
+\begin_inset Formula $\bar{\chi}$
+\end_inset
+
+ una limitazione superiore ed inferiore sul numero.
+ Sia 
+\begin_inset Formula $K=\left\{ 1,2,\ldots,\bar{\chi}\right\} $
+\end_inset
+
+ l'insieme dei colori disponibili, assumendo che i numeri naturali rappresentino
+ i colori (e quindi le piattaforme), e sia 
+\begin_inset Formula $x_{i}\in K$
+\end_inset
+
+ per 
+\begin_inset Formula $i\in V$
+\end_inset
+
+ il dominio intero e finito per le variabili del problema, dove  il valore
+ assegnato ad 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ il colore assegnato al vertice 
+\begin_inset Formula $i$
+\end_inset
+
+-esimo .
+ Sia 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ il dominio finito di interi che modella il numero totale di colori usati,
+ ossia nella soluzione ottima 
+\begin_inset Formula $x_{0}=\chi(G)$
+\end_inset
+
+.
+ Sia inoltre 
+\begin_inset Formula $\overline{x_{0}}$
+\end_inset
+
+ la migliore limitazione superiore nota per problema, eventualmente determinata
+ inizialmente con un'euristica costruttiva e poi eventualmente aggiornata
+ dall'algoritmo di risoluzione.
+ Il modello di programmazione per vincoli è il seguente:
+\end_layout
+
+\begin_layout Subsection
 Massimizzazione della distanza minima fra arrivi e partenza sullo stesso
  gate
 \end_layout
@@ -5951,8 +7175,8 @@ Se
 .
 \end_layout
 
-\begin_layout Section
-Developed algorithms
+\begin_layout Chapter
+Algoritmi sviluppati
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Algoritmi-modello"
@@ -5962,7 +7186,7 @@ name "sec:Algoritmi-modello"
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Algoritmo di pianificazione statica
 \end_layout
 
@@ -6725,7 +7949,7 @@ end{algorithm}
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Algoritmo di rischedulazione
 \end_layout
 
@@ -6855,8 +8079,8 @@ Le corse bis sono nuove corse che vanno trattate con l'accorgimento di essere
  a quello della corsa padre.
 \end_layout
 
-\begin_layout Section
-Computational experiments
+\begin_layout Chapter
+Risultati computazionali
 \end_layout
 
 \begin_layout Standard
@@ -6864,59 +8088,7 @@ Computational experiments
 \end_layout
 
 \begin_layout Chapter
-Dial A Ride
-\end_layout
-
-\begin_layout Section
-Problem setting
-\end_layout
-
-\begin_layout Section
-Literature review: models and state-of-the-art algorithms
-\end_layout
-
-\begin_layout Section
-Developed algorithms
-\end_layout
-
-\begin_layout Section
-Computational experiments
-\end_layout
-
-\begin_layout Chapter
-Parking
-\end_layout
-
-\begin_layout Section
-Problem setting
-\end_layout
-
-\begin_layout Section
-Formulation and model
-\end_layout
-
-\begin_layout Section
-Developed algorithms
-\end_layout
-
-\begin_layout Section
-Computational experiments
-\end_layout
-
-\begin_layout Chapter
-Concluding remarks
-\end_layout
-
-\begin_layout Section
-Gate Assignment
-\end_layout
-
-\begin_layout Section
-Dial A Ride
-\end_layout
-
-\begin_layout Section
-Parking
+Conclusioni e sviluppi futuri
 \end_layout
 
 \begin_layout Standard
