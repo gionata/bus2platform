@@ -1,0 +1,46 @@
+%%%\documentclass{article}
+%%%\usepackage[x11names, rgb]{xcolor}
+%%%\usepackage{tikz}
+%%%\usetikzlibrary{decorations,arrows,shapes}
+%%%\begin{document}
+%%%
+\begin{tikzpicture}[>=latex',join=bevel,domain=0:15,scale=0.72]
+    \draw[very thin,dotted, color=blue, opacity=0.5] (-0.1,-0.1) grid (14.9,4.1);
+    \draw[->] (-0.2,0) -- (15.2,0) node[right] {$x$};
+    \draw[->] (0,-0.2) -- (0,4.4) node[above] {$f(x)$};
+    \foreach \x in {1,...,14}
+     		\draw (\x,0.1) -- (\x,-0.1)
+			node[anchor=north] {\x};
+    \foreach \y in {0,...,4}
+     		\draw (0.1, \y) -- (-0.1, \y)
+			node[anchor=east] {\y};
+
+
+    \draw [semithick, color=black]  ( 0,0)--( 1,0)--
+					 ( 1,1)--( 2,1)--
+					 ( 2,2)--( 3,2)--
+					 ( 3,3)--( 4,3)--
+					 ( 4,2)--( 5,2)--
+					 ( 5,3)--( 6,3)--
+					 ( 6,4)--( 7,4)--
+					 ( 7,3)--( 8,3)--
+					 ( 8,2)--( 9,2)--
+					 ( 9,3)--(10,3)--
+					 (10,2)--(11,2)--
+					 (11,3)--(12,3)--
+					 (12,2)--(13,2)--
+					 (13,1)--(14,1)--
+					 (14,0)--(15,0);
+
+    \draw[very thin,dotted, color=blue, opacity=0.5] (-0.1,4.9) grid (14.9,8.1);
+    \draw [semithick, color=black]  ( 5,5)--(10,5);\draw (7.5,5) node[anchor=south] {4};
+    \draw [semithick, color=black]  (11,5)--(13,5); \draw (12,5) node[anchor=south] {7};
+    \draw [semithick, color=black]  ( 2,6)--( 7,6); \draw (4.5,6) node[anchor=south] {2};
+    \draw [semithick, color=black]  ( 9,6)--(12,6); \draw (10.5,6) node[anchor=south] {6};
+    \draw [semithick, color=black]  ( 1,7)--(4,7); \draw (2.5,7) node[anchor=south] {1};
+    \draw [semithick, color=black]  ( 6,7)--(14,7); \draw (10,7) node[anchor=south] {5};
+    \draw [semithick, color=black]  ( 3,8)--(8,8); \draw (5.5,8) node[anchor=south] {3};
+
+\end{tikzpicture}
+%%%
+%%%\end{document}
