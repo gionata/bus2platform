@@ -334,6 +334,51 @@ int SetModel::lowerBoundNumberGates()
 	return max;
 }
 
+std::vector < std::vector < int >*> SetModel::findAllMaximalCliques()
+{
+	std::vector < std::vector < int >*> &maximalCliques = *(new std::vector <std::vector <int> * >());
+	maximalCliques.reserve(_I->size());
+
+	if (!_sortedTimeOccupation) {
+		sort(_timeOccupation->begin(), _timeOccupation->end(),
+		     EndpointLess());
+		_sortedTimeOccupation = true;
+	}
+
+	int clique = 0;
+	std::vector < int >*currentClique = new std::vector < int >();
+	EndPointType previous = leftEP;
+
+	for (std::vector < IntervalEndpoint >::const_iterator i =
+	            _timeOccupation->begin(); i != _timeOccupation->end(); i++) {
+
+		if (i->endpointType() == leftEP) {
+			/* Add to current maximal clique */
+			currentClique->push_back(i->vertex());
+			previous = leftEP;
+		} else {
+			if (previous == leftEP) {
+				std::vector < int >*maximalCliquePtr =
+				    new std::vector < int >(*currentClique);
+				maximalCliques.push_back(maximalCliquePtr);
+				clique++;
+				_numMaximalCliques++;
+				currentClique->erase(std::find(currentClique->begin(), currentClique->end(), i->vertex()));
+			} else {
+				currentClique->erase(std::find(currentClique->begin(), currentClique->end(), i->vertex()));
+				// maximalCliques[clique - 1]->erase(i->vertex());
+			}
+
+			previous = rightEP;
+		}
+	}
+
+	// if (maximalCliques.size() <= 1)
+	//      std::cout << "Clique di size " << maximalCliques.size() << std::endl;
+	delete currentClique;
+	return (maximalCliques);
+}
+
 Buses &SetModel::B() const
 {
 	return *_B;

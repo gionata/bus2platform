@@ -33,6 +33,7 @@ public:
 	unsigned int numMaximalCliques() const;
 	int lowerBoundNumberGates();
 	void performances_airo2011(int *solution, unsigned int &used_platform, unsigned int &min_interval_distance, double &cprob_lin, double &cprob_exp) const;
+	std::vector < std::vector < int >*> findAllMaximalCliques();
 
 private:
 	Buses *_B;

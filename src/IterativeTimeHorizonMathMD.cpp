@@ -40,6 +40,7 @@ bool IterativeTimeHorizonMathMD::solution(int *&gates) const
 bool IterativeTimeHorizonMathMD::initialSolution(int *startingSolution)
 {
 
+	return false;
 }
 
 bool IterativeTimeHorizonMathMD::solveX()
