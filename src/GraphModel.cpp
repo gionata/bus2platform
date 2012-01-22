@@ -16,6 +16,7 @@ using namespace boost::posix_time;
 using namespace boost::gregorian;
 
 GraphModel::GraphModel(SetModel &s): _sets(s), _B(s.B()), _G(s.G())
+		, _sos1(0)
 	// , _H_vertex_name(),_C_vertex_name(), , _H_edge_name(),_C_edge_name(), _H_edge_weight(),_C_edge_weight(),
 {
 	_numDwells = _B.size();
@@ -43,12 +44,16 @@ GraphModel::~GraphModel(void)
 {
 
 	///*
-	for (unsigned int i = 0; i < _sets.numMaximalCliques(); i++) {
-		delete[]_sos1[i];
-	}
+	if (_sos1)
+		for (unsigned int i = 0; i < _sets.numMaximalCliques() - 1; i++) {
+			if (_sos1[i])
+				delete[]_sos1[i];
+		}
 
-	delete[]_sos1;
-	delete _sos1_corresponding_gate;
+	if (_sos1)
+		delete[]_sos1;
+	if (_sos1_corresponding_gate)
+		delete _sos1_corresponding_gate;
 
 	for (unsigned int i = 0; i < _numEdgesC; i++)
 		delete (*_compGates)[i];
