@@ -1439,6 +1439,48 @@ Per la soluzione del GAP in letteratura sono state proposte anche tecniche
 
 \end_inset
 
+Alcuni dei primi tentativi di utilizzare metodi quantitativi sviluppati
+ per incrementare l'utilizzo dei gate e per di ridurre al minimo le distanze
+ percorse all'interno del terminal aeroportuale di Toronto sono presentati
+ in
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "braaksma1971improving,braaksma1977reducing"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+In 
+\end_layout
+
+\begin_layout Standard
+Wirasinghe et al.
+ (1987) ha esteso il lavoro in questo settore e ha proposto un metodo per
+ calcolare la distanza a piedi coinvolti nel multi-molo geometria terminale.
+ Nel loro lavoro, hanno anche presentato un metodo per valutare la geometria
+ ottimale per un aeroporto in base alla distanza dei passeggeri a piedi.
+ Robuste (1988) ha esteso il lavoro di hub-terminale trasferimento di passeggeri
+ e bagagli, rispettivamente.
+ Bandara (1989) seguito il lavoro di Wirasinghe et al.
+ (1987) e ha introdotto tipi di terminali più, i trasferimenti hub, moli
+ ineguali, ecc, e ha anche proposto alcune linee guida per la progettazione
+ preliminare terminal dell'aeroporto di generalizzare la conclusione.
+ Secondo un certo volume di traffico passeggeri e la composizione, Bandara
+ e Wirasinghe (1992) ha proposto modi per valutare l'idoneità dei terminal
+ dell'aeroporto.
+ Questi entrò a far parte del processo di progettazione aeroporto terminale
+ pure.
+\end_layout
+
+\begin_layout Standard
 Il problema nel caso degli aeroporti è stato affrontato a partire dalla
  metà degli anni 1980 e l'obiettivo considerato principale è minimizzare
  la distanza totale percorsa a piedi dai passeggeri nel terminal.
@@ -1687,7 +1729,7 @@ ing (list-coloring nel titolo scelto degli autori), la cui soluzione determina
  Lo scheduling delle istruzioni è definito e esse possono essere elaborate
  solo da un sottoinsieme di registri.
  Benché il restricted-coloring sia un problema NP-hard, Zeitlhofer and Wess
- sfruttano alcune proprietà dei grafi degli intervalli per determinare soluzioni
+ sfruttano alcune proprietà dei grafi d'intervallo per determinare soluzioni
  in tempi ragionevoli, evitando di esplorare l'intero albero di ricerca.
 \end_layout
 
@@ -2172,7 +2214,7 @@ Per questo obiettivo proponiamo:
 
 \begin_layout Itemize
 la formulazione del problema come problema di restricted-coloring di un
- grafo degli intervalli;
+ grafo d'intervallo;
 \end_layout
 
 \begin_layout Itemize
@@ -2231,7 +2273,7 @@ Dati
 \end_layout
 
 \begin_layout Itemize
-un grafo degli intervalli 
+un grafo d'intervallo 
 \begin_inset Formula $G=(V,E)$
 \end_inset
 
@@ -2383,9 +2425,9 @@ ente non possono essere assegnati alla stessa piattaforma.
 
 .
  Tale grafo è una rappresentazione di un insieme di intervalli e appartiene
- alla classe dei grafi degli intervalli.
- Si ricorda che un grafo degli intervalli è un grafo perfetto per cui il
- numero cromatico 
+ alla classe dei grafi d'intervallo.
+ Si ricorda che un grafo d'intervallo è un grafo perfetto per cui il numero
+ cromatico 
 \begin_inset Formula $\chi$
 \end_inset
 
@@ -2445,8 +2487,7 @@ key "Wang1994"
 
 .
  Il problema di assegnamento dei veicoli alle piattaforme è esprimibile
- come problema di restricted-coloring definito sul grafo degli intervalli
- 
+ come problema di restricted-coloring definito sul grafo d'intervallo 
 \begin_inset Formula $G=(V,\, E)$
 \end_inset
 
@@ -2950,7 +2991,7 @@ o corrisponde un vertice ed esiste un lato se due intervalli hanno intersezione
 \begin_inset Formula $G=(V,E)$
 \end_inset
 
- è un grafo degli intervalli: rappresenta l'intersezione di un multiinsieme
+ è un grafo d'intervallo: rappresenta l'intersezione di un multiinsieme
  di intervalli definiti sulla retta reale.
  Ogni intervallo del multiinsieme corrisponde ad un vertice e due vertici
  sono connessi da un lato se e solo se gli intervalli corrispondenti hanno
@@ -2968,14 +3009,14 @@ i senza sovrapposizioni corrisponde alla dimensione della cricca massima.
 \end_inset
 
  .
- Si noti che il numero di cricca massimali di un grafo degli intervalli
- è minore o uguale alla cardinalità dell'insieme dei nodi.
- Il problema della ricerca di tutte le cricca massimali di un grafo degli
- intervalli è un problema polinomiale.
+ Si noti che il numero di cricca massimali di un grafo d'intervallo è minore
+ o uguale alla cardinalità dell'insieme dei nodi.
+ Il problema della ricerca di tutte le cricca massimali di un grafo d'intervallo
+ è un problema polinomiale.
 \end_layout
 
 \begin_layout Standard
-Dato un grafo degli intervalli con 
+Dato un grafo d'intervallo con 
 \begin_inset Formula $n$
 \end_inset
 
@@ -3009,7 +3050,7 @@ Dato un grafo degli intervalli con
 \end_layout
 
 \begin_layout Standard
-I grafi degli intervalli appartengono alla classe più generale dei cosidetti
+I grafi d'intervallo appartengono alla classe più generale dei cosidetti
  grafi perfetti, grafi per cui vale che il numero di cricca è uguale al
  numero cromatico (
 \begin_inset Formula $\omega(G)=\chi(G)$
@@ -3055,7 +3096,7 @@ name "fig:Intervalli-temporali"
 
 \end_inset
 
-Intervalli temporali e grafo degli intervalli corrispondente
+Intervalli temporali e grafo d'intervallo corrispondente
 \end_layout
 
 \end_inset
@@ -3082,9 +3123,9 @@ reference "fig:Grafo-intervallo"
 
 \end_inset
 
- sono rappresentati il grafo degli intervalli, le liste di compatibilità,
- le cricche massimali ed una soluzione ammissibile del problema di restricted-co
-loring.
+ sono rappresentati il grafo d'intervallo, le liste di compatibilità, le
+ cricche massimali ed una soluzione ammissibile del problema di restricted-color
+ing.
  Si noti che i vertici sono numerati secondo un 
 \emph on
 ordine perfetto
@@ -3105,6 +3146,38 @@ ordine perfetto
  colorazione univoca dei vertici rimanenti, ad esempio scegliendo il primo
  colore disponibile.
  Ciò permette di non esplorare soluzioni ridondanti.
+ 
+\end_layout
+
+\begin_layout Standard
+Si ricorda che un vertice 
+\begin_inset Formula $v$
+\end_inset
+
+ di 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+ è simpliciale se l'insieme dei nodi adiacenti 
+\begin_inset Formula $N(v)$
+\end_inset
+
+ induce un sottografo completo di 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Un ordinamento dei vertici 
+\begin_inset Formula $\sigma=[v_{1},v_{2},\ldots,v_{n}]$
+\end_inset
+
+ tale per cui 
+\begin_inset Formula $X_{i}=\left\{ v_{j}\in N(v_{i})|j>i\right\} $
+\end_inset
+
+è un grafo competo è detta sequenza di eleminazione perfetta.
+ Si noti come i nodi del grafo in figura siano numerati secondo una sequenza
+ di eliminazione perfetta.
 \end_layout
 
 \begin_layout Standard
@@ -3149,6 +3222,105 @@ Istanza di restricted-coloring e una sua soluzione
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Se si definisce nel domino dei numeri reali la funzione 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, che assume come valore la differenza tra il numero di estremi sinistri
+ e destri presenti nella retta reale prima di 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ Per ogni punto reale 
+\begin_inset Formula $x$
+\end_inset
+
+ è quindi definita una cricca e per ogni cricca esiste un numero reale 
+\begin_inset Formula $x$
+\end_inset
+
+ che la definisce.
+ Il valore della massima cricca è dato da 
+\begin_inset Formula $\chi=\max f(x)$
+\end_inset
+
+.
+ Per colorare il grafo d'intervallo nel caso di graph coloring basta ordinare
+ i valori 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ e scandirli dal minimo al massimo.
+ In un passo generico dell’algoritmo i colori utilizzatio sono marcati e
+ quelli disponibili sono non marcati.
+ Inzialmente nessun colore è marcato.
+ Si può notare che i massimi locali di 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ forniscono le cricche massimali.
+ Nell’esempio ce ne sono quattro, che sono anche massime in questo caso.
+ Il massimo locale è determinato dall’estremo destro di un intervallo.
+ Si veda la fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Grafo-intervallo-fx"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering{
+\backslash
+input{img/interval_graph_fx}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Grafo-intervallo-fx"
+
+\end_inset
+
+Funzione che conta gli intervalli sovrapposti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -3192,7 +3364,7 @@ azione.
 
  appartiene alla classe dei grafi perfetti quindi il numero cromatico è
  uguale al numero di cricca e determinare il numero di clique di un grafo
- degli intervalli è risolubile in tempo polinomiale.
+ d'intervallo è risolubile in tempo polinomiale.
  
 \begin_inset ERT
 status open
@@ -3896,7 +4068,7 @@ L'insieme
 \begin_inset Formula $\mathcal{G}^{K}=(\mathcal{V}^{k},\mathcal{E}^{k})$
 \end_inset
 
- è un grafo degli intervalli isomorfo ad un sottografo indotto di 
+ è un grafo d'intervallo isomorfo ad un sottografo indotto di 
 \begin_inset Formula $G$
 \end_inset
 
@@ -5738,7 +5910,7 @@ In tale caso il problema è risolubile con algoritmi polinomiali, tempo lineare
 \begin_inset Formula $O(|V|+|E|)$
 \end_inset
 
-, per la colorazione dei grafi degli intervalli (vedi 
+, per la colorazione dei grafi d'intervallo (vedi 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "golumbic2004algorithmic"
@@ -6012,7 +6184,7 @@ Return {gli assegnamenti
 
 	
 \backslash
-caption{First Fit per la colorazione dei vertici di un grafo degli intervalli}
+caption{First Fit per la colorazione dei vertici di un grafo d'intervallo}
 \end_layout
 
 \begin_layout Plain Layout
@@ -6452,7 +6624,7 @@ Dati
 \end_layout
 
 \begin_layout Itemize
-un grafo degli intervalli 
+un grafo d'intervallo 
 \begin_inset Formula $G=(V,E)$
 \end_inset
 
