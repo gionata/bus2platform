@@ -15,6 +15,8 @@
 \usepackage[x11names, rgb]{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{snakes,arrows,shapes}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 \end_preamble
 \options a4print,lof,lot
 \use_default_options true
@@ -6229,7 +6231,7 @@ In tal caso il grafo che rappresenta la relazione di compatibilità tra fermate
 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "MéndezDíaz2006826"
+key "MendezDiaz2006826"
 
 \end_inset
 
