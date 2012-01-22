@@ -336,7 +336,7 @@ int SetModel::lowerBoundNumberGates()
 
 std::vector < std::vector < int >*> SetModel::findAllMaximalCliques()
 {
-	std::vector < std::vector < int >*> &maximalCliques = *(new std::vector <std::vector <int> * >());
+	std::vector < std::vector < int >*> maximalCliques;
 	maximalCliques.reserve(_I->size());
 
 	if (!_sortedTimeOccupation) {
@@ -362,7 +362,7 @@ std::vector < std::vector < int >*> SetModel::findAllMaximalCliques()
 				    new std::vector < int >(*currentClique);
 				maximalCliques.push_back(maximalCliquePtr);
 				clique++;
-				_numMaximalCliques++;
+				//_numMaximalCliques++;
 				currentClique->erase(std::find(currentClique->begin(), currentClique->end(), i->vertex()));
 			} else {
 				currentClique->erase(std::find(currentClique->begin(), currentClique->end(), i->vertex()));
