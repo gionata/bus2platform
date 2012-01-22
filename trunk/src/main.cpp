@@ -12,7 +12,6 @@
 #include "MathModelBP.h"
 #include "MathModelBPsingle.h"
 #include "MathModelColoring.h"
-#include "MathModelMaxTotalDistance.h"
 #include "MathModelMaxMinDistance.h"
 #include "MathModelMinPConflict.h"
 #include "IntervalPackingFinishFirst.h"
@@ -82,7 +81,18 @@ cerr << "  Insiemi B e G generati in " << (end - begin) / (double)(CLOCKS_PER_SE
 	int *warmStart = 0;
 	string svg_output;
 	
-	real_solution(problemSets, gModel, warmStart, instance_name);
+	/* stampa tutte le cliques massimali */
+	std::vector < std::vector < int >*> allmaxcliques = problemSets.findAllMaximalCliques();
+	for(std::vector < std::vector < int >*>::const_iterator cliqueptritr = allmaxcliques.begin(); cliqueptritr != allmaxcliques.end(); cliqueptritr++) {
+		cerr << "Clique size: " << (*cliqueptritr)->size() << endl;
+		for(std::vector < int >::const_iterator interfering_vertex = (*cliqueptritr)->begin(); interfering_vertex != (*cliqueptritr)->end(); interfering_vertex++)
+			cerr << " " << *interfering_vertex;
+		cerr << endl;
+	}
+	/* end stampa */
+
+	if (string(argv[1]).compare("istanza_reale_feasibile.txt") == 0)
+		real_solution(problemSets, gModel, warmStart, instance_name);
 	
 #pragma omp parallel
 {

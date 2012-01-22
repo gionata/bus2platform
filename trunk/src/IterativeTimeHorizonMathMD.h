@@ -17,7 +17,6 @@
 #include "MathModelBP.h"
 #include "MathModelBPsingle.h"
 #include "MathModelColoring.h"
-#include "MathModelMaxTotalDistance.h"
 #include "MathModelMaxMinDistance.h"
 #include "MathModelMinPConflict.h"
 
