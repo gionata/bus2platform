@@ -62,6 +62,14 @@ bool Bus::compatible(Gate *g) const
 	return (find(_gates->begin(), _gates->end(), g) != _gates->end());
 }
 
+bool Bus::compatible(int color) const
+{
+	for (Gates::const_iterator g = _gates->begin(); g != _gates->end(); g++)
+		if(color == (*g)->vertexIndex() - _dwellNumber)
+			return true;
+	return false;
+}
+
 size_t Bus::vertexIndex() const
 {
 	return _vertexIndex;

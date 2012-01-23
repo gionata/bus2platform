@@ -33,6 +33,7 @@ public:
 	int dwellNumber() const;
 	const Gates &gates();
 	bool compatible(Gate *g) const;
+	bool compatible(int color) const;
 	size_t vertexIndex() const;
 	void vertexIndex(size_t vertexIndex);
 	bool assigned() const;

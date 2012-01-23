@@ -708,9 +708,27 @@ bool cp_listcoloring(SetModel &problemSets, GraphModel &gModel, int *&warmStart,
 		array_cliques[i]=cliques[i];
 	}
 	//fine adattamento dei dati
+	int **inadmissibleColors = new int *[problemSets.B().size()];
+	for (int i = 0; i < problemSets.B().size(); i++) {
+		inadmissibleColors[i] = new int [problemSets.G().size()+1];
+		int k = 0;
+		for (int j = 0; j < problemSets.G().size(); j++) {
+//			cout << problemSets.B()[i]->dwellNumber() << " " << problemSets.G()[j]->gateNumber() << " " << problemSets.B()[i]->compatible(problemSets.G()[j]) << endl;
+			if(!problemSets.B()[i]->compatible(problemSets.G()[j]))
+				inadmissibleColors[i][k++] = j;
+		}
+		inadmissibleColors[i][k] = -1;
+	}
 
+	/*for (int i = 0; i < problemSets.B().size(); i++) {
+		cout << "Inamm " << i << ": ";
+		for (int j = 0; j < problemSets.B()[i]->gates().size() && inadmissibleColors[i][j] != -1; j++) {
+			cout << inadmissibleColors[i][j] << " ";
+		}
+		cout << endl;
+	}*/
 
-	GraphColorSpec g1(problemSets.B().size(), array_cliques);
+	GraphColorSpec g1(problemSets.B().size(), array_cliques, inadmissibleColors, problemSets.lowerBoundNumberGates());
 	SizeOptions opt("GraphColor");
 	opt.icl(ICL_DOM);
 	opt.iterations(20);
