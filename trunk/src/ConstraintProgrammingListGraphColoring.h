@@ -15,7 +15,9 @@ public:
   int  n_v; ///< Number of nodes
 //  int* e;   ///< Edges
   int* c;   ///< Cliques
-  GraphColorSpec(int n_v0, /*int* e0,*/ int* c0): n_v(n_v0),/* e(e0),*/ c(c0) {}
+  int **ic; ///< Infeasible (not admissible) colors (for vertex)
+  int ub; ///< Upper Bound
+  GraphColorSpec(int n_v0, /*int* e0,*/ int* c0, int **ic0, int ub0): n_v(n_v0),/* e(e0),*/ c(c0), ic(ic0), ub(ub0) {}
   bool solution(int *&color);
 };
 
@@ -65,6 +67,9 @@ public:
       if (opt.model() == MODEL_CLIQUE)
         rel(*this, m, IRT_GQ, n-1);
     }
+    for (int i = 0; i < g.n_v; i++)
+    	for (int j = 0; j < g.ub && g.ic[i][j] != -1; j++)
+    		rel(*this, v[i], IRT_NQ, g.ic[i][j]);
     branch(*this, m, INT_VAL_MIN);
     switch (opt.branching()) {
     case BRANCH_SIZE:
