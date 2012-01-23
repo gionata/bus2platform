@@ -9,6 +9,7 @@
 #include "SetModel.h"
 #include "ListColoringTreeSearch.h"
 #include "GraphModel.h"
+#include "ConstraintProgrammingListGraphColoring.h"
 #include "MathModelBP.h"
 #include "MathModelBPsingle.h"
 #include "MathModelColoring.h"
@@ -38,16 +39,8 @@
 
 #include <omp.h>
 
-//ANG INCLUDE
-#include <gecode/driver.hh>
-#include <gecode/int.hh>
-//ANG END INCLUDE
-
 using namespace std;
 using namespace boost;
-//ANG NAMESPACE
-using namespace Gecode;
-//ANG END NAMESPACE
 
 bool intervalPackingFirstFirst(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 bool intervalPackingFinishFirst(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
@@ -58,112 +51,8 @@ bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int *&warm
 bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 bool iterativeTimeHorizonMath(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 bool iterativeTimeHorizonMathMD(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
-
 bool real_solution(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
-
-//ANG PROTO AND DATA
-class GraphColorSpec {
-public:
-  int  n_v; ///< Number of nodes
-//  int* e;   ///< Edges
-  int* c;   ///< Cliques
-  GraphColorSpec(int n_v0, /*int* e0,*/ int* c0): n_v(n_v0),/* e(e0),*/ c(c0) {}
-};
-
-//GraphColorSpec g1;
-
-/**
- * \brief %Example: Clique-based graph coloring
- *
- * \ingroup Example
- *
- */
-class GraphColor : public MinimizeScript {
-private:
-  const GraphColorSpec& g;
-  /// Color of nodes
-  IntVarArray v;
-  /// Number of colors
-  IntVar m;
-public:
-  /// Model variants
-  enum {
-    MODEL_NONE,  ///< No lower bound
-    MODEL_CLIQUE ///< Use maximal clique size as lower bound
-  };
-  /// Branching to use for model
-  enum {
-    BRANCH_DEGREE,      ///< Choose variable with largest degree
-    BRANCH_SIZE,        ///< Choose variable with smallest size
-    BRANCH_SIZE_DEGREE, ///< Choose variable with smallest size/degree
-    BRANCH_SIZE_AFC,    ///< Choose variable with smallest size/degree
-  };
-  /// The actual model
-  GraphColor(const SizeOptions& opt, GraphColorSpec &gcs): g(gcs),  v(*this,g.n_v,0,g.n_v), m(*this,0,g.n_v)  {
-    rel(*this, v, IRT_LQ, m);
-    //for (int i = 0; g.e[i] != -1; i += 2)
-    //  rel(*this, v[g.e[i]], IRT_NQ, v[g.e[i+1]]);
-
-    const int* c = g.c;
-    //for (int i = *c++; i--; c++)
-    //  rel(*this, v[*c], IRT_EQ, i);
-    while (*c != -1) {
-      int n = *c;
-      IntVarArgs x(n); c++;
-      for (int i = n; i--; c++)
-        x[i] = v[*c];
-      distinct(*this, x, opt.icl());
-      if (opt.model() == MODEL_CLIQUE)
-        rel(*this, m, IRT_GQ, n-1);
-    }
-    branch(*this, m, INT_VAL_MIN);
-    switch (opt.branching()) {
-    case BRANCH_SIZE:
-      branch(*this, v, INT_VAR_SIZE_MIN, INT_VAL_MIN);
-      break;
-    case BRANCH_DEGREE:
-      branch(*this, v, tiebreak(INT_VAR_DEGREE_MAX,INT_VAR_SIZE_MIN),
-             INT_VAL_MIN);
-      break;
-    case BRANCH_SIZE_DEGREE:
-      branch(*this, v, INT_VAR_SIZE_DEGREE_MIN, INT_VAL_MIN);
-      break;
-    case BRANCH_SIZE_AFC:
-      branch(*this, v, INT_VAR_SIZE_AFC_MIN, INT_VAL_MIN);
-      break;
-    default:
-      break;
-    }
-  }
-  /// Cost function
-  virtual IntVar cost(void) const {
-    return m;
-  }
-  /// Constructor for cloning \a s
-  GraphColor(bool share, GraphColor& s) : MinimizeScript(share,s), g(s.g) {
-    v.update(*this, share, s.v);
-    m.update(*this, share, s.m);
-  }
-  /// Copying during cloning
-  virtual Space*
-  copy(bool share) {
-    return new GraphColor(share,*this);
-  }
-  /// Print the solution
-  virtual void
-  print(std::ostream& os) const {
-    os << "\tm = " << m << std::endl
-       << "\tv[] = {";
-    for (int i = 0; i < v.size(); i++) {
-      os << v[i] << ", ";
-      if ((i+1) % 15 == 0)
-        os << std::endl << "\t       ";
-    }
-    os << "};" << std::endl;
-  }
-};
-//END ANG PROTO AND DATA
-
+bool cp_listcoloring(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
 
 int main(int argc, char *argv[])
 {
@@ -193,7 +82,7 @@ int main(int argc, char *argv[])
     int *warmStart = 0;
     string svg_output;
 
-    /* stampa tutte le cliques massimali */
+    /* stampa tutte le cliques massimali --
     std::vector < std::vector < int >*> allmaxcliques = problemSets.findAllMaximalCliques();
     for(std::vector < std::vector < int >*>::const_iterator cliqueptritr = allmaxcliques.begin(); cliqueptritr != allmaxcliques.end(); cliqueptritr++) {
         cerr << "Clique size: " << (*cliqueptritr)->size() << endl;
@@ -201,71 +90,7 @@ int main(int argc, char *argv[])
             cerr << " " << *interfering_vertex;
         cerr << endl;
     }
-    /* end stampa */
-
-    //ANG START
-//adattamento dei dati
-	//creo un vettore contenente gli archi nel formato che ci serve e poi riverso in un array
-	/*vector<int> spigoli;
-	GraphC g = gModel.graphC();
-	graph_traits < GraphC >::edge_iterator eiC, edge_endC;
-	for (tie(eiC, edge_endC) = edges( g ); eiC != edge_endC; ++eiC) {
-			spigoli.push_back(source(*eiC, g));
-		  	spigoli.push_back(target(*eiC, g));
-	}
-	spigoli.push_back(-1); spigoli.push_back(-1); //servono a gecode
-	
-	int * array_spigoli = (int *)malloc(sizeof(int) * spigoli.size());
-
-	for(int i=0; i<spigoli.size();i++){
-		array_spigoli[i]=spigoli[i];
-	}*/
-
-	//creo un vettore contenente le cliques nel formato che ci serve e poi lo riverso in un array
-	//3 x1 x2 x3
-	//2 y1 y2
-	//4 z1 z2 z3 z4
-	//-1 (fine)
-	vector<int> cliques;
-	for(std::vector < std::vector < int >*>::const_iterator cliqueptritr = allmaxcliques.begin(); cliqueptritr != allmaxcliques.end(); cliqueptritr++) {
-		cliques.push_back((*cliqueptritr)->size());		
-		for(std::vector < int >::const_iterator interfering_vertex = (*cliqueptritr)->begin(); interfering_vertex != (*cliqueptritr)->end(); interfering_vertex++)
-			cliques.push_back( *interfering_vertex);
-	}
-	cliques.push_back(-1);//serve a gecode
-
-	int* array_cliques = (int *)malloc(sizeof(int) * cliques.size());
-
-	for(int i=0; i<cliques.size();i++){
-		array_cliques[i]=cliques[i];
-	}
-//fine adattamento dei dati
-
-
-	GraphColorSpec g1(problemSets.B().size(), array_cliques);
-
-  SizeOptions opt("GraphColor");
-  opt.icl(ICL_DOM);
-  opt.iterations(20);
-  opt.solutions(1);
-  //opt.model(GraphColor::MODEL_NONE);
-  //opt.model(GraphColor::MODEL_NONE, "none", "no lower bound");
-  opt.model(GraphColor::MODEL_CLIQUE, "clique", "use maximal clique size as lower bound");
-  //opt.branching(GraphColor::BRANCH_DEGREE);
-  //opt.branching(GraphColor::BRANCH_DEGREE, "degree");
-  //opt.branching(GraphColor::BRANCH_SIZE, "size");
-  opt.branching(GraphColor::BRANCH_SIZE_DEGREE, "sizedegree");
-  //opt.branching(GraphColor::BRANCH_SIZE_AFC, "sizeafc");
-  //opt.parse(argc,argv);
-  //Script::run<GraphColor,BAB,SizeOptions>(opt);
-  GraphColor *model = new GraphColor(opt, g1);
-  BAB<GraphColor> alg(model);
-  GraphColor *sol = alg.next();
-  sol->print(std::cout);
-
-  delete model;
-
-//ANG END
+    -- end stampa */
 
     if (string(argv[1]).compare("istanza_reale_feasibile.txt") == 0)
         real_solution(problemSets, gModel, warmStart, instance_name);
@@ -275,10 +100,14 @@ int main(int argc, char *argv[])
         #pragma omp single nowait
         {
             #pragma omp task
-            //intervalPackingFirstFirst(problemSets, gModel, warmStart, instance_name);
+            intervalPackingFirstFirst(problemSets, gModel, warmStart, instance_name);
 
             #pragma omp task
-            //intervalPackingFinishFirst(problemSets, gModel, warmStart, instance_name);
+            intervalPackingFinishFirst(problemSets, gModel, warmStart, instance_name);
+			
+			#pragma omp task
+			warmStart = 0;
+			cp_listcoloring(problemSets, gModel, warmStart, instance_name);
 
             #pragma omp task
             warmStart = 0;
@@ -821,3 +650,97 @@ bool real_solution(SetModel &problemSets, GraphModel &gModel, int *&warmStart, s
     return ret;
 }
 
+bool cp_listcoloring(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
+{
+	int *solution = 0;
+    string svg_output;
+    bool ret = false;
+    clock_t begin, end;
+    GanttDiagram *gd;
+
+    // per sicurezza:
+    for (Buses::iterator dwellItr = problemSets.B().begin(); dwellItr != problemSets.B().end(); dwellItr++)
+        (*dwellItr)->assigned(false);
+
+    /*
+     *  ConstraintProgrammingListGraphColoring
+     */
+    cerr << "/*" << endl;
+    cerr << " * ConstraintProgrammingListGraphColoring" << endl;
+    cerr << " */\n" << endl;
+    cerr << "Risoluzione iterativa del modello di programmazione per vincoli." << endl;
+    begin = clock();
+ 
+	//adattamento dei dati
+	//creo un vettore contenente gli archi nel formato che ci serve e poi riverso in un array
+	/*vector<int> spigoli;
+	GraphC g = gModel.graphC();
+	graph_traits < GraphC >::edge_iterator eiC, edge_endC;
+	for (tie(eiC, edge_endC) = edges( g ); eiC != edge_endC; ++eiC) {
+			spigoli.push_back(source(*eiC, g));
+		  	spigoli.push_back(target(*eiC, g));
+	}
+	spigoli.push_back(-1); spigoli.push_back(-1); //servono a gecode
+	
+	int * array_spigoli = (int *)malloc(sizeof(int) * spigoli.size());
+
+	for(int i=0; i<spigoli.size();i++){
+		array_spigoli[i]=spigoli[i];
+	}*/
+
+	//creo un vettore contenente le cliques nel formato che ci serve e poi lo riverso in un array
+	//3 x1 x2 x3
+	//2 y1 y2
+	//4 z1 z2 z3 z4
+	//-1 (fine)
+	vector<int> cliques;
+	for(std::vector < std::vector < int >*>::const_iterator cliqueptritr = allmaxcliques.begin(); cliqueptritr != allmaxcliques.end(); cliqueptritr++) {
+		cliques.push_back((*cliqueptritr)->size());		
+		for(std::vector < int >::const_iterator interfering_vertex = (*cliqueptritr)->begin(); interfering_vertex != (*cliqueptritr)->end(); interfering_vertex++)
+			cliques.push_back( *interfering_vertex);
+	}
+	cliques.push_back(-1);//serve a gecode
+
+	int* array_cliques = (int *)malloc(sizeof(int) * cliques.size());
+
+	for(int i=0; i<cliques.size();i++){
+		array_cliques[i]=cliques[i];
+	}
+	//fine adattamento dei dati
+
+
+	GraphColorSpec g1(problemSets.B().size(), array_cliques);
+	SizeOptions opt("GraphColor");
+	opt.icl(ICL_DOM);
+	opt.iterations(20);
+	opt.solutions(1);
+	//opt.model(GraphColor::MODEL_NONE);
+	//opt.model(GraphColor::MODEL_NONE, "none", "no lower bound");
+	opt.model(GraphColor::MODEL_CLIQUE, "clique", "use maximal clique size as lower bound");
+	//opt.branching(GraphColor::BRANCH_DEGREE);
+	//opt.branching(GraphColor::BRANCH_DEGREE, "degree");
+	//opt.branching(GraphColor::BRANCH_SIZE, "size");
+	opt.branching(GraphColor::BRANCH_SIZE_DEGREE, "sizedegree");
+	//opt.branching(GraphColor::BRANCH_SIZE_AFC, "sizeafc");
+	//opt.parse(argc,argv);
+	//Script::run<GraphColor,BAB,SizeOptions>(opt);
+	GraphColor *model = new GraphColor(opt, g1);
+	BAB<GraphColor> alg(model);
+	GraphColor *sol = alg.next();
+	sol->print(std::cout);
+	
+	end = clock();
+    cerr << "  Soluzione del ConstraintProgrammingListGraphColoring in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
+    //if (ret = (mIterativeTimeHorizonMath->solved())) {
+        svg_output = "ConstraintProgrammingListGraphColoring.svg";
+        sol->->solution(solution);
+        gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
+
+        gModel.solutionFeasibility(solution, "ConstraintProgrammingListGraphColoring");
+        delete[]solution;
+        delete(gd);
+    //}
+    delete model;
+
+    return ret;
+}
