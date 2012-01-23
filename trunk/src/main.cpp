@@ -52,7 +52,7 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&wa
 bool iterativeTimeHorizonMath(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 bool iterativeTimeHorizonMathMD(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 bool real_solution(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
-bool cp_listcoloring(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name)
+bool cp_listcoloring(SetModel &problemSets, GraphModel &gModel, int *&warmStart, string instance_name);
 
 int main(int argc, char *argv[])
 {
@@ -693,6 +693,7 @@ bool cp_listcoloring(SetModel &problemSets, GraphModel &gModel, int *&warmStart,
 	//2 y1 y2
 	//4 z1 z2 z3 z4
 	//-1 (fine)
+	std::vector < std::vector < int >*> allmaxcliques = problemSets.findAllMaximalCliques();
 	vector<int> cliques;
 	for(std::vector < std::vector < int >*>::const_iterator cliqueptritr = allmaxcliques.begin(); cliqueptritr != allmaxcliques.end(); cliqueptritr++) {
 		cliques.push_back((*cliqueptritr)->size());		
@@ -733,7 +734,8 @@ bool cp_listcoloring(SetModel &problemSets, GraphModel &gModel, int *&warmStart,
     cerr << "  Soluzione del ConstraintProgrammingListGraphColoring in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
     //if (ret = (mIterativeTimeHorizonMath->solved())) {
         svg_output = "ConstraintProgrammingListGraphColoring.svg";
-        sol->->solution(solution);
+	solution = new int[problemSets.B().size()];
+        sol->solution(solution);
         gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution);
 
         gModel.solutionFeasibility(solution, "ConstraintProgrammingListGraphColoring");
