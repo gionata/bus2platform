@@ -6,10 +6,6 @@
 #ifndef ConstraintProgrammingListGraphColoring_H_
 #define ConstraintProgrammingListGraphColoring_H_
 
-#include <vector>
-#include <algorithms>
-
-
 #include <gecode/driver.hh>
 #include <gecode/int.hh>
 using namespace Gecode;
@@ -20,7 +16,7 @@ public:
 //  int* e;   ///< Edges
   int* c;   ///< Cliques
   GraphColorSpec(int n_v0, /*int* e0,*/ int* c0): n_v(n_v0),/* e(e0),*/ c(c0) {}
-  bool solution(int *&color)
+  bool solution(int *&color);
 };
 
 //GraphColorSpec g1;
@@ -117,7 +113,7 @@ public:
   
   bool solution(int *&color) {
 	for (int i = 0; i < v.size(); i++)
-		color[i] = v[i];
+		color[i] = v[i].val();
   }
 };
 

@@ -48,6 +48,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_gap_graph_OBJECTS = gap_graph-Bus.$(OBJEXT) \
 	gap_graph-Calendar.$(OBJEXT) gap_graph-CalendarDate.$(OBJEXT) \
+	gap_graph-ConstraintProgrammingListGraphColoring.$(OBJEXT) \
 	gap_graph-GanttDiagram.$(OBJEXT) gap_graph-Gate.$(OBJEXT) \
 	gap_graph-GraphModel.$(OBJEXT) gap_graph-has_id.$(OBJEXT) \
 	gap_graph-Interval.$(OBJEXT) \
@@ -206,7 +207,26 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-gap_graph_SOURCES = Bus.cpp Calendar.cpp CalendarDate.cpp GanttDiagram.cpp Gate.cpp GraphModel.cpp has_id.cpp Interval.cpp IntervalEndpoint.cpp IntervalPackingFinishFirst.cpp IntervalPackingFirstFit.cpp IterativeTimeHorizonMath.cpp IterativeTimeHorizonMathMD.cpp ListColoringTreeSearch.cpp main.cpp MathModelBP.cpp MathModelBPsingle.cpp MathModelColoring.cpp MathModel.cpp MathModelMaxMinDistance.cpp MathModelMinPConflict.cpp SetModel.cpp SolutionAlgorithm.cpp SolutionReport.cpp TimeAvailability.cpp TimeSlots.cpp           Bus.h BusTime.h CalendarDate.h Calendar.h GanttDiagram.h gap.h Gate.h GraphModel.h has_id.h IntervalEndpoint.h Interval.h IntervalPackingFinishFirst.h IntervalPackingFirstFit.h IterativeTimeHorizonMath.h IterativeTimeHorizonMathMD.h ListColoringTreeSearch.h MathModelBP.h MathModelBPsingle.h MathModelColoring.h MathModel.h MathModelMaxMinDistance.h MathModelMinPConflict.h SetModel.h SolutionAlgorithm.h SolutionReport.h TimeAvailability.h TimeSlots.h
+gap_graph_SOURCES = Bus.cpp Calendar.cpp CalendarDate.cpp \
+	ConstraintProgrammingListGraphColoring.cpp GanttDiagram.cpp \
+	Gate.cpp GraphModel.cpp has_id.cpp Interval.cpp \
+	IntervalEndpoint.cpp IntervalPackingFinishFirst.cpp \
+	IntervalPackingFirstFit.cpp IterativeTimeHorizonMath.cpp \
+	IterativeTimeHorizonMathMD.cpp ListColoringTreeSearch.cpp \
+	main.cpp MathModelBP.cpp MathModelBPsingle.cpp \
+	MathModelColoring.cpp MathModel.cpp \
+	MathModelMaxMinDistance.cpp MathModelMinPConflict.cpp \
+	SetModel.cpp SolutionAlgorithm.cpp SolutionReport.cpp \
+	TimeAvailability.cpp TimeSlots.cpp Bus.h BusTime.h \
+	CalendarDate.h Calendar.h GanttDiagram.h \
+	ConstraintProgrammingListGraphColoring.h gap.h Gate.h \
+	GraphModel.h has_id.h IntervalEndpoint.h Interval.h \
+	IntervalPackingFinishFirst.h IntervalPackingFirstFit.h \
+	IterativeTimeHorizonMath.h IterativeTimeHorizonMathMD.h \
+	ListColoringTreeSearch.h MathModelBP.h MathModelBPsingle.h \
+	MathModelColoring.h MathModel.h MathModelMaxMinDistance.h \
+	MathModelMinPConflict.h SetModel.h SolutionAlgorithm.h \
+	SolutionReport.h TimeAvailability.h TimeSlots.h
 gap_graph_LDFLAGS = 
 gap_graph_LDADD = -lcairo -llpsolve55 -lm -lgecodeint -lgecodesearch -lgecodekernel -lgecodedriver -lgecodesupport -lgecodegist
 #gap_graph_CXXFLAGS=-fopenmp -O3 --fast-math -march=native -mtune=native -s -Wno-write-strings -D_NO_LP_NAMES -DLINEAR_FUNCT
@@ -295,6 +315,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-Bus.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-Calendar.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-CalendarDate.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-ConstraintProgrammingListGraphColoring.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-GanttDiagram.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-Gate.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gap_graph-GraphModel.Po@am__quote@
@@ -374,6 +395,20 @@ gap_graph-CalendarDate.obj: CalendarDate.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CalendarDate.cpp' object='gap_graph-CalendarDate.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-CalendarDate.obj `if test -f 'CalendarDate.cpp'; then $(CYGPATH_W) 'CalendarDate.cpp'; else $(CYGPATH_W) '$(srcdir)/CalendarDate.cpp'; fi`
+
+gap_graph-ConstraintProgrammingListGraphColoring.o: ConstraintProgrammingListGraphColoring.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -MT gap_graph-ConstraintProgrammingListGraphColoring.o -MD -MP -MF $(DEPDIR)/gap_graph-ConstraintProgrammingListGraphColoring.Tpo -c -o gap_graph-ConstraintProgrammingListGraphColoring.o `test -f 'ConstraintProgrammingListGraphColoring.cpp' || echo '$(srcdir)/'`ConstraintProgrammingListGraphColoring.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/gap_graph-ConstraintProgrammingListGraphColoring.Tpo $(DEPDIR)/gap_graph-ConstraintProgrammingListGraphColoring.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ConstraintProgrammingListGraphColoring.cpp' object='gap_graph-ConstraintProgrammingListGraphColoring.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-ConstraintProgrammingListGraphColoring.o `test -f 'ConstraintProgrammingListGraphColoring.cpp' || echo '$(srcdir)/'`ConstraintProgrammingListGraphColoring.cpp
+
+gap_graph-ConstraintProgrammingListGraphColoring.obj: ConstraintProgrammingListGraphColoring.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -MT gap_graph-ConstraintProgrammingListGraphColoring.obj -MD -MP -MF $(DEPDIR)/gap_graph-ConstraintProgrammingListGraphColoring.Tpo -c -o gap_graph-ConstraintProgrammingListGraphColoring.obj `if test -f 'ConstraintProgrammingListGraphColoring.cpp'; then $(CYGPATH_W) 'ConstraintProgrammingListGraphColoring.cpp'; else $(CYGPATH_W) '$(srcdir)/ConstraintProgrammingListGraphColoring.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/gap_graph-ConstraintProgrammingListGraphColoring.Tpo $(DEPDIR)/gap_graph-ConstraintProgrammingListGraphColoring.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ConstraintProgrammingListGraphColoring.cpp' object='gap_graph-ConstraintProgrammingListGraphColoring.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -c -o gap_graph-ConstraintProgrammingListGraphColoring.obj `if test -f 'ConstraintProgrammingListGraphColoring.cpp'; then $(CYGPATH_W) 'ConstraintProgrammingListGraphColoring.cpp'; else $(CYGPATH_W) '$(srcdir)/ConstraintProgrammingListGraphColoring.cpp'; fi`
 
 gap_graph-GanttDiagram.o: GanttDiagram.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gap_graph_CXXFLAGS) $(CXXFLAGS) -MT gap_graph-GanttDiagram.o -MD -MP -MF $(DEPDIR)/gap_graph-GanttDiagram.Tpo -c -o gap_graph-GanttDiagram.o `test -f 'GanttDiagram.cpp' || echo '$(srcdir)/'`GanttDiagram.cpp
