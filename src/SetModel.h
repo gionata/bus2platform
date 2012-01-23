@@ -22,7 +22,7 @@
  */
 class SetModel {
 public:
-	SetModel(char *filename);
+	SetModel(char *filename, int mylag = 0);
 	SetModel(Buses &B, Gates &G);
 	~SetModel();
 

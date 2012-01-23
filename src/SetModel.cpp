@@ -15,7 +15,7 @@
 #include <string>
 #include <cstdio>
 
-SetModel::SetModel(char *filename)
+SetModel::SetModel(char *filename, int mylag)
 {
 	int no_platforms;
 	int no_dwells;
@@ -89,9 +89,9 @@ SetModel::SetModel(char *filename)
 		line_stream >> arrival;
 		line_stream >> departure;
 		sscanf(arrival.c_str(), "%d:%d:%d", &hh, &mm, &ss);
-		ptime pt_arrival(d, hours(hh) + minutes(mm) + seconds(ss));
+		ptime pt_arrival(d, hours(hh) + minutes(mm) + seconds(ss) -minutes(mylag));
 		sscanf(departure.c_str(), "%d:%d:%d", &hh, &mm, &ss);
-		ptime pt_departure(d, hours(hh) + minutes(mm) + seconds(ss));
+		ptime pt_departure(d, hours(hh) + minutes(mm) + seconds(ss) +minutes(mylag));
 
 		do {
 			int gateVectorIndex = 0;
