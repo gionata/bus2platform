@@ -405,16 +405,57 @@ unsigned int SetModel::numMaximalCliques() const
 }
 
 
-void SetModel::performances_airo2011(int * solution, unsigned int &used_platform, unsigned int &min_interval_distance, double &cprob_lin, double &cprob_exp) const
+void SetModel::performances_airo2011(int * solution, unsigned int &used_platform, unsigned int &min_interval_distance, double &cprob_lin, double &cprob_exp, double &mean_distance) const
 {
 	int gates = _G->size();
 	int dwells = _B->size();
 	bool * used = new bool [gates];
+	std::vector < std::vector <unsigned long int> > platform_endpoint(gates);
+	
+	for (int j = 0; j < gates; j++)
+		used[j] = false;
+	
 	for (int i = 0; i < dwells ; i++) {
+		if (solution[i] >= gates || solution[i] < 0) {
+			std::cerr << "Errore: solution[" << i << "] = " << solution[i] << std::endl;
+			continue;
+		}
 		used[solution[i]] = true;
+		//std::cout << 0 << std::endl;
+		platform_endpoint[solution[i]].push_back(60 * (*_B)[i]->arrival().time_of_day().hours() + (*_B)[i]->arrival().time_of_day().minutes());
+		platform_endpoint[solution[i]].push_back(60 * (*_B)[i]->departure().time_of_day().hours() + (*_B)[i]->departure().time_of_day().minutes());
+		//std::cout << 1 << std::endl;
 	}
 	used_platform = 0;
-	for (int j = 0; j < gates; j++)
-		if (used[j])
+	for (int j = 0; j < gates; j++) {
+		if (used[j]) {
 			used_platform++;
+			sort(platform_endpoint[j].begin(), platform_endpoint[j].end());
+		}
+	}
+	min_interval_distance = mean_distance = 1440;
+	unsigned long int total_distance = 0;
+	int n = 0;
+	for (int j = 0; j < gates; j++) {
+		if (!used[j])
+			continue;
+		unsigned long int a, d;
+		size_t points = platform_endpoint[j].size();
+		if (points <= 2)
+			continue;
+		for (int i = 2; i < points -1; i += 2) {
+			//std::cout << 4 << std::endl;
+			a = platform_endpoint[j][i];
+			//std::cout << 5 << std::endl;
+			d = platform_endpoint[j][i-1];
+			//std::cout << 6 << std::endl;
+			long int interval = a-d;
+			total_distance += interval;
+			if (interval < min_interval_distance)
+				min_interval_distance = interval;
+			n++;
+		}
+	}
+	if (total_distance != 0)
+		mean_distance = (double) total_distance / (double) n;
 }

@@ -6,14 +6,21 @@
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <cairo/cairo-svg.h>
+#include <cairo/cairo-pdf.h>
 
 #ifdef _B
 #	undef _B
 #endif
 
+enum surface_t {pdf = 0, svg};
+
 class GanttDiagram {
 public:
-	GanttDiagram(const char *output, Gates &G, Buses &B, int *dwellOnPlatform);
+	GanttDiagram(const char *output, Gates &G, Buses &B, int *dwellOnPlatform,
+           	unsigned int used_platform,
+           	unsigned int min_interval_distance,
+           	double mean_interval,
+           	surface_t st = pdf);
 	~GanttDiagram(void);
 private:
 	Gates & _G;
@@ -21,6 +28,7 @@ private:
 	int *_dwellOnPlatform;
 	double _width;
 	double _x_offset;
+	double _y_offset;
 	double _height;
 	double _platformHeight;
 	double *_platform_y_offset;
