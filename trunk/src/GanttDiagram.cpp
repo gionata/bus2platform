@@ -10,7 +10,11 @@ using namespace boost::posix_time;
 using namespace boost::gregorian;
 
 GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
-                           int *dwellOnPlatform): _G(G), _B(B),
+                           int *dwellOnPlatform,
+                       	unsigned int used_platform,
+                       	unsigned int min_interval_distance,
+                       	double mean_interval,
+                           surface_t st): _G(G), _B(B),
 	_dwellOnPlatform(dwellOnPlatform), _x_offset(0)
 {
 	_platforms = _G.size();
@@ -19,15 +23,25 @@ GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
 	_scale = 600 / _width;
 	_width = 600;
 	_height = 3 * _width / 4;
-	_platformHeight = _height / (2 * _platforms - 1);
+	//_platformHeight = _height / (2 * _platforms - 1);
+	_platformHeight = 2 *_height / (3 * _platforms - 1);
+	_y_offset = 1;
 	_platform_y_offset = new double[_platforms];
-	_platform_y_offset[0] = 0;
+	_platform_y_offset[0] = _y_offset;
+
+	//std::cout << "width x height = " << _width << " x " << _height << std::endl;
+	//std::cout << "platform height = " << _platformHeight << std::endl;
 
 	for (int p = 1; p < _platforms; p++) {
-		_platform_y_offset[p] = 2 * p * _platformHeight;
+		// _platform_y_offset[p] = 2 * p * _platformHeight;
+		_platform_y_offset[p] = 3.0 / 2 * p * _platformHeight + _y_offset;
+		//std::cout << "platform offset[" << p << "] = " << _platform_y_offset[p] << std::endl;
 	}
 
-	_surface = cairo_svg_surface_create(output, _width, _height);
+	if (st == svg)
+		_surface = cairo_svg_surface_create(output, _width * 4.0 / 3, _height * 4.0 / 3);
+	else if (st == pdf)
+		_surface = cairo_pdf_surface_create(output, _width * 4.0 / 3, _height * 4.0 / 3);
 	_cr = cairo_create(_surface);
 	cairo_select_font_face(_cr, "Sans", CAIRO_FONT_SLANT_NORMAL,
 	                       CAIRO_FONT_WEIGHT_NORMAL);
@@ -36,6 +50,27 @@ GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
 
 	drawPlatforms();
 	drawBusDwells();
+
+
+	cairo_text_extents_t extents;
+	char text[50];
+	sprintf(text, "Piattaforme: %d", used_platform);
+	cairo_text_extents(_cr, text, &extents);
+	cairo_move_to(_cr, _x_offset, _height * 7.0 / 6);
+	cairo_set_source_rgb(_cr, 0, 0, 0);
+	cairo_show_text(_cr, text);
+
+	sprintf(text, "Minimo intervallo: %d", (int)min_interval_distance);
+	cairo_text_extents(_cr, text, &extents);
+	cairo_move_to(_cr, _x_offset, _height * 7.0 / 6 + 20);
+	cairo_set_source_rgb(_cr, 0, 0, 0);
+	cairo_show_text(_cr, text);
+
+	sprintf(text, "Media intervalli: %g", mean_interval);
+	cairo_text_extents(_cr, text, &extents);
+	cairo_move_to(_cr, _x_offset, _height * 7.0 / 6 + 40);
+	cairo_set_source_rgb(_cr, 0, 0, 0);
+	cairo_show_text(_cr, text);
 
 	cairo_surface_destroy(_surface);
 	cairo_destroy(_cr);
@@ -79,13 +114,14 @@ GanttDiagram::findWidth()
 		}
 	}
 
-	_x_offset = min;
+	_x_offset = min - 1;
 
 	return max - min;
 }
 
 void GanttDiagram::drawPlatforms()
 {
+	cairo_text_extents_t extents;
 	for (int p = 0; p < _platforms; p++) {
 		// per ogni intervallo di abilitazione disegna il rettangolo corrispondente
 		std::vector < TimeAvailability * >&stopAvailableTimes =
@@ -101,6 +137,13 @@ void GanttDiagram::drawPlatforms()
 			drawBorderedRectangle(x0, _platform_y_offset[p], x1 - x0, _platformHeight
 			                      , 0, 0, 0.5
 			                      , 0.7, 0.7, 0.7);
+			char platform_number[5];
+			sprintf(platform_number, "P. %d", _G[p]->gateNumber());
+			cairo_text_extents(_cr, platform_number, &extents);
+			cairo_move_to(_cr, _width * 7.0 / 6,
+		              _platform_y_offset[p] + _platformHeight / 2);
+			cairo_set_source_rgb(_cr, 0, 0, 0);
+			cairo_show_text(_cr, platform_number);
 		}
 	}
 }
