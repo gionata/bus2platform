@@ -44,8 +44,8 @@ GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
 	else if (st == pdf)
 		_surface = cairo_pdf_surface_create(output, _width, _height * 4.0 / 3);
 	_cr = cairo_create(_surface);
-	//cairo_select_font_face(_cr, "Sans", CAIRO_FONT_SLANT_NORMAL,
-	//                       CAIRO_FONT_WEIGHT_NORMAL);
+	cairo_select_font_face(_cr, "Cairo:Sans", CAIRO_FONT_SLANT_NORMAL,
+	                       CAIRO_FONT_WEIGHT_NORMAL);
 	// cairo_set_font_size(_cr, _platformHeight / 3); // 800pt
 	//cairo_set_font_size(_cr, (int)_platformHeight / 6); // 600pt
 
@@ -233,7 +233,7 @@ void GanttDiagram::drawBusDwells()
 			sprintf(bus_number, "%d", (*b)->dwellNumber());
 			cairo_text_extents(_cr, bus_number, &extents);
 			cairo_move_to(_cr, (x1 + x0) / 2 - extents.width / 2,
-				      _platform_y_offset[gate] + _platformHeight / 2);
+				      _platform_y_offset[gate] + (_platformHeight + extents.height) / 2);
 			cairo_set_source_rgb(_cr, 0, 0, 0);
 			cairo_show_text(_cr, bus_number);
 		}
