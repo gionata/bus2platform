@@ -20,6 +20,7 @@ public:
            	unsigned int used_platform,
            	unsigned int min_interval_distance,
            	double mean_interval,
+		double opt_time,
            	surface_t st = pdf);
 	~GanttDiagram(void);
 private:
@@ -39,7 +40,7 @@ private:
 	double x_coordinate(boost::posix_time::ptime p);
 	void drawPlatforms();
 	void drawBusDwells();
-	void drawBorderedRectangle(double x0, double y0, double width, double height, double rBorder = 0.0, double gBorder = 0.0, double bBorder = 0.0, double rFill = 1.0, double gFill = 1.0, double bFill = 1.0);
+	void drawBorderedRectangle(double x0, double y0, double width, double height, double rBorder = 0.0, double gBorder = 0.0, double bBorder = 0.0, double rFill = 1.0, double gFill = 1.0, double bFill = 1.0, cairo_pattern_t *hatch = 0);
 
 	cairo_surface_t *_surface;
 	cairo_t *_cr;

@@ -200,10 +200,10 @@ bool intervalPackingFirstFirst(SetModel &problemSets, GraphModel &gModel, int *&
 		problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
 
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(),
-		                      problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+		                      problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, firstFit->elapsedTime(), svg);
 		delete(gd);
 		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(),
-		                      problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+		                      problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, firstFit->elapsedTime(), pdf);
 		delete(gd);
 		delete[]solution;
 		cerr << "    Time: " << firstFit->elapsedTime() << "ms." << endl;
@@ -260,10 +260,10 @@ bool intervalPackingFinishFirst(SetModel &problemSets, GraphModel &gModel, int *
 		//std::cout << "Calcolo gli indicatori" << std::endl;
 		problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(),
-		                      problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+		                      problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, finishFirst->elapsedTime(), svg);
 		delete(gd);
 		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(),
-		                      problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+		                      problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, finishFirst->elapsedTime(), pdf);
 		delete(gd);
 		delete[]solution;
 		cerr << "    Time: " << finishFirst->elapsedTime() << "ms." << endl;
@@ -321,9 +321,9 @@ bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 		//std::cout << "Calcolo gli indicatori" << std::endl;
 		problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
 
-		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, colModel->elapsedTime(), svg);
 		delete(gd);
-		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, colModel->elapsedTime(), mean_interval, pdf);
 		delete(gd);
 
 		if (!warmStart) {
@@ -384,9 +384,9 @@ bool mathModelBP(SetModel &problemSets, GraphModel &gModel, int *&warmStart, str
 		//std::cout << "Calcolo gli indicatori" << std::endl;
 		problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
 
-		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, bpModel->elapsedTime(), svg);
 		delete(gd);
-		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, bpModel->elapsedTime(), pdf);
 		delete(gd);
 
 		if (!warmStart) {
@@ -453,9 +453,9 @@ bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 		double mean_interval;
 		//std::cout << "Calcolo gli indicatori" << std::endl;
 		problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
-		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, bpModelsingle->elapsedTime(), svg);
 		delete(gd);
-		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, bpModelsingle->elapsedTime(), pdf);
 		delete(gd);
 
 		if (!warmStart) {
@@ -524,9 +524,9 @@ bool mathModelMinPConflict(SetModel &problemSets, GraphModel &gModel, int *&warm
 		double mean_interval;
 		//std::cout << "Calcolo gli indicatori" << std::endl;
 		problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
-		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, mPconflictModel->elapsedTime(), svg);
 		delete(gd);
-		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, mPconflictModel->elapsedTime(), pdf);
 		delete(gd);
 		delete[]solution;
 	}
@@ -592,9 +592,9 @@ bool mathModelMaxMinDistance(SetModel &problemSets, GraphModel &gModel, int *&wa
 		double mean_interval;
 		//std::cout << "Calcolo gli indicatori" << std::endl;
 		problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
-		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, mmdModel->elapsedTime(), svg);
 		delete(gd);
-		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, mmdModel->elapsedTime(), pdf);
 		delete(gd);
 		delete[]solution;
 
@@ -640,9 +640,9 @@ bool iterativeTimeHorizonMath(SetModel &problemSets, GraphModel &gModel, int *&w
 		double mean_interval;
 		//std::cout << "Calcolo gli indicatori" << std::endl;
 		problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
-		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, mIterativeTimeHorizonMath->elapsedTime(), svg);
 		delete(gd);
-		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, mIterativeTimeHorizonMath->elapsedTime(), pdf);
 		delete(gd);
 
 		gModel.solutionFeasibility(solution, "IterativeMPC");
@@ -690,9 +690,9 @@ bool iterativeTimeHorizonMathMD(SetModel &problemSets, GraphModel &gModel, int *
 		double mean_interval;
 		//std::cout << "Calcolo gli indicatori" << std::endl;
 		problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
-		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, mIterativeTimeHorizonMath->elapsedTime(), svg);
 		delete(gd);
-		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, mIterativeTimeHorizonMath->elapsedTime(), pdf);
 		delete(gd);
 		gModel.solutionFeasibility(solution, "IterativeMPC_MD");
 		delete[]solution;
@@ -751,9 +751,9 @@ bool real_solution(SetModel &problemSets, GraphModel &gModel, int *&warmStart, s
 
 	svg_output = "reale.svg";
 	pdf_output = "reale.pdf";
-	gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+	gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, 0, svg);
 	delete(gd);
-	gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+	gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, 0, pdf);
 	delete(gd);
 	gModel.solutionFeasibility(solution, "reale");
 	delete[]solution;
@@ -767,7 +767,7 @@ bool cp_listcoloring(SetModel &problemSets, GraphModel &gModel, int *&warmStart,
 	string svg_output;
 	string pdf_output;
 	bool ret = false;
-	clock_t begin, end;
+	clock_t begin, end, start, stop;
 	GanttDiagram *gd;
 
 	// per sicurezza:
@@ -857,7 +857,9 @@ bool cp_listcoloring(SetModel &problemSets, GraphModel &gModel, int *&warmStart,
 	//Script::run<GraphColor,BAB,SizeOptions>(opt);
 	GraphColor *model = new GraphColor(opt, g1);
 	BAB<GraphColor> alg(model);
+	start = clock();
 	GraphColor *sol = alg.next();
+	stop = clock();
 	sol->print(std::cout);
 
 	end = clock();
@@ -876,10 +878,10 @@ bool cp_listcoloring(SetModel &problemSets, GraphModel &gModel, int *&warmStart,
 	double mean_interval = 0;
 	//std::cout << "Calcolo gli indicatori" << std::endl;
 	problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
-	gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, svg);
+	gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, (stop - start) / (double)CLOCKS_PER_SEC, svg);
 	delete(gd);
 
-	gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, pdf);
+	gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, (stop - start) / (double)CLOCKS_PER_SEC, pdf);
 	delete(gd);
 	delete[]solution;
 	//}

@@ -14,14 +14,15 @@ GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
                        	unsigned int used_platform,
                        	unsigned int min_interval_distance,
                        	double mean_interval,
+			double opt_time,
                            surface_t st): _G(G), _B(B),
 	_dwellOnPlatform(dwellOnPlatform), _x_offset(0)
 {
 	_platforms = _G.size();
 	_scale = 1.0;
 	_width = findWidth();
-	_scale = 600 / _width;
-	_width = 600;
+	_scale = 340 / _width;
+	_width = 340;
 	_height = 3 * _width / 4;
 	//_platformHeight = _height / (2 * _platforms - 1);
 	_platformHeight = 2 *_height / (3 * _platforms - 1);
@@ -39,36 +40,38 @@ GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
 	}
 
 	if (st == svg)
-		_surface = cairo_svg_surface_create(output, _width * 4.0 / 3, _height * 4.0 / 3);
+		_surface = cairo_svg_surface_create(output, _width, _height * 4.0 / 3);
 	else if (st == pdf)
-		_surface = cairo_pdf_surface_create(output, _width * 4.0 / 3, _height * 4.0 / 3);
+		_surface = cairo_pdf_surface_create(output, _width, _height * 4.0 / 3);
 	_cr = cairo_create(_surface);
-	cairo_select_font_face(_cr, "Sans", CAIRO_FONT_SLANT_NORMAL,
-	                       CAIRO_FONT_WEIGHT_NORMAL);
+	//cairo_select_font_face(_cr, "Sans", CAIRO_FONT_SLANT_NORMAL,
+	//                       CAIRO_FONT_WEIGHT_NORMAL);
 	// cairo_set_font_size(_cr, _platformHeight / 3); // 800pt
-	cairo_set_font_size(_cr, _platformHeight / 6); // 600pt
+	//cairo_set_font_size(_cr, (int)_platformHeight / 6); // 600pt
 
 	drawPlatforms();
 	drawBusDwells();
 
 
-	cairo_text_extents_t extents;
+	cairo_set_font_size(_cr,  10); 
 	char text[50];
-	sprintf(text, "Piattaforme: %d", used_platform);
-	cairo_text_extents(_cr, text, &extents);
-	cairo_move_to(_cr, _x_offset, _height * 7.0 / 6);
+	sprintf(text, "Numero piattaforme impiegate: %d", used_platform);
+	cairo_move_to(_cr, 1, _height * 7.0 / 6 - 10);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
-	sprintf(text, "Minimo intervallo: %d", (int)min_interval_distance);
-	cairo_text_extents(_cr, text, &extents);
-	cairo_move_to(_cr, _x_offset, _height * 7.0 / 6 + 20);
+	sprintf(text, "Minimo intervallo: %d (minuti)", (int)min_interval_distance);
+	cairo_move_to(_cr, 1, _height * 7.0 / 6 +  5);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
-	sprintf(text, "Media intervalli: %g", mean_interval);
-	cairo_text_extents(_cr, text, &extents);
-	cairo_move_to(_cr, _x_offset, _height * 7.0 / 6 + 40);
+	sprintf(text, "Media intervalli: %g (minuti)", mean_interval);
+	cairo_move_to(_cr, 1, _height * 7.0 / 6 + 20);
+	cairo_set_source_rgb(_cr, 0, 0, 0);
+	cairo_show_text(_cr, text);
+
+	sprintf(text, "Tempo di calcolo: %gms", opt_time);
+	cairo_move_to(_cr, 1, _height * 7.0 / 6 + 35);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
@@ -114,15 +117,70 @@ GanttDiagram::findWidth()
 		}
 	}
 
-	_x_offset = min - 1;
-
+	_x_offset = min;
+	
 	return max - min;
 }
 
 void GanttDiagram::drawPlatforms()
 {
 	cairo_text_extents_t extents;
-	for (int p = 0; p < _platforms; p++) {
+	cairo_pattern_t * hatch = 0;
+	/***************/
+	if (_B.size() < 25)  {
+		cairo_t * cr;
+		cairo_surface_t *surface;
+		surface = cairo_surface_create_similar(cairo_get_target(_cr),CAIRO_CONTENT_COLOR,10,10);
+		cr = cairo_create(surface);
+		cairo_set_source_rgb(cr, 1,1,1);
+		double sq_side = _platformHeight / 4;
+		cairo_rectangle(cr, 0, 0, sq_side, sq_side);
+		cairo_fill_preserve(cr);
+		cairo_stroke(cr);
+		cairo_set_source_rgb(cr, 0,0,0);
+		
+		cairo_set_line_cap(cr, CAIRO_LINE_CAP_SQUARE);
+		double wd = sq_side / 5;
+		cairo_set_line_width(cr, wd);
+		cairo_set_line_join(cr,CAIRO_LINE_JOIN_MITER);
+
+		/*
+		//case wxBRUSHSTYLE_CROSS_HATCH:
+			cairo_move_to(cr, 5, 0);
+			cairo_line_to(cr, 5, 10);
+			cairo_move_to(cr, 0, 5);
+			cairo_line_to(cr, 10, 5);
+		*/
+		//    case wxBRUSHSTYLE_BDIAGONAL_HATCH:
+			cairo_move_to(cr, 0, 10);
+			cairo_line_to(cr, 10, 0);
+		 /*
+		 //   case wxBRUSHSTYLE_FDIAGONAL_HATCH:
+			cairo_move_to(cr, 0, 0);
+			cairo_line_to(cr, 10, 10);
+		 //   case wxBRUSHSTYLE_CROSSDIAG_HATCH:
+			cairo_move_to(cr, 0, 0);
+			cairo_line_to(cr, 10, 10);
+			cairo_move_to(cr, 10, 0);
+			cairo_line_to(cr, 0, 10);
+		//    case wxBRUSHSTYLE_HORIZONTAL_HATCH:
+			cairo_move_to(cr, 0, 5);
+			cairo_line_to(cr, 10, 5);
+		//    case wxBRUSHSTYLE_VERTICAL_HATCH:
+			cairo_move_to(cr, 5, 0);
+			cairo_line_to(cr, 5, 10);
+		*/
+
+		cairo_set_source_rgb(cr, 0, 0, 0);
+		cairo_stroke (cr);
+
+		cairo_destroy(cr);
+		hatch = cairo_pattern_create_for_surface (surface);
+		cairo_surface_destroy(surface);
+		cairo_pattern_set_extend (hatch, CAIRO_EXTEND_REPEAT);
+	}
+		/***************/
+	  for (int p = 0; p < _platforms; p++) {
 		// per ogni intervallo di abilitazione disegna il rettangolo corrispondente
 		std::vector < TimeAvailability * >&stopAvailableTimes =
 		    _G[p]->stopAvailableTimes();
@@ -136,16 +194,22 @@ void GanttDiagram::drawPlatforms()
 
 			drawBorderedRectangle(x0, _platform_y_offset[p], x1 - x0, _platformHeight
 			                      , 0, 0, 0.5
-			                      , 0.7, 0.7, 0.7);
-			char platform_number[5];
-			sprintf(platform_number, "P. %d", _G[p]->gateNumber());
-			cairo_text_extents(_cr, platform_number, &extents);
-			cairo_move_to(_cr, _width * 7.0 / 6,
-		              _platform_y_offset[p] + _platformHeight / 2);
-			cairo_set_source_rgb(_cr, 0, 0, 0);
-			cairo_show_text(_cr, platform_number);
+			                      , 0.75, 0.75, 0.75
+					      , hatch);
+			
+			if (_B.size() < 25) 
+			{	
+				char platform_number[5];
+				sprintf(platform_number, "%d", _G[p]->gateNumber());
+				cairo_text_extents(_cr, platform_number, &extents);
+				cairo_move_to(_cr, (_width - extents.width) / 2,
+				      _platform_y_offset[p] + 5 * _platformHeight / 4 + extents.height/2);
+				cairo_set_source_rgb(_cr, 0, 0, 0);
+				cairo_show_text(_cr, platform_number);
+			}
 		}
 	}
+	cairo_pattern_destroy (hatch);
 }
 
 void GanttDiagram::drawBusDwells()
@@ -163,13 +227,16 @@ void GanttDiagram::drawBusDwells()
 		drawBorderedRectangle(x0, _platform_y_offset[gate], x1 - x0, _platformHeight
 		                      , 0.5, 0, 0
 		                      , 1.0, 0.97, 0.80);
-		char bus_number[5];
-		sprintf(bus_number, "%d", (*b)->dwellNumber());
-		cairo_text_extents(_cr, bus_number, &extents);
-		cairo_move_to(_cr, (x1 + x0) / 2 - extents.width / 2,
-		              _platform_y_offset[gate] + _platformHeight / 2);
-		cairo_set_source_rgb(_cr, 0, 0, 0);
-		cairo_show_text(_cr, bus_number);
+		if (_B.size() < 25) 
+		{
+			char bus_number[5];
+			sprintf(bus_number, "%d", (*b)->dwellNumber());
+			cairo_text_extents(_cr, bus_number, &extents);
+			cairo_move_to(_cr, (x1 + x0) / 2 - extents.width / 2,
+				      _platform_y_offset[gate] + _platformHeight / 2);
+			cairo_set_source_rgb(_cr, 0, 0, 0);
+			cairo_show_text(_cr, bus_number);
+		}
 	}
 }
 
@@ -186,12 +253,15 @@ double GanttDiagram::x_coordinate(ptime p)
 	return x;
 }
 
-void GanttDiagram::drawBorderedRectangle(double x0, double y0, double width, double height, double rBorder, double gBorder, double bBorder, double rFill, double gFill, double bFill)
-{
-	cairo_rectangle(_cr, x0, y0, width, height);
+void GanttDiagram::drawBorderedRectangle(double x0, double y0, double width, double height, double rBorder, double gBorder, double bBorder, double rFill, double gFill, double bFill, cairo_pattern_t *hatch)
+{	
 	cairo_set_source_rgb(_cr, rFill, gFill, bFill);
+	cairo_rectangle(_cr, x0, y0, width, height);
+	if (hatch)
+		cairo_set_source(_cr, hatch);
 	cairo_fill_preserve(_cr);
 	cairo_set_source_rgb(_cr, rBorder, gBorder, bBorder);
-	cairo_set_line_width(_cr, _platformHeight / 50);
+	cairo_set_line_width(_cr, _platformHeight / 20);
+	cairo_rectangle(_cr, x0, y0, width, height);
 	cairo_stroke(_cr);
 }
