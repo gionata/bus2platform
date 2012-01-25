@@ -4,6 +4,6 @@ gap_graph_LDFLAGS =
 gap_graph_LDADD = -lcairo -llpsolve55 -lm -lgecodeint -lgecodesearch -lgecodekernel -lgecodedriver -lgecodesupport -lgecodegist
 #gap_graph_CXXFLAGS=-fopenmp -O3 --fast-math -march=native -mtune=native -s -Wno-write-strings -D_NO_LP_NAMES -DLINEAR_FUNCT
 
-#gap_graph_CXXFLAGS=-Ofast -march=native -mtune=native -s -Wno-write-strings -D_NO_LP_NAMES
+gap_graph_CXXFLAGS=-Ofast -march=native -mtune=native -s -Wno-write-strings -D_NO_LP_NAMES
 
-gap_graph_CXXFLAGS=-O0 -g -march=native -mtune=native -Wno-write-strings
+#gap_graph_CXXFLAGS=-O0 -g -march=native -mtune=native -Wno-write-strings
