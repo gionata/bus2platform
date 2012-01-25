@@ -41,6 +41,8 @@ private:
 	void drawPlatforms();
 	void drawBusDwells();
 	void drawBorderedRectangle(double x0, double y0, double width, double height, double rBorder = 0.0, double gBorder = 0.0, double bBorder = 0.0, double rFill = 1.0, double gFill = 1.0, double bFill = 1.0, cairo_pattern_t *hatch = 0);
+	boost::posix_time::ptime _minTime, _maxTime;
+	boost::posix_time::time_duration _diffTime;
 
 	cairo_surface_t *_surface;
 	cairo_t *_cr;
