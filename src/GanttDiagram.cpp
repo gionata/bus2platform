@@ -11,10 +11,10 @@ using namespace boost::gregorian;
 
 GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
                            int *dwellOnPlatform,
-                       	unsigned int used_platform,
-                       	unsigned int min_interval_distance,
-                       	double mean_interval,
-			double opt_time,
+                           unsigned int used_platform,
+                           unsigned int min_interval_distance,
+                           double mean_interval,
+                           double opt_time,
                            surface_t st): _G(G), _B(B),
 	_dwellOnPlatform(dwellOnPlatform), _x_offset(0)
 {
@@ -53,25 +53,25 @@ GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
 	drawBusDwells();
 
 
-	cairo_set_font_size(_cr,  10); 
+	cairo_set_font_size(_cr,  10);
 	char text[50];
-	sprintf(text, "Numero piattaforme impiegate: %d", used_platform);
-	cairo_move_to(_cr, 1, _height * 7.0 / 6 - 10);
+	sprintf(text, "N. piattaforme: %d", used_platform);
+	cairo_move_to(_cr, 10, _height * 7.0 / 6 + 25);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
-	sprintf(text, "Minimo intervallo: %d (minuti)", (int)min_interval_distance);
-	cairo_move_to(_cr, 1, _height * 7.0 / 6 +  5);
+	sprintf(text, "Min intervallo: %d'", (int)min_interval_distance);
+	cairo_move_to(_cr, 130, _height * 7.0 / 6 +  25);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
-	sprintf(text, "Media intervalli: %g (minuti)", mean_interval);
-	cairo_move_to(_cr, 1, _height * 7.0 / 6 + 20);
+	sprintf(text, "Media intervalli: %.3g'", mean_interval);
+	cairo_move_to(_cr, 10, _height * 7.0 / 6 + 40);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
-	sprintf(text, "Tempo di calcolo: %gms", opt_time);
-	cairo_move_to(_cr, 1, _height * 7.0 / 6 + 35);
+	sprintf(text, "Tempo di calcolo: %.3gms", opt_time);
+	cairo_move_to(_cr, 130, _height * 7.0 / 6 + 40);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
@@ -107,18 +107,22 @@ GanttDiagram::findWidth()
 
 			if (tmp < min) {
 				min = tmp;
+				_minTime = beginTime;
 			}
 
 			tmp = x_coordinate(endTime);
 
 			if (tmp > max) {
 				max = tmp;
+				_maxTime = endTime;
 			}
 		}
 	}
 
 	_x_offset = min;
-	
+	//std::cout << _diffTime << " diff\n" << _maxTime << " max\n" << _minTime << " min" << std::endl;
+	_diffTime = _maxTime - _minTime;
+
 	return max - min;
 }
 
@@ -138,7 +142,7 @@ void GanttDiagram::drawPlatforms()
 		cairo_fill_preserve(cr);
 		cairo_stroke(cr);
 		cairo_set_source_rgb(cr, 0,0,0);
-		
+
 		cairo_set_line_cap(cr, CAIRO_LINE_CAP_SQUARE);
 		double wd = sq_side / 5;
 		cairo_set_line_width(cr, wd);
@@ -152,17 +156,17 @@ void GanttDiagram::drawPlatforms()
 			cairo_line_to(cr, 10, 5);
 		*/
 		//    case wxBRUSHSTYLE_BDIAGONAL_HATCH:
-			cairo_move_to(cr, 0, 10);
-			cairo_line_to(cr, 10, 0);
-		 /*
-		 //   case wxBRUSHSTYLE_FDIAGONAL_HATCH:
-			cairo_move_to(cr, 0, 0);
-			cairo_line_to(cr, 10, 10);
-		 //   case wxBRUSHSTYLE_CROSSDIAG_HATCH:
-			cairo_move_to(cr, 0, 0);
-			cairo_line_to(cr, 10, 10);
-			cairo_move_to(cr, 10, 0);
-			cairo_line_to(cr, 0, 10);
+		cairo_move_to(cr, 0, 10);
+		cairo_line_to(cr, 10, 0);
+		/*
+		//   case wxBRUSHSTYLE_FDIAGONAL_HATCH:
+		cairo_move_to(cr, 0, 0);
+		cairo_line_to(cr, 10, 10);
+		//   case wxBRUSHSTYLE_CROSSDIAG_HATCH:
+		cairo_move_to(cr, 0, 0);
+		cairo_line_to(cr, 10, 10);
+		cairo_move_to(cr, 10, 0);
+		cairo_line_to(cr, 0, 10);
 		//    case wxBRUSHSTYLE_HORIZONTAL_HATCH:
 			cairo_move_to(cr, 0, 5);
 			cairo_line_to(cr, 10, 5);
@@ -179,8 +183,9 @@ void GanttDiagram::drawPlatforms()
 		cairo_surface_destroy(surface);
 		cairo_pattern_set_extend (hatch, CAIRO_EXTEND_REPEAT);
 	}
-		/***************/
-	  for (int p = 0; p < _platforms; p++) {
+	/***************/
+	double min = 100000, max = -100000;
+	for (int p = 0; p < _platforms; p++) {
 		// per ogni intervallo di abilitazione disegna il rettangolo corrispondente
 		std::vector < TimeAvailability * >&stopAvailableTimes =
 		    _G[p]->stopAvailableTimes();
@@ -191,25 +196,87 @@ void GanttDiagram::drawPlatforms()
 		        interval != stopAvailableTimes.end(); interval++) {
 			double x0 = x_coordinate((*interval)->begin());
 			double x1 = x_coordinate((*interval)->end());
-
+			if (x0 < min)
+				min = x0;
+			if (x1 > max)
+				max = x1;
 			drawBorderedRectangle(x0, _platform_y_offset[p], x1 - x0, _platformHeight
 			                      , 0, 0, 0.5
 			                      , 0.75, 0.75, 0.75
-					      , hatch);
-			
-			if (_B.size() < 25) 
-			{	
+			                      , hatch);
+
+			if (_B.size() < 25)
+			{
 				char platform_number[5];
 				sprintf(platform_number, "%d", _G[p]->gateNumber());
 				cairo_text_extents(_cr, platform_number, &extents);
 				cairo_move_to(_cr, (_width - extents.width) / 2,
-				      _platform_y_offset[p] + 5 * _platformHeight / 4 + extents.height/2);
+				              _platform_y_offset[p] + 5 * _platformHeight / 4 + extents.height/2);
 				cairo_set_source_rgb(_cr, 0, 0, 0);
 				cairo_show_text(_cr, platform_number);
 			}
 		}
 	}
 	cairo_pattern_destroy (hatch);
+
+	cairo_set_source_rgb(_cr, 0, 0, 0);
+	cairo_set_line_width(_cr, _platformHeight / 20);
+
+	double lineBase = _height * 1.10;
+	double bottom = lineBase - 0.02* _height;
+	double top = lineBase + 0.02* _height;
+	cairo_move_to(_cr, min, lineBase);
+	cairo_line_to(_cr, max, lineBase);
+	int totMinutes = (_diffTime.total_seconds() / 60);
+	int ticks;
+	for (ticks = 15; ticks > 1; ticks--)
+		if (totMinutes % ticks == 0)
+			break;
+	int minutesPerTick = totMinutes / ticks;
+	double x0 = x_coordinate(_minTime);
+	double tickLen = x_coordinate(_minTime+minutes(minutesPerTick)) - x0;
+	for (int i = 0; i < ticks; i++) {
+		double x = x0 + i*tickLen;
+		cairo_move_to(_cr, x, bottom);
+		cairo_line_to(_cr, x, top);
+	}
+
+	char tickTime[10];
+	sprintf(tickTime, "%02d:%02d", _minTime.time_of_day().hours(), _minTime.time_of_day().minutes());
+	cairo_text_extents(_cr, tickTime, &extents);
+	cairo_move_to(_cr, x_coordinate(_minTime), // + (_width - extents.width) / 2,
+	              lineBase + 15);
+	cairo_show_text(_cr, tickTime);
+
+	sprintf(tickTime, "%02d:%02d", _maxTime.time_of_day().hours(), _maxTime.time_of_day().minutes());
+	cairo_text_extents(_cr, tickTime, &extents);
+	cairo_move_to(_cr, x_coordinate(_maxTime) - (extents.width),
+	              lineBase + 15);
+	cairo_show_text(_cr, tickTime);
+
+	lineBase = _height * 1.25;
+	bottom = lineBase - 0.02* _height;
+	top = lineBase + 0.02* _height;
+
+	cairo_move_to(_cr, 320 - tickLen, lineBase);
+	cairo_line_to(_cr, 320, lineBase);
+
+	cairo_move_to(_cr, 320 - tickLen, bottom);
+	cairo_line_to(_cr, 320 - tickLen, top);
+
+	cairo_move_to(_cr, 320, bottom);
+	cairo_line_to(_cr, 320, top);
+
+	if (minutesPerTick < 60)
+		sprintf(tickTime, "%d'", (int)minutesPerTick);
+	else if (minutesPerTick % 60 == 0)
+		sprintf(tickTime, "%dh", (int)minutesPerTick/60);
+	else
+		sprintf(tickTime, "%dh %d'", (int)minutesPerTick / 60, (int)minutesPerTick);
+	cairo_text_extents(_cr, tickTime, &extents);
+	cairo_move_to(_cr, 320 - (tickLen + extents.width) / 2, lineBase + 15);
+	cairo_set_source_rgb(_cr, 0, 0, 0);
+	cairo_show_text(_cr, tickTime);
 }
 
 void GanttDiagram::drawBusDwells()
@@ -227,13 +294,13 @@ void GanttDiagram::drawBusDwells()
 		drawBorderedRectangle(x0, _platform_y_offset[gate], x1 - x0, _platformHeight
 		                      , 0.5, 0, 0
 		                      , 1.0, 0.97, 0.80);
-		if (_B.size() < 25) 
+		if (_B.size() < 25)
 		{
 			char bus_number[5];
 			sprintf(bus_number, "%d", (*b)->dwellNumber());
 			cairo_text_extents(_cr, bus_number, &extents);
 			cairo_move_to(_cr, (x1 + x0) / 2 - extents.width / 2,
-				      _platform_y_offset[gate] + (_platformHeight + extents.height) / 2);
+			              _platform_y_offset[gate] + (_platformHeight + extents.height) / 2);
 			cairo_set_source_rgb(_cr, 0, 0, 0);
 			cairo_show_text(_cr, bus_number);
 		}
@@ -254,7 +321,7 @@ double GanttDiagram::x_coordinate(ptime p)
 }
 
 void GanttDiagram::drawBorderedRectangle(double x0, double y0, double width, double height, double rBorder, double gBorder, double bBorder, double rFill, double gFill, double bFill, cairo_pattern_t *hatch)
-{	
+{
 	cairo_set_source_rgb(_cr, rFill, gFill, bFill);
 	cairo_rectangle(_cr, x0, y0, width, height);
 	if (hatch)
