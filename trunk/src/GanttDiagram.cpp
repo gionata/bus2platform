@@ -68,8 +68,8 @@ GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
 	if (mean_interval < 1.0)
 		sprintf(text, "Media intervalli: %.3gs", mean_interval*60);
 	else {
- 		int min = (int) mean_interval;
-		int sec = 60 * (mean_interval - min);		
+ 		int min = floor(mean_interval);
+		int sec = 60. * (mean_interval - min);		
 		if (sec < 1)
 			sprintf(text, "Media intervalli: %d'", min);
 		else

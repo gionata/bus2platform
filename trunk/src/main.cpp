@@ -327,7 +327,7 @@ bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 
 		gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, colModel->elapsedTime(), svg);
 		delete(gd);
-		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, colModel->elapsedTime(), mean_interval, pdf);
+		gd = new GanttDiagram(pdf_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, colModel->elapsedTime(), pdf);
 		delete(gd);
 
 		if (!warmStart) {
