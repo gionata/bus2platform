@@ -305,6 +305,7 @@ bool mathModelColoring(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 	colModel->writeModelCPLEX("modelColoring_CPLEX.lp");
 	cerr << "  Costruzione di MathModelColoring in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
 	colModel->verbose(IMPORTANT); // NEUTRAL CRITICAL SEVERE IMPORTANT NORMAL DETAILED FULL
+	colModel->setTimeout(5);
 	colModel->solveX();
 	end = clock();
 	cerr << "  Soluzione del MathModelColoring in " << (end -	begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -365,6 +366,7 @@ bool mathModelBP(SetModel &problemSets, GraphModel &gModel, int *&warmStart, str
 	begin = clock();
 	MathModel *bpModel = new MathModelBP(gModel);
 	end = clock();
+	 bpModel->setTimeout(5);
 	bpModel->writeModelLP_solve("modelBP.lp");
 	bpModel->writeModelCPLEX("modelBP_CPLEX.lp");
 	cerr << "  Costruzione di MathModelBP in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
@@ -430,6 +432,7 @@ bool mathModelBPsingle(SetModel &problemSets, GraphModel &gModel, int *&warmStar
 	begin = clock();
 	MathModel *bpModelsingle = new MathModelBPsingle(gModel);
 	end = clock();
+	 bpModelsingle->setTimeout(5);
 	bpModelsingle->writeModelLP_solve("modelBPsingle.lp");
 	bpModelsingle->writeModelCPLEX("modelBPsingle_CPLEX.lp");
 	cerr << "  Costruzione di MathModelBPsingle in " << (end - begin) / (double)(CLOCKS_PER_SEC / 1000) << "ms." << endl;
