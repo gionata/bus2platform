@@ -80,33 +80,26 @@ int main(int argc, char *argv[])
 
 	int *warmStart = 0;
 
-	/* stampa tutte le cliques massimali --
-	std::vector < std::vector < int >*> allmaxcliques = problemSets.findAllMaximalCliques();
-	for(std::vector < std::vector < int >*>::const_iterator cliqueptritr = allmaxcliques.begin(); cliqueptritr != allmaxcliques.end(); cliqueptritr++) {
-	    cerr << "Clique size: " << (*cliqueptritr)->size() << endl;
-	    for(std::vector < int >::const_iterator interfering_vertex = (*cliqueptritr)->begin(); interfering_vertex != (*cliqueptritr)->end(); interfering_vertex++)
-	        cerr << " " << *interfering_vertex;
-	    cerr << endl;
-	}
-	-- end stampa */
+	string reference_name("istanza_reale_feasible");
+	size_t ref_len = reference_name.length();
+	size_t inst_len = instance_name.length();
 
-	if (string(argv[1]).compare("istanza_reale_feasibile.txt") == 0)
+	if (
+		(ref_len==inst_len && instance_name.compare(reference_name) == 0) ||
+		(
+		ref_len<inst_len &&
+			(
+		instance_name.substr(inst_len-ref_len, ref_len).compare(reference_name) == 0 ||
+	        instance_name.substr(inst_len-ref_len-4, ref_len).compare(reference_name) == 0
+			)
+		)
+	   )
 		real_solution(problemSets, gModel, warmStart, instance_name);
 
 	#pragma omp parallel
 	{
 		#pragma omp single nowait
 		{
-			#pragma omp task
-			intervalPackingFirstFirst(problemSets, gModel, warmStart, instance_name);
-
-			#pragma omp task
-			intervalPackingFinishFirst(problemSets, gModel, warmStart, instance_name);
-
-			#pragma omp task
-			warmStart = 0;
-			cp_listcoloring(problemSets, gModel, warmStart, instance_name);
-
 			#pragma omp task
 			warmStart = 0;
 			mathModelColoring(problemSets, gModel, warmStart, instance_name);
@@ -127,6 +120,17 @@ int main(int argc, char *argv[])
 			warmStart = 0;
 			iterativeTimeHorizonMathMD
 			(problemSets, gModel, warmStart, instance_name);
+
+			#pragma omp task
+			intervalPackingFirstFirst(problemSets, gModel, warmStart, instance_name);
+
+			#pragma omp task
+			intervalPackingFinishFirst(problemSets, gModel, warmStart, instance_name);
+
+			#pragma omp task
+			warmStart = 0;
+			cp_listcoloring(problemSets, gModel, warmStart, instance_name);
+
 
 			#pragma omp task
 			warmStart = 0;
@@ -748,7 +752,6 @@ bool real_solution(SetModel &problemSets, GraphModel &gModel, int *&warmStart, s
 	double cprob_exp;
 	double mean_interval;
 	problemSets.performances_airo2011(solution, used_platform, min_interval_distance, cprob_lin, cprob_exp, mean_interval);
-
 	svg_output = "reale.svg";
 	pdf_output = "reale.pdf";
 	gd = new GanttDiagram(svg_output.c_str(), problemSets.G(), problemSets.B(), solution, used_platform, min_interval_distance, mean_interval, 0, svg);

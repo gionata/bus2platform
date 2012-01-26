@@ -54,24 +54,42 @@ GanttDiagram::GanttDiagram(const char *output, Gates &G, Buses &B,
 
 
 	cairo_set_font_size(_cr,  10);
-	char text[50];
+	char text[100];
 	sprintf(text, "N. piattaforme: %d", used_platform);
 	cairo_move_to(_cr, 10, _height * 7.0 / 6 + 25);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
 	sprintf(text, "Min intervallo: %d'", (int)min_interval_distance);
-	cairo_move_to(_cr, 130, _height * 7.0 / 6 +  25);
+	cairo_move_to(_cr, 135, _height * 7.0 / 6 +  25);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
-	sprintf(text, "Media intervalli: %.3g'", mean_interval);
+	if (mean_interval < 1.0)
+		sprintf(text, "Media intervalli: %.3gs", mean_interval*60);
+	else {
+ 		int min = (int) mean_interval;
+		int sec = 60 * (mean_interval - min);		
+		if (sec < 1)
+			sprintf(text, "Media intervalli: %d'", min);
+		else
+			sprintf(text, "Media intervalli: %d' %ds", min, sec);
+	}
 	cairo_move_to(_cr, 10, _height * 7.0 / 6 + 40);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
-	sprintf(text, "Tempo di calcolo: %.3gms", opt_time);
-	cairo_move_to(_cr, 130, _height * 7.0 / 6 + 40);
+	if (opt_time < 1000)
+		sprintf(text, "Tempo di calcolo: %.3gms", opt_time);
+	else if (opt_time < 60000)
+		sprintf(text, "Tempo di calcolo: %.3gs", opt_time/1000);
+	else if (opt_time < 3600000) {
+		int min = (int) opt_time / 60000;
+		int sec = (opt_time - 60000*min) / 1000;
+		sprintf(text, "Tempo di calcolo: %d' %ds", min, sec);
+	} else
+		sprintf(text, "Tempo di calcolo: %dh %dm", 0, 0); // errato, ma no ci arriviamo!
+	cairo_move_to(_cr, 135, _height * 7.0 / 6 + 40);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
 	cairo_show_text(_cr, text);
 
@@ -229,7 +247,7 @@ void GanttDiagram::drawPlatforms()
 	cairo_line_to(_cr, max, lineBase);
 	int totMinutes = (_diffTime.total_seconds() / 60);
 	int ticks;
-	for (ticks = 15; ticks > 1; ticks--)
+	for (ticks = 16; ticks > 1; ticks--)
 		if (totMinutes % ticks == 0)
 			break;
 	int minutesPerTick = totMinutes / ticks;
@@ -242,13 +260,13 @@ void GanttDiagram::drawPlatforms()
 	}
 
 	char tickTime[10];
-	sprintf(tickTime, "%02d:%02d", _minTime.time_of_day().hours(), _minTime.time_of_day().minutes());
+	sprintf(tickTime, "%02d:%02d", _minTime.time_of_day().hours(), _minTime.time_of_day().minutes()%60);
 	cairo_text_extents(_cr, tickTime, &extents);
 	cairo_move_to(_cr, x_coordinate(_minTime), // + (_width - extents.width) / 2,
 	              lineBase + 15);
 	cairo_show_text(_cr, tickTime);
 
-	sprintf(tickTime, "%02d:%02d", _maxTime.time_of_day().hours(), _maxTime.time_of_day().minutes());
+	sprintf(tickTime, "%02d:%02d", _maxTime.time_of_day().hours(), _maxTime.time_of_day().minutes()%60);
 	cairo_text_extents(_cr, tickTime, &extents);
 	cairo_move_to(_cr, x_coordinate(_maxTime) - (extents.width),
 	              lineBase + 15);
@@ -272,7 +290,7 @@ void GanttDiagram::drawPlatforms()
 	else if (minutesPerTick % 60 == 0)
 		sprintf(tickTime, "%dh", (int)minutesPerTick/60);
 	else
-		sprintf(tickTime, "%dh %d'", (int)minutesPerTick / 60, (int)minutesPerTick);
+		sprintf(tickTime, "%dh %d'", (int)minutesPerTick / 60, (int)minutesPerTick % 60);
 	cairo_text_extents(_cr, tickTime, &extents);
 	cairo_move_to(_cr, 320 - (tickLen + extents.width) / 2, lineBase + 15);
 	cairo_set_source_rgb(_cr, 0, 0, 0);
