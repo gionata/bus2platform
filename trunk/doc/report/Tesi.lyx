@@ -5,7 +5,7 @@
 \textclass univpmphdthesis
 \begin_preamble
 %%%
-\usepackage[ruled,vlined,lined,boxed,linesnumbered]{algorithm2e}
+\usepackage[ruled,vlined,lined,boxed,linesnumbered,algochapter]{algorithm2e}
 \renewcommand{\listalgorithmcfname}{Elenco degli algoritmi}%
 \renewcommand{\algorithmcfname}{Algoritmo}%
 \renewcommand{\algocf@typo}{}%
@@ -15,10 +15,14 @@
 \usepackage[x11names, rgb]{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{snakes,arrows,shapes}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.5.1}
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\usepackage{ifpdf}
 \end_preamble
-\options a4print,lof,lot
+\options lof,lot
 \use_default_options true
 \maintain_unincluded_children false
 \language italian
@@ -112,7 +116,7 @@ Prof.
 \begin_inset space ~
 \end_inset
 
-Ferninando Pezzella
+Ferdinando Pezzella
 \end_layout
 
 \begin_layout PhD CurriculumAdvisor
@@ -166,7 +170,60 @@ frontmatter
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
-Grazie a tutti!
+Desidero ringraziare il Prof.
+ Ferdinando Pezzella per la disponibilità, la fiducia e l'aiuto e le opportunità
+ che mi ha offerto in questi anni.
+ I suoi insegnamenti mi hanno introdotto nell'affascinate mondo della Ricerca
+ Operativa ed egli mi ha trasmesso curosità e passione per questa disciplina.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Un ringraziamento a Fabrizio Marinelli per l'esempio di rigore metodologico.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Un sentito grazie a Luigi De Giovanni.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Grazie a Gianluca Morganti, per l'amicizia, il sostegno, la pazienza e le
+ serate trascorse insieme.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Voglio ringraziare anche i miei genitori, che si ritrovano un figlio che
+ ad oltre trent'anni s'ostina a fare lo studente.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Un ringraziamento speciale a Lucilla.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Altro grazie ai tesisti che hanno scritto la tesi in questi anni in laboratorio
+ di Ricerca Operativa ed Ottimizzazione: Alberto, Angelo, Marco e Tulliola.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Grazie a Ludovico, compagno di corso, di progetti e di dottorato.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Grazie a Simone, amico con cui ho alternato discorsi tecnici, esperienze
+ enogastronomiche e fantastici bagni al mare.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Grazie agli amici sempre più internazionali della 
+\begin_inset Quotes eld
+\end_inset
+
+Tana del Bianconiglio
+\begin_inset Quotes erd
+\end_inset
+
+:.
+ 
 \end_layout
 
 \begin_layout PhD Thesis Abstract
@@ -181,7 +238,13 @@ status open
 
 }
 \backslash
-listofalgorithms%
+clearpage
+\backslash
+pdfbookmark[0]{Elenco degli algoritmi}{Elenco degli algoritmi}
+\backslash
+listofalgorithms
+\backslash
+clearpage%
 \end_layout
 
 \end_inset
@@ -203,90 +266,6 @@ mainmatter
 \end_inset
 
 
-\end_layout
-
-\begin_layout Chapter
-Introduction
-\end_layout
-
-\begin_layout Section
-Transport infrastructure and facilities
-\end_layout
-
-\begin_layout Section
-Roads and graphs
-\end_layout
-
-\begin_layout Section
-Management of a bus terminal 
-\end_layout
-
-\begin_layout Standard
-With an eye to improve the services on offer, in terms of the information
- provided to travellers and the receptive capacities of the bus lines, the
- Coach Terminal decided to create a system for automatic management of the
- square so as to optimise the use of departure terminals.
- The project, which was drawn up in an invitation to tender, was carried
- out by a Temporary Association of Companies: Solari Udine who supplied
- LED panels, Pluservice who supplied the management software part, access
- control and hand-held terminals for the station managers, Aristea who carried
- out the installation works.
- The experience gained from “manual” management of the terminal processes
- was transformed into an advanced automatic management system, for better
- control of the coach station, improved performance and better supply of
- information.
-\end_layout
-
-\begin_layout Standard
-Automated coach station management system The project as a whole is made
- up of 6 integrated and interacting subsystems: Access control system, to
- regulate access to the coach station square by automatic operation of a
- bar.
- The access control system is able to read the vehicle number plate and
- the weight of the various vehicles accessing the coach station square.
- The need for an optical number plate reader arose due to the high number
- of vehicles passing through the station, by the heterogeneous nature of
- the owner companies and by the different services offered by these companies.
- Detection of the weight of the vehicle makes it possible to apply different
- levels of number plate reading, for example a heavy vehicle can access
- the controlled area directly, whereas a van or car will only be able to
- access the area if the number plate is recognised.
- Optimisation program for management of departure gates: minimises the use
- of gates for departures of bus lines; the application starts from the scheduled
- timetable, but also has to manage in real time any anomalies such as delays
- or cancellation of services, sending the necessary information to the electroni
-c display panels for users and those directing the busses.
- Electronic panels displaying information for users, fitted in the departure
- area and along the departure walkways.
- The information is dynamic and provides all significant details both for
- services departing normally and in the event of anomalies that involve
- delays or the cancellation of services.
- Dynamic panels automatically directing busses to the departure gates: the
- driver entering the square reads the gate assigned for departure of his
- service on the panel provided.
- An intercom located in the panel area allows the driver to contact the
- station manager to deal with critical situations, for example severe delays
- in the service so that the gate is no longer assigned.
- Hand held terminal for the station manager and central server managing
- the entire system: all system operations are carried out using a hand-held
- terminal used by the station manager which, via a wi-fi connection, allows
- full management of the processes, interaction with the programs, management
- of anomalies.
- Loudspeaker system: in the square and inside the waiting area, using vocal
- synthesis, for improved communication to users of any anomalies with respect
- to the scheduled service (delays, cancellation of services, ...)
-\end_layout
-
-\begin_layout Standard
-To this system is added management of 2 supplementary services provided
- by Pluservice: Web access for agencies and carriers to communicate changes
- in the daily schedule Information system for the visually impared: connected
- to the central system, this provides information in real time by means
- of a Toll-free telephone number.
-\end_layout
-
-\begin_layout Section
-Transport management problems
 \end_layout
 
 \begin_layout Chapter
@@ -382,8 +361,55 @@ te, dei dati in tempo reale sulla posizione dei veicoli.
  La gestione manuale dei processi della stazione risulta sempre più complessa
  al crescere del numero di servizi di trasporto e di piattaforme da gestire
  fino a diventare impraticabile per un operatore umano e una politica di
- assegnamento non corretta può comportare forte disagli ai passeggeri ed
+ assegnamento non corretta può comportare forte disagi ai passeggeri ed
  agli autisti, compromettendo il buon funzionamento dell'autostazione.
+\end_layout
+
+\begin_layout Standard
+Il caso di studio su cui sono state effettuate le prove numeriche deriva
+ dai dati di una giornata di operazioni dell'Autostazione di Bologna.
+\end_layout
+
+\begin_layout Standard
+L'Autostazione di Bologna è un importante nodo di smistamento della mobilità
+ su autobus extraurbani, nazionali e internazionali, situato in prossimità
+ della Stazione Centrale.
+ La struttura venne inaugurata nel 1967 ed è tuttora la più importante in
+ Italia per funzionalità ed ampiezza, paragonabile alle grandi stazioni
+ attive in molti Paesi europei e americani.
+ La sua superficie complessiva è di 17000m
+\begin_inset Formula $^{2}$
+\end_inset
+
+ divisi in un piazzale di manovra, un edificio che ospita uffici ed attività
+ commerciali e un'atrio antistante l'edificio.
+ Il piazzale di manovra e movimentazione dei pullman ospita un marciapiede
+ arrivi, di oltre 170m, un marciapiede partenze diviso in 24 piattaforme,
+ un marciapiede centrale destinato alla movimentazione e sosta degli autobus
+ turistici, un marciapiede per i passeggeri con panchine e salette d'attesa,
+ servizi igienici e tabelloni informativi.
+ I marciapiedi sono coperti da estese tettoie in modo da garantire riparo
+ ai passeggeri.
+ È presente inoltre un servizio deposito bagagli.
+ Il piazzale è automatizzato e il sistema di segnalazione può disciplinare
+ fino a 1400 partenze giornaliere.
+ La gestione 
+\begin_inset Quotes eld
+\end_inset
+
+manuale
+\begin_inset Quotes eld
+\end_inset
+
+ dei processi del terminal è stata sostituita, negli ultimi anni, da un
+ sistema avanzato di gestione automatica per ottenere un maggior controllo
+ e rendimento dell'autostazione.
+ Un modulo di questo sistema è quello di ottimizzazione della gestione delle
+ piattaforme di partenza, che ha lo scopo di minimizzare il numero complessivo
+ di piattaforme impegnate in una giornata.
+ L'applicazione formula dei piani a partire dall'orario schedulato e deve
+ anche gestire in real-time le anomalie quali ritardi o cancellazioni di
+ corse.
 \end_layout
 
 \begin_layout Section
@@ -910,18 +936,19 @@ Literature review: models and state-of-the-art algorithms
 
 \end_layout
 
-\begin_layout Standard
-Le applicazioni reali a noi note sono il software GatePlanner della Pluservice
- e il software usato per la gestione dalla autostazione di Oviedo.
+\begin_layout Section
+Sistemi di supporto alle decisioni per la gestione delle piattaforme delle
+ autostazioni
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsection*
 GatePlanner
 \end_layout
 
 \begin_layout Standard
-Il software GatePlanner di Pluservice prevede l'assegnamento statico delle
- piattaforme utilizzando un algoritmo costruttivo senza backtracking.
+Il software GatePlanner, prodotto dalla società Pluservice, prevede l'assegnamen
+to statico delle piattaforme utilizzando un algoritmo costruttivo senza
+ backtracking.
  La pianificazione viene effettuata per ogni giorno, considerando il tempo
  di partenza della corsa 
 \begin_inset Formula $t_{p}$
@@ -987,9 +1014,8 @@ ldots{}
 ) e quindi per tempo di partenza.
  L'algoritmo poi assegna nell'ordine le corse, senza possibilità di backtracking
 , alla prima piattaforma disponibile in quell'intervallo di tempo.
- Esso assomiglia ad un algoritmo di come quello First Fit per problemi di
- Bin Packing che ha l'obiettivo di minimizzare il numero di piattaforme
- utilizzate.
+ Tale algoritmo assomiglia a quello First Fit per problemi di Bin Packing
+ che ha l'obiettivo di minimizzare il numero di piattaforme utilizzate.
  L'algoritmo euristico non garantisce l'ottimalità della soluzione trovata
  neanche di essere in grado di determinare una soluzione ammissibie su alcune
  istanze che invece ne hanno.
@@ -1456,30 +1482,295 @@ key "braaksma1971improving,braaksma1977reducing"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Altre pubblicazioni sul processo di progettazione del terminal hanno fatto
+ subito seguito.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wirasinghe1987airport"
+
+\end_inset
+
+ si propone un metodo per calcolare la distanza percorsa a piedi dai passeggeri
+ in un terminal multi-molo.
+ Tale lavoro presenta, inoltre, un metodo per valutare la geometria ottimale
+ per un aeroporto nel caso in cui si voglia minimizzare la distanza percorsa
+ dai passeggeri all'interno del terminal.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Robuste1991143,Robuste1991159"
+
+\end_inset
+
+ si considera sia il costo di trasferimento dei passeggeri che quello dei
+ bagagli.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bandara199259"
+
+\end_inset
+
+ viene esteso il lavoro in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wirasinghe1987airport"
+
+\end_inset
+
+ indoducendo altri tipi di terminal e sono proposte alcune linee guida per
+ la progettazione dei terminal aeroportuali.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bandara199259"
+
+\end_inset
+
+Bandara e Wirasinghe (1992) XXXX si propongono dei modi per valutare l'idoneità
+ dei terminal aeroportuali.
  
 \end_layout
 
 \begin_layout Standard
-In 
+In parallelo si sono sviluppati lavori, quali 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "babic1984aircraft,mangoubi1985oga"
+
+\end_inset
+
+ che forniscono dei tentativi di risoluzione del AGAP utilizzando i metodi
+ della ricerca operativa e della modellazione con programmi interi.
+ In questi approcci la distanza percorsa nel terminal è studiata in funzione
+ dei flussi di arrivo e partenza dei passeggeri, i flussi dei passeggeri
+ in transito, le distanze fra gate e gate, le distanze fra i gate e le sale
+ di recupero dei bagagli, le distanze fra il banco di check in e il gate
+ e un costo di assegnamento aereo-gate, dato un certo layout del terminal.
+ Nella modellizzazione del problema, il the costo associato all'assegnamento
+ dell'aereo al gate depends dalle distanze dalle strutture di servizio principal
+i quali i gate, il banco di check-in e l'area di recupero bagagli.
 \end_layout
 
 \begin_layout Standard
-Wirasinghe et al.
- (1987) ha esteso il lavoro in questo settore e ha proposto un metodo per
- calcolare la distanza a piedi coinvolti nel multi-molo geometria terminale.
- Nel loro lavoro, hanno anche presentato un metodo per valutare la geometria
- ottimale per un aeroporto in base alla distanza dei passeggeri a piedi.
- Robuste (1988) ha esteso il lavoro di hub-terminale trasferimento di passeggeri
- e bagagli, rispettivamente.
- Bandara (1989) seguito il lavoro di Wirasinghe et al.
- (1987) e ha introdotto tipi di terminali più, i trasferimenti hub, moli
- ineguali, ecc, e ha anche proposto alcune linee guida per la progettazione
- preliminare terminal dell'aeroporto di generalizzare la conclusione.
- Secondo un certo volume di traffico passeggeri e la composizione, Bandara
- e Wirasinghe (1992) ha proposto modi per valutare l'idoneità dei terminal
- dell'aeroporto.
- Questi entrò a far parte del processo di progettazione aeroporto terminale
- pure.
+In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "babic1984aircraft"
+
+\end_inset
+
+ il problema viene ridotto ad un problema di Programmazione Lineare Intera
+ 0/1 in cui si considerano gli assegnamenti pesati in base ai flussi dei
+ passeggeri in arrivo e in partenza e il calcolo di una soluzione ottima
+ del modello viene effettuato con un algoritmo di branch
+\backslash
+&bound.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mangoubi1985oga"
+
+\end_inset
+
+ il problema viene formulato con un modello di assegnamento quadratico che
+ viene quindi linearizzato.
+ Gli autori usano un rilassamento lineare e un'euristica greedy per risolvere
+ il modello e fanno notare che la risoluzione esatta di un modello di un
+ assegnamento quadratico linearizzato è difficile da risolvere e non propongono
+ algoritmi per risolvere direttamente il modello proposto.
+\end_layout
+
+\begin_layout Standard
+In
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "haghani1998oga"
+
+\end_inset
+
+ viene proposto un modello quadratico PLI linearizzato in cui i flussi di
+ trasferimento sono dati noti.
+ In questo modo la complessità del problema aumenta notevolmente rispetto
+ a quella del problema proposto in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mangoubi1985oga"
+
+\end_inset
+
+ e gli autori devono ricorrere ad un algoritmo di risoluzione euristico,
+ che consiste nel generare varie soluzioni ammissibili per il problema di
+ programmazione intera e nello scegliere quella cui corrisponde la miglior
+ soluzione (distanza minima).
+ Il modello matematico proposto viene risolto solo per problemi di piccola
+ dimensione, con meno di 10 voli e 5 gate, per poter determinare la qualità
+ della soluzione determinata dell'algoritmo euristico reispetto alla soluzione
+ ottima.
+\end_layout
+
+\begin_layout Standard
+---------------------------------------------------
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "yan2001omo"
+
+\end_inset
+
+ Yan e Huo (2001).
+ Nel loro modello hanno introdotto diverse scelte di ritardo per ogni volo.
+ Le scelte di ritardo sono dati a ciascun aeromobile in modo che sia possibile
+ un volo per essere assegnato ad un cancello in momenti diversi.
+ Il tempo di partenza di ogni volo per usare il cancello è flessibile.
+ Queste scelte ritardo sono modellate come variabili diverse per ogni volo.
+ Per ogni volo ci sono diverse variabili di decisione corrispondente.
+ Oltre a ridurre al minimo la distanza a piedi dei passeggeri, riducendo
+ al minimo il ritardo totale per tutti i voli è inoltre incluso come parte
+ dell'obiettivo.
+ Quando ci sono abbastanza numeri cancello per l'assegnazione, le scelte
+ di ritardo per i voli non sono necessari.
+ Tuttavia, quando ci sono porte sufficienti, le scelte di ritardo può essere
+ utile nel fornire tempo di buffer per i voli da assegnare alla porte.
+ Per risolvere efficacemente problemi su larga scala, in pratica, il metodo
+ ponderato, l'approccio generazione colonna, il metodo simplex e la tecnica
+ branch-and-bound vengono utilizzati per sviluppare un algoritmo di soluzione,
+ che viene applicato nel caso di studio riguardanti l'esercizio di Taiwan
+ Chiang Kai-Shek aeroporto.
+\end_layout
+
+\begin_layout Standard
+Vanderstraetan e Bergeron (1988) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Vanderstraeten198815"
+
+\end_inset
+
+, Gosling (1990) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gosling1990des"
+
+\end_inset
+
+, e Muthukrishnan e Srihari (1991)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Srihari1991esm"
+
+\end_inset
+
+ ha lavorato per risolvere il problema assegnazione cancello utilizzando
+ sistemi esperti.
+ Un sistema esperto è una strutturata basata sulla conoscenza del sistema.
+ L'aereo-to-gate simula la procedura di assegnazione basato sulla logica
+ procedura di assegnazione cancello da parte di esperti con esperienza in
+ aeroporto.
+ Invece di trovare una soluzione ottimale, è utilizzato per trovare una
+ soluzione fattibile e soddisfacente per i complicati problemi su larga
+ scala.
+ Cheng (1997) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cheng1997kba"
+
+\end_inset
+
+ ha proposto una basata sulla conoscenza cancello sistema aeroportuale assegnazi
+one che è integrata con la programmazione matematica.
+ Si tratta di un processo di utilizzare il modello matematico per cercare
+ una soluzione fattibile dando un maggiore controllo per le autorità aeroportual
+i di cambiare l'importanza dei criteri.
+\end_layout
+
+\begin_layout Standard
+Altri lavori basati sulla simulazione si possono trovare, ad esempio, Yan,
+ Sheih e Chen (2002) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "yan2002sfe"
+
+\end_inset
+
+.
+ Mentre la maggior parte del focus opera per migliorare le prestazioni di
+ incarichi porta statica, simulazione può essere utilizzato per analizzare
+ le interrelazioni tra la cancello assegnazione statica e dei fattori che
+ può influenzare.
+ Nel lavoro di Yan, Sheih e Chen (2002)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "yan2002sfe"
+
+\end_inset
+
+, un framework di simulazione è stata proposta che non solo in grado di
+ analizzare gli effetti dei ritardi dei voli stocastici su incarichi cancello
+ statico, ma anche in grado di valutare i tempi di buffer flessibile e in
+ tempo reale le regole di assegnazione che il cancello dell'autorità aeroportual
+e usi.
+ Una simulazione basata sulle operazioni aeroportuali a Chiang Kai-Shek
+ aeroporto è utilizzato anche per valutare le prestazioni assegnazione cancello.
+\end_layout
+
+\begin_layout Standard
+Dal momento che il problema è NP-hard 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "yan1998nmg"
+
+\end_inset
+
+ (Yan e Chang (1998)), molti ricercatori cercarono approcci euristici diversi
+ per facilitare il processo di risoluzione.
+ Haghani e Chen (1998)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "haghani1998oga"
+
+\end_inset
+
+ ha proposto una euristica che assegna i voli con passeggeri relativamente
+ di più per avere porte più piccole coefficienti di distanza a piedi quando
+ non c'è sovrapposizione del tempo a terra dei voli.
+ Xu e Bailey (2001)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "xu2001airport"
+
+\end_inset
+
+ forniscono una ricerca Tabu per il problema assegnazione cancello.
+ Il loro algoritmo sfrutta le particolari proprietà di diversi tipi di mosse
+ quartiere, e adotta una strategia efficace di lista dei candidati.
+\end_layout
+
+\begin_layout Standard
+Come un sacco di lavoro è stato focalizzato sul problema AGAP con l'obiettivo
+ di minimizzare piedi del passeggero totale, ci non è abbastanza enfasi
+ sul processo di gestione dei bagagli, la richiesta speciale dalle compagnie
+ aeree, il taxi-way congestione del traffico, e le interruzioni programma
+ .
+ Un'analisi approfondita e dettagliata delle operazioni all'aeroporto è
+ necessario aumentare lo standard di servizio per l'aeroporto non solo i
+ passeggeri ma anche le compagnie aeree e fornitori di servizi a terra,
+ che sono stati inclusi nel nostro lavoro per il problema.
+\end_layout
+
+\begin_layout Standard
+----
 \end_layout
 
 \begin_layout Standard
@@ -1607,6 +1898,114 @@ key "Lim2005"
  occupano lo stesso gate.
  Gli autori propongono un algoritmo euristico ibrido che impiega una tabu
  search ed una ricerca locale.
+\end_layout
+
+\begin_layout Standard
+Gli assegnamenti robusti sono considerati da Bolat 2000 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bolat2000ppr"
+
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Subsection*
+Modelli AGAP
+\end_layout
+
+\begin_layout Standard
+The basic AGAP IP model was proposed by Babi et al.
+ in 1984.
+ The objective in the model is to minimize the total walking distance for
+ arrival and departure passengers.
+ The modeling of the problem is based on the following information and assumptio
+ns:
+\end_layout
+
+\begin_layout Itemize
+The flight schedule indicating the aircraft arrival and departure time,
+ which is assumed to be fixed;
+\end_layout
+
+\begin_layout Itemize
+The number of gates, which is assumed to be enough for any time slot of
+ the planning horizon;
+\end_layout
+
+\begin_layout Itemize
+The number of passengers for each flight, including both arriving and departing
+ passengers;
+\end_layout
+
+\begin_layout Itemize
+The airport terminal layout which indicates the walking distance from any
+ gate to the baggage claim areas and the walking distance from the check-in
+ point to any gate.
+\end_layout
+
+\begin_layout Standard
+Il modello è:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\min & z=\sum_{i}\sum_{j}\left(P_{i}^{a}D_{j}^{a}+P_{i}^{d}D_{j}^{d}\right)x_{ij}\label{eq:min_gates_pesati-3}\\
+\sum_{j\in V}x_{ij}=1 &  & \forall i\in V\label{eq:vincolo_assegnamento_0-3}\\
+\sum_{i^{\prime}\in I_{i}}x_{i^{\prime}j}+x_{ij}\leq1 &  & \forall i\in V\,\forall j\in V\label{eq:vincolo_compatibilita_bus_0-3}\\
+x_{ij}\in\{0,\,1\} &  & \forall i\in V,\,\forall j\in V\label{eq:x_ik_dominio-3}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The cost in the objective function is the walking distance for both arrival
+ and departure passengers.
+ This is based on the fact that for any aircraft occupying the gate there
+ is a certain number of arrival passengers when the aircraft arrives at
+ the gate and a certain number of departure passengers when the aircraft
+ departs from the gate.
+ Thus “flight”, which is i in the model, in fact stands for the “flight
+ ground leg”, which includes the arrival of the aircraft at the gate and
+ the departure of the aircraft from the gate.
+ 
+\end_layout
+
+\begin_layout Standard
+There are two basic constraints in the model.
+ The first Constraint (2.1) is the “Single Assignment Constraint”, which
+ indicates that for each flight there is one and only one gate assigned
+ to it.
+ The second Constraint (2.2) is the “Ground Time Conflict Constraint”, which
+ indicates that there should not be more than one aircraft assigned to the
+ same gate if they have overlapping ground time.
+ 
+\end_layout
+
+\begin_layout Standard
+In this model, passengers transfer is not considered, which complicates
+ the problem.
+ To avoid excessive computation time, many researchers proposed their work
+ based on this basic model, thus ignoring the transfer passengers.
+ However, for large international hub airports where there is a sizeable
+ portion of transfer passengers, this approximation will lead to a bias
+ of the solution that favors the arrival and departure passengers only.
+ 
+\end_layout
+
+\begin_layout Standard
+Linearized Quadratic Airport Gate Assignment Models
+\end_layout
+
+\begin_layout Standard
+To include the consideration of the transfer passengers, Haghani and Chen
+ (1998) proposed a heuristic to solve the following linearized quadratic
+ IP model for the gate assignment problem:
 \end_layout
 
 \begin_layout Paragraph
@@ -7752,9 +8151,17 @@ status open
 \begin_layout Plain Layout
 \noindent
 \align center
-\begin_inset Graphics
-	filename img/diagramma_carico.png
-	width 13cm
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\backslash
+input{img/diagramma_carico}
+\end_layout
 
 \end_inset
 
@@ -8257,8 +8664,386 @@ Le corse bis sono nuove corse che vanno trattate con l'accorgimento di essere
 Risultati computazionali
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
+Il caso di studio
+\end_layout
 
+\begin_layout Standard
+Le prove numeriche sono state effettuate estraendo un'istanza significativa
+ dalle operazioni effettuate nell'Autostazione di Bologna.
+ L'autostazione dispone di 24 piattaforme per le partenze, di cui 4 normalmente
+ riservate ai servizi internazionali e gli altri 20 per i servizi di linea
+ o come parcheggi temporanei.
+ Le piattaforme riservate a servizi particolari vengono gestite manualmente
+ e non entrano nella fase di pianificazione.
+ L'istanza del problema considera i dati relative alle corse schedulate
+ di un giorno tipo, ossia considera le corse schedulate in un certo periodo
+ e che hanno validità su più giorni dell'anno.
+\end_layout
+
+\begin_layout Standard
+Ad ogni corsa, che ha un ora di partenza 
+\begin_inset Formula $t_{d}$
+\end_inset
+
+, vengono associati altri due tempi: il tempo di anticipo rispetto all'ora
+ di partenza 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ e il tempo di ritardo rispetto all'ora di partenza 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+.
+ Siano 
+\begin_inset Formula $a=t_{d}-t_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $d=t_{d}+t_{2}$
+\end_inset
+
+.
+ L'algortimo di pianificazione impiegato nell'Autostazione considera occupata
+ della piattaforma per tutto l'intervallo 
+\begin_inset Formula $[a,d]$
+\end_inset
+
+, come rappresentato in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Tempo-di-occupazione"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{img/occupazione_piattaforma}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tempo di occupazione della piattaforma
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Tempo-di-occupazione"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'istanza in considerazione include 229 corse non internazionali da pianificare,
+ che non includono né corse bis (da assegnare a piattaforme adiacenti) né
+ corse servite da veicoli snodati (che sono servite solo da alcune piattaforme).
+ Inoltre una piattaforma è stata considerata non disponibile.
+ I tempi 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $t_{2}...$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La soluzione ottenuta dalla pianificazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/actual_solution_m.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione 
+\begin_inset Quotes eld
+\end_inset
+
+legacy
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/real_MathModelColoring.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione min num piattaforme con PLI
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/real_IterativeTimeHorizonMathMD.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione min num piattaforme con PLI
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/real_IterativeTimeHorizonMath.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione min num piattaforme con PLI
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Max min tempo
 \end_layout
 
 \begin_layout Chapter
