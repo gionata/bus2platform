@@ -377,6 +377,9 @@ L'Autostazione di Bologna è un importante nodo di smistamento della mobilità
  La struttura venne inaugurata nel 1967 ed è tuttora la più importante in
  Italia per funzionalità ed ampiezza, paragonabile alle grandi stazioni
  attive in molti Paesi europei e americani.
+ Oltre 90.000 utenti, tra viaggiatori o semplici passanti, transitano in
+ Autostazione nel corso di una settimana, con punte massime giornaliere
+ di quasi 15.000 persone.
  La sua superficie complessiva è di 17000m
 \begin_inset Formula $^{2}$
 \end_inset
@@ -922,8 +925,23 @@ key "Su1993123"
  può a sua volta influenzare la qualità della soluzione.
 \end_layout
 
+\begin_layout Section
+Piano della tesi
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \begin_layout Chapter
-Rassegna bibliografica: modelli e stato dell'arte degli algoritmi 
+Rassegna bibliografica: modelli e stato dell'arte degli algoritmi
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Rassegna-bibliografica"
+
+\end_inset
+
+ 
 \begin_inset Note Note
 status open
 
@@ -2159,6 +2177,13 @@ Railway Rescheduling Problem (RRP)
 
 \begin_layout Chapter
 Nuove formulazioni e modelli
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Nuove-formulazioni"
+
+\end_inset
+
+
 \begin_inset Note Note
 status open
 
@@ -8662,6 +8687,13 @@ Le corse bis sono nuove corse che vanno trattate con l'accorgimento di essere
 
 \begin_layout Chapter
 Risultati computazionali
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Risultati-computazionali"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -8697,11 +8729,11 @@ Ad ogni corsa, che ha un ora di partenza
 
 .
  Siano 
-\begin_inset Formula $a=t_{d}-t_{1}$
+\begin_inset Formula $a=t_{p}-t_{1}$
 \end_inset
 
  e 
-\begin_inset Formula $d=t_{d}+t_{2}$
+\begin_inset Formula $d=t_{p}+t_{2}$
 \end_inset
 
 .
@@ -9048,6 +9080,13 @@ Max min tempo
 
 \begin_layout Chapter
 Conclusioni e sviluppi futuri
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Conclusioni-e-sviluppi"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
