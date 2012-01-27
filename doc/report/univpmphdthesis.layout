@@ -129,7 +129,7 @@ Style PhD_SubTitle
 
   # standard font definition
   Font 
-    Size           Medium
+    Size           Normal
     Color          Blue
   EndFont
 End
@@ -256,7 +256,7 @@ Style PhD_ThesisDedication
 
   # standard font definition
   Font 
-    Size           Medium
+    Size           Normal
     Color          Blue
   EndFont
 End
