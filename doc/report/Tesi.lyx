@@ -22,7 +22,7 @@
 
 \usepackage{ifpdf}
 \end_preamble
-\options lof,lot
+\options lof,lot,a4print
 \use_default_options true
 \maintain_unincluded_children false
 \language italian
@@ -964,11 +964,21 @@ GatePlanner
 \end_layout
 
 \begin_layout Standard
-Il software GatePlanner, prodotto dalla società Pluservice, prevede l'assegnamen
-to statico delle piattaforme utilizzando un algoritmo costruttivo senza
- backtracking.
- La pianificazione viene effettuata per ogni giorno, considerando il tempo
- di partenza della corsa 
+Il software GatePlanner, prodotto dalla società Pluservice, è lo stumento
+ che pianifica in automatico l'assegnamento statico delle fermate delle
+ corse alle piattaforme utilizzando un algoritmo costruttivo senza backtracking.
+ 
+\end_layout
+
+\begin_layout Standard
+Le corse sono raggruppate in sottoinsimi aventi una validità comune, che
+ si definiscce come 
+\emph on
+giorno tipo
+\emph default
+.
+ La pianificazione viene effettuata per ogni giorno tipo, considerando il
+ tempo di partenza della corsa 
 \begin_inset Formula $t_{p}$
 \end_inset
 
@@ -988,10 +998,173 @@ to statico delle piattaforme utilizzando un algoritmo costruttivo senza
 \end_inset
 
 .
- L'algoritmo produce una soluzione che che rispetta i vincoli di collocazione
- di ogni corsa e di non occupazione simultanea di uno stessa piattaforma.
- L'algoritmo considera inoltre altri vincoli.
- Posiziona le 
+ Siano 
+\begin_inset Formula $a=t_{p}-t_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $d=t_{p}+t_{2}$
+\end_inset
+
+.
+ L'algortimo considera occupata della piattaforma per tutto l'intervallo
+ 
+\begin_inset Formula $[a,d]$
+\end_inset
+
+, come rappresentato in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Tempo-di-occupazione"
+
+\end_inset
+
+.
+ Tali tempi 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ non sono necessariamente costanti ma variano al variare dell'ora di partenza
+ della corsa alla quale si riferiscono.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{img/occupazione_piattaforma}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tempo di occupazione della piattaforma
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Tempo-di-occupazione"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le corse sono suddivise fra corse da pianificare in automatico, ossia quelle
+ per cui l'algoritmo di assegnamento statico cercherà una piattaforma, e
+ in corse da assegnare manualmente, che saranno assegnate da un operatore.
+ Il software permette di gestire gruppi di 
+\emph on
+corse bis
+\emph default
+, ossia raggruppamenti di corse che percorrono la stessa tratta in orari
+ che differiscono, al più, di pochi minuti, istituite per far fronte ad
+ una domanda maggiore della capacità di un singolo veicolo.
+ Raggruppamenti di corse bis sono detti 
+\emph on
+gruppi bis
+\emph default
+.
+ Essendo le piattaforme adiacenti le une alle altre, come mostrato in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Disposizione-delle-piattaforme"
+
+\end_inset
+
+.
+ Le piattaformesono disposte in linea e risulta quindi conveniente che gli
+ assegnamenti delle corse bis siano a piattaforme adiacenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/layout_piattaforme.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Disposizione delle piattaforme
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Disposizione-delle-piattaforme"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le corse sono partizionate in tre gruppi: corse di linea, corse di linea
+ effettuate da veicoli snodati e corse appartenenti a gruppi bis.
+ Le piattaforme sono disponibili o disabilitate in una determinate fasce
+ orarie.
+ L'algoritmo di pianificazione di GatePlanner produce una soluzione che
+ che rispetta i vincoli di collocazione di ogni corsa e di non occupazione
+ simultanea di uno stessa piattaforma.
+ Considera inoltre altri vincoli aggiuntivi.
+ Il primo è un vincolo sul posizionamento delle 
 \begin_inset Quotes eld
 \end_inset
 
@@ -999,19 +1172,25 @@ corse bis
 \begin_inset Quotes erd
 \end_inset
 
-, cioè le corse sono corse che vengono svolte da 2 o più autobus per effettuare
- lo stesso servizio, su piattaforme adiacenti.
- Posiziona le corse appartenenti a linee che includono almeno un veicolo
- snodato sulle piattaforme che accettano mezzi snodati.
- Se una corsa con snodati ha delle corse bis allora entrambe queste sono
- considerate come corse con snodati.
- L'algoritmo permette inoltre di associare una linea esclusivamente ad un
- sottoinsieme di piattaforme, cioè tutte le corse della linea devono partire
- da una delle piattaforme predefinite.
- In modo analogo per ogni piattaforma sono stabilite le linee che possono
- partire da essa.
- Infine l'uso di una piattaforma può essere interdetto in determinate fasce
- orarie della giornata.
+ su piattaforme adiacenti; in particolare le corse di un gruppo bis sono
+ posizionate su piattaforme adiacenti in ordine inverso orario di partenza.
+ Tale vincolo serve a migliorare la qualità del sevizio offerto ai clienti
+ e agevola le operazioni di manovra.
+ È trattato come un vincolo hard.
+ Il secondo vincolo aggiuntivo obbliga il posizionamento delle corse appartenent
+i a linee che includono almeno un veicolo snodato a essere assegnate alle
+ piattaforme che accettano mezzi snodati.
+ Se una corsa con snodati ha delle corse bis allora tutte le corse del gruppo
+ bis sono considerate come corse con snodati.
+ Tale vincolo serve a garantire la fisica realizzabilità della soluzione
+ proposta.
+ Un terzo vincolo hard permette di associare una linea esclusivamente ad
+ un sottoinsieme di piattaforme, cioè tutte le corse della linea devono
+ partire da una delle piattaforme predefinite.
+ Un quarto vincolo, in modo simmetrico al precedente, per ogni piattaforma
+ impone le linee che possono partire da essa.
+ L'uso di una piattaforma, infine, può essere interdetto in determinate
+ fasce orarie della giornata.
 \end_layout
 
 \begin_layout Standard
@@ -8168,56 +8347,6 @@ reference "eq:dom_xik"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering
-\backslash
-input{img/diagramma_carico}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Diagramma di carico (fermate/fascia oraria)
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:carico"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Al fine di generare una buona soluzione in tempi ridotti si propone un algoritmo
  euristico.
  L'algoritmo sviluppato sfrutta l'idea di risolvere problemi complessi dividendo
@@ -8757,12 +8886,360 @@ reference "fig:Tempo-di-occupazione"
 \end_layout
 
 \begin_layout Standard
+L'istanza in considerazione include 229 corse non internazionali da pianificare,
+ distinte in provinciali e regionali, che non includono né corse bis (da
+ assegnare a piattaforme adiacenti) né corse servite da veicoli snodati
+ (che sono servite solo da alcune piattaforme).
+ Inoltre una piattaforma è stata considerata non disponibile.
+ I tempi 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ non sono costanti ma variano al variare dell'ora di partenza della corsa
+ alla quale si riferiscono.
+ La tab.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Parametri-t_1-e-t_2"
+
+\end_inset
+
+ mostra come siano stati impostati i tempi che determinano, in fase di pianifica
+zione, l'intervallo di occupazione di una piattaforma.
+ I tempi sono stati scelti dagli operatori che hanno considerato i parametri
+ nelle ore di punta del mattino, del pomeriggio e della sera e per le fasce
+ di morbida del mattino, del pomeriggio e della sera.
+ L'ultima riga si riferisce ai tempi per le fasce di morbida, non elencate
+ esplicitamente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dalle
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alle
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fascia oraria
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+07.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+08.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Punta Mattina
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14.30
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dura
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.30
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pomeridiana
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Morbida
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Parametri 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+e 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ al variare della fascia oraria
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Parametri-t_1-e-t_2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La frequenza dei servizi, divisa per fasce orarie, è rappresentatain fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Frequenza-delle-fermate"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
 \align center
 \begin_inset ERT
 status open
@@ -8771,7 +9248,9 @@ status open
 
 
 \backslash
-input{img/occupazione_piattaforma}
+centering
+\backslash
+input{img/diagramma_carico}
 \end_layout
 
 \end_inset
@@ -8783,10 +9262,10 @@ input{img/occupazione_piattaforma}
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Tempo di occupazione della piattaforma
+Frequenza delle fermate per fasce orarie di 30'
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Tempo-di-occupazione"
+name "fig:Frequenza-delle-fermate"
 
 \end_inset
 
@@ -8796,30 +9275,17 @@ name "fig:Tempo-di-occupazione"
 \end_inset
 
 
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:carico"
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-L'istanza in considerazione include 229 corse non internazionali da pianificare,
- che non includono né corse bis (da assegnare a piattaforme adiacenti) né
- corse servite da veicoli snodati (che sono servite solo da alcune piattaforme).
- Inoltre una piattaforma è stata considerata non disponibile.
- I tempi 
-\begin_inset Formula $t_{1}$
 \end_inset
 
- e 
-\begin_inset Formula $t_{2}...$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 La soluzione ottenuta dalla pianificazione
 \end_layout
 
