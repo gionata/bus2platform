@@ -214,6 +214,11 @@ Grazie a Simone, amico con cui ho alternato discorsi tecnici, esperienze
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
+Grazie a Roberto, con cui ho frequentato insieme le scuole superiori e ho
+ ritrovato in quest'esperienza di dottorato.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
 Grazie agli amici sempre più internazionali della 
 \begin_inset Quotes eld
 \end_inset
@@ -222,7 +227,8 @@ Tana del Bianconiglio
 \begin_inset Quotes erd
 \end_inset
 
-:.
+: Andrea, Antonio, Carlo, Elena, Carlo, Emanuele, Francesco, Manuela, Massimo,
+ Serena, Viola.
  
 \end_layout
 
@@ -1156,15 +1162,19 @@ name "fig:Disposizione-delle-piattaforme"
 \end_layout
 
 \begin_layout Standard
-Le corse sono partizionate in tre gruppi: corse di linea, corse di linea
- effettuate da veicoli snodati e corse appartenenti a gruppi bis.
+Le corse possono essere: di linea, di linea effettuate da veicoli snodati
+ e appartenenti a gruppi bis.
  Le piattaforme sono disponibili o disabilitate in una determinate fasce
- orarie.
+ orarie e possono essere riservate escluvimanete ad alcune linee.
  L'algoritmo di pianificazione di GatePlanner produce una soluzione che
  che rispetta i vincoli di collocazione di ogni corsa e di non occupazione
  simultanea di uno stessa piattaforma.
  Considera inoltre altri vincoli aggiuntivi.
- Il primo è un vincolo sul posizionamento delle 
+ 
+\end_layout
+
+\begin_layout Enumerate
+Il primo è un vincolo sul posizionamento delle 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1173,45 +1183,533 @@ corse bis
 \end_inset
 
  su piattaforme adiacenti; in particolare le corse di un gruppo bis sono
- posizionate su piattaforme adiacenti in ordine inverso orario di partenza.
+ posizionate su piattaforme adiacenti in ordine inverso rispetto all'orario
+ di partenza.
  Tale vincolo serve a migliorare la qualità del sevizio offerto ai clienti
  e agevola le operazioni di manovra.
  È trattato come un vincolo hard.
- Il secondo vincolo aggiuntivo obbliga il posizionamento delle corse appartenent
-i a linee che includono almeno un veicolo snodato a essere assegnate alle
+ 
+\end_layout
+
+\begin_layout Enumerate
+Il secondo vincolo aggiuntivo obbliga il posizionamento delle corse appartenenti
+ a linee che includono almeno un veicolo snodato a essere assegnate alle
  piattaforme che accettano mezzi snodati.
  Se una corsa con snodati ha delle corse bis allora tutte le corse del gruppo
  bis sono considerate come corse con snodati.
- Tale vincolo serve a garantire la fisica realizzabilità della soluzione
- proposta.
- Un terzo vincolo hard permette di associare una linea esclusivamente ad
+ Tale vincolo serve a garantire la realizzabilità della soluzione proposta.
+\end_layout
+
+\begin_layout Enumerate
+Un terzo vincolo hard permette di associare una linea esclusivamente ad
  un sottoinsieme di piattaforme, cioè tutte le corse della linea devono
- partire da una delle piattaforme predefinite.
- Un quarto vincolo, in modo simmetrico al precedente, per ogni piattaforma
- impone le linee che possono partire da essa.
- L'uso di una piattaforma, infine, può essere interdetto in determinate
- fasce orarie della giornata.
+ partire da un insieme di piattaforme predefinite.
+\end_layout
+
+\begin_layout Enumerate
+Un quarto vincolo, in un certo modo simmetrico al precedente, impone una
+ piattaforma sia compatibile sono con le linee che possono partire da essa.
+\end_layout
+
+\begin_layout Enumerate
+L'uso di una piattaforma, infine, può essere interdetto in determinate fasce
+ orarie della giornata.
 \end_layout
 
 \begin_layout Standard
-Le corse vengono ordinate in base ai vincoli imposti (corse con snodati,
- corse bis
+L'obiettivo perseguito è quello di ridurre al minimo il numero di piattaforme
+ che siano occupate in almeno un intervallo di tempo durante il giorno tipo
+ cui si riferisce la pianificazione.
+\end_layout
+
+\begin_layout Standard
+L'algoritmo euristico per la minimizzazione del numero di piattaforme è
+ schematizzabile 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+nei seguenti passi:
+\end_layout
+
+\begin_layout Enumerate
+partiziona le corse negli insiemi:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+corse appartenenti ai gruppi bis effettuate da mezzi snodati (vincoli 1.
+ e 2.),
+\end_layout
+
+\begin_layout Enumerate
+corse appartenenti a gruppi bis (vincolo 1.),
+\end_layout
+
+\begin_layout Enumerate
+corse effettuate da mezzi snodati, e non appartenenti a gruppi bis (vincolo
+ 2.),
+\end_layout
+
+\begin_layout Enumerate
+corse presenti nella lista delle linee associate ad un sottoinsieme di piattafor
+me,
+\end_layout
+
+\begin_layout Enumerate
+tutte le corse non presenti nei precedenti insiemi;
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+ordina le piattaforme per numero in modo crescente;
+\end_layout
+
+\begin_layout Enumerate
+L'algoritmo poi assegna nell'ordine le corse alla prima piattaforma disponibile
+ in quell'intervallo di tempo.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
-ldots{}
+begin{algorithm}[!htb] %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output} %
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{L'insieme delle fermate $F$ e quello delle piattaforme $P$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{Un assegnamento fermata-piattaforma completo o parziale} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	n = |F|
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	m = |P|
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Partiziona $F$ in sottoinsiemi} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Le corse di $F_1$ devono soddisfare i vincoli 1.
+ e 2.} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F_1 = 
+\backslash
+{f 
+\backslash
+in F :$ gruppi bis, mezzi snodati$
+\backslash
+}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F = F 
+\backslash
+setminus F_1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Le corse di $F_2$ devono soddisfare solo il vincolo 1.} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F_2 = 
+\backslash
+{f 
+\backslash
+in F :$ gruppi bis$
+\backslash
+}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F = F 
+\backslash
+setminus F_2$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Le corse di $F_3$ devono soddisfare solo il vincolo 2.} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F_3 = 
+\backslash
+{f 
+\backslash
+in F :$ mezzi snodati $
+\backslash
+}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F = F 
+\backslash
+setminus F_3$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Le corse di $F_4$ devono soddisfare il vincolo 3.} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F_4 = 
+\backslash
+{f 
+\backslash
+in F :$ piattaforme riservate$
+\backslash
+}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Le corse di $F_5$ non sono presenti nei precedenti insiemi} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F = F 
+\backslash
+setminus F_4$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+%	$F_{5}=F
+\backslash
+setminus
+\backslash
+ensuremath{{
+\backslash
+displaystyle 
+\backslash
+bigcup_{i=1}^{4}}F_{i})}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $
+\backslash
+mathcal{Q} = 
+\backslash
+emptyset$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $Q_{r} = 
+\backslash
+emptyset$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $prec = arrival$ 
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Per ogni istante temporale
+\backslash
+ldots} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$t 
+\backslash
+in T$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		Poni $i = t.fermata$ 
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{se l'istante corrente rappresenta un arrivo}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{$t.type = arrival$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+tcc{la fermata 
+\backslash
+`e nel gruppo di interferenti}%
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $Q_r = Q_r 
+\backslash
+cup i$ 
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $prec = arrival$ 
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+			} 
+\backslash
+Else {%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$prec = arrival 
+\backslash
+, 
+\backslash
+wedge 
+\backslash
+, |Q| > 1$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $
+\backslash
+mathcal{Q} = 
+\backslash
+mathcal{Q} 
+\backslash
+cup Q_r$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $Q_{r+1} = Q_r 
+\backslash
+setminus i$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $r=r+1$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $prec = departure$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+			} %
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+%	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$
+\backslash
+mathcal{Q}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Algoritmo di pianificazione di GatePlanner}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{alg:gateplanner}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
 \end_layout
 
 \end_inset
 
-) e quindi per tempo di partenza.
- L'algoritmo poi assegna nell'ordine le corse, senza possibilità di backtracking
-, alla prima piattaforma disponibile in quell'intervallo di tempo.
- Tale algoritmo assomiglia a quello First Fit per problemi di Bin Packing
+
+\end_layout
+
+\begin_layout Standard
+Tale algoritmo assomiglia a quello First Fit per problemi di Bin Packing
  che ha l'obiettivo di minimizzare il numero di piattaforme utilizzate.
  L'algoritmo euristico non garantisce l'ottimalità della soluzione trovata
  neanche di essere in grado di determinare una soluzione ammissibie su alcune
