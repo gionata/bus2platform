@@ -527,7 +527,13 @@ manuale
 \end_layout
 
 \begin_layout Section
-Le modalità di erogazione dei servizi di trasporto
+Terminologia
+\end_layout
+
+\begin_layout Standard
+Prima di procedere alla descrizione del problema affrontato è opportuno
+ fornire alcune definizioni riguardanti i servizi di trasporto e le modalità
+ con cui essi vengono erogati.
 \end_layout
 
 \begin_layout Standard
@@ -621,8 +627,11 @@ Nel prosieguo utilizzeremo il termine
 fermata
 \emph default
  per indicare l'intervallo temporale in cui una piattaforma deve essere
- considerata occupata dal veicolo che esegue una corsa.
- Tale intervallo deve includere gli istanti di arrivo e di ripartenza del
+ considerata occupata dal veicolo che effettua una corsa.
+\end_layout
+
+\begin_layout Standard
+Tale intervallo deve includere gli istanti di arrivo e di ripartenza del
  veicolo, che saranno distanti almeno quanto il tempo minimo di servizio
  dei passeggeri più il tempo necessario ad impegnare e disimpegnare la piattafor
 ma, e un buffer temporale per permettere ai veicoli di operare in sicurezza.
@@ -634,10 +643,14 @@ ma, e un buffer temporale per permettere ai veicoli di operare in sicurezza.
  autobus in fermata nell'autostazione varia rispetto al tempo e presenta
  in genere due picchi in concomitanza delle ore di punta, la mattina e il
  tardo pomeriggio, ma potrebbe avere anche una distribuzione diversa.
- L'intervallo temporale in cui la piattaforma deve essere considerata occupata
- dal sistema di gestione delle piattaforme è funzione del tempo minimo necessari
-o al veicolo per effettuare l'imbarco e lo sbarco dei passeggeri, del tempo
- necessario ad occupare e liberare la piattaforma e della fascia oraria.
+\end_layout
+
+\begin_layout Standard
+L'intervallo temporale in cui la piattaforma deve essere considerata occupata
+ dal sistema di gestione delle piattaforme è pertanto funzione del tempo
+ minimo necessario al veicolo per effettuare l'imbarco e lo sbarco dei passegger
+i, del tempo necessario ad occupare e liberare la piattaforma e della fascia
+ oraria.
  Una fermata è compatibile solo con alcune piattaforme e ciò dipende da
  vari motivi quali la capacità del gate o le politiche del gestore dell'autostaz
 ione.
@@ -921,7 +934,7 @@ Negli ultimi anni si sono realizzati enormi progressi nella soluzione esatta
 
 \begin_layout Standard
 In realtà, ogni autostazione ha criteri propri sugli assegnamenti veicolo-piatta
-forma che sono determinati dagli interessi degli stackholders dell'autostazione
+forma che sono determinati dagli interessi degli stakeholders dell'autostazione
  e predisporre un'applicazione che possa contemplare le esigenze specifiche
  di tutti è un'impresa ardua.
  Alcune autostazioni, ad esempio, richiedono che certe linee siano assegnate
@@ -1137,52 +1150,57 @@ GatePlanner
 \end_layout
 
 \begin_layout Standard
-Il software GatePlanner, prodotto dalla società Pluservice, è lo stumento
- che pianifica in automatico l'assegnamento statico delle fermate delle
- corse alle piattaforme utilizzando un algoritmo costruttivo senza backtracking.
- 
+Il software GatePlanner, prodotto dalla società Pluservice S.r.l., è il tool
+ di supporto alle decisioni per la pianificazione automatica degli assegnamenti
+ statici degli autobus alle piattaforme in uso presso l'Autostazione di
+ Bologna.
 \end_layout
 
 \begin_layout Standard
-Le corse sono raggruppate in sottoinsimi aventi una validità comune, che
- si definiscce come 
+Il software considera le corse programmate raggruppandole in sottoinsiemi
+ aventi una validità comune, che sono definiti come 
 \emph on
 giorno tipo
 \emph default
 .
- La pianificazione viene effettuata per ogni giorno tipo, considerando il
- tempo di partenza della corsa 
-\begin_inset Formula $t_{p}$
+ La pianificazione viene effettuata per ogni giorno tipo.
+ Per ogni corsa 
+\begin_inset Formula $i$
 \end_inset
 
-, il tempo di anticipo rispetto all'orario di partenza a partire da cui
- la piattaforma deve risultare occupata 
-\begin_inset Formula $t_{1}$
+ del giorno tipo sono noti l'orario di partenza 
+\begin_inset Formula $t_{i}$
 \end_inset
 
- e il tempo di ritardo rispetto all'orario di partenza fino a cui la piattaforma
- deve risultare occupata 
-\begin_inset Formula $t_{2}$
-\end_inset
-
-.
- La finestra temporale di occupazione della piattaforma è dunque 
-\begin_inset Formula $[t_{p}-t_{1},\, t_{p}+t_{2}]$
-\end_inset
-
-.
- Siano 
-\begin_inset Formula $a=t_{p}-t_{1}$
+ e il valore di due parametri: 
+\begin_inset Formula $t_{i}^{\prime}$
 \end_inset
 
  e 
-\begin_inset Formula $d=t_{p}+t_{2}$
+\begin_inset Formula $t_{i}^{\prime\prime}$
 \end_inset
 
 .
- L'algortimo considera occupata della piattaforma per tutto l'intervallo
- 
-\begin_inset Formula $[a,d]$
+ L'intervallo temporale in cui la piattaforma associata alla corsa 
+\begin_inset Formula $i$
+\end_inset
+
+ è considerata occupata è 
+\begin_inset Formula $[t_{i}-t_{i}^{\prime},\, t_{i}+t_{i}^{\prime\prime}]$
+\end_inset
+
+.
+ Posto 
+\begin_inset Formula $a_{i}=t_{i}-t_{i}^{\prime}$
+\end_inset
+
+ e 
+\begin_inset Formula $d_{i}=t_{i}+t_{i}^{\prime\prime}$
+\end_inset
+
+, l'intervallo in cui una piattaforma risulta occupata dalla corsa è l'intervall
+o 
+\begin_inset Formula $[a_{i},d_{i}]$
 \end_inset
 
 , come rappresentato in fig.
@@ -1197,16 +1215,19 @@ reference "fig:Tempo-di-occupazione"
 \end_inset
 
 .
- Tali tempi 
-\begin_inset Formula $t_{1}$
+ I parametri 
+\begin_inset Formula $t_{i}^{\prime}$
 \end_inset
 
  e 
-\begin_inset Formula $t_{2}$
+\begin_inset Formula $t_{i}^{\prime\prime}$
 \end_inset
 
- non sono necessariamente costanti ma variano al variare dell'ora di partenza
- della corsa alla quale si riferiscono.
+ non sono costanti ma sono funzione dell'ora di partenza 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1236,7 +1257,11 @@ input{img/occupazione_piattaforma}
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Intervallo di occupazione di una piattaforma
+Intervallo di occupazione di una piattaforma da parte della corsa 
+\begin_inset Formula $i$
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Tempo-di-occupazione"
@@ -1257,9 +1282,9 @@ name "fig:Tempo-di-occupazione"
 \end_layout
 
 \begin_layout Standard
-Le corse sono suddivise fra corse da pianificare in automatico, ossia quelle
- per cui l'algoritmo di assegnamento statico cercherà una piattaforma, e
- in corse da assegnare manualmente, che saranno assegnate da un operatore.
+Le corse sono suddivise in corse da pianificare in automatico, ossia quelle
+ per cui l'algoritmo di assegnamento statico cercherà di associare una piattafor
+ma e in corse da assegnare manualmente, che saranno assegnate da un operatore.
  Il software permette di gestire gruppi di 
 \emph on
 corse bis
@@ -1272,7 +1297,8 @@ corse bis
 gruppi bis
 \emph default
 .
- Essendo le piattaforme adiacenti le une alle altre, come mostrato in fig.
+ Le piattaforme della stazione sono disposte in linea, come mostrato in
+ fig.
 \begin_inset space ~
 \end_inset
 
@@ -1283,9 +1309,8 @@ reference "fig:Disposizione-delle-piattaforme"
 
 \end_inset
 
-.
- Le piattaformesono disposte in linea e risulta quindi conveniente che gli
- assegnamenti delle corse bis siano a piattaforme adiacenti.
+ e per le autostazioni che presentano tale configurazione è conveniente
+ far partire le corse bis da piattaforme adiacenti.
 \end_layout
 
 \begin_layout Standard
@@ -1331,17 +1356,16 @@ name "fig:Disposizione-delle-piattaforme"
 \begin_layout Standard
 Le corse possono essere: di linea, di linea effettuate da veicoli snodati
  e appartenenti a gruppi bis.
- Le piattaforme sono disponibili o disabilitate in una determinate fasce
- orarie e possono essere riservate escluvimanete ad alcune linee.
- L'algoritmo di pianificazione di GatePlanner produce una soluzione che
- che rispetta i vincoli di collocazione di ogni corsa e di non occupazione
- simultanea di uno stessa piattaforma.
- Considera inoltre altri vincoli aggiuntivi.
- 
+ Le linee possono essere compatibili solo con alcune piattaforme.
+ Le piattaforme possono essere disabilitate in una o più fasce orarie e
+ possono essere riservate ad uso esclusivo da alcune linee.
+ L'algoritmo di pianificazione di GatePlanner, oltre ai vincoli di collocazione
+ di ogni corsa e di non occupazione simultanea di una stessa piattaforma,
+ considera anche i seguenti vincoli aggiuntivi:
 \end_layout
 
 \begin_layout Enumerate
-Il primo è un vincolo sul posizionamento delle 
+le 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1349,51 +1373,50 @@ corse bis
 \begin_inset Quotes erd
 \end_inset
 
- su piattaforme adiacenti; in particolare le corse di un gruppo bis sono
- posizionate su piattaforme adiacenti in ordine inverso rispetto all'orario
+ devono essere assegnate a piattaforme adiacenti, in particolare le corse
+ di un gruppo bis sono posizionate in ordine inverso rispetto all'orario
  di partenza.
  Tale vincolo serve a migliorare la qualità del sevizio offerto ai clienti
- e agevola le operazioni di manovra.
- È trattato come un vincolo hard.
- 
+ e agevola le operazioni di manovra;
 \end_layout
 
 \begin_layout Enumerate
-Il secondo vincolo aggiuntivo obbliga il posizionamento delle corse appartenenti
- a linee che includono almeno un veicolo snodato a essere assegnate alle
- piattaforme che accettano mezzi snodati.
+le corse appartenenti a linee che includono almeno un veicolo snodato devono
+ essere assegnate alle piattaforme che accettano mezzi snodati.
  Se una corsa con snodati ha delle corse bis allora tutte le corse del gruppo
  bis sono considerate come corse con snodati.
- Tale vincolo serve a garantire la realizzabilità della soluzione proposta.
+ Tale vincolo serve a garantire la realizzabilità della soluzione proposta;
 \end_layout
 
 \begin_layout Enumerate
-Un terzo vincolo hard permette di associare una linea esclusivamente ad
- un sottoinsieme di piattaforme, cioè tutte le corse della linea devono
- partire da un insieme di piattaforme predefinite.
+le corse appartenenti ad una linea compatibile solo con un sottoinsieme
+ di piattaforme devono esere assegnate a piattaforme appartenenti all'insieme
+ dato.
 \end_layout
 
 \begin_layout Enumerate
-Un quarto vincolo, in un certo modo simmetrico al precedente, impone una
- piattaforma sia compatibile sono con le linee che possono partire da essa.
+le piattaforme che sono riservate ad un insieme di linee devono essere assegnate
+ solo a corse appartenti alle linee dell'insieme dato;
 \end_layout
 
 \begin_layout Enumerate
-L'uso di una piattaforma, infine, può essere interdetto in determinate fasce
- orarie della giornata.
+una corsa non deve essere assegnata ad una piattaforma se l'intervallo di
+ occupazione della corsa ha intersezione non vuota con un'intervallo di
+ disabilitazione della piattaforma.
 \end_layout
 
 \begin_layout Standard
-L'obiettivo perseguito è quello di ridurre al minimo il numero di piattaforme
- che siano occupate in almeno un intervallo di tempo durante il giorno tipo
- cui si riferisce la pianificazione, prediligendo l'occupazione delle piattaform
-e più vicine all'ingresso e rappresentate con numeri minori.
+Il problema considerato è quello di minimizzare il numero di piattaforme
+ che sono assegnate ad almeno una corsa durante il giorno tipo, prediligendo
+ l'occupazione delle piattaforme più vicine all'ingresso (etichettate con
+ numeri minori).
 \end_layout
 
 \begin_layout Standard
-L'algoritmo euristico per la minimizzazione del numero di piattaforme, da
- quanto emerge dal manuale operativo del software, dovrebbe essere schematizzabi
-le come in alg.
+Per determinare una buona soluzione del problema, da quanto si evince dalla
+ documentazione, viene impiegato un algoritmo greedy simile all'algoritmo
+ first-fit usato per la soluzione approssimata del problema di bin packing.
+ L'algoritmo è illustrato in alg.
 \begin_inset space ~
 \end_inset
 
@@ -1784,7 +1807,7 @@ ForEach{f
 \backslash
 in 
 \backslash
-mathcal{F}_i}{
+mathcal{F}_i }{
 \end_layout
 
 \begin_layout Plain Layout
@@ -1804,7 +1827,9 @@ KwTo $m$}{
 \backslash
 If{$f$ compatibile con $
 \backslash
-mathcal{P}_k$}{%
+mathcal{P}_k$ e $
+\backslash
+mathcal{P}_k$ abilitato}{%
 \end_layout
 
 \begin_layout Plain Layout
@@ -1937,11 +1962,10 @@ end{algorithm}
 \end_layout
 
 \begin_layout Standard
-Tale algoritmo assomiglia a quello First Fit per problemi di Bin Packing
- che ha l'obiettivo di minimizzare il numero di piattaforme utilizzate.
- L'algoritmo euristico non garantisce l'ottimalità della soluzione trovata
- neanche di essere in grado di determinare una soluzione ammissibie su alcune
- istanze che invece ne hanno.
+L'algoritmo è di tipo euristico costruttivo e come tale non garantisce di
+ determinare una soluzione, anche se la regione ammissibile fosse non vuota,
+ e nel caso in cui venisse prodotta una soluzione non è garantito che sia
+ ottima.
 \end_layout
 
 \begin_layout Subsection*
@@ -1950,7 +1974,7 @@ Sistema in uso nell'autostazione di Oviedo
 
 \begin_layout Standard
 Il sistema di supporto alle decisioni realizzato per la gestione dell'autostazio
-ne di Oviedo, in Spagna, è trattato in
+ne di Oviedo, in Spagna, è descritto in
 \begin_inset space ~
 \end_inset
 
@@ -1962,7 +1986,7 @@ key "Adenso-Diaz2005"
 \end_inset
 
 .
- L'autostazione è composta di 44 piattaforme e gestisce circa 1100 servizi
+ L'autostazione è composta da 44 piattaforme e gestisce circa 1100 servizi
  al giorno.
  Il sistema utilizzato per l'assegnamento delle piattaforme è composto da
  due moduli, uno 
@@ -1983,8 +2007,7 @@ on-line
 
  per far fronte al caso dinamico.
  La pianificazione statica viene generata da un sistema Rule-Based che implement
-a due tipologie di regole.
- Le prime, dette 
+a due tipologie di regole; le prime, dette 
 \emph on
 direct rules
 \emph default
@@ -1999,20 +2022,39 @@ approximate rules
 \emph default
 , rappresentano le preferenze che il capostazione attribuisce all'assegnamento
  di un servizio ad una piattaforma.
- Le preferenze possono indicare ad esempio quanto è utile assegnare un bus
- ad una piattaforma in base alla provenienza o alla destinazione, alla compagnia
- che effettua il servizio, alla dimensione dell'autobus o al tempo di fermata.
+ Le preferenze possono indicare, ad esempio, quanto è 
+\begin_inset Quotes eld
+\end_inset
+
+utile
+\begin_inset Quotes erd
+\end_inset
+
+ assegnare un servizio ad una piattaforma in base alla provenienza o alla
+ destinazione, alla compagnia che effettua il servizio, alla dimensione
+ dell'autobus o al tempo di fermata.
  Questo secondo gruppo di regole può essere usato, inoltre, per tentare
  di lasciare disimpegnate le piattaforme adiacenti a quelle da cui partono
- bus a lunga percorrenza.
+ autobus a lunga percorrenza.
  Il capostazione stabilisce le regole da introdurre nel sistema e la loro
  utilità (espressa con un numero intero compreso fra 1 e 9).
  L'algoritmo proposto genera il piano di assegnamento che massimizza la
  somma dei pesi delle regole scelte.
  Le istanze reali dell'autostazione di Oviedo vengono risolte in circa 10'
  su un Pentium III.
- Il caso dinamico viene affrontato sempre con un sistema a regole che ha
- per input il piano e le regole.
+ Il caso dinamico, descritto in
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blanco2003"
+
+\end_inset
+
+, viene affrontato sempre con un sistema a regole che ha per input il piano
+ e le regole .
  Quando uno degli assegnamenti del piano statico non può essere attuato
  allora il sistema rende inammissibile l'assegnamento e aggiunge la regola
  di trovare un assegnamento del bus da riallocare che sia il più vicino
@@ -4929,10 +4971,6 @@ status open
 
 \end_layout
 
-\begin_layout Subsection*
-
-\end_layout
-
 \begin_layout Section
 Modello matematico del problema di minimizzazione delle piattaforme
 \end_layout
@@ -7329,10 +7367,6 @@ tà o il suo complemento ma sarebbero comunque necessarie le liste
 
 \end_layout
 
-\begin_layout Standard
-
-\end_layout
-
 \begin_layout Subsection*
 Modello del problema di programmazione per vincoli
 \end_layout
@@ -7431,7 +7465,7 @@ alldifferent
 \begin_inset Formula $i\in V$
 \end_inset
 
- il dominio intero e finito per le variabili del problema, dove  il valore
+ il dominio intero e finito per le variabili del problema, dove il valore
  assegnato ad 
 \begin_inset Formula $x_{i}$
 \end_inset
@@ -7814,10 +7848,6 @@ reference "eq:max_m"
 
 \begin_layout Section
 Minimizzazione della probabilità di conflitto
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \begin_layout Standard
