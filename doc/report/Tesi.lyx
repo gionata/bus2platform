@@ -2164,7 +2164,7 @@ e in quanto influenza le dimensioni dei problemi da risolvere e il livello
 \end_layout
 
 \begin_layout Standard
-Gli obiettivi possono essere divisi in due grandi macrocategorie, quella
+Gli obiettivi possono essere divisi in due grandi macrocategorie: quella
  degli obiettivi orientati al comfort dei passeggeri e quella orientata
  all'efficienza del terminal.
 \end_layout
@@ -2186,14 +2186,22 @@ Molti dei modelli proposti per l'AGAP sono modelli di assegnamento quadratico,
  gate dipende dagli altri assegnamenti e dal flusso di passeggeri fra i
  gate.
  Il problema, nel caso di singole finestre temporali, può essere decritto
- da un modello di programmazione lineare intera.
+ da un modello di programmazione intera che fa uso di variabili a due indici
+ per modellizzare l'assegnamento volo-gate, che diventano quattro quando
+ la funzione obiettivo e i vincoli sono linearizzati.
  Nel caso di finestre temporali multiple si deve aggiungere un indice alle
- variabili che indica in quale intervallo temporale avviene l'assegnamento.
+ variabili per indicare in quale intervallo temporale avviene l'assegnamento.
  
 \end_layout
 
 \begin_layout Standard
-Gli autori propongono un nuovo modello basato sul 
+Gli autori propongono un nuovo modello basato sul multi-mode resource constraint
+ project scheduling problem che considera le attività di arrivo, parcheggio
+ e partenza di un velivolo nel tempo, le iterazioni fra voli e voli e voli
+ e gate e una funzione obiettivo che è combinazione lineare convessa di
+ più funzioni lineari che identificano distinti indici di prestazione del
+ sistema.
+ L'algoritmo proposto per la soluzione è una procedura Branch&Bound troncata.
 \end_layout
 
 \begin_layout Standard
@@ -2239,10 +2247,16 @@ Per la soluzione del GAP in letteratura sono state proposte anche tecniche
 
 \end_inset
 
-Alcuni dei primi tentativi di utilizzare metodi quantitativi sviluppati
- per incrementare l'utilizzo dei gate e per di ridurre al minimo le distanze
- percorse all'interno del terminal aeroportuale di Toronto sono presentati
- in
+
+\end_layout
+
+\begin_layout Standard
+I primi contributi scientifici sull'argomento sono dei primi anni '70 del
+ secolo passato.
+ Fra i primi tentativi di utilizzare metodi quantitativi sviluppati per
+ aumentare l'efficienza dell'utilizzo dei gate e per di ridurre al minimo
+ le distanze percorse all'interno del terminal aeroportuale di Toronto sono
+ presentati in
 \begin_inset space ~
 \end_inset
 
@@ -2253,25 +2267,28 @@ key "braaksma1971improving,braaksma1977reducing"
 
 \end_inset
 
-.
-\end_layout
+, i quali propongono come progettare i terminal aeroportuali.
+ Su questo filone il lavoro
+\begin_inset space ~
+\end_inset
 
-\begin_layout Standard
-Altre pubblicazioni sul processo di progettazione del terminal hanno fatto
- subito seguito.
- In 
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wirasinghe1987airport"
 
 \end_inset
 
- si propone un metodo per calcolare la distanza percorsa a piedi dai passeggeri
+ propone un metodo per calcolare la distanza percorsa a piedi dai passeggeri
  in un terminal multi-molo.
  Tale lavoro presenta, inoltre, un metodo per valutare la geometria ottimale
  per un aeroporto nel caso in cui si voglia minimizzare la distanza percorsa
  dai passeggeri all'interno del terminal.
- In 
+ In
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Robuste1991143,Robuste1991159"
@@ -2280,14 +2297,22 @@ key "Robuste1991143,Robuste1991159"
 
  si considera sia il costo di trasferimento dei passeggeri che quello dei
  bagagli.
- In 
+ In
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Bandara199259"
 
 \end_inset
 
- viene esteso il lavoro in 
+ viene esteso il lavoro
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wirasinghe1987airport"
@@ -2296,7 +2321,11 @@ key "wirasinghe1987airport"
 
  indoducendo altri tipi di terminal e sono proposte alcune linee guida per
  la progettazione dei terminal aeroportuali.
- In 
+ In
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Bandara199259"
@@ -2308,7 +2337,11 @@ key "Bandara199259"
 \end_layout
 
 \begin_layout Standard
-In parallelo si sono sviluppati lavori, quali 
+In parallelo si sono sviluppati lavori, quali
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "babic1984aircraft,mangoubi1985oga"
@@ -2320,7 +2353,7 @@ key "babic1984aircraft,mangoubi1985oga"
  In questi approcci la distanza percorsa nel terminal è studiata in funzione
  dei flussi di arrivo e partenza dei passeggeri, i flussi dei passeggeri
  in transito, le distanze fra gate e gate, le distanze fra i gate e le sale
- di recupero dei bagagli, le distanze fra il banco di check in e il gate
+ di recupero dei bagagli, le distanze fra il banco di check-in e il gate
  e un costo di assegnamento aereo-gate, dato un certo layout del terminal.
  Nella modellizzazione del problema, il the costo associato all'assegnamento
  dell'velivolo al gate depends dalle distanze dalle strutture di servizio
