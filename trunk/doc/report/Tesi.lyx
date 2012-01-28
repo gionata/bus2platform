@@ -180,7 +180,7 @@ il Prof.
  Ferdinando Pezzella per la disponibilità, la fiducia e l'aiuto e le opportunità
  che mi ha offerto in questi anni.
  I suoi insegnamenti mi hanno introdotto nell'affascinate mondo della Ricerca
- Operativa ed egli mi ha trasmesso curosità e passione per questa disciplina.
+ Operativa ed egli mi ha trasmesso curiosità e passione per questa disciplina.
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
@@ -350,12 +350,9 @@ mainmatter
 
 \begin_layout Chapter
 Allocazione delle piattaforme in un'autostazione
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Problem setting
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Allocazione-delle-piattaforme"
 
 \end_inset
 
@@ -364,6 +361,40 @@ Problem setting
 
 \begin_layout Section
 L'autostazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Enumerate
+Fondere insieme i concetti ripetuti più volte nel capitolo
+\end_layout
+
+\begin_layout Enumerate
+Verificare che la struttura in paragrafi sia coerente e segua un ordine
+ logico
+\end_layout
+
+\begin_layout Enumerate
+Scegliere se spostare la presentazione dei concetti in parti distinte
+\end_layout
+
+\begin_layout Enumerate
+Il 
+\begin_inset Quotes eld
+\end_inset
+
+piano della tesi
+\begin_inset Quotes erd
+\end_inset
+
+ va messo come primo capitolo* (magari col titolo Introduzione)???
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -407,7 +438,7 @@ o anche
 \emph on
 gate
 \emph default
- (platform o anche bus loading area o berth).
+.
  Le piattaforme possono essere disposte secondo vari schemi che influenzano
  sia l'accessibilità da parte dei veicoli di varie tipologie che il tempo
  minimo in cui un veicolo occupa la piattaforma.
@@ -422,7 +453,7 @@ ione ha un sistema dinamico di informazione che permetta agli utenti (passeggeri
  permette un utilizzo più efficiente del piazzale (un numero maggiore di
  servizi di trasporto, a parità di piattaforme disponibili) ma non fornisce
  al passeggero e al conducente la comodità di conoscere la piattaforma con
- largo anticipo e richiede di decidere gli assegnamenti fermata-piattaforma.
+ largo anticipo e richiede di decidere gli assegnamenti autobus-piattaforma.
  La piattaforma di arrivo o partenza del veicolo è soggetta a variazioni
  dinamiche rispetto al servizio programmato dovute alle caratteristiche
  stocastiche dei tempi di arrivo e partenza degli autobus, e a eventi anomali
@@ -465,7 +496,7 @@ L'Autostazione di Bologna è un importante nodo di smistamento della mobilità
 \end_inset
 
  divisi in un piazzale di manovra, un edificio che ospita uffici ed attività
- commerciali e un'atrio antistante l'edificio.
+ commerciali e un atrio antistante l'edificio.
  Il piazzale di manovra e movimentazione dei pullman ospita un marciapiede
  arrivi, di oltre 170 m, un marciapiede partenze diviso in 24 piattaforme,
  un marciapiede centrale destinato alla movimentazione e sosta degli autobus
@@ -504,9 +535,9 @@ Una
 \emph on
 linea
 \emph default
- (line) è un servizio di trasporto operato su uno specifico percorso, che
- collega un capolinea di partenza ad un capolinea di destinazione passando
- per delle fermate intermedie, o su più percorsi.
+ è un servizio di trasporto operato su uno specifico percorso, che collega
+ un capolinea di partenza ad un capolinea di destinazione passando per delle
+ fermate intermedie, o su più percorsi.
  Una linea ha definita la frequenza delle corse, per ogni fascia oraria,
  e i tempi di partenza dal capolinea e di passaggio presso ogni fermata
  sono espansi nella tabella oraria.
@@ -525,8 +556,8 @@ Una
 \emph on
 corsa
 \emph default
- (trip o run) è il movimento di un veicolo dall'inizio di una linea o percorso
- alla fine di esso.
+ è il movimento di un veicolo dall'inizio di una linea o percorso alla fine
+ di esso.
  
 \end_layout
 
@@ -535,9 +566,9 @@ Una
 \emph on
 fermata
 \emph default
- (bus stop o bus stand) può disporre di pensilina e posti a sedere e di
- tabelloni o pannelli per fornire informazioni di servizio come le tabelle
- orarie ed eventualmente i dati in tempo reale sui veicoli in arrivo.
+ può disporre di pensilina e posti a sedere e di tabelloni o pannelli per
+ fornire informazioni di servizio come le tabelle orarie ed eventualmente
+ i dati in tempo reale sui veicoli in arrivo.
 \end_layout
 
 \begin_layout Standard
@@ -545,7 +576,7 @@ La
 \emph on
 tabella oraria
 \emph default
- (schedule) definisce per ogni corsa il tempo di partenza dal capolinea
+ (o schedula) definisce per ogni corsa il tempo di partenza dal capolinea
  d'inizio, il tempo di passaggio presso ogni fermata intermedia e il tempo
  di arrivo al capolinea di fine corsa.
 \end_layout
@@ -594,15 +625,15 @@ fermata
  Tale intervallo deve includere gli istanti di arrivo e di ripartenza del
  veicolo, che saranno distanti almeno quanto il tempo minimo di servizio
  dei passeggeri più il tempo necessario ad impegnare e disimpegnare la piattafor
-ma, e un buffer temporale per permettere ai mezzi di operare in sicurezza.
+ma, e un buffer temporale per permettere ai veicoli di operare in sicurezza.
  Più tale buffer è ampio e più il sistema di gestione delle piattaforme
  sarà in grado di far fronte agli scostamenti dei tempi di fermata programmati
  che si verificano durante l'esercizio.
  L'ampiezza dei buffer temporali, in alcune soluzioni, è scelto in funzione
  della fascia oraria, in quanto il numero di passeggeri da servire e di
  autobus in fermata nell'autostazione varia rispetto al tempo e presenta
- in genere due picchi in concomitanza delle ore di punta (peak hours), la
- mattina e il tardo pomeriggio.
+ in genere due picchi in concomitanza delle ore di punta, la mattina e il
+ tardo pomeriggio, ma potrebbe avere anche una distribuzione diversa.
  L'intervallo temporale in cui la piattaforma deve essere considerata occupata
  dal sistema di gestione delle piattaforme è funzione del tempo minimo necessari
 o al veicolo per effettuare l'imbarco e lo sbarco dei passeggeri, del tempo
@@ -612,35 +643,77 @@ o al veicolo per effettuare l'imbarco e lo sbarco dei passeggeri, del tempo
 ione.
 \end_layout
 
+\begin_layout Section
+Il problema considerato
+\end_layout
+
 \begin_layout Standard
-I problemi di assegnamento delle fermate dei bus alle piattaforme che si
- presentano l'uno durante la fase di pianificazione e l'altro durante l'esercizi
-o.
- Il primo problema consiste nel decidere a quale piattaforma deve essere
- assegnato un autobus in arrivo, partenza o fermata temporanea noto l’orario
- delle corse.
- L'altro problema consiste nel variare alcuni assegnamenti durante l’esercizio
- per far fronte a eventi imprevisti che rendono il piano inattuabile.
+Il problema di assegnare le fermate degli autobus alle piattaforme disponibili
+ è uno dei problemi più importanti nella gestione delle operazioni di un'autosta
+zione perché influenza i costi operativi e la qualità del servizio offerto.
+ I gestori dell'autostazione sono soliti affrontare il problema distinguendo
+ due fasi distinte.
+ La prima fase decisionale avviene durante la pianificazione delle operazioni
+ da effettuarsi in un certo orizzonte temporale.
+ Dato l'orario delle corse di ciascuna delle compagnie di trasporto operanti
+ nell'autostazione, il gestore deve definire quali autobus assegnare a quali
+ piattaforme in un dato giorno, che in genere è un periodo compreso tra
+ le 12 e le 24 ore, e la pianificazione viene realizzata ogni qualvolta
+ cambiano gli orari delle linee operanti nell'autostazione.
+ Questa è la fase di pianificazione degli assegnamenti e avviene su base
+ stagionale per le corse urbane di linea.
+ Ci possono essere però molti autobus di diverse compagnie operanti presso
+ l'autostazione che effettuano trasporti con cambi di programma frequenti,
+ così la necessità di ripianificare l'uso di alcuni servizi può essere più
+ frequente, e si possono verificare casi straordinari che determinano l'arrivo
+ e la partenza di un alto numero di veicoli, quindi la pianificazione può
+ essere effettuata con cadenze più ravvicinate.
+ Il fatto che la preparazione si effettui poche volte fa sì che il tempo
+ per l'esecuzione del programma di assegnamento delle piattaforme possa
+ protrarsi anche per ore.
+\end_layout
+
+\begin_layout Standard
+L'altro problema decisionale si verifica durante l'esercizio per far fronte
+ alle variazioni degli orari di arrivo e partenza degli autobus rispetto
+ a quelli programmati, e consiste nel modificare l'assegnamento pianificato.
+ Ricostruire gli assegnamenti in tempo reale è un compito impegnativo per
+ il gestore dell'autostazione, perché i cambiamenti degli orari di arrivo
+ o di partenza posso rendere il piano originale irrealizzabile o, anche
+ se ancora attuabile, rischia di può causare ritardi alle operazioni di
+ altri servizi che dovranno usare le piattaforme in cui si sono verificati
+ slittamenti rispetto agli orari programmati, soprattutto quando le fermate
+ sono stabilite in orari molto vicini tra loro.
+ Gli obiettivi del riassegnamento sono quelle di produrre una ridefinizione
+ degli assegnamenti che sia quanto più prossima a quella pianificata in
+ modo da ridurre i disagi ai passeggeri e agli autisti.
  
 \end_layout
 
 \begin_layout Standard
 Problemi simili sono noti nella letteratura scientifica come Gate Assignment
  Problem (GAP) e consistono nel determinare un assegnamento ammissibile
- di mezzi a gate che sia il migliore possibile in base a dei criteri di
- preferenza.
+ di mezzi (autobus, aerei\SpecialChar \ldots{}
+) a postazioni di fermata (piattaforme, gate\SpecialChar \ldots{}
+) inserite
+ in una struttura più grande (autostazione, aeroporto\SpecialChar \ldots{}
+) che sia il migliore
+ possibile in base a dei criteri di preferenza.
  Affinché il problema sia ammissibile devono essere soddisfatti almeno due
- vincoli: ogni fermata di un mezzo deve essere assegnata ad un gate e due
- mezzi i cui intervalli temporali di occupazione del gate (fermata) si sovrappon
-gano non possono essere assegnati ad uno stesso gate.
+ vincoli: ogni fermata di un mezzo deve essere assegnata ad una postazione
+ e due mezzi i cui intervalli temporali di occupazione della postazione
+ (fermata, tempo a terra\SpecialChar \ldots{}
+) si sovrappongano non possono essere assegnati
+ ad una stessa postazione.
 \end_layout
 
 \begin_layout Standard
 Il problema del GAP viene di norma affrontato in due fasi.
  La prima fase consiste nella pianificazione degli assegnamenti, basata
- sugli orari schedulati di partenza ed arrivo dei mezzi ed eventualmente
- di relazioni di compatibilità fra mezzo e gate.
- I dati sono fissati e la pianificazione viene detta 
+ sugli orari programmati di partenza ed arrivo dei mezzi ed eventualmente
+ di relazioni di compatibilità fra mezzo e postazione.
+ In questo caso i dati del problema sono deterministici e noti in anticipo,
+ pertanto la pianificazione viene detta 
 \begin_inset Quotes eld
 \end_inset
 
@@ -657,11 +730,12 @@ off-line
 \begin_inset Quotes erd
 \end_inset
 
-, in tempi di elaborazione che possono protrarsi anche per ore.
- Le istanze del problema consistono nella lista dei mezzi che dovranno fermare
- nell'autostazione comprensiva dell'intervallo di occupazione del gate,
- nella lista dei gate ed eventualmente nelle compatibilità ed anche nelle
- preferenze espresse delle compagnie di trasporto rispetto ai gate.
+, in tempi di elaborazione che possono protrarsi anche per ore e possono
+ avere validità estese a lunghi periodi.
+ Le istanze del problema consistono nella lista dei mezzi che dovranno occupare
+ la postazione, comprensiva dell'intervallo di occupazione, nella lista
+ delle postazioni, nelle compatibilità ed anche nelle preferenze espresse
+ delle compagnie di trasporto rispetto alle postazioni.
  La soluzione consiste in un assegnamento ammissibile che soddisfi tutti
  i vincoli e che sia 
 \begin_inset Quotes eld
@@ -671,13 +745,20 @@ buono
 \begin_inset Quotes erd
 \end_inset
 
- rispetto agli obiettivi stabiliti.
+, possibilmente ottimo, rispetto agli obiettivi stabiliti.
  La seconda fase avviene durante l'esercizio e consiste nel modificare l'assegna
 mento prodotto dalla pianificazione statica per far fronte alle variazioni
- degli intervalli temporali delle fermate dei bus o alla creazione di corse
- aggiuntive.
- Il sistema di riassegnamento deve reagire in tempi di, al massimo, pochi
- secondi.
+ degli intervalli temporali di occupazione delle postazioni.
+ Il sistema di riassegnamento opera su dati stocastici e noti solo al momento
+ del verificarsi degli stessi deve reagire in 
+\begin_inset Quotes eld
+\end_inset
+
+real-time
+\begin_inset Quotes erd
+\end_inset
+
+, ossia in tempi di, al massimo, pochi secondi.
 \end_layout
 
 \begin_layout Standard
@@ -685,125 +766,92 @@ Il problema può avere molti criteri di preferenza, sia relativamente alla
  stessa autostazione che per autostazioni con politiche di assegnamento
  diversi, perciò risulta difficile stabilire una o più funzioni obiettivo
  generali che permettano di verificare l'ottimalità di una soluzione.
- Un software per il supporto alle decisioni per tale problema deve determinare
- una soluzione che sia di compromesso fra i differenti obiettivi e che soddisfi
- tutti i vincoli del problema.
+ Un software per il supporto alle decisioni da intraprendere per affrontare
+ al meglio tale scelte deve determinare una soluzione che sia di compromesso
+ fra i differenti obiettivi e che soddisfi tutti i vincoli cui è soggetta
+ un'autostazione.
  Da un punto di vista pratico uno dei requisiti più importanti è che il
  piano di assegnamento deve essere poco sensibile a piccoli cambiamenti
  dei dati in ingresso.
  L'incertezza sui dati in ingresso è causata da una serie di possibili eventi,
- come ad esempio l'arrivo in ritardo di un bus che causa uno spostamento
- del tempo di fermata in avanti.
- Se i bus che devono arrivare sullo stessa stessa piattaforma non sono sufficien
-temente lontani nel tempo ed un bus arriva in ritardo si può verificare
- una catena di ritardi di tutte le fermate dei bus che erano stati assegnati
+ come ad esempio l'arrivo in ritardo di un autobus che causa uno slittamento
+ in avanti dell'intervallo di occupazione di una piattaforma.
+ Se gli scarti temporali previsti con gli autobus che devono fermarsi successiva
+mente sullo stessa stessa piattaforma non sono sufficientemente ampi si
+ può verificare una catena di ritardi di tutte le fermate dei bus che assegnati
  a quella piattaforma.
  Questo fatto è del tutto indesiderabile perché comporta disagi ai passeggeri
- ed agli autisti, che devono spostarsi su altri gate e possono subire ritardi,
- ed al capostazione che deve effettuare una rischedulazione degli assegnamenti.
- Assegnamenti poco robusti sono molto sensibili agli incidenti durante l'eserciz
-io ed i piani di assegnamento possono diventare inammissibili anche per
- anticipi o ritardi di pochi minuti, rendendo necessaria la generazione
- di un nuovo piano di assegnamento in tempo reale.
+ ed agli autisti, che devono spostarsi su altre piattaforme e possono subire
+ ritardi, ed al capostazione che deve effettuare una rischedulazione degli
+ assegnamenti.
+ Assegnamenti poco robusti sono molto sensibili agli eventi imprevedibili
+ che accadono durante l'esercizio ed i piani di assegnamento possono diventare
+ inammissibili anche per anticipi o ritardi di pochi minuti, rendendo necessaria
+ la generazione di un nuovo piano di assegnamento in tempo reale.
  Un piano di assegnamento robusto dovrebbe invece dare luogo ad un numero
- minore di situazioni che richiedono riassegnamenti e dà la possibilità
- al capostazione di intervenire prontamente per effettuare piccole modifiche
- sul piano.
+ minore di situazioni che richiedono riassegnamenti e dovrebbe fornire al
+ capostazione la possibilità di intervenire prontamente per effettuare piccole
+ modifiche al piano.
  Si ritiene che un piano robusto dovrebbe avere un forte impatto sull'efficienza
  dell'autostazione e sulla soddisfazione dei passeggeri.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Il problema consiste nel determinare la piattaforma di una autostazione
- in cui deve fermare un veicolo, nel rispetto di vincoli di varia natura.
-\end_layout
-
-\end_inset
-
-
+Il problema ha come decisore principale il capostazione, il quale deve valutare
+ attentamente i criteri di assegnamento fermata-piattaforma in quanto tale
+ scelta influenza notevolmente la qualità del servizio offerto.
+ Egli infatti sa che scelte mal ponderate procurano insoddisfazione e proteste
+ da parte dei passeggeri, che si troveranno costretti a spostarsi da una
+ parte all'altra dell'autostazione, e da parte delle compagnie di trasporto,
+ che possono subire ritardi in conseguenza alla congestione provocata dalla
+ mancanza di un assegnamento corretto.
 \end_layout
 
 \begin_layout Standard
-Il decisore è il capostazione, il quale deve valutare attentamente i criteri
- di assegnamento fermata-piattaforma in quanto tale scelta influenza notevolment
-e la qualità del servizio offerto.
-\end_layout
-
-\begin_layout Standard
-Scelte mal ponderate procurano insoddisfazione e proteste da parte dei passegger
-i, che si troveranno costretti a spostarsi da una parte all'altra dell'autostazi
-one, e da parte delle compagnie di trasporto, che possono subire ritardi
- in conseguenza alla congestione provocata dalla mancanza di un assegnamento
- corretto.
-\end_layout
-
-\begin_layout Standard
-L'assegnamento deve sottostare a vincoli di diversa natura e pertanto in
- generale si possono effettuare solo alcuni assegnamenti di un veicolo in
- fermata ad una piattaforma fra tutti i possibili.
-\end_layout
-
-\begin_layout Standard
-Le piattaforme sono compatibili sono con alcuni mezzi o servizi.
+Gli assegnamenti sono soggetti a vincoli di diversa natura.
+ Le piattaforme sono compatibili sono con alcune tipologie di autobus o
+ servizi.
  Ad esempio alcune piattaforme potrebbero essere riservate a servizi internazion
 ali, altre potrebbero essere riservate a servizi di linea ed altre ancora
  destinate al parcheggio temporaneo.
-\end_layout
-
-\begin_layout Standard
-I mezzi o servizi sono compatibili sono con alcune piattaforme che rispettano
- particolari requisiti, ad esempio alcuni servizi devono essere associati
- a piattaforme con particolari caratteristiche come l'accessibilità per
- utenti disabili ed i mezzi di dimensioni maggiori devono essere assegnati
- a piattaforme con sufficiente spazio di manovra (questa considerazione
- si applica ad esempio al caso di mezzi snodati).
- Una fermata inoltre deve effettuarsi su una piattaforma che sia abilitata
+ Gli autobus o i servizi sono compatibili sono con alcune piattaforme che
+ rispettano particolari requisiti, ad esempio alcuni servizi devono essere
+ associati a piattaforme con particolari caratteristiche come l'accessibilità
+ per utenti disabili e, ad esempio, gli autobus di dimensioni maggiori devono
+ essere assegnati a piattaforme con sufficiente spazio di manovra (questa
+ considerazione si applica ad esempio al caso di mezzi snodati).
+ Un autobus, inoltre, si può fermare solo su una piattaforma che sia abilitata
  nell'intervallo temporale della fermata stessa.
 \end_layout
 
 \begin_layout Standard
-Un ulteriore complicazione si verifica quando le piattaforme potrebbero
- essere in numero in numero non sufficiente ad accogliere tutte le corse
- in fermata (piattaforme come risorsa scarsa) e occorre decidere il sottoinsieme
- di corse che devono essere assegnate.
+Un ulteriore complicazione si verifica quando le piattaforme sono troppo
+ poche per permettere a tutti gli autobus che devono fermarsi in un certo
+ periodo di tempo di essere serviti (piattaforme come risorsa scarsa) e
+ occorre decidere quale sottoinsieme di corse deve essere assegnato.
 \end_layout
 
 \begin_layout Standard
-La qualità del piano di assegnamento si può misurare in base alle preferenze
- espresse dalle compagnie di trasporto determinate dalle esigenze dei loro
- utenti o ad altri fattori.
+Misurare quantitativamente la bontà del piano di assegnamento non è semplice
+ in quanto esistono molti criteri di scelta.
+ Un modo è quello di valutare quanto il piano soddisfi le preferenze espresse
+ dalle compagnie di trasporto, a loro volta determinate dalle esigenze dei
+ loro utenti e da altre motivazioni.
  Ad esempio gli utenti di servizi a lunga percorrenza potrebbero gradire
- che la piattaforma sia prossima a servizi igienici o servizi accessori
- quali punti di ristoro mentre gli utenti in transito che devono effettuare
- un'altra corsa potrebbero voler che la piattaforma della partenza del mezzo
- da prendere sia vicina a quella in cui sono scesi.
- Si potrebbe volere che le corse bis siano posizionate su piattaforme adiacenti,
- oppure che i servizi offerti da una certa compagnia partano solo da un
- gruppo di piattaforme.
+ che la piattaforma sia prossima a servizi igienici o a servizi accessori
+ quali i punti di ristoro mentre gli utenti in transito che devono effettuare
+ un'altra corsa potrebbero desiderare che la piattaforma d'arrivo del primo
+ autobus sia quanto più prossima a quella di partenza del secondo mezzo.
+ Si potrebbe volere che le corse bis, ossia le corse che realizzano lo stesso
+ servizio di trasporto impiegando più autobus (istituite in quanto la di
+ capacità di un singolo autobus è insufficiente a soddisfare la richiesta
+ di mobilità), siano posizionate su piattaforme adiacenti, oppure che i
+ servizi offerti da una certa compagnia partano solo da un gruppo di piattaforme.
  Per evitare un affollamento eccessivo sui marciapiedi si potrebbe voler
- far partire servizi a lunga percorrenza da piattaforme non adiacenti.
- Per consentire altre operazioni si potrebbe imporre di non utilizzare una
- piattaforma in determinate fasce orarie.
-\end_layout
-
-\begin_layout Standard
-Fra i possibili piani generalmente è da preferire quello che sia suscettibile
- del minor numero di variazioni degli assegnamenti per far fronte al verificarsi
- di eventi non pianificati quali ritardi o anticipi di servizi o creazione
- di nuove corse.
- 
-\end_layout
-
-\begin_layout Section
-Il problema considerato
-\end_layout
-
-\begin_layout Standard
-Certe compagnie di trasporto preferiscono che i lovo veicoli siano assegnati
+ far partire servizi a lunga percorrenza da piattaforme distanti tra loro.
+ Oppure per consentire le operazioni di manutenzione si potrebbe imporre
+ di non utilizzare una piattaforma in determinate fasce orarie.
+ Certe compagnie di trasporto preferiscono che i propri autobus siano assegnati
  a certe aree del piazzale, se possibile, in modo che sia conveniente per
  loro gestire le operazioni e allocare il personale.
  Questo, ad esempio, perché potrebbero disporre di una biglietteria dislocata
@@ -817,7 +865,11 @@ li, per cui sono previsti tempi di attesa maggiori e frequenti ritardi,
 \end_layout
 
 \begin_layout Standard
-Durante le ore di picco, quando un gran numero di veicoli arriva o parte
+In generale, fra i possibili piani generalmente è da preferire quello che
+ sia suscettibile del minor numero di variazioni degli assegnamenti a fronte
+ di eventi non pianificati quali ritardi o anticipi di servizi o creazione
+ di nuove corse.
+ Durante le ore di picco, quando un gran numero di veicoli arriva o parte
  più o meno contemporaneamente, possono verificarsi congestioni del traffico
  nel piazzale se le piattaforme assegnate sono vicine tra loro e un veicolo
  potrebbe restare in attesa di un veicolo che deve liberare la propria piattafor
@@ -829,63 +881,7 @@ Un buon assegnamento, quindi, non solo deve essere ammissibile ma deve inoltre
  essere predisposto in modo da risultare comodo per i passeggeri, deve soddisfar
 e i richieste delle compagnie e degli operatori del terminal, deve ridurre
  la congestione per facilitare le operazioni e deve essere robusto rispetto
- a piccole variazioni delle corse.
-\end_layout
-
-\begin_layout Standard
-Il problema di assegnare i veicoli schedulati in arrivo e partenza alle
- piattaforme disponibili è uno dei problemi più importanti nella gestione
- delle operazioni di un terminal.
- Nella pratica, i gestori di un'autostazione devono affrontare due tipi
- di assegnamento: uno in fase di pianificazione degli assegnamenti ed un
- di riassegnamento in tempo reale.
-\end_layout
-
-\begin_layout Standard
-Dato l'orario delle corse di ciascuna delle compagnie di trasporto operanti
- nell'autostazione, il gestore deve definire quali veicoli assegnare a quali
- piattaforme in un dato giorno, che in genere è un periodo compreso tra
- le 12 e le 24 ore, e la pianificazione viene realizzata ogni qualvolta
- cambiano gli orari delle linee operanti nell'autostazione.
- Questa è la fase di pianificazione degli assegnamenti e avviene su base
- stagionale per le corse urbane di linea.
- Ci possono essere però molti veicoli di diverse compagnie operanti presso
- l'autostazione che effettuano trasporti con cambi di programma frequenti,
- così la necessità di ripianificare l'uso di alcuni servizi può essere più
- frequente, e si possono verificare casi straordinari che determinano l'arrivo
- e la partenza di un alto numero di veicoli, percui la pianificazione può
- essere effettuata con cadenze più ravvicinate.
- Il fatto che la preparazione si effettui poche volte fa sì che il tempo
- per l'esecuzione del programma di assegnamento delle piattaforme possa
- protarsi anche per ore.
-\end_layout
-
-\begin_layout Standard
-Un altro tipo assegmanento delle piattaforme è quello da effettuarsi in
- tempo reale per far fronte alle variazioni degli orari di arrivo e partenza
- dei veicoli che si verificano durante l'esercizo, cioè di modificare l'assegmen
-to a causa dei cambiamenti rispetto agli orari schedulati.
- Ricostruire gli assegnamenti in tempo reale è un compito impegnativo per
- il gestore dell'autostazione, perché l'assegnamento originale è già stato
- prodotto e i cambiamenti ddgli orari di arrivo o di partenza posso rendere
- il piano originale irrealizzabbile o, se fattibile, può influenzare molti
- altri veicoli che dovranno usare la stessa piattaforma, soprattutto quando
- gli orari dei mezzo sono vicini tra loro.
- Gli obiettivi del riassegnamento sono quelle di produrre una schedula degli
- assegnamenti che sia quanto più prossima a quella pianificata.
- 
-\end_layout
-
-\begin_layout Standard
-La letterarura scientifica ha proposto, ad oggi, pochi lavori sul real-time
- recovery degli assegnamenti, ad eccezione di 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Blanco2003,Tang2010"
-
-\end_inset
-
-.
+ a piccole variazioni dei dati d'ingresso.
 \end_layout
 
 \begin_layout Section
@@ -893,10 +889,10 @@ Le difficoltà di predisposizione di buon assegnamento
 \end_layout
 
 \begin_layout Standard
-Sono state propost molte metodologie per risolvere problemi analoghi a quello
- presentato, come modelli di Programmazione Lineare Intera Mista (PLIM)
- e Sistemi Esperti basati sulla conoscenza.
- Ognuna di queste metodologie ha i propri vantaggi e le probrie difficoltà
+Sono state proposte molte metodologie per risolvere problemi analoghi a
+ quello presentato, come modelli di Programmazione Lineare Intera Mista
+ (PLIM) e Sistemi Esperti basati sulla conoscenza.
+ Ognuna di queste metodologie ha i propri vantaggi e le proprie difficoltà
  nella realizzazione pratica.
  Risolvere questi problemi in modo efficace ed efficiente è un problema
  complesso e i problemi di ottimizzazione formulati appartengono alla classe
@@ -919,7 +915,7 @@ Negli ultimi anni si sono realizzati enormi progressi nella soluzione esatta
  Lo sviluppo di questi pacchetti permette di risolvere direttamente problemi
  pratici impiegando direttamente il modello di programmazione matematica.
  Per alcuni problemi come quello presentato, però, i modelli matematici
- non si riescono a risolvere all'ottimo in tempi di calcolo ragionevolie
+ non si riescono a risolvere all'ottimo in tempi di calcolo ragionevoli
  per questo è necessaria ulteriore ricerca sul tema.
 \end_layout
 
@@ -942,14 +938,14 @@ no tali restrizioni.
  tempo di elaborazione e ciò è ancor più vero quando l'assegnamento deve
  essere modificato in tempo reale per far fronte ad eventi imprevisti che
  si realizzano nel corso delle operazioni del terminal.
- Se il tempo di risoluzione dei modelli di PLIM risulta troppo irraggionevole,
+ Se il tempo di risoluzione dei modelli di PLIM risulta troppo irragionevole,
  allora la risoluzione esatta del modello non risulta applicabile in pratica
 \end_layout
 
 \begin_layout Standard
 Molti ricercatori hanno fatto ricorso alle tecniche di programmazione matematica
 , sviluppando modelli e metodologie per la risoluzione e/o hanno affidato
- a tecniche metaeuristiche la risoluzione di istanze reali per migliorare
+ a tecniche meta-euristiche la risoluzione di istanze reali per migliorare
  ridurre i tempi di elaborazione.
  Un altro fattore che rende difficile l'uso di tecniche di PLIM è che la
  modellizzazione del problema con gli strumenti della programmazione matematica
@@ -989,8 +985,7 @@ key "srihari1991esm"
 .
  Se il problema è visto come problema di ottimizzazione e non come problema
  di ammissibilità, non c'è alcuna garanzia che i sistemi esperti possono
- evitare di essere intrappolati ottimo locale.
- È difficile dire quanto la soluzione soddisfacente è da ottimalità.
+ evitare di essere intrappolati in un ottimo locale.
  La parte più difficile del problema è nell'individuare le regole per guidare
  il processo di assegnazione, a causa del gran numero di fattori da prendere
  in considerazione come sottolineato da 
@@ -1054,7 +1049,7 @@ reference "chap:Nuove-formulazioni"
  diverse autostazioni.
  Gli obiettivi considerati sono il numero di piattaforme utilizzate durante
  una giornata, la scarto di tempo minimo fra due fermate di autobus su di
- una stessa piattaforma e un'indicatore di probabilità di conflitto fra
+ una stessa piattaforma e un indicatore di probabilità di conflitto fra
  fermate che misura quanto l'assegnamento sia da considerarsi robusto rispetto
  a piccole variazioni dei dati d'ingresso.
 \end_layout
@@ -1241,7 +1236,7 @@ input{img/occupazione_piattaforma}
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Tempo di occupazione della piattaforma
+Intervallo di occupazione di una piattaforma
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Tempo-di-occupazione"
@@ -1313,7 +1308,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Disposizione delle piattaforme
+Disposizione delle piattaforme nell'autostazione di Bologna
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Disposizione-delle-piattaforme"
@@ -2934,6 +2929,18 @@ key "Lim2005"
  search ed una ricerca locale.
 \end_layout
 
+\begin_layout Standard
+La letterarura scientifica ha proposto, ad oggi, pochi lavori sul real-time
+ recovery degli assegnamenti, ad eccezione di 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blanco2003,Tang2010"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section
 Modelli per AGAP
 \end_layout
@@ -3202,10 +3209,10 @@ key "lusby-railway"
 \end_inset
 
 .
- Si nota che alcuni autori modellano il TPP come un problema di Graph Coloring
- su grafi di conflitto e che altri usano tecniche tradizionali della ricerca
- operativa, mentre altri ancora impiegano efficacemente la programmazione
- per vincoli.
+ Si nota che alcuni autori modellano il TPP come un problema di colorazione
+ di grafi su grafi di conflitto e che altri usano tecniche tradizionali
+ della ricerca operativa, mentre altri ancora impiegano efficacemente la
+ programmazione per vincoli.
 \end_layout
 
 \begin_layout Standard
@@ -3269,23 +3276,18 @@ key "Zeitlhofer20031411"
 
  l'assegnamento dei registri diviene un problema decisionale di 
 \emph on
-restricted-coloring
-\emph default
- (indicato come 
-\emph on
 list-coloring
 \emph default
- nel titolo scelto degli autori), la cui soluzione determina un assegnamento
- che richiede al massimo tanti registri quanti disponibili, se tale soluzione
- esiste.
+, la cui soluzione determina un assegnamento che richiede al massimo tanti
+ registri quanti disponibili, se tale soluzione esiste.
  Il lavoro descrive il caso di processori con varie unità funzionali in
  grado di eseguire un sottoinsieme di istruzioni.
  Lo scheduling delle istruzioni è definito e esse possono essere elaborate
  solo da un sottoinsieme di registri.
- Benché il restricted-coloring sia un problema NP-hard, Zeitlhofer e Wess
- sfruttano alcune proprietà dei grafi d'intervallo per determinarne una
- soluzione ammissibile, se esiste, in tempi ragionevoli, evitando di esplorare
- l'intero albero di ricerca.
+ Benché il list-coloring sia un problema NP-hard, Zeitlhofer e Wess sfruttano
+ alcune proprietà dei grafi d'intervallo per determinarne una soluzione
+ ammissibile, se esiste, in tempi ragionevoli, evitando di esplorare l'intero
+ albero di ricerca.
  
 \begin_inset Note Note
 status open
@@ -3733,7 +3735,7 @@ Il grafo
 \end_layout
 
 \begin_layout Section
-Formulazione del problema di minimizzazione del numero di piattaforme utilizzate
+Formulazione del problema di minimizzazione delle piattaforme 
 \end_layout
 
 \begin_layout Standard
@@ -3823,8 +3825,8 @@ Formulazione del problema
 \end_layout
 
 \begin_layout Standard
-Il problema decisionale del restricted coloring di un grafo degli intervalli
- è il seguente:
+Il problema decisionale del list-coloring di un grafo degli intervalli è
+ il seguente:
 \end_layout
 
 \begin_layout Standard
@@ -4060,7 +4062,7 @@ key "Wang1994"
 
 .
  Il problema di assegnamento dei veicoli alle piattaforme è esprimibile
- come problema di restricted-coloring definito sul grafo d'intervallo 
+ come problema di list-coloring definito sul grafo d'intervallo 
 \begin_inset Formula $G=(V,\, E)$
 \end_inset
 
@@ -4526,7 +4528,7 @@ name "tab:fermate_e_compatibilita"
 
 \end_inset
 
-Orari delle fermate e compatibilità con le piattaforme
+Tabella oraria e compatibilità autobus-piattaforme
 \end_layout
 
 \end_inset
@@ -4669,7 +4671,7 @@ name "fig:Intervalli-temporali"
 
 \end_inset
 
-Intervalli temporali e grafo d'intervallo corrispondente
+Intervalli e grafo d'intervallo corrispondente
 \end_layout
 
 \end_inset
@@ -4697,8 +4699,7 @@ reference "fig:Grafo-intervallo"
 \end_inset
 
  sono rappresentati il grafo d'intervallo, le liste di compatibilità, le
- cricche massimali ed una soluzione ammissibile del problema di restricted-color
-ing.
+ cricche massimali ed una soluzione ammissibile del problema di list-coloring.
  Si noti che i vertici sono numerati secondo un 
 \emph on
 ordine perfetto
@@ -4784,7 +4785,7 @@ name "fig:Grafo-intervallo"
 
 \end_inset
 
-Istanza di restricted-coloring e una sua soluzione
+Istanza e soluzione di un problema di list-coloring
 \end_layout
 
 \end_inset
@@ -4822,8 +4823,8 @@ Se si definisce nel domino dei numeri reali la funzione
 \end_inset
 
 .
- Per colorare il grafo d'intervallo nel caso di graph coloring basta ordinare
- i valori 
+ Per colorare il grafo d'intervallo nel caso di colorazione di grafi basta
+ ordinare i valori 
 \begin_inset Formula $d_{i}$
 \end_inset
 
@@ -4891,7 +4892,15 @@ name "fig:Grafo-intervallo-fx"
 
 \end_inset
 
-Funzione che conta gli intervalli sovrapposti
+La funzione 
+\begin_inset Formula $f(x)$
+\end_inset
+
+: numero di intervalli che contengono 
+\begin_inset Formula $x$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4925,12 +4934,11 @@ status open
 \end_layout
 
 \begin_layout Section
-Modello matematico del problema di minimizzazione del numero di piattaforme
- utilizzate
+Modello matematico del problema di minimizzazione delle piattaforme
 \end_layout
 
 \begin_layout Standard
-Il problema del restricted-coloring può essere formulato su un grafo 
+Il problema del list-coloring può essere formulato su un grafo 
 \begin_inset Formula $\mathcal{G}(\mathcal{V},\mathcal{E})=G+K_{m}$
 \end_inset
 
@@ -5055,7 +5063,7 @@ L'insieme
 \end_layout
 
 \begin_layout Standard
-Una soluzione ammissibile per il problema di restricted-coloring su 
+Una soluzione ammissibile per il problema di list-coloring su 
 \begin_inset Formula $G$
 \end_inset
 
@@ -5081,7 +5089,7 @@ Una soluzione ammissibile per il problema di restricted-coloring su
 \end_inset
 
 .
- Il problema di restricted-coloring su 
+ Il problema di list-coloring su 
 \begin_inset Formula $G$
 \end_inset
 
@@ -5372,7 +5380,7 @@ name "tab:Istanza-gap-1"
 
 \end_inset
 
-Istanza di esempio
+Istanza di esempio: tabella oraria e compatibilità
 \end_layout
 
 \end_inset
@@ -5472,7 +5480,7 @@ name "fig:Intervalli-di-occupazione1"
 
 \end_inset
 
-Intervalli di fermata e grafo d'interferenza 
+Intervalli e grafo d'interferenza 
 \begin_inset Formula $G$
 \end_inset
 
@@ -5576,7 +5584,7 @@ fermate-piattaforme
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Istanza di esempio del problema
+Istanza di esempio del problema di assegnameto bus-piattaforma
 \end_layout
 
 \end_inset
@@ -5590,7 +5598,7 @@ L'istanza del problema di partenza viene ricondotta ad un problema
 \begin_inset Formula $\mathcal{I}=[G(V,E),\, L]$
 \end_inset
 
- di restricted-coloring con parametri 
+ di list-coloring con parametri 
 \begin_inset Formula $G$
 \end_inset
 
@@ -5668,7 +5676,7 @@ Per passare dalla soluzione del problema del massimo insieme stabile di
 \begin_inset Formula $\mathcal{G}$
 \end_inset
 
- ad una soluzione del problema di list coloring è sufficiente colorare ogni
+ ad una soluzione del problema di list-coloring è sufficiente colorare ogni
  vertice 
 \begin_inset Formula $v\in V$
 \end_inset
@@ -5989,7 +5997,7 @@ name "fig:Trasformazioni-del-problema"
 
 \end_inset
 
-Trasformazioni del problema
+Trasformazioni del problema di restricted-coloring
 \end_layout
 
 \end_inset
@@ -6046,7 +6054,7 @@ che rappresenta la scelta del vertice
 \begin_layout Standard
 \noindent
 I vincoli di assegnamento impongono che ogni fermata sia assegnata ad una
- sola piattaforma (colore, nei problemi di graph coloring):
+ sola piattaforma (colore, nei problemi di colorazione di grafi):
 \end_layout
 
 \begin_layout Standard
@@ -6425,7 +6433,8 @@ mathcal{Q}_{k}$
 
 	
 \backslash
-caption{Insiemi di fermate incompatibili relative alle piattaforme}
+caption{Determinazione delle fermate interferenti compatibili con la piattaforma
+ $k$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7156,7 +7165,8 @@ Return {gli assegnamenti
 
 	
 \backslash
-caption{First Fit per la colorazione dei vertici di un grafo d'intervallo}
+caption{Algoritmo "First-Fit" per la colorazione propria dei vertici di
+ un grafo d'intervallo}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7632,13 +7642,8 @@ Limitazione superiore
 
 \end_layout
 
-\begin_layout Standard
-
-\end_layout
-
 \begin_layout Section
-Massimizzazione della distanza minima fra arrivi e partenza sullo stesso
- gate
+Massimizzazione dello scarto minimo minimo
 \end_layout
 
 \begin_layout Standard
@@ -7808,7 +7813,11 @@ reference "eq:max_m"
 \end_layout
 
 \begin_layout Section
-Minimizzazione della probabilità di conflitto degli assegnamenti fermate-gate
+Minimizzazione della probabilità di conflitto
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Standard
@@ -8069,7 +8078,7 @@ name "chap:Algoritmi-sviluppati"
 \end_layout
 
 \begin_layout Section
-Pianificazione statica mediante euristiche e ricerca troncata
+Controllo a orizzonte recessivo
 \end_layout
 
 \begin_layout Standard
@@ -8516,7 +8525,7 @@ input{img/iterative_horizon}
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Algoritmo iterativo: legami fra istanze e soluzioni
+Controllo a orizzonte recessivo: sotto-istanze e soluzioni
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Algoritmo-iterativo_legami_ist_sol"
@@ -8766,7 +8775,7 @@ Return l'insieme di assegnamenti {$
 
 	
 \backslash
-caption{Risoluzione iterativa su più intervalli di pianificazione}
+caption{Controllo a orizzonte recessivo}
 \end_layout
 
 \begin_layout Plain Layout
@@ -8802,14 +8811,14 @@ e tempo computazionale in un algoritmo di enumerazione delle soluzioni deve
 azione.
  Il numero minimo di piattaforme è il numero di colori soluzione del problema
  di restricted-coloring, il quale numero è maggiore o uguale al numero cromatico
- del problema di graph-coloring definito sullo stesso grafo 
+ del problema di colorazione di grafi definito sullo stesso grafo 
 \begin_inset Formula $G=(V,\, E)$
 \end_inset
 
 .
  Il problema di determinare il numero cromatico è infatti un rilassamento
- del problema di restricted-coloring in cui sono stati eliminati i vincoli
- di compatibilità.
+ del problema della formulazione di restricted-coloring, in cui sono stati
+ eliminati i vincoli di compatibilità.
  Il grafo 
 \begin_inset Formula $G=(V,\, E)$
 \end_inset
@@ -9106,7 +9115,7 @@ mathcal{Q}$
 
 	
 \backslash
-caption{Insiemi di fermate interferenti (clique massimali)}
+caption{Algoritmo di ricerca delle fermate interferenti (clique massimali)}
 \end_layout
 
 \begin_layout Plain Layout
@@ -9370,7 +9379,7 @@ Return {$s$
 
 	
 \backslash
-caption{Massimo numero di intervalli sovrapposti}
+caption{Calcolo del massimo numero di intervalli sovrapposti}
 \end_layout
 
 \begin_layout Plain Layout
@@ -9638,7 +9647,7 @@ Return {$C = (B, F)$
 
 	
 \backslash
-caption{Costruzione del grafo di interferenza delle fermate}
+caption{Costruzione del grafo d'interferenza}
 \end_layout
 
 \begin_layout Plain Layout
@@ -9665,8 +9674,8 @@ Metodo dei buffer temporali
 \end_layout
 
 \begin_layout Section
-Pre-elaborazione delle istanze per la riduzione della dimensione e la rottura
- delle simmetrie
+Pre-elaborazione delle istanze: riduzione della dimensione e rottura di
+ alcune simmetrie
 \end_layout
 
 \begin_layout Section
@@ -10174,7 +10183,7 @@ Morbida
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Parametri 
+I buffer temporali al variare della fascia oraria: 
 \begin_inset Formula $t_{1}$
 \end_inset
 
@@ -10182,7 +10191,7 @@ e
 \begin_inset Formula $t_{2}$
 \end_inset
 
- al variare della fascia oraria
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Parametri-t_1-e-t_2"
@@ -10247,7 +10256,7 @@ input{img/diagramma_carico}
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Frequenza delle fermate per fasce orarie di 30'
+Distribuzione delle fermate in fasce orarie di 30 minuti
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Frequenza-delle-fermate"
@@ -10816,10 +10825,10 @@ Modello di Set Covering
 \begin_layout Standard
 Per ridurre le simmetrie si potrebbe riformulare il problema utilizzando
  una formulazione in cui i gate sia considerati in modo pressoché indistinto.
- Il problema del graph-coloring è infatti affrontato con successo impiegando
- formulazioni di set partitioning o set covering risolte con tecniche di
- genearazione di colonne integrate ad altri metodi per la determinazione
- di soluzioni intere.
+ Il problema della colorazione di grafi è infatti affrontato con successo
+ impiegando formulazioni di set partitioning o set covering risolte con
+ tecniche di genearazione di colonne integrate ad altri metodi per la determinaz
+ione di soluzioni intere.
 \end_layout
 
 \begin_layout Standard
@@ -10927,8 +10936,8 @@ il numero di partizioni usate
 \end_layout
 
 \begin_layout Standard
-Il problema di restricted-coloring può essere formulato come un problema
- di max weighted partition (si veda
+Il problema di list-coloring può essere formulato come un problema di max
+ weighted partition (si veda
 \begin_inset space ~
 \end_inset
 
