@@ -10431,7 +10431,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Soluzione min num piattaforme con PLI
+Soluzione del modello di minimizzazione del numero di piattaforme
 \end_layout
 
 \end_inset
@@ -10493,7 +10493,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Soluzione min num piattaforme con PLI
+Soluzione del modello di massimizzazione dello scarto minimo
 \end_layout
 
 \end_inset
@@ -10555,7 +10555,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Soluzione min num piattaforme con PLI
+Soluzione del modello di minimizzazione della probabilità di conflitto
 \end_layout
 
 \end_inset
@@ -10582,22 +10582,195 @@ e presenti nel problema fra 16 e 19.
  La piattaforma n.
  10 rimane esclusa da quelle presenti nelle liste di compatibilità in modo
  da avere un limite inferiore 
-\begin_inset Formula $\chi$
+\begin_inset Formula $\chi=15$
 \end_inset
 
  che non corrisponde al minimo numero di piattaforme.
 \end_layout
 
-\begin_layout Standard
-NOTA: inserire i file!!!!
+\begin_layout Subsection*
+Soluzioni ottenute con 16 piattaforme
 \end_layout
 
 \begin_layout Standard
-NOTA: inserire i file!!!!
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/MathModelColoring.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di minimizzazione del numero di piattaforme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-NOTA: inserire i file!!!!
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMathMD.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di massimizzazione dello scarto minimo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMath.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di minimizzazione della probabilità di conflitto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -10615,18 +10788,6 @@ Vengono presentate le soluzioni mediante l'algoritmo di minimizzazione del
  I test con valori di buffer maggiori o uguali a 12 minuti non hanno prodotto
  soluzioni ammissibili.
  
-\end_layout
-
-\begin_layout Standard
-NOTA: inserire i file!!!!
-\end_layout
-
-\begin_layout Standard
-NOTA: inserire i file!!!!
-\end_layout
-
-\begin_layout Standard
-NOTA: inserire i file!!!!
 \end_layout
 
 \begin_layout Chapter
