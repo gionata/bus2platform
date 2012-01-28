@@ -5,7 +5,8 @@
 \textclass univpmphdthesis
 \begin_preamble
 %%%
-\usepackage[ruled,vlined,lined,boxed,linesnumbered,algochapter]{algorithm2e}
+%\usepackage[ruled,vlined,lined,boxed,linesnumbered,algochapter]{algorithm2e}
+\usepackage[lined,boxed,commentsnumbered,algochapter]{algorithm2e}
 \renewcommand{\listalgorithmcfname}{Elenco degli algoritmi}%
 \renewcommand{\algorithmcfname}{Algoritmo}%
 \renewcommand{\algocf@typo}{}%
@@ -233,7 +234,54 @@ Tana del Bianconiglio
 \end_layout
 
 \begin_layout PhD Thesis Abstract
-Riassunto
+Uno dei maggiori problemi che si presenta nella gestione operativa di un’autosta
+zione è l’assegnamento dei bus alle piattaforme disponibili.
+ Tale problema è noto in letteratura come Gate Assignment Problem e consiste
+ nel determinare il miglior assegnamento ammissibile dei bus alle piattaforme
+ basato su certi criteri di preferenza, nota la tabella oraria giornaliera
+ dei bus.
+ Affinché una soluzione sia ammissibile devono essere soddisfatti almeno
+ due vincoli: ogni bus deve essere assegnato a una e una sola piattaforma
+ e due bus i cui intervalli temporali di occupazione della piattaforma si
+ sovrappongono non possono essere assegnati alla stessa piattaforma.
+\end_layout
+
+\begin_layout PhD Thesis Abstract
+Problemi simili all’assegnamento delle piattaforme nelle autostazioni nascono
+ nella gestione di aeroporti, stazioni ferroviarie, porti, interporti e
+ così via.
+ Ci sono anche forti somiglianze con il problema dell’assegnamento dei registri
+ nei processori di segnale digitale (DSP).
+ Nel caso dell’autostazione il gestore può richiedere che gli assegnamenti
+ bus-piattaforme siano tali da occupare il minor numero di piattaforme nell’oriz
+zonte di pianificazione.
+ Per questo problema si propone una formulazione innovativa come problema
+ di restricted-coloring di un grafo d’intervallo e un modello di programmazione
+ lineare intera per la sua risoluzione.
+\end_layout
+
+\begin_layout PhD Thesis Abstract
+Situazioni di mancato rispetto della tabella oraria, quali arrivi in anticipo
+ o ritardo e partenze in ritardo, sono piuttosto frequenti nella gestione
+ quotidiana di un’autostazione e spesso fanno sì che non sia possibile assegnare
+ i bus coinvolti alla piattaforma prevista.
+ Per questo motivo si è considerato un modello di programmazione matematica
+ per aumentare la robustezza delle soluzioni minimizzando la probabilità
+ che i bus assegnati alla stessa piattaforma siano “in conflitto”.
+\end_layout
+
+\begin_layout PhD Thesis Abstract
+Per finire, allo scopo di generare una buona soluzione in un tempo di calcolo
+ ragionevole, si propone anche un algoritmo euristico basato sull’idea di
+ risolvere il problema mediante una suddivisione in sottoproblemi più piccoli
+ utilizzando un controllo a orizzonte recessivo, e una successiva ricostruzione
+ della soluzione completa.
+\end_layout
+
+\begin_layout PhD Thesis Abstract
+Sono stati svolti esperimenti computazionali su una autostazione esistente
+ con 24 piattaforme e più di duecento corse che hanno dimostrato l’efficacia
+ dell’approccio.
 \end_layout
 
 \begin_layout PhD TOC
@@ -386,14 +434,14 @@ L'Autostazione di Bologna è un importante nodo di smistamento della mobilità
  Oltre 90.000 utenti, tra viaggiatori o semplici passanti, transitano in
  Autostazione nel corso di una settimana, con punte massime giornaliere
  di quasi 15.000 persone.
- La sua superficie complessiva è di 17000m
+ La sua superficie complessiva è di 17.000 m
 \begin_inset Formula $^{2}$
 \end_inset
 
  divisi in un piazzale di manovra, un edificio che ospita uffici ed attività
  commerciali e un'atrio antistante l'edificio.
  Il piazzale di manovra e movimentazione dei pullman ospita un marciapiede
- arrivi, di oltre 170m, un marciapiede partenze diviso in 24 piattaforme,
+ arrivi, di oltre 170 m, un marciapiede partenze diviso in 24 piattaforme,
  un marciapiede centrale destinato alla movimentazione e sosta degli autobus
  turistici, un marciapiede per i passeggeri con panchine e salette d'attesa,
  servizi igienici e tabelloni informativi.
@@ -1219,17 +1267,31 @@ L'uso di una piattaforma, infine, può essere interdetto in determinate fasce
 \begin_layout Standard
 L'obiettivo perseguito è quello di ridurre al minimo il numero di piattaforme
  che siano occupate in almeno un intervallo di tempo durante il giorno tipo
- cui si riferisce la pianificazione.
+ cui si riferisce la pianificazione, prediligendo l'occupazione delle piattaform
+e più vicine all'ingresso e rappresentate con numeri minori.
 \end_layout
 
 \begin_layout Standard
-L'algoritmo euristico per la minimizzazione del numero di piattaforme è
- schematizzabile 
+L'algoritmo euristico per la minimizzazione del numero di piattaforme, da
+ quanto emerge dal manuale operativo del software, dovrebbe essere schematizzabi
+le come in alg.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:gateplanner"
+
+\end_inset
+
+.
+ 
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-nei seguenti passi:
+seguenti passi:
 \end_layout
 
 \begin_layout Enumerate
@@ -1265,11 +1327,13 @@ tutte le corse non presenti nei precedenti insiemi;
 ordina le piattaforme per numero in modo crescente;
 \end_layout
 
+\begin_deeper
 \begin_layout Enumerate
 L'algoritmo poi assegna nell'ordine le corse alla prima piattaforma disponibile
  in quell'intervallo di tempo.
 \end_layout
 
+\end_deeper
 \end_inset
 
 
@@ -1323,7 +1387,8 @@ Input{L'insieme delle fermate $F$ e quello delle piattaforme $P$} %
 
 	
 \backslash
-Output{Un assegnamento fermata-piattaforma completo o parziale} %
+Output{Un assegnamento $mathcal{A}$ fermata-piattaforma completo o parziale}
+ %
 \end_layout
 
 \begin_layout Plain Layout
@@ -1335,16 +1400,52 @@ BlankLine %
 
 \begin_layout Plain Layout
 
-	n = |F|
+	$n 
+\backslash
+leftarrow |F|$
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-	m = |P|
+	$m 
+\backslash
+leftarrow |P|$
 \backslash
 ;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{$i 
+\backslash
+leftarrow 1$ 
+\backslash
+KwTo $n$}{
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{Fermata non assegnata}
+\end_layout
+
+\begin_layout Plain Layout
+
+		$mathcal{A}_i 
+\backslash
+leftarrow -1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1364,7 +1465,9 @@ tcc{Le corse di $F_1$ devono soddisfare i vincoli 1.
 
 \begin_layout Plain Layout
 
-	$F_1 = 
+	$F_1 
+\backslash
+leftarrow 
 \backslash
 {f 
 \backslash
@@ -1377,7 +1480,9 @@ in F :$ gruppi bis, mezzi snodati$
 
 \begin_layout Plain Layout
 
-	$F = F 
+	$F 
+\backslash
+leftarrow F 
 \backslash
 setminus F_1$
 \backslash
@@ -1393,7 +1498,9 @@ tcc{Le corse di $F_2$ devono soddisfare solo il vincolo 1.} %
 
 \begin_layout Plain Layout
 
-	$F_2 = 
+	$F_2 
+\backslash
+leftarrow 
 \backslash
 {f 
 \backslash
@@ -1406,7 +1513,9 @@ in F :$ gruppi bis$
 
 \begin_layout Plain Layout
 
-	$F = F 
+	$F 
+\backslash
+leftarrow F 
 \backslash
 setminus F_2$
 \backslash
@@ -1422,7 +1531,9 @@ tcc{Le corse di $F_3$ devono soddisfare solo il vincolo 2.} %
 
 \begin_layout Plain Layout
 
-	$F_3 = 
+	$F_3 
+\backslash
+leftarrow 
 \backslash
 {f 
 \backslash
@@ -1435,7 +1546,9 @@ in F :$ mezzi snodati $
 
 \begin_layout Plain Layout
 
-	$F = F 
+	$F 
+\backslash
+leftarrow F 
 \backslash
 setminus F_3$
 \backslash
@@ -1451,7 +1564,9 @@ tcc{Le corse di $F_4$ devono soddisfare il vincolo 3.} %
 
 \begin_layout Plain Layout
 
-	$F_4 = 
+	$F_4 
+\backslash
+leftarrow 
 \backslash
 {f 
 \backslash
@@ -1471,7 +1586,9 @@ tcc{Le corse di $F_5$ non sono presenti nei precedenti insiemi} %
 
 \begin_layout Plain Layout
 
-	$F = F 
+	$F_5 
+\backslash
+leftarrow F 
 \backslash
 setminus F_4$
 \backslash
@@ -1495,133 +1612,121 @@ bigcup_{i=1}^{4}}F_{i})}$
 
 \begin_layout Plain Layout
 
-	Poni $
+	Sia $
 \backslash
-mathcal{Q} = 
-\backslash
-emptyset$ 
+mathcal{P}$ il vettore delle piattaforme
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-	Poni $Q_{r} = 
+	Ordina $
 \backslash
-emptyset$ 
+mathcal{P}$ per numero in modo crescente
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-	Poni $prec = arrival$ 
-\backslash
-; %
-\end_layout
-
-\begin_layout Plain Layout
-
 	
 \backslash
-BlankLine %
+For{$i
+\backslash
+leftarrow 1$ 
+\backslash
+KwTo $5$}{
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+		Sia $
 \backslash
-tcc{Per ogni istante temporale
+mathcal{F}_i$ il vettore delle fermate
 \backslash
-ldots} %
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+		Ordina $
 \backslash
-ForEach{$t 
+mathcal{F}_i$ per ora di partenza non decrescente
 \backslash
-in T$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-		Poni $i = t.fermata$ 
-\backslash
-; %
+;
 \end_layout
 
 \begin_layout Plain Layout
 
 		
 \backslash
-tcc{se l'istante corrente rappresenta un arrivo}%
+ForEach{f 
+\backslash
+in 
+\backslash
+mathcal{F}_i}{
 \end_layout
 
 \begin_layout Plain Layout
 
 			
 \backslash
-If{$t.type = arrival$}{%
+For{$k
+\backslash
+leftarrow 1$ 
+\backslash
+KwTo $m$}{
 \end_layout
 
 \begin_layout Plain Layout
 
 				
 \backslash
-tcc{la fermata 
+If{$f$ compatibile con $
 \backslash
-`e nel gruppo di interferenti}%
+mathcal{P}_k$}{%
 \end_layout
 
 \begin_layout Plain Layout
 
-				Poni $Q_r = Q_r 
+					
 \backslash
-cup i$ 
+If{$f$ non sovrapposto a fermate assegnate a $
 \backslash
-;%
+mathcal{P}_k$}{
 \end_layout
 
 \begin_layout Plain Layout
 
-				Poni $prec = arrival$ 
+						
 \backslash
-;%
+tcc{Assegna $f$ a $P$}
 \end_layout
 
 \begin_layout Plain Layout
 
-			} 
+						$
 \backslash
-Else {%
-\end_layout
-
-\begin_layout Plain Layout
-
-				
+mathcal{A}_f 
 \backslash
-If{$prec = arrival 
-\backslash
-, 
-\backslash
-wedge 
-\backslash
-, |Q| > 1$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-					Poni $
-\backslash
-mathcal{Q} = 
-\backslash
-mathcal{Q} 
-\backslash
-cup Q_r$ 
+leftarrow k
 \backslash
 ;
+\end_layout
+
+\begin_layout Plain Layout
+
+						$n 
+\backslash
+leftarrow n - 1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1631,30 +1736,7 @@ cup Q_r$
 
 \begin_layout Plain Layout
 
-				Poni $Q_{r+1} = Q_r 
-\backslash
-setminus i$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-				Poni $r=r+1$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-				Poni $prec = departure$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-			} %
+			}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1664,7 +1746,30 @@ setminus i$
 
 \begin_layout Plain Layout
 
-%	}
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+If{$n 
+\backslash
+neq 0$}{
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+emph{Assegnamento non completo}%
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1673,7 +1778,7 @@ setminus i$
 \backslash
 Return {$
 \backslash
-mathcal{Q}$
+mathcal{A}$
 \backslash
 ;} %
 \end_layout
@@ -1703,6 +1808,10 @@ label{alg:gateplanner}
 end{algorithm}
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
 
@@ -1716,12 +1825,13 @@ Tale algoritmo assomiglia a quello First Fit per problemi di Bin Packing
  istanze che invece ne hanno.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsection*
 Sistema in uso nell'autostazione di Oviedo
 \end_layout
 
 \begin_layout Standard
-L'assegnamento delle piattaforme nelle stazioni di bus è trattato in
+Il sistema di supporto alle decisioni realizzato per la gestione dell'autostazio
+ne di Oviedo, in Spagna, è trattato in
 \begin_inset space ~
 \end_inset
 
@@ -1732,8 +1842,7 @@ key "Adenso-Diaz2005"
 
 \end_inset
 
-, in cui l'autore descrive il sistema di supporto alle decisioni realizzato
- per la gestione del bus terminal di Oviedo, in Spagna.
+.
  L'autostazione è composta di 44 piattaforme e gestisce circa 1100 servizi
  al giorno.
  Il sistema utilizzato per l'assegnamento delle piattaforme è composto da
@@ -1775,7 +1884,7 @@ approximate rules
  ad una piattaforma in base alla provenienza o alla destinazione, alla compagnia
  che effettua il servizio, alla dimensione dell'autobus o al tempo di fermata.
  Questo secondo gruppo di regole può essere usato, inoltre, per tentare
- di lasciare disimpegnate le piattaforme adiacenti a quelli da cui partono
+ di lasciare disimpegnate le piattaforme adiacenti a quelle da cui partono
  bus a lunga percorrenza.
  Il capostazione stabilisce le regole da introdurre nel sistema e la loro
  utilità (espressa con un numero intero compreso fra 1 e 9).
@@ -1791,8 +1900,8 @@ approximate rules
  possibile alla piattaforma precedentemente programmata.
 \end_layout
 
-\begin_layout Paragraph
-Letteratura scientifica
+\begin_layout Section
+Rassegna bibliografica
 \end_layout
 
 \begin_layout Standard
@@ -1816,44 +1925,8 @@ key "Adenso-Diaz2005"
 \end_inset
 
 .
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Per fissare la terminologia e valutare la qualità dei servizi offerta dalle
- autostazioni si seguirà quanto esposto nella parte
-\begin_inset space ~
-\end_inset
-
-7 di 
-\emph on
-Transit Capacity and Quality of Service Manual
-\emph default
-
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand citep
-key "tbrtcrp100"
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph
-Problematiche analoghe affrontate in letteratura
+ La ricognizione della letteratura è stata pertanto orientata a problematiche
+ analoghe che emergono in contesti differenti.
 \end_layout
 
 \begin_layout Standard
@@ -1947,7 +2020,7 @@ e di estensioni temporali diverse fra loro (non modellabili con grafo unit
  
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Section
 Airport Gate Assignment
 \end_layout
 
@@ -1976,18 +2049,15 @@ Aircraft Gate Assignment Problem
 \emph on
 Airport Gate Assignment Problem
 \emph default
- (AGAP) e una rassegna recente sullo stato dell'arte e sui recenti sviluppi
- del AGAP 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-nell'ambito aeroportuale
+ (AGAP).
+ L'analogia con il problema nel caso delle autostazioni è immediata: basta
+ sostituire velivolo ad autobus e gate a piattaforma e il problema può assumere
+ gli stessi obiettivi e gli stessi vincoli.
 \end_layout
 
-\end_inset
-
- è presentata in 
+\begin_layout Standard
+Una rassegna recente sui modelli e sullo stato dell'arte degli algoritmi
+ per l'AGAP è presentata in 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Dorndorf2007fgs"
@@ -1995,16 +2065,12 @@ key "Dorndorf2007fgs"
 \end_inset
 
 .
- 
-\end_layout
-
-\begin_layout Standard
-Gli autori identificano ivincoli a cui deve sottostare una schedula ben
- costruita:
+ Gli autori identificano i vincoli a cui deve sottostare un assegnamento
+ ben costruito:
 \end_layout
 
 \begin_layout Itemize
-un gate può servire un solo aereo alla volta;
+un gate può servire un solo velivolo alla volta;
 \end_layout
 
 \begin_layout Itemize
@@ -2014,14 +2080,14 @@ devono essere rispettate delle richieste di servizio e devono essere considerate
 
 \begin_layout Itemize
 un tempo minimo di occupazione del gate è da tenere in considerazione e
- deve essere garantito un altro tempo minimo prima che il prossimo aereo
+ deve essere garantito un altro tempo minimo prima che il prossimo velivolo
  possa occupare il gate.
 \end_layout
 
 \begin_layout Standard
-Oltre a questi vincoli possono emergerne degli altri, ad esempio aerei l'assegna
-mento di un aereo grande ad un gate particolare può implicare che i gate
- vicini posssano servire solo aerei piccoli, o addirittura essere completamente
+Oltre a questi vincoli possono emergerne degli altri, ad esempio l'assegnamento
+ di un velivolo grande ad un gate particolare può implicare che i gate vicini
+ posssano servire solo velivoli piccoli, o addirittura essere completamente
  disabilitati.
 \end_layout
 
@@ -2030,41 +2096,52 @@ Gli obiettivi tipici considerati in letteratura sono:
 \end_layout
 
 \begin_layout Itemize
-minimizzare il numero di aerei non assegnati a gate (quando i gate sono
- una risorsa scarsa);
+minimizzare il numero di velivoli non assegnati a gate (nel caso in cui
+ i gate sono una risorsa scarsa);
 \end_layout
 
 \begin_layout Itemize
-massimizzare le preferenze degli assegnamenti aereo-gate;
+massimizzare le preferenze degli assegnamenti velivolo-gate;
 \end_layout
 
 \begin_layout Itemize
-minimizzare la distanza percorsa a piedi dai passeggeri per spostarsi tra
+minimizzare la distanza percorsa a piedi dai passeggeri per spostarsi dal
  terminal al gate (passeggeri in arrivo o partenza) e tra gate e gate (passegger
 i in transito);
 \end_layout
 
 \begin_layout Itemize
-minimizzare le deviazioni tra la schedula attuale rispetto a quella di riferimen
-to per ridurre i disagi ai passeggeri;
+minimizzare le deviazioni tra l'assegnamento effettivo durante l'esercizio
+ rispetto a quello di riferimento in modo da ridurre i disagi ai passeggeri;
 \end_layout
 
 \begin_layout Itemize
-minimizzare il numero di trasporti degli aerei a terra per effettuare le
- operazioni di manutenzione.
+minimizzare il numero di movimentazioni dei velivoli a terra per effettuare
+ le operazioni di manutenzione.
 \end_layout
 
 \begin_layout Standard
-L'esistenza di obiettivi così eterogenei e in constrasto fra loro rende
- difficile la scelta di un buon compromesso fra i differenti obiettivi e
- la soluzoine ottima determinata potrebbe potrebbe rivelarsi poco attraente.
- I vincoli specifici rendono inoltre complessa la risoluzione del problema.
+L'esistenza di criteri così eterogenei e in constrasto fra loro rende difficile
+ la determinazione di un buon compromesso fra i differenti obiettivi e la
+ soluzione ottima di un modello che considera un solo obiettivo o una somma
+ pesata di questi potrebbe potrebbe rivelarsi poco attraente per l'operatore
+ aeroportuale.
+ I vincoli specifici rendono inoltre complessa la risoluzione dei problemi
+ di ottimizzazione che si possono costruire.
  Gli autori evidenziano che probabilmente uno dei problemi più rilevanti
  dal punto di vista pratico ma scarsamente investigato dalla letteratura
- scientifica è quello della costruzione di assegnamenti detti robusti o
- stabili, che possono essere non ottimi rispetto agli obiettivi stabiliti
- ma che si avvicinano ad essi in termini di prestazioni assolute e che permetton
-o di tenere in conto possibili perturbazioni dei dati d'ingresso.
+ scientifica è quello della costruzione di assegnamenti 
+\emph on
+robusti
+\emph default
+ (detti anche 
+\emph on
+stabili
+\emph default
+), che possono essere non ottimi rispetto agli obiettivi stabiliti ma che
+ si avvicinano ad essi in termini di prestazioni assolute e che permettono
+ di tenere in conto possibili perturbazioni dei dati d'ingresso garantendo
+ che la soluzione non sarà totalmente compromessa.
 \end_layout
 
 \begin_layout Standard
@@ -2075,8 +2152,8 @@ I modelli proposti in letteratura possono essere classificati a seconda
 
 \begin_layout Standard
 Il tempo può essere gestito con delle finestre temporali, singole o multiple.
- Nel caso singolo si considera un gruppo di aerei che arriva in quel periodo
- di tempo e si assegna ogni aereo ad un solo gate.
+ Nel caso singolo si considera un gruppo di velivoli che arriva in quel
+ periodo di tempo e si assegna ogni velivolo ad un solo gate.
  Il modello deve essere quindi risolto, indipendentemente l'uno dall'altro,
  per ogni finestra temporale.
  Nel caso multiplo l'intero intervallo temporale di pianificazione si divide
@@ -2226,8 +2303,7 @@ key "Bandara199259"
 
 \end_inset
 
-Bandara e Wirasinghe (1992) XXXX si propongono dei modi per valutare l'idoneità
- dei terminal aeroportuali.
+ si propongono dei modi per valutare l'idoneità dei terminal aeroportuali.
  
 \end_layout
 
@@ -2247,8 +2323,8 @@ key "babic1984aircraft,mangoubi1985oga"
  di recupero dei bagagli, le distanze fra il banco di check in e il gate
  e un costo di assegnamento aereo-gate, dato un certo layout del terminal.
  Nella modellizzazione del problema, il the costo associato all'assegnamento
- dell'aereo al gate depends dalle distanze dalle strutture di servizio principal
-i quali i gate, il banco di check-in e l'area di recupero bagagli.
+ dell'velivolo al gate depends dalle distanze dalle strutture di servizio
+ principali quali i gate, il banco di check-in e l'area di recupero bagagli.
 \end_layout
 
 \begin_layout Standard
@@ -2308,7 +2384,7 @@ key "mangoubi1985oga"
  soluzione (distanza minima).
  Il modello matematico proposto viene risolto solo per problemi di piccola
  dimensione, con meno di 10 voli e 5 gate, per poter determinare la qualità
- della soluzione determinata dell'algoritmo euristico reispetto alla soluzione
+ della soluzione determinata dell'algoritmo euristico rispetto alla soluzione
  ottima.
 \end_layout
 
@@ -2606,7 +2682,7 @@ key "bolat2000ppr"
 , 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section
 Modelli AGAP
 \end_layout
 
@@ -2701,6 +2777,10 @@ Linearized Quadratic Airport Gate Assignment Models
 To include the consideration of the transfer passengers, Haghani and Chen
  (1998) proposed a heuristic to solve the following linearized quadratic
  IP model for the gate assignment problem:
+\end_layout
+
+\begin_layout Section
+Altri problemi analoghi
 \end_layout
 
 \begin_layout Paragraph
