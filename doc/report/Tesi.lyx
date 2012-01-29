@@ -1670,7 +1670,7 @@ For{$i
 \backslash
 leftarrow 1$ 
 \backslash
-KwTo $n$}{
+KwTo $n$ }{
 \end_layout
 
 \begin_layout Plain Layout
@@ -1882,7 +1882,7 @@ For{$i
 \backslash
 leftarrow 1$ 
 \backslash
-KwTo $5$}{
+KwTo $5$ }{
 \end_layout
 
 \begin_layout Plain Layout
@@ -1907,11 +1907,11 @@ mathcal{F}_i$ per ora di partenza non decrescente
 
 		
 \backslash
-ForEach{f 
+ForEach{$f 
 \backslash
 in 
 \backslash
-mathcal{F}_i }{
+mathcal{F}_i$ }{
 \end_layout
 
 \begin_layout Plain Layout
@@ -1958,7 +1958,7 @@ tcc{Assegna $f$ a $P$}
 \backslash
 mathcal{A}_f 
 \backslash
-leftarrow k
+leftarrow k$
 \backslash
 ;
 \end_layout
@@ -1979,7 +1979,7 @@ leftarrow n - 1$
 
 \begin_layout Plain Layout
 
-				}
+				}	
 \end_layout
 
 \begin_layout Plain Layout
@@ -2301,7 +2301,7 @@ Altro aspetto comune è che il tempo di occupazione può dipendere dalla risorsa
  numero diverso di cicli di clock rispetto ad altre istruzioni o in base
  a quale unità di calcolo stia eseguendo la stessa istruzione.
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 e di estensioni temporali diverse fra loro (non modellabili con grafo unit
@@ -2313,12 +2313,12 @@ e di estensioni temporali diverse fra loro (non modellabili con grafo unit
  
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Dock Assignment Problem 
+Sarebbe da migliorare un po' l'italiano
 \end_layout
 
 \end_inset
@@ -2327,9 +2327,21 @@ Dock Assignment Problem
 \end_layout
 
 \begin_layout Standard
-Come anticipato esistono altri problemi che presentano affinità col problema
- di assegnare le corse degli autobus alle piattaforme.
- Un problema simile è quello di assegnare ai treni i binari.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Train Platforming Problem
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un problema simile a quello di allocazione delle piattaforme delle autostazioni
+ è quello di assegnare i treni ai binari.
  Il problema può essere formulato sostituendo il treno al posto dell'autobus
  e il binario al posto della piattaforma.
  Il problema nel caso ferroviario consiste nell'assegnare i treni ai binari
@@ -2560,14 +2572,14 @@ minimizzare il numero di movimentazioni dei velivoli a terra per effettuare
 \begin_layout Standard
 L'esistenza di criteri così eterogenei e in contrasto fra loro rende difficile
  la determinazione di un buon compromesso fra i differenti obiettivi e la
- soluzione ottima di un modello che considera un solo obiettivo o una somma
- pesata di questi potrebbe potrebbe rivelarsi poco attraente per l'operatore
- aeroportuale.
+ soluzione ottima di un modello che considera un solo obiettivo, o una somma
+ pesata di questi, potrebbe rivelarsi poco attraente per l'operatore aeroportual
+e.
  I vincoli specifici rendono inoltre complessa la risoluzione dei problemi
  di ottimizzazione che si possono costruire.
- Gli autori evidenziano che probabilmente uno dei problemi più rilevanti
- dal punto di vista pratico ma scarsamente investigato dalla letteratura
- scientifica è quello della costruzione di assegnamenti 
+ Gli autori evidenziano che, probabilmente, uno dei problemi più rilevanti
+ dal punto di vista pratico, eppure scarsamente investigato dalla letteratura
+ scientifica, è quello della costruzione di assegnamenti 
 \emph on
 robusti
 \emph default
@@ -2575,10 +2587,19 @@ robusti
 \emph on
 stabili
 \emph default
-), che possono essere non ottimi rispetto agli obiettivi stabiliti ma che
- si avvicinano ad essi in termini di prestazioni assolute e che permettono
- di tenere in conto possibili perturbazioni dei dati d'ingresso garantendo
- che la soluzione non sarà totalmente compromessa.
+), che possono fornire soluzioni non ottime rispetto agli obiettivi stabiliti
+ ma che siano 
+\begin_inset Quotes eld
+\end_inset
+
+vicine
+\begin_inset Quotes erd
+\end_inset
+
+ a queste in termini di prestazione assoluta e che non varino troppo in
+ seguito a piccole perturbazioni dei dati d'ingresso, garantendo cioè che
+ la soluzione non sarà totalmente compromessa dall'incertezza del valore
+ dei parametri del problema.
 \end_layout
 
 \begin_layout Standard
@@ -2632,12 +2653,12 @@ Molti dei modelli proposti per l'AGAP sono modelli di assegnamento quadratico,
 \end_layout
 
 \begin_layout Standard
-Gli autori propongono un nuovo modello basato sul multi-mode resource constraint
- project scheduling problem che considera le attività di arrivo, parcheggio
- e partenza di un velivolo nel tempo, le iterazioni fra voli e voli e voli
- e gate e una funzione obiettivo che è combinazione lineare convessa di
- più funzioni lineari che identificano distinti indici di prestazione del
- sistema.
+Gli autori propongono un nuovo modello, basato quello del multi-mode resource
+ constraint project scheduling problem, che considera le attività di arrivo,
+ parcheggio e partenza di un velivolo nel tempo, le interazioni fra voli
+ e voli e tra voli e gate e una funzione obiettivo che è combinazione lineare
+ convessa di più funzioni lineari che identificano distinti indici di prestazion
+e del sistema.
  L'algoritmo proposto per la soluzione è una procedura Branch&Bound troncata.
 \end_layout
 
@@ -2692,8 +2713,8 @@ I primi contributi scientifici sull'argomento sono dei primi anni '70 del
  secolo passato.
  Fra i primi tentativi di utilizzare metodi quantitativi sviluppati per
  aumentare l'efficienza dell'utilizzo dei gate e per di ridurre al minimo
- le distanze percorse all'interno del terminal aeroportuale di Toronto sono
- presentati in
+ le distanze percorse all'interno del terminal aeroportuale di Toronto,
+ sono presentati in
 \begin_inset space ~
 \end_inset
 
@@ -2785,14 +2806,14 @@ key "babic1984aircraft,mangoubi1985oga"
 
 \end_inset
 
- che forniscono dei tentativi di risoluzione del AGAP utilizzando i metodi
+, che forniscono dei tentativi di risoluzione del AGAP utilizzando i metodi
  della ricerca operativa e della modellazione mediante programmi interi.
  In questi approcci la distanza percorsa nel terminal viene considerata
- come funzione dei flussi di arrivo e partenza dei passeggeri, i flussi
- dei passeggeri in transito, le distanze fra gate e gate, le distanze fra
- i gate e le sale di recupero dei bagagli, le distanze fra il banco di check-in
- e il gate e un costo di assegnamento aereo-gate, dato un certo layout del
- terminal.
+ come funzione dei flussi di arrivo e partenza dei passeggeri, dei flussi
+ dei passeggeri in transito, delle distanze fra gate e gate, delle distanze
+ fra i gate e le sale di recupero dei bagagli, delle distanze fra il banco
+ di check-in e il gate e di un costo di assegnamento aereo-gate, dato un
+ certo layout del terminal.
  Nella modellizzazione del problema, il costo associato all'assegnamento
  del volo al gate dipende dalle distanze dalle strutture di servizio principali
  quali i gate, il banco di check-in e l'area di recupero bagagli.
@@ -2845,8 +2866,8 @@ key "haghani1998oga"
 
 \end_inset
 
- viene proposto un modello quadratico PLI linearizzato in cui i flussi di
- trasferimento sono dati noti.
+ viene proposto un modello quadratico di PLI linearizzato in cui i flussi
+ di trasferimento sono dati noti.
  In questo modo la complessità del problema aumenta notevolmente rispetto
  a quella del problema proposto in
 \begin_inset space ~
@@ -2861,7 +2882,7 @@ key "mangoubi1985oga"
 
  e gli autori devono ricorrere ad un algoritmo di risoluzione euristico,
  che consiste nel generare varie soluzioni ammissibili per il problema di
- programmazione intera e nello scegliere quella cui corrisponde la miglior
+ programmazione intera e nello scegliere quella a cui corrisponde la miglior
  soluzione (distanza minima).
  Il modello matematico proposto viene risolto solo per problemi di piccola
  dimensione, con meno di 10 voli e 5 gate, per poter determinare la qualità
@@ -2883,13 +2904,12 @@ key "yan2001omo"
 
  è proposto un modello multi-obiettivo formulato come un programma 0/1 multi-cri
 terio.
- Gli obiettivi che intendono minimizzare sono la distanza totale percorsa
- dai passeggeri e il tempo di attesa dei passeggeri prima che il gate sia
- liberato dal volo precedente assegnato allo stesso gate, che vengono considerat
-i.
- Per poter utilizzare gli strumenti di risoluzione della PLI riducono il
- problema ad avere una sola funzione obiettivo che è una combinazione combinazio
-ne lineare convessa delle due precedenti.
+ Gli indicatori di prestazione, entrambi da minimizzare, sono la distanza
+ totale percorsa dai passeggeri e il tempo di attesa dei passeggeri prima
+ che il gate sia liberato dal volo precedente assegnato allo stesso gate.
+ Per poter utilizzare gli strumenti di risoluzione della PLI il modello
+ viene ridotto ad un solo obiettivo, impiegando come funzione obiettivo
+ una combinazione lineare convessa delle due precedenti.
  Per considerare il secondo obiettivo introducono delle finestre temporali
  che indicano i tempi al più presto e al più tardi in cui un volo potrebbe
  essere assegnato ad un gate.
@@ -2912,29 +2932,7 @@ In
 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Vanderstraeten198815"
-
-\end_inset
-
-,
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "gosling1990des"
-
-\end_inset
-
-, e
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Srihari1991esm"
+key "gosling1990des,srihari1991esm,Vanderstraeten198815"
 
 \end_inset
 
@@ -2960,7 +2958,9 @@ key "cheng1997kba"
 
  viene proposta l'integrazione di un sistema esperto con la programmazione
  matematica.
- 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -3054,27 +3054,6 @@ key "xu2001airport"
  Il loro algoritmo sfrutta le particolari proprietà del vicinato e adotta
  una strategia efficace per la gestione della lista delle soluzioni candidate
  ad essere migliorate.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Come un sacco di lavoro è stato focalizzato sul problema AGAP con l'obiettivo
- di minimizzare piedi del passeggero totale, ci non è abbastanza enfasi
- sul processo di gestione dei bagagli, la richiesta speciale dalle compagnie
- aeree, il taxi-way congestione del traffico, e le interruzioni programma
- .
- Un'analisi approfondita e dettagliata delle operazioni all'aeroporto è
- necessario aumentare lo standard di servizio per l'aeroporto non solo i
- passeggeri ma anche le compagnie aeree e fornitori di servizi a terra,
- che sono stati inclusi nel nostro lavoro per il problema.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -3218,7 +3197,7 @@ Gli assegnamenti robusti sono considerati da
 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "bolat2000ppr,Lim2005,Zheng2010"
+key "bolat2000ppr,Lim2005,DBLP:conf/icai/Li09,Zheng2010"
 
 \end_inset
 
@@ -3227,7 +3206,8 @@ key "bolat2000ppr,Lim2005,Zheng2010"
 status open
 
 \begin_layout Plain Layout
-aggiungere descrizione
+aggiungere descrizione.
+ Nel bib ci sono gli abstract
 \end_layout
 
 \end_inset
@@ -10495,7 +10475,6 @@ fbox{
 
 \begin_inset Graphics
 	filename img/actual_solution_m.pdf
-	scale 50
 
 \end_inset
 
@@ -10517,22 +10496,13 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Soluzione 
-\begin_inset Quotes eld
-\end_inset
-
-legacy
-\begin_inset Quotes erd
-\end_inset
-
-
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Soluzione-legacy"
 
 \end_inset
 
-
+Allocazioni predisposte dall'Autostazione
 \end_layout
 
 \end_inset
@@ -10559,6 +10529,202 @@ Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/real_MathModelColoring.pdf
+	scale 70
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:real_coloring"
+
+\end_inset
+
+Allocazioni che minimizzano il numero di piattaforme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/real_IterativeTimeHorizonMathMD.pdf
+	scale 70
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:real_scarto"
+
+\end_inset
+
+Allocazioni che massimizzano lo scarto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/real_IterativeTimeHorizonMath.pdf
+	scale 70
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:real_conflitto"
+
+\end_inset
+
+Allocazioni che minimizzano il conflitto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 placement h
 wide false
@@ -10612,7 +10778,7 @@ name "subfig:real_legacy"
 
 \end_inset
 
-Soluzione Autostazione 
+Allocazioni predisposte dall'Autostazione
 \end_layout
 
 \end_inset
@@ -10800,7 +10966,7 @@ Minimizzazione del conflitto
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Confronto tra gli assegnamenti e quelli proposti
+Allocazioni predisposte dall'Autostazione e soluzioni proposte
 \end_layout
 
 \end_inset
@@ -10813,157 +10979,9 @@ Confronto tra gli assegnamenti e quelli proposti
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di minimizzazione del numero di piattaforme
-\end_layout
-
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
- vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/real_IterativeTimeHorizonMathMD.pdf
-	scale 50
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di massimizzazione dello scarto minimo
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
- vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/real_IterativeTimeHorizonMath.pdf
-	scale 50
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di minimizzazione della probabilità di conflitto
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Max min tempo
 \end_layout
 
 \begin_layout Section
@@ -10986,740 +11004,16 @@ e presenti nel problema fra 16 e 19.
 Soluzioni ottenute con 16 piattaforme
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/MathModelColoring.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di minimizzazione del numero di piattaforme
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
- vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMathMD.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di massimizzazione dello scarto minimo
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
- vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMath.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di minimizzazione della probabilità di conflitto
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection*
 Soluzioni ottenute con 17 piattaforme
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/MathModelColoring.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di minimizzazione del numero di piattaforme
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
- vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMathMD.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di massimizzazione dello scarto minimo
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
- vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMath.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di minimizzazione della probabilità di conflitto
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection*
 Soluzioni ottenute con 18 piattaforme
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/MathModelColoring.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di minimizzazione del numero di piattaforme
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
- vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMathMD.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di massimizzazione dello scarto minimo
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
- vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMath.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di minimizzazione della probabilità di conflitto
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection*
 Soluzioni ottenute con 19 piattaforme
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/MathModelColoring.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di minimizzazione del numero di piattaforme
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
- vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMathMD.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di massimizzazione dello scarto minimo
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
- vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMath.pdf
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Soluzione del modello di minimizzazione della probabilità di conflitto
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
