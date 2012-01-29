@@ -1,12 +1,43 @@
 % This file was created with JabRef 2.7.2.
 % Encoding: Cp1252
 
+@INPROCEEDINGS{DBLP:conf/icai/Li09,
+  author = {Li, C.},
+  title = {A Hybrid Model for Airport Gate Assignment Problems},
+  booktitle = {IC-AI},
+  year = {2009},
+  pages = {763-768},
+  abstract = {With the rapid development of airlines, airports today become much
+	busier and more complicated than previous days. During airlines daily
+	operations, assigning the available gates to the arriving aircrafts
+	based on the fixed schedule is a very important issue, which motivates
+	researchers to study and solve Airport Gate Assignment Problems (AGAP)
+	with all kinds of state-of-the-art combinatorial optimization techniques.
+	In this paper, we study the AGAP and propose a novel hybrid mathematical
+	model based on the method of constraint programming and 0 - 1 mixed-integer
+	programming. With the objective to minimize the number of gate conflicts
+	of any two adjacent aircrafts assigned to the same gate, we build
+	a mathematical model with logical constraints and the binary constraints.
+	For practical considerations, the potential objective of the model
+	is also to minimize the number of gates that airlines must lease
+	or purchase in order to run their business smoothly. We implement
+	the model in the Optimization Programming Language (OPL) and carry
+	out empirical studies with the data obtained from online timetable
+	of Continental Airlines, Houston Gorge Bush Intercontinental Airport
+	IAH, which demonstrate that our model can provide an efficient evaluation
+	criteria for the airline companies to estimate the efficiency of
+	their current gate assignments.},
+  bibsource = {DBLP, http://dblp.uni-trier.de},
+  crossref = {DBLP:conf/icai/2009}
+}
+
 @INCOLLECTION{Adenso-Diaz2005,
-  author = {Adenso-D{\'i}az, Belarmino},
+  author = {Adenso-D{\'i}az, B.},
   title = {Rule-Based System for Platform Assignment in Bus Stations},
   booktitle = {Multidisciplinary Scheduling: Theory and Applications},
   publisher = {Springer US},
   year = {2005},
+  editor = {Kendall, G. and Burke, E. K. and Petrovic, S. and Gendreau, M.},
   pages = {369--379},
   abstract = {Of all the tasks related to bus station management, one of the most
 	important decisions that greatly affects the quality of the service
@@ -26,7 +57,7 @@
 }
 
 @ARTICLE{babic1984aircraft,
-  author = {Babi{\'c}, O. and Teodorovi{\'c}, D. and others},
+  author = {Babi{\'c}, O. and Teodorovi{\'c}, D. and To{\v s}i{\'c}, V.},
   title = {Aircraft stand assignment to minimize walking},
   journal = {Journal of Transportation Engineering},
   year = {1984},
@@ -48,7 +79,7 @@
 }
 
 @ARTICLE{Bandara199259,
-  author = {S. Bandara and S.C. Wirasinghe},
+  author = {Bandara, S. and Wirasinghe, S. C.},
   title = {Walking distance minimization for airport terminal configurations},
   journal = {Transportation Research Part A: Policy and Practice},
   year = {1992},
@@ -98,7 +129,7 @@
 }
 
 @UNPUBLISHED{Blanco2003,
-  author = {Blanco, Raquel and Tuya, Javier and Adenso-D{\'i}az, Belarmino},
+  author = {Blanco, R. and Tuya, J. and Adenso-D{\'i}az, B.},
   title = {A bi-level DSS for assignment planning: the case of platform allocation
 	in bus stations},
   note = {Articolo non pubblicato},
@@ -117,11 +148,34 @@
   volume = {120},
   pages = {63--80},
   number = {1},
-  publisher = {Elsevier}
+  abstract = {Assigning commercial service aircrafts to the available gates at an
+	airport depends on flights scheduled, their actual behavior relative
+	to those schedules, aircraft servicing requirements and capacities
+	of ramp facilities. Flight delays, severe weather, or equipment failures
+	can disrupt the planned schedules, and compound the difficulty of
+	maintaining smooth station operations. A mixed-binary mathematical
+	model with a quadratic function for minimizing the variance of idle
+	times at the gates is proposed to make the initial assignments insensitive
+	to variations in flight schedules.
+	
+	Experimental results with a branch and bound algorithm indicate that
+	more computational effort is required to assign flights optimally
+	over low utilized gates. Furthermore, a heuristic employing the priority
+	function which considers additionally the possible idle times from
+	the future assignments outperforms the others, significantly. Over
+	the real data obtained from the Saudi Arabian Airlines, average 87.4%
+	and 76.2% of improvements can be obtained on the number of aircrafts
+	assigned initially to remote area and that towed from their assigned
+	gates during the real-time implementation, respectively.},
+  doi = {10.1016/S0377-2217(98)00375-0},
+  issn = {0377-2217},
+  keywords = {Gate assignment},
+  publisher = {Elsevier},
+  url = {http://www.sciencedirect.com/science/article/pii/S0377221798003750}
 }
 
 @INPROCEEDINGS{braaksma1977reducing,
-  author = {Braaksma, JP},
+  author = {Braaksma, J. P.},
   title = {Reducing walking distances at existing airports},
   booktitle = {Airport Forum},
   year = {1977},
@@ -141,7 +195,7 @@
 }
 
 @ARTICLE{braaksma1971improving,
-  author = {Braaksma, J.P. and Shortreed, J.H.},
+  author = {Braaksma, J. P. and Shortreed, J. H.},
   title = {Improving airport gate usage with critical path},
   journal = {Transportation Engineering Journal},
   year = {1971},
@@ -163,14 +217,13 @@
 }
 
 @ARTICLE{Brazile1988,
-  author = {Brazile, R.P. and Swigger, K.M.},
+  author = {Brazile, R. P. and Swigger, K. M.},
   title = {GATES: an airline gate assignment and tracking expert system},
   journal = {IEEE Expert},
   year = {1988},
   volume = {3},
   pages = {33-39},
   number = {2},
-  month = {Summer},
   abstract = {A description is given of GATES, an expert system that assigns gates
 	to arriving and departing flights at New York's John F. Kennedy International
 	Airport (JFK). GATES uses flight information and knowledge about
@@ -233,22 +286,14 @@
   publisher = {Elsevier}
 }
 
-@ARTICLE{coinor-osi-website,
-  author = {{COIN-OR OSI}},
-  title = {{(COIN-OR Open Solver Interface)}},
-  journal = {{COmputational INfrastructure for Operations Research }},
-  year = {2009},
-  note = {Available online at \url{http://www.coin-or.org/projects/Osi.xml},
-	last accessed 16/11/09},
-  url = {http://www.coin-or.org/projects/Osi.xml}
-}
-
 @ARTICLE{Das2009,
-  author = {Nandini Das},
+  author = {Das, N.},
   title = {The airport gate assignment problem with some practical constraints},
   journal = {International Journal of Applied Management Science (IJAMS)},
   year = {2009},
   volume = {1},
+  pages = {315-323},
+  number = {3},
   abstract = {In this paper, the airport gate assignment problem is considered with
 	some side constraints like fixing or prohibition of flights in a
 	particular gate due to restriction imposed by certain airline, adjacent
@@ -259,13 +304,11 @@
 	subject to different constraints relevant to a practical situation.
 	The proposed model can be solved by using any optimisation software
 	with IP option.},
-  doi = {10.1504/IJAMS.2009.023707},
-  owner = {massi},
-  timestamp = {2009.04.02}
+  doi = {10.1504/IJAMS.2009.023707}
 }
 
 @INPROCEEDINGS{diepen_et_al:DSP:2008:1591,
-  author = {Guido Diepen and Marjan van den Akker and Han Hoogeveen},
+  author = {Diepen, G. and  van den Akker, M. and Hoogeveen, H.},
   title = {Integrated Gate and Bus Assignment at Amsterdam Airport Schiphol},
   booktitle = {ATMOS 2008 - 8th Workshop on Algorithmic Approaches for Transportation
 	Modeling, Optimization, and Systems },
@@ -298,7 +341,7 @@
 }
 
 @ARTICLE{Dorndorf2007fgs,
-  author = {Ulrich Dorndorf and Andreas Drexl and Yury Nikulin and Erwin Pesch},
+  author = {Dorndorf, U. and  Drexl, A. and Nikulin, Y. and Pesch, E.},
   title = {Flight gate scheduling: State-of-the-art and recent developments},
   journal = {Omega},
   year = {2007},
@@ -361,7 +404,7 @@
 }
 
 @PHDTHESIS{Gao2007,
-  author = {Chunhua Gao},
+  author = {Gao, C.},
   title = {Airline Integrated Planning and Operations},
   school = {Georgia Institute of Technology},
   year = {2007-05-09},
@@ -396,31 +439,22 @@
   url = {http://hdl.handle.net/1853/16292}
 }
 
-@ARTICLE{glpk09website,
-  author = {{GLPK}},
-  title = {{(Gnu Linear Programming Kit)}},
-  journal = {Free Software Foundation},
-  year = {2009},
-  note = {Available online at \url{http://www.gnu.org/software/glpk/}, last
-	accessed 16/11/09},
-  url = {http://www.gnu.org/software/glpk/}
-}
-
 @BOOK{golumbic2004algorithmic,
   title = {{Algorithmic graph theory and perfect graphs}},
   publisher = {North-Holland},
   year = {2004},
-  author = {Golumbic, M.C.}
+  author = {Golumbic, M. C.}
 }
 
 @ARTICLE{gosling1990des,
-  author = {Gosling, GD},
+  author = {Gosling, G. D.},
   title = {{Design of an expert system for aircraft gate assignment.}},
-  journal = {TRANSP. RES.},
+  journal = {Transportation Research},
   year = {1990},
   volume = {24},
   pages = {59--69},
   number = {1},
+  part = {A},
   abstract = {This paper discusses the factors that arise in deciding how to allocate
 	flights to gates, and describes the knowledge base structure, data
 	requirements and inference process of an expert system that would
@@ -431,7 +465,7 @@
 }
 
 @ARTICLE{Gravier200265,
-  author = {Sylvain Gravier and Daniel Kobler and Wieslaw Kubiak},
+  author = {Gravier, S. and Kobler, D.. and Kubiak, W.},
   title = {Complexity of list coloring problems with a fixed total number of
 	colors},
   journal = {Discrete Applied Mathematics},
@@ -448,18 +482,19 @@
 }
 
 @ARTICLE{haghani1998oga,
-  author = {Haghani, A. and Chen, M.C.},
+  author = {Haghani, A. and Chen, M. C.},
   title = {{Optimizing gate assignments at airport terminals}},
-  journal = {Transportation Research Part A},
+  journal = {Transportation Research},
   year = {1998},
   volume = {32},
   pages = {437--454},
   number = {6},
+  part = {A},
   publisher = {Elsevier}
 }
 
 @ARTICLE{hamzawi1986map,
-  author = {Hamzawi, S.G.},
+  author = {Hamzawi, S. G.},
   title = {{Management and planning of airport gate capacity: a microcomputer-based
 	gate assignment simulation model}},
   journal = {Transportation Planning and Technology},
@@ -481,7 +516,7 @@
 }
 
 @ARTICLE{Jansen1997135,
-  author = {Klaus Jansen and Petra Scheffler},
+  author = {Jansen, K. and Scheffler, P.},
   title = {Generalized coloring for tree-like graphs},
   journal = {Discrete Applied Mathematics},
   year = {1997},
@@ -496,7 +531,7 @@
 }
 
 @ARTICLE{lekkerkerker1962representation,
-  author = {Lekkerkerker, C.G. and Boland, J.C.},
+  author = {Lekkerkerker, C. G. and Boland, J. C.},
   title = {{Representation of a finite graph by a set of intervals on the real
 	line}},
   journal = {Fund. Math},
@@ -506,7 +541,7 @@
 }
 
 @ARTICLE{2008arXiv0811.1618L,
-  author = {Li, Chendong},
+  author = {Li, C.},
   title = {{Airport Gate Assignment: New Model and Implementation}},
   journal = {ArXiv e-prints},
   year = {2008},
@@ -561,13 +596,12 @@
 }
 
 @INPROCEEDINGS{Lim2005,
-  author = {Lim, A. and Fan Wang},
+  author = {Lim, A. and Wang, F.},
   title = {Robust airport gate assignment},
   booktitle = {Tools with Artificial Intelligence, 2005. ICTAI 05. 17th IEEE International
 	Conference on},
   year = {2005},
-  pages = {8 pp. -81},
-  month = {nov.},
+  pages = {81-88},
   abstract = {In this paper, we propose a new strategy for the robust constraint
 	resource assignment problem and apply it to solve the robust airport
 	gate assignment (RAGA). RAGA attempts to accurately build an evaluation
@@ -603,14 +637,12 @@
 }
 
 @ARTICLE{lusby-railway,
-  author = {Lusby, Richard and Larsen, Jesper and Ehrgott, Matthias and Ryan,
-	David},
+  author = {Lusby, R. and Larsen, J. and Ehrgott, M. and Ryan, D.},
   title = {Railway track allocation: models and methods},
   journal = {OR Spectrum},
   year = {2011},
   volume = {33},
   pages = {843-883},
-  note = {10.1007/s00291-009-0189-0},
   abstract = {Efficiently coordinating the movement of trains on a railway network
 	is a central part of the planning process for a railway company.
 	This paper reviews models and methods that have been proposed in
@@ -634,7 +666,7 @@
 }
 
 @ARTICLE{mangoubi1985oga,
-  author = {Mangoubi, RS and Mathaisel, D.F.X.},
+  author = {Mangoubi, R. S. and Mathaisel, D. F. X.},
   title = {{Optimizing gate assignments at airport terminals}},
   journal = {Transportation Science},
   year = {1985},
@@ -644,14 +676,13 @@
 }
 
 @ARTICLE{MendezDiaz2006826,
-  author = {Isabel M{\'e}ndez-D{\'i}az and Paula Zabala},
+  author = {M{\'e}ndez-D{\'i}az, I.  and Zabala, P.},
   title = {A Branch-and-Cut algorithm for graph coloring},
   journal = {Discrete Applied Mathematics},
   year = {2006},
   volume = {154},
   pages = {826 - 847},
   number = {5},
-  note = {IV ALIO/EURO Workshop on Applied Combinatorial Optimization},
   doi = {DOI: 10.1016/j.dam.2005.05.022},
   issn = {0166-218X},
   keywords = {Graph coloring},
@@ -665,21 +696,20 @@
 }
 
 @ARTICLE{pereira2008survey,
-  author = {Pereira, F.M.Q.},
+  author = {Pereira, F. M. Q.},
   title = {{A Survey on Register Allocation}},
   journal = {available at http://compilers.cs.ucla.edu/fernando/publications/drafts/survey.pdf},
   year = {2008}
 }
 
 @ARTICLE{Robuste1991143,
-  author = {Robuste, Francesc},
-  title = {Centralized hub-terminal geometric concepts. I. Walking distance},
+  author = {Robuste, F.},
+  title = {{Centralized hub-terminal geometric concepts. I. Walking distance}},
   journal = {Journal of Transportation Engineering},
   year = {1991},
   volume = {117},
   pages = {143-158},
   number = {2},
-  note = {cited By (since 1996) 6},
   abstract = {This paper analyzes and compares several airport-hub passenger-terminal
 	layouts in terms of average total walking distance. A second paper
 	extends the results to include baggage-handling operations. For the
@@ -705,14 +735,13 @@
 }
 
 @ARTICLE{Robuste1991159,
-  author = {Robuste, Francesc and Daganzo, Carlos F.},
-  title = {Centralized hub-terminal geometric concepts. II. Baggage and extensions},
+  author = {Robuste, F. and Daganzo, C. F.},
+  title = {{Centralized hub-terminal geometric concepts. II. Baggage and extensions}},
   journal = {Journal of Transportation Engineering},
   year = {1991},
   volume = {117},
   pages = {159-177},
   number = {2},
-  note = {cited By (since 1996) 4},
   abstract = {This paper shows how the geometric concepts examined in the first
 	paper perform for baggage operations, recognizing that passengers
 	and bags travel different distances through the airport. The paper
@@ -738,9 +767,9 @@
 }
 
 @INPROCEEDINGS{regin1994filtering,
-  author = {R{\'e}gin, J.C.},
+  author = {R{\'e}gin, J. C.},
   title = {A filtering algorithm for constraints of difference in CSPs},
-  booktitle = {Proceedings of the National Conference on Artificial Intelligence},
+  booktitle = {{Proceedings of the National Conference on Artificial Intelligence}},
   year = {1994},
   pages = {362--362},
   organization = {JOHN WILEY \& SONS LTD}
@@ -756,8 +785,8 @@
   url = {http://books.google.it/books?id=coY-\_6ox7U0C}
 }
 
-@ARTICLE{Srihari1991esm,
-  author = {K. Srihari and R. Muthukrishnan},
+@ARTICLE{srihari1991esm,
+  author = {Srihari, K.  and  Muthukrishnan, R.},
   title = {An expert system methodology for aircraft-gate assignment},
   journal = {{Computers \&amp; Industrial Engineering}},
   year = {1991},
@@ -778,7 +807,7 @@
 }
 
 @ARTICLE{Su1993123,
-  author = {Y.Y. Su and K. Srihari},
+  author = {Su, Y. and Srihari,  K.},
   title = {A knowledge based aircraft-gate assignment advisor},
   journal = {Computers \&amp; Industrial Engineering},
   year = {1993},
@@ -797,7 +826,7 @@
 }
 
 @PHDTHESIS{Tang2006,
-  author = {Ching-Hui Tang},
+  author = {Tang, C. H.},
   title = {A Solution Approach for Planning Problems under Stochastic Disturbances},
   school = {Department of Civil Engineering, National Central University, Chungli
 	32054, Taiwan, ROC},
@@ -846,13 +875,12 @@
 }
 
 @ARTICLE{Tang2010,
-  author = {Tang, Ching-Hui and Yan, Shangyao and Hou, Yu-Zhou},
+  author = {Tang, C. H and Yan, S. and Hou, Y.},
   title = {A gate reassignment framework for real time flight delays},
   journal = {4OR: A Quarterly Journal of Operations Research},
   year = {2010},
   volume = {8},
   pages = {299-318},
-  note = {10.1007/s10288-009-0112-1},
   abstract = {Flight delays (such as early or late arrivals and late departures)
 	are a frequent occurrence in actual day to day airport operations
 	and it is often not possible to assign such flights to their original
@@ -891,7 +919,7 @@
 }
 
 @ARTICLE{Vanderstraeten198815,
-  author = {Godelieve Vanderstraeten and Michel Bergeron},
+  author = {Vanderstraeten, G. and Bergeron, M.},
   title = {Automatic assignment of aircraft to gates at a terminal},
   journal = {Computers \&amp; Industrial Engineering},
   year = {1988},
@@ -913,7 +941,7 @@
 }
 
 @INPROCEEDINGS{Wang1994,
-  author = {Chi Su Wang and Ruay Shiung Chang},
+  author = {Wang, C. S. and Chang, R. S.},
   title = {Parallel maximal cliques algorithms for interval graphs with applications},
   booktitle = {Parallel Architectures, Algorithms and Networks, 1994. (ISPAN), International
 	Symposium on},
@@ -939,11 +967,11 @@
 }
 
 @INPROCEEDINGS{wirasinghe1987airport,
-  author = {Wirasinghe, SC and Bandara, JMS and Vandebona, U.},
+  author = {Wirasinghe, S. C. and Bandara, J. M. S.  and Vandebona, U.},
   title = {Airport terminal geometries for minimal walking distances},
   booktitle = {Transportation and Traffic Theory},
   year = {1987},
-  editor = {Gartner, N.H, and Wilson, H.M.},
+  editor = {Gartner, N. H. and Wilson, H. M.},
   pages = {483--502},
   journal = {Transportation and traffic theory}
 }
@@ -960,7 +988,7 @@
 }
 
 @ARTICLE{yan1998nmg,
-  author = {Yan, S. and Chang, C.M.},
+  author = {Yan, S. and Chang, C. M.},
   title = {{A network model for gate assignment}},
   journal = {Journal of advanced transportation},
   year = {1998},
@@ -971,13 +999,14 @@
 }
 
 @ARTICLE{yan2001omo,
-  author = {Yan, S. and Huo, C.M.},
+  author = {Yan, S. and Huo, C. M.},
   title = {{Optimization of multiple objective gate assignments}},
-  journal = {Transportation Research Part A},
+  journal = {Transportation Research},
   year = {2001},
   volume = {35},
   pages = {413--432},
   number = {5},
+  part = {A},
   abstract = {This paper proposes a multiple objective model to help airport authorities
 	to efficiently and effectively solve gate assignment problems. The
 	model is formulated as a multiple objective zero–one integer program.
@@ -992,31 +1021,19 @@
 }
 
 @ARTICLE{yan2002sfe,
-  author = {Yan, S. and Shieh, C.Y. and Chen, M.},
+  author = {Yan, S. and Shieh, C. Y. and Chen, M.},
   title = {{A simulation framework for evaluating airport gate assignments}},
-  journal = {Transportation Research Part A},
+  journal = {Transportation Research},
   year = {2002},
   volume = {36},
   pages = {885--898},
   number = {10},
-  publisher = {Elsevier}
-}
-
-@ARTICLE{yan2007haa,
-  author = {Yan, S. and Tang, C.H.},
-  title = {{A heuristic approach for airport gate assignments for stochastic
-	flight delays}},
-  journal = {European Journal of Operational Research},
-  year = {2007},
-  volume = {180},
-  pages = {547--567},
-  number = {2},
-  doi = {http://dx.doi.org/10.1016/S0965-8564(01)00045-3},
+  part = {A},
   publisher = {Elsevier}
 }
 
 @ARTICLE{ShangyaoYan08012008,
-  author = {Yan, Shangyao and Tang, Ching-Hui},
+  author = {Yan, S. and Tang, C. H.},
   title = {{An Integrated Framework for Intercity Bus Scheduling Under Stochastic
 	Bus Travel Times}},
   journal = {TRANSPORTATION SCIENCE},
@@ -1040,9 +1057,21 @@
   url = {http://transci.journal.informs.org/cgi/content/abstract/42/3/318}
 }
 
+@ARTICLE{yan2007haa,
+  author = {Yan, S. and Tang, C. H.},
+  title = {{A heuristic approach for airport gate assignments for stochastic
+	flight delays}},
+  journal = {European Journal of Operational Research},
+  year = {2007},
+  volume = {180},
+  pages = {547--567},
+  number = {2},
+  doi = {http://dx.doi.org/10.1016/S0965-8564(01)00045-3},
+  publisher = {Elsevier}
+}
+
 @ARTICLE{Yu2009,
-  author = {Yu, Vincent F. and Murty, Katta G. and Wan, Yatwah; and Dann, Jerry
-	and Lee, Robin},
+  author = {Yu, V. F. and Murty, K. G. and Wan, Y. and Dann, J. and Lee, R.},
   title = {Developing a DSS for allocating gates to flights at an international
 	airport},
   journal = {International Journal of Decision Support System Technology},
@@ -1053,7 +1082,7 @@
 }
 
 @ARTICLE{Zeitlhofer20031411,
-  author = {Thomas Zeitlhofer and Bernhard Wess},
+  author = {Zeitlhofer, T. and We{\ss}, B.},
   title = {List-coloring of interval graphs with application to register assignment
 	for heterogeneous register-set architectures},
   journal = {Signal Processing},
@@ -1070,14 +1099,13 @@
 }
 
 @INPROCEEDINGS{Zheng2010,
-  author = {Pan Zheng and Siji Hu and Chen Zhang},
+  author = {Zheng, P. and Hu, S. and Zhang, C.},
   title = {Airport gate assignments model and algorithm},
   booktitle = {Computer Science and Information Technology (ICCSIT), 2010 3rd IEEE
 	International Conference on},
   year = {2010},
   volume = {2},
   pages = {457 -461},
-  month = {july},
   abstract = {Airport gate assignment is to appoint a gate for the arrival or leave
 	flight and to ensure that the flight is on schedule. Assigning the
 	airport gate with high efficiency is a key task among the airport
@@ -1098,10 +1126,14 @@
 	time;aircraft;airports;numerical analysis;optimisation;search problems;transportation;}
 }
 
-@MANUAL{cplex2008usm,
-  title = {{ILOG CPLEX User's Manual}},
-  organization = {{IBM ILOG CPLEX 11.2}},
-  year = {2008},
-  journal = {ILOG S.A.}
+@PROCEEDINGS{DBLP:conf/icai/2009,
+  title = {Proceedings of the 2009 International Conference on Artificial Intelligence,
+	ICAI 2009, July 13-16, 2009, Las Vegas Nevada, USA, 2 Volumes},
+  year = {2009},
+  editor = {Arabnia, H. R. and de la Fuente, D. and  Angel Olivas, J.},
+  publisher = {CSREA Press},
+  bibsource = {DBLP, http://dblp.uni-trier.de},
+  booktitle = {IC-AI},
+  isbn = {1-60132-109-0}
 }
 
