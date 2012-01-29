@@ -171,75 +171,143 @@ frontmatter
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
-Desidero ringraziare 
-\begin_inset Note Note
-status open
-
-\begin_layout PhD Thesis Acknowledge
-il Prof.
- Ferdinando Pezzella per la disponibilità, la fiducia e l'aiuto e le opportunità
- che mi ha offerto in questi anni.
- I suoi insegnamenti mi hanno introdotto nell'affascinate mondo della Ricerca
- Operativa ed egli mi ha trasmesso curiosità e passione per questa disciplina.
+Desidero ringraziare il Prof.
+ Ferdinando Pezzella per la disponibilità, la fiducia e la pazienza, per
+ il valido sostegno professionale e per le opportunità che mi ha offerto
+ in questi anni.
+ I suoi insegnamenti mi hanno introdotto nell’affascinate mondo della Ricerca
+ Operativa, trasmettendomi curosità e passione per questa disciplina.
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
-Un ringraziamento a Fabrizio Marinelli per l'esempio di rigore metodologico.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Un sentito grazie a Luigi De Giovanni.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Grazie a Gianluca Morganti, per l'amicizia, il sostegno, la pazienza e le
- serate trascorse insieme.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Voglio ringraziare anche i miei genitori, che si ritrovano un figlio che
- ad oltre trent'anni s'ostina a fare lo studente.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Un ringraziamento speciale a Lucilla.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Altro grazie ai tesisti che hanno scritto la tesi in questi anni in laboratorio
- di Ricerca Operativa ed Ottimizzazione: Alberto, Angelo, Marco e Tulliola.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Grazie a Ludovico, compagno di corso, di progetti e di dottorato.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Grazie a Simone, amico con cui ho alternato discorsi tecnici, esperienze
- enogastronomiche e fantastici bagni al mare.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Grazie a Roberto, con cui ho frequentato insieme le scuole superiori e ho
- ritrovato in quest'esperienza di dottorato.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Grazie agli amici sempre più internazionali della 
-\begin_inset Quotes eld
+\begin_inset VSpace vfill
 \end_inset
 
-Tana del Bianconiglio
-\begin_inset Quotes erd
-\end_inset
 
-: Andrea, Antonio, Carlo, Elena, Carlo, Emanuele, Francesco, Manuela, Massimo,
- Serena, Viola.
 \end_layout
 
+\begin_layout PhD Thesis Acknowledge
+Una particolare gratitudine alla Pluservice S.r.l.
+ per aver reso possibile questo dottorato e specialmente agli Ing.
+ Monica Giannini e Guido Di Pasquale per le informazioni che mi hanno messo
+ a disposizione.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+\begin_inset VSpace vfill
 \end_inset
 
- 
+
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Ringrazio il Professor Fabrizio Marinelli per avermi fatto capire l’importanza
+ del rigore metodologico.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Un sentito grazie al Prof.
+ Luigi De Giovanni per la sua professionalità e il suo esempio di dedizione
+ al lavoro.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Grazie a Gianluca, per l’amicizia, il sostegno, la pazienza e per i tanti
+ momenti trascorsi insieme.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Ringrazio Ludovico, compagno di corso, di progetti e di dottorato.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Grazie a Simone, con cui ho condiviso alcune passioni comuni: viaggi, informatic
+a, enogastronomia e fantastici bagni al mare.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Grazie ai tesisti, nonché amici, Angelo e Marco che in questi anni mi hanno
+ fatto compagnia in laboratorio.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Grazie agli amici sempre più internazionali della “Tana del Bianconiglio”
+ per le chiacchierate e le serate passate insieme.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+\begin_inset VSpace vfill
+\end_inset
+
+La mia riconoscenza va soprattutto ai miei genitori e a nonna Dina per il
+ che mi hanno sempre sostenuto con affetto incondizionato.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Un ringraziamento speciale a Lucilla che mi è stata accanto, con dolcezza
+ e pazienza, quando ne avevo più bisogno e, con il suo affetto e la sua
+ allegria, mi ha aiutato in molte situazioni.
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout PhD Thesis Acknowledge
+Un ricordo, con l’affetto che ci ha sempre legati, all’amico Vittorio, con
+ la sua du botte e quel sorriso indimenticabile.
 \end_layout
 
 \begin_layout PhD Thesis Abstract
@@ -468,15 +536,32 @@ Il cap.
 
 \begin_inset CommandInset ref
 LatexCommand ref
+reference "chap:Allocazione-delle-piattaforme"
+
+\end_inset
+
+ introduce il problema di allocazione delle piattaforme nelle autostazioni,
+ definendo il contesto in cui emerge il problema e le difficoltà che s'incontran
+o nel risolverlo.
+\end_layout
+
+\begin_layout Standard
+Il cap.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "chap:Rassegna-bibliografica"
 
 \end_inset
 
- propone i sistemi software di supporto alle decisioni impiegati nella pianifica
-zione degli assegnamenti nelle autostazioni, un'estesa rassegna bibliografica
- dei problemi noti come Aircraft-Gate Assignment Problems e dei metodi di
- risoluzione proposti in letteratura e presenta altri problemi analoghi
- a quello affrontato che emergono in contesti differenti.
+ descrive i sistemi software di supporto alle decisioni impiegati nella
+ pianificazione degli assegnamenti nelle autostazioni, presenta problemi
+ studiati in constesti differenti che possono essere modellizzati e risolti
+ in modo analogo e fornisce una rassegna bibliografica sui problemi noti
+ come Gate Assignment Problems.
 \end_layout
 
 \begin_layout Standard
@@ -491,19 +576,13 @@ reference "chap:Nuove-formulazioni"
 
 \end_inset
 
- illustra il modo originale in cui si sono formulati tre nuovi modelli per
- la pianificazione statica degli assegnamenti autobus-piattaforma ed i modelli
- matematici di programmazione lineare intera mista che ne descrivono indici
+ propone le formulazioni di nuovi problemi di allocazione delle piattaforme
+ ed i modelli di programmazione lineare intera che ne descrivono indici
  di prestazione e vincoli.
- I modelli sono stati sviluppati con l'idea di essere quanto più generali
- possibili e di poter essere modificati introducendo vincoli addizionali
- per poter rappresentare le variegate situazioni che si verificano nelle
- diverse autostazioni.
- Gli obiettivi considerati sono il numero di piattaforme utilizzate durante
- una giornata, la scarto di tempo minimo fra due fermate di autobus su di
- una stessa piattaforma e un indicatore di probabilità di conflitto fra
- fermate che misura quanto l'assegnamento sia da considerarsi robusto rispetto
- a piccole variazioni dei dati d'ingresso.
+ I modelli sono generali possibili e si prestano ad essere modificati introducen
+do vincoli addizionali per poter rappresentare le variegate situazioni che
+ si verificano nelle diverse autostazioni.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -519,10 +598,19 @@ reference "chap:Algoritmi-sviluppati"
 \end_inset
 
  illustra i metodi di risoluzione sviluppati per poter determinare delle
- buone soluzioni ai problemi proposti nel capitolo che lo precede.
- Vengono dichiarati i limiti dei modelli proposti che ne impediscono la
- risoluzione diretta e viene proposta una strategia euristica che permette
- la determinazione di buone soluzioni in tempi di elaborazione ragionevoli.
+ buone soluzioni ai problemi proposti nel cap.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Nuove-formulazioni"
+
+\end_inset
+
+ e propone una strategia euristica che permette la determinazione di buone
+ soluzioni in tempi di elaborazione ragionevoli.
 \end_layout
 
 \begin_layout Standard
@@ -537,9 +625,10 @@ reference "chap:Risultati-computazionali"
 
 \end_inset
 
- illustra le soluzioni ottenute sul caso di studio di una giornata di operazioni
- di un'autostazione esistente mostrando la qualità delle soluzioni prodotte
- e l'applicabilità degli algoritmi sviluppati nel contesto delle autostazioni.
+ illustra gli esperimenti computazionali svolti su di un caso di studio
+ di una giornata di operazioni di un'autostazione esistente mostrando la
+ qualità delle soluzioni prodotte e l'applicabilità degli algoritmi sviluppati
+ nel contesto delle autostazioni.
 \end_layout
 
 \begin_layout Standard
@@ -555,7 +644,7 @@ reference "chap:Conclusioni-e-sviluppi"
 \end_inset
 
  conclude evidenziando il contributo fornito dal presente lavoro e propone
- potenziali sviluppi futuri del problema dell'assegnamento autobus-piattaforma.
+ potenziali sviluppi futuri.
 \end_layout
 
 \begin_layout Standard
@@ -625,10 +714,6 @@ name "chap:Allocazione-delle-piattaforme"
 
 \end_layout
 
-\begin_layout Section
-L'autostazione
-\end_layout
-
 \begin_layout Standard
 \begin_inset Note Note
 status open
@@ -644,18 +729,6 @@ Verificare che la struttura in paragrafi sia coerente e segua un ordine
 
 \begin_layout Enumerate
 Scegliere se spostare la presentazione dei concetti in parti distinte
-\end_layout
-
-\begin_layout Enumerate
-Il 
-\begin_inset Quotes eld
-\end_inset
-
-piano della tesi
-\begin_inset Quotes erd
-\end_inset
-
- va messo come primo capitolo* (magari col titolo Introduzione)???
 \end_layout
 
 \end_inset
@@ -2240,6 +2313,147 @@ e di estensioni temporali diverse fra loro (non modellabili con grafo unit
  
 \end_layout
 
+\begin_layout Paragraph
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Dock Assignment Problem 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come anticipato esistono altri problemi che presentano affinità col problema
+ di assegnare le corse degli autobus alle piattaforme.
+ Un problema simile è quello di assegnare ai treni i binari.
+ Il problema può essere formulato sostituendo il treno al posto dell'autobus
+ e il binario al posto della piattaforma.
+ Il problema nel caso ferroviario consiste nell'assegnare i treni ai binari
+ di una stazione ferroviaria in modo da avere degli assegnamenti compatibili
+ con l'istradamento dei treni, cosa che può verificarsi in un'autostazione
+ in cui siano imposti i sensi di marcia nelle corsie per il raggiungimento
+ della piattaforma.
+ Il problema viene identificato in letteratura come Train Platforming Problem
+ (TPP).
+ Per una rassegna sul problema si rimanda al survey recente
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "caprara2007passenger"
+
+\end_inset
+
+ e al lavoro, di carattere più generale,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lusby-railway"
+
+\end_inset
+
+.
+ Si nota che alcuni autori modellano il TPP come un problema di colorazione
+ di grafi su grafi di conflitto e che altri usano tecniche tradizionali
+ della ricerca operativa, mentre altri ancora impiegano efficacemente la
+ programmazione per vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+DAP o Dock-to-door assignment
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Altro problema simile è quello di caricamento di camion o altri veicoli
+ da magazzini collocati in un'unica grande struttura.
+ Tale problema è classificato come Dock Assignment Problem (DAP).
+ L'analogia dei problemi si nota considerando il camion come se fosse l'autobus
+ e il magazzino come se fosse la piattaforma.
+ Purtroppo anche questo problema appare poco studiato e i lavori pubblicati
+ spesso mutatano le soluzione dal AGAP.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Register-assignment
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I problemi di Register-assignment o Register-allocation sono descritti in
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "pereira2008survey"
+
+\end_inset
+
+.
+ La tendenza attuale predilige metodi euristici che impiegano poca memoria
+ e poco tempo di calcolo, ma quando l'ottimizzazione del codice è importante
+ si ricorre frequentemente a tecniche di colorazione di grafi di conflitto.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zeitlhofer20031411"
+
+\end_inset
+
+ l'assegnamento dei registri diviene un problema decisionale di 
+\emph on
+list-coloring
+\emph default
+, la cui soluzione determina un assegnamento che richiede al massimo tanti
+ registri quanti disponibili, se tale soluzione esiste.
+ Il lavoro descrive il caso di processori con varie unità funzionali in
+ grado di eseguire un sottoinsieme di istruzioni.
+ Lo scheduling delle istruzioni è definito e esse possono essere elaborate
+ solo da un sottoinsieme di registri.
+ Benché il list-coloring sia un problema NP-hard, Zeitlhofer e Wess sfruttano
+ alcune proprietà dei grafi d'intervallo per determinarne una soluzione
+ ammissibile, se esiste, in tempi ragionevoli, evitando di esplorare l'intero
+ albero di ricerca.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+manca da descrivere perché i problemi sono intercambiabili.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Airport Gate Assignment Problem (AGAP)
 \end_layout
@@ -3042,6 +3256,29 @@ key "Blanco2003,Tang2010"
 .
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+Analisi della letteratura di rescheduling
+\end_layout
+
+\begin_layout Itemize
+Aircraft Rescheduling Problem
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Railway Rescheduling Problem (RRP)
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Modelli per AGAP
 \end_layout
@@ -3252,174 +3489,6 @@ x Gianluca: riesci ad inserire anche gli altri modelli (da pag 16 a pag
  19 di GaoF)?
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Altri problemi analoghi
-\end_layout
-
-\begin_layout Paragraph
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Dock Assignment Problem 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Come anticipato esistono altri problemi che presentano affinità col problema
- di assegnare le corse degli autobus alle piattaforme.
- Un problema simile è quello di assegnare ai treni i binari.
- Il problema può essere formulato sostituendo il treno al posto dell'autobus
- e il binario al posto della piattaforma.
- Il problema nel caso ferroviario consiste nell'assegnare i treni ai binari
- di una stazione ferroviaria in modo da avere degli assegnamenti compatibili
- con l'istradamento dei treni, cosa che può verificarsi in un'autostazione
- in cui siano imposti i sensi di marcia nelle corsie per il raggiungimento
- della piattaforma.
- Il problema viene identificato in letteratura come Train Platforming Problem
- (TPP).
- Per una rassegna sul problema si rimanda al survey recente
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "caprara2007passenger"
-
-\end_inset
-
- e al lavoro, di carattere più generale,
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "lusby-railway"
-
-\end_inset
-
-.
- Si nota che alcuni autori modellano il TPP come un problema di colorazione
- di grafi su grafi di conflitto e che altri usano tecniche tradizionali
- della ricerca operativa, mentre altri ancora impiegano efficacemente la
- programmazione per vincoli.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-DAP o Dock-to-door assignment
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Altro problema simile è quello di caricamento di camion o altri veicoli
- da magazzini collocati in un'unica grande struttura.
- Tale problema è classificato come Dock Assignment Problem (DAP).
- L'analogia dei problemi si nota considerando il camion come se fosse l'autobus
- e il magazzino come se fosse la piattaforma.
- Purtroppo anche questo problema appare poco studiato e i lavori pubblicati
- spesso mutatano le soluzione dal AGAP.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Register-assignment
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-I problemi di Register-assignment o Register-allocation sono descritti in
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "pereira2008survey"
-
-\end_inset
-
-.
- La tendenza attuale predilige metodi euristici che impiegano poca memoria
- e poco tempo di calcolo, ma quando l'ottimizzazione del codice è importante
- si ricorre frequentemente a tecniche di colorazione di grafi di conflitto.
- In 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Zeitlhofer20031411"
-
-\end_inset
-
- l'assegnamento dei registri diviene un problema decisionale di 
-\emph on
-list-coloring
-\emph default
-, la cui soluzione determina un assegnamento che richiede al massimo tanti
- registri quanti disponibili, se tale soluzione esiste.
- Il lavoro descrive il caso di processori con varie unità funzionali in
- grado di eseguire un sottoinsieme di istruzioni.
- Lo scheduling delle istruzioni è definito e esse possono essere elaborate
- solo da un sottoinsieme di registri.
- Benché il list-coloring sia un problema NP-hard, Zeitlhofer e Wess sfruttano
- alcune proprietà dei grafi d'intervallo per determinarne una soluzione
- ammissibile, se esiste, in tempi ragionevoli, evitando di esplorare l'intero
- albero di ricerca.
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-manca da descrivere perché i problemi sono intercambiabili.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Itemize
-Analisi della letteratura di rescheduling
-\end_layout
-
-\begin_layout Itemize
-Aircraft Rescheduling Problem
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Railway Rescheduling Problem (RRP)
-\end_layout
-
-\end_deeper
 \end_inset
 
 
@@ -10423,6 +10492,7 @@ fbox{
 
 \begin_inset Graphics
 	filename img/actual_solution_m.pdf
+	scale 50
 
 \end_inset
 
@@ -10487,12 +10557,18 @@ Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
-\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \begin_inset ERT
 status open
 
@@ -10507,7 +10583,8 @@ fbox{
 
 
 \begin_inset Graphics
-	filename img/real_MathModelColoring.pdf
+	filename img/actual_solution_m.pdf
+	width 48text%
 
 \end_inset
 
@@ -10523,7 +10600,221 @@ status open
 \end_inset
 
 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "subfig:real_legacy"
+
+\end_inset
+
+Soluzione Autostazione 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/real_MathModelColoring.pdf
+	width 48text%
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "subfig:real_coloring"
+
+\end_inset
+
+Minimizzazione del numero di piattaforme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/real_IterativeTimeHorizonMathMD.pdf
+	width 48text%
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "subfig:real_scarto"
+
+\end_inset
+
+Massimizzazione dello scarto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/real_IterativeTimeHorizonMath.pdf
+	width 48text%
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "subfig:real_confitto"
+
+\end_inset
+
+Minimizzazione del conflitto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Confronto tra gli assegnamenti e quelli proposti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -10570,6 +10861,7 @@ fbox{
 
 \begin_inset Graphics
 	filename img/real_IterativeTimeHorizonMathMD.pdf
+	scale 50
 
 \end_inset
 
@@ -10632,6 +10924,7 @@ fbox{
 
 \begin_inset Graphics
 	filename img/real_IterativeTimeHorizonMath.pdf
+	scale 50
 
 \end_inset
 
@@ -10688,6 +10981,561 @@ e presenti nel problema fra 16 e 19.
 
 \begin_layout Subsection*
 Soluzioni ottenute con 16 piattaforme
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/MathModelColoring.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di minimizzazione del numero di piattaforme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMathMD.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di massimizzazione dello scarto minimo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMath.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di minimizzazione della probabilità di conflitto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Soluzioni ottenute con 17 piattaforme
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/MathModelColoring.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di minimizzazione del numero di piattaforme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMathMD.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di massimizzazione dello scarto minimo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMath.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di minimizzazione della probabilità di conflitto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Soluzioni ottenute con 18 piattaforme
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/MathModelColoring.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di minimizzazione del numero di piattaforme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMathMD.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di massimizzazione dello scarto minimo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una soluzione con il minimo numero di piattaforme che rispetta gli stessi
+ vincoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fbox{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/istanza_reale_feasible_no10_15/IterativeTimeHorizonMath.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Soluzione del modello di minimizzazione della probabilità di conflitto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Soluzioni ottenute con 19 piattaforme
 \end_layout
 
 \begin_layout Standard
