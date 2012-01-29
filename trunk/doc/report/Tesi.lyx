@@ -346,55 +346,35 @@ mainmatter
 \end_inset
 
 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
-Allocazione delle piattaforme in un'autostazione
+Introduzione
 \begin_inset CommandInset label
 LatexCommand label
-name "chap:Allocazione-delle-piattaforme"
+name "chap:Introduzione"
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section
-L'autostazione
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Enumerate
-Fondere insieme i concetti ripetuti più volte nel capitolo
-\end_layout
-
-\begin_layout Enumerate
-Verificare che la struttura in paragrafi sia coerente e segua un ordine
- logico
-\end_layout
-
-\begin_layout Enumerate
-Scegliere se spostare la presentazione dei concetti in parti distinte
-\end_layout
-
-\begin_layout Enumerate
-Il 
-\begin_inset Quotes eld
-\end_inset
-
-piano della tesi
-\begin_inset Quotes erd
-\end_inset
-
- va messo come primo capitolo* (magari col titolo Introduzione)???
-\end_layout
-
-\end_inset
-
-
+Scopo di questa tesi è lo studio di un problema che si presenta nella gestione
+ delle autostazioni.
 \end_layout
 
 \begin_layout Standard
@@ -477,6 +457,108 @@ te, dei dati in tempo reale sulla posizione dei veicoli.
 \end_layout
 
 \begin_layout Standard
+La tesi è organizzata nel modo seguente.
+\end_layout
+
+\begin_layout Standard
+Il cap.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Rassegna-bibliografica"
+
+\end_inset
+
+ propone i sistemi software di supporto alle decisioni impiegati nella pianifica
+zione degli assegnamenti nelle autostazioni, un'estesa rassegna bibliografica
+ dei problemi noti come Aircraft-Gate Assignment Problems e dei metodi di
+ risoluzione proposti in letteratura e presenta altri problemi analoghi
+ a quello affrontato che emergono in contesti differenti.
+\end_layout
+
+\begin_layout Standard
+Il cap.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Nuove-formulazioni"
+
+\end_inset
+
+ illustra il modo originale in cui si sono formulati tre nuovi modelli per
+ la pianificazione statica degli assegnamenti autobus-piattaforma ed i modelli
+ matematici di programmazione lineare intera mista che ne descrivono indici
+ di prestazione e vincoli.
+ I modelli sono stati sviluppati con l'idea di essere quanto più generali
+ possibili e di poter essere modificati introducendo vincoli addizionali
+ per poter rappresentare le variegate situazioni che si verificano nelle
+ diverse autostazioni.
+ Gli obiettivi considerati sono il numero di piattaforme utilizzate durante
+ una giornata, la scarto di tempo minimo fra due fermate di autobus su di
+ una stessa piattaforma e un indicatore di probabilità di conflitto fra
+ fermate che misura quanto l'assegnamento sia da considerarsi robusto rispetto
+ a piccole variazioni dei dati d'ingresso.
+\end_layout
+
+\begin_layout Standard
+Il cap.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Algoritmi-sviluppati"
+
+\end_inset
+
+ illustra i metodi di risoluzione sviluppati per poter determinare delle
+ buone soluzioni ai problemi proposti nel capitolo che lo precede.
+ Vengono dichiarati i limiti dei modelli proposti che ne impediscono la
+ risoluzione diretta e viene proposta una strategia euristica che permette
+ la determinazione di buone soluzioni in tempi di elaborazione ragionevoli.
+\end_layout
+
+\begin_layout Standard
+Il cap.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Risultati-computazionali"
+
+\end_inset
+
+ illustra le soluzioni ottenute sul caso di studio di una giornata di operazioni
+ di un'autostazione esistente mostrando la qualità delle soluzioni prodotte
+ e l'applicabilità degli algoritmi sviluppati nel contesto delle autostazioni.
+\end_layout
+
+\begin_layout Standard
+Il cap.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Conclusioni-e-sviluppi"
+
+\end_inset
+
+ conclude evidenziando il contributo fornito dal presente lavoro e propone
+ potenziali sviluppi futuri del problema dell'assegnamento autobus-piattaforma.
+\end_layout
+
+\begin_layout Standard
 Il caso di studio su cui sono state effettuate le prove numeriche deriva
  dai dati di una giornata di operazioni dell'Autostazione di Bologna.
 \end_layout
@@ -524,6 +606,61 @@ manuale
  L'applicazione formula dei piani a partire dall'orario schedulato e deve
  anche gestire in real-time le anomalie quali ritardi o cancellazioni di
  corse.
+\end_layout
+
+\begin_layout Standard
+Le soluzioni fornite dagli algoritmi sviluppati in questa tesi usando come
+ input i dati dell'Autostazione di Bologna si sono dimostrate di buona qualità;
+ gli algoritmi pertanto sono adatti ad essere applicati a situazioni reali.
+\end_layout
+
+\begin_layout Chapter
+Allocazione delle piattaforme in un'autostazione
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Allocazione-delle-piattaforme"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+L'autostazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Enumerate
+Fondere insieme i concetti ripetuti più volte nel capitolo
+\end_layout
+
+\begin_layout Enumerate
+Verificare che la struttura in paragrafi sia coerente e segua un ordine
+ logico
+\end_layout
+
+\begin_layout Enumerate
+Scegliere se spostare la presentazione dei concetti in parti distinte
+\end_layout
+
+\begin_layout Enumerate
+Il 
+\begin_inset Quotes eld
+\end_inset
+
+piano della tesi
+\begin_inset Quotes erd
+\end_inset
+
+ va messo come primo capitolo* (magari col titolo Introduzione)???
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1011,112 +1148,6 @@ key "Su1993123"
 .
  Questi fattori possono rendere la ricerca euristica difficile e questo
  può a sua volta influenzare la qualità della soluzione.
-\end_layout
-
-\begin_layout Section
-Piano della tesi
-\end_layout
-
-\begin_layout Standard
-La tesi è organizzata nel modo seguente.
-\end_layout
-
-\begin_layout Standard
-Il cap.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "chap:Rassegna-bibliografica"
-
-\end_inset
-
- propone i sistemi software di supporto alle decisioni impiegati nella pianifica
-zione degli assegnamenti nelle autostazioni, un'estesa rassegna bibliografica
- dei problemi noti come Aircraft-Gate Assignment Problems e dei metodi di
- risoluzione proposti in letteratura e presenta altri problemi analoghi
- a quello affrontato che emergono in contesti differenti.
-\end_layout
-
-\begin_layout Standard
-Il cap.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "chap:Nuove-formulazioni"
-
-\end_inset
-
- illustra il modo originale in cui si sono formulati tre nuovi modelli per
- la pianificazione statica degli assegnamenti autobus-piattaforma ed i modelli
- matematici di programmazione lineare intera mista che ne descrivono indici
- di prestazione e vincoli.
- I modelli sono stati sviluppati con l'idea di essere quanto più generali
- possibili e di poter essere modificati introducendo vincoli addizionali
- per poter rappresentare le variegate situazioni che si verificano nelle
- diverse autostazioni.
- Gli obiettivi considerati sono il numero di piattaforme utilizzate durante
- una giornata, la scarto di tempo minimo fra due fermate di autobus su di
- una stessa piattaforma e un indicatore di probabilità di conflitto fra
- fermate che misura quanto l'assegnamento sia da considerarsi robusto rispetto
- a piccole variazioni dei dati d'ingresso.
-\end_layout
-
-\begin_layout Standard
-Il cap.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "chap:Algoritmi-sviluppati"
-
-\end_inset
-
- illustra i metodi di risoluzione sviluppati per poter determinare delle
- buone soluzioni ai problemi proposti nel capitolo che lo precede.
- Vengono dichiarati i limiti dei modelli proposti che ne impediscono la
- risoluzione diretta e viene proposta una strategia euristica che permette
- la determinazione di buone soluzioni in tempi di elaborazione ragionevoli.
-\end_layout
-
-\begin_layout Standard
-Il cap.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "chap:Risultati-computazionali"
-
-\end_inset
-
- illustra le soluzioni ottenute sul caso di studio di una giornata di operazioni
- di un'autostazione esistente mostrando la qualità delle soluzioni prodotte
- e l'applicabilità degli algoritmi sviluppati nel contesto delle autostazioni.
-\end_layout
-
-\begin_layout Standard
-Il cap.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "chap:Conclusioni-e-sviluppi"
-
-\end_inset
-
- conclude evidenziando il contributo fornito dal presente lavoro e propone
- potenziali sviluppi futuri del problema dell'assegnamento autobus-piattaforma.
 \end_layout
 
 \begin_layout Chapter
@@ -2062,19 +2093,18 @@ key "Blanco2003"
 \end_layout
 
 \begin_layout Section
-Rassegna bibliografica
+Problemi simili
 \end_layout
 
 \begin_layout Standard
 La letteratura scientifica propone molte pubblicazioni sul trasporto su
- gomma e sulle autostazioni ma generalmente gli studi sono funzionali alla
- quantificazione della qualità dei servizi offerti ed alla progettazione
+ gomma e sulle autostazioni ma, generalmente, gli studi sono funzionali
+ alla quantificazione della qualità dei servizi offerti e alla progettazione
  dei layout.
  Scarso è, invece, il contributo sui problemi di ottimizzazione o di soddisfacim
 ento dei vincoli emergenti nei terminal del trasporto su gomma.
  Le pubblicazioni scientifiche che trattano della gestione delle piattaforme
- all'interno delle autostazioni, per quanto emerge dalle ricerche effettuate,
- si limitano al già citato
+ all'interno delle autostazioni si limitano a
 \begin_inset space ~
 \end_inset
 
@@ -2112,11 +2142,21 @@ Problematiche simili a quella di assegnare le fermate alle piattaforme delle
  Forti sono le analogie anche con il problema di allocazione dei registri
  di DSP (Digital Signal Processor) e con il problema di ottimizzazione dell'uso
  dei registri di un processore durante il processo di compilazione.
- Elemento comune nei vari problemi sono la presenza di un luogo fisico in
- cui vengono convogliate persone, beni da trasportare o dati (in inglese
- spesso definito terminal o hub nel caso di problemi di trasporto, register
- nel caso di dati), un insieme di veicoli o unità di informazione (aircraft,
- train, truck, o variable
+\end_layout
+
+\begin_layout Standard
+Elementi comuni nei vari problemi sono:
+\end_layout
+
+\begin_layout Itemize
+la presenza di un luogo fisico in cui vengono convogliate persone, beni
+ da trasportare o dati diviso in più (in inglese spesso definito terminal
+ o hub nel caso di problemi di trasporto, register nel caso di dati);
+\end_layout
+
+\begin_layout Itemize
+un insieme di veicoli o unità di informazione (aircraft, train, truck, o
+ variable
 \begin_inset ERT
 status open
 
@@ -2129,16 +2169,25 @@ ldots{}
 
 \end_inset
 
-) ed un insieme di risorse spaziali che non possono essere occupate nello
- stesso tempo da più di un veicolo o dato (platform, gate, track, register);
- inoltre i tempi di fermata dei veicoli (per le effettuare le operazioni
- di carico e scarico dei passeggeri o delle merci) o i tempi di vita dei
- dati sono fissate (scheduled, o ideal, arrival e departure time, oppure
- lifetime) e durante l'esercizio potrebbero essere soggette a variazioni
- per il verificarsi di eventi non prevedibili a priori (ritardi, interruzioni\SpecialChar \ldots{}
-).
- Altra caratteristica comune è quella per cui gli assegnamenti potrebbero
- essere soggetti a vincoli 
+);
+\end_layout
+
+\begin_layout Itemize
+un insieme di risorse spaziali che non possono essere occupate nello stesso
+ tempo da più di un veicolo o dato (platform, gate, track, o register);
+ 
+\end_layout
+
+\begin_layout Itemize
+i tempi di fermata dei veicoli per effettuare le operazioni di carico e
+ scarico dei passeggeri o delle merci, o i tempi di vita dei dati sono programma
+ti ma potrebbero essere soggetti a variazioni per il verificarsi di eventi
+ non prevedibili a priori (ritardi, interruzioni\SpecialChar \ldots{}
+);
+\end_layout
+
+\begin_layout Itemize
+gli assegnamenti potrebbero essere soggetti a vincoli 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2146,25 +2195,35 @@ locali
 \begin_inset Quotes erd
 \end_inset
 
-, che coinvolgano le compatibilità fra operazioni da assegnare e risorsa
- o fra due o operazioni.
- Ad esempio nel contesto dell'ottimizzazione dell'uso di piattaforme queste
- sono compatibili solo alcuni tipi di veicoli per ragioni geometriche e
- di spazi di manovra mentre nel caso dell'ottimizzazione del codice macchina
- il problema definito come 
+, che coinvolgano le compatibilità fra operazioni e risorse oppure fra due
+ o più operazioni.
+\end_layout
+
+\begin_layout Standard
+Un vincolo locale, nel contesto dell'ottimizzazione dell'uso di piattaforme,
+ è la compatibilità di alcuni tipi di veicoli con un sottoinsieme di piattaforme
+, ad esempio per ragioni geometriche e di spazi di manovra.
+ Un vincolo locale nel caso dell'ottimizzazione del codice macchina si trova
+ nel problema definito come 
 \emph on
 register assignment
 \emph default
- consiste nel determinare l'assegnamento variabile-registro in un processore
- avente registri eterogenei: alcuni registri possono eseguire solo alcune
- alcune istruzioni.
- A causa della struttura del processore e del flusso di dati, stabiliti
- dal tipo di istruzione, dal flusso di istruzioni e dallo scheduler del
- compilatore, una variabile può essere associata solo ad alcuni registri
- ed i tempi di permanenza sono fissati.
- Altro aspetto comune è che il tempo di occupazione dipende dalla risorsa
+ con registri eterogenei
+\emph on
+.
+
+\emph default
+ Esso consiste nel determinare l'assegnamento variabile-registro in un processor
+e avente registri eterogenei: alcuni registri possono eseguire solo alcune
+ istruzioni.
+ Una variabile può essere associata solo ad alcuni registri ed i tempi di
+ permanenza sono fissati.
+\end_layout
+
+\begin_layout Standard
+Altro aspetto comune è che il tempo di occupazione può dipendere dalla risorsa
  o anche dall'assegnamento stesso: il tempo di carico e scarico di merci
- o passeggeri dipende infatti sia dal tipo di veicolo e che dalla piattaforma
+ o passeggeri dipende infatti sia dal tipo di veicolo che dalla piattaforma
  così come il tempo di esecuzione di un'istruzione può estendersi per un
  numero diverso di cicli di clock rispetto ad altre istruzioni o in base
  a quale unità di calcolo stia eseguendo la stessa istruzione.
