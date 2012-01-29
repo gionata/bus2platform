@@ -175,8 +175,8 @@ Desidero ringraziare il Prof.
  Ferdinando Pezzella per la disponibilità, la fiducia e la pazienza, per
  il valido sostegno professionale e per le opportunità che mi ha offerto
  in questi anni.
- I suoi insegnamenti mi hanno introdotto nell’affascinate mondo della Ricerca
- Operativa, trasmettendomi curosità e passione per questa disciplina.
+ I suoi insegnamenti mi hanno introdotto nell'affascinate mondo della Ricerca
+ Operativa, trasmettendomi curiosità e passione per questa disciplina.
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
@@ -306,7 +306,7 @@ Un ringraziamento speciale a Lucilla che mi è stata accanto, con dolcezza
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
-Un ricordo, con l’affetto che ci ha sempre legati, all’amico Vittorio, con
+Un ricordo, con l’affetto che ci ha sempre legati, all'amico Vittorio, con
  la sua du botte e quel sorriso indimenticabile.
 \end_layout
 
@@ -324,13 +324,13 @@ zione è l’assegnamento dei bus alle piattaforme disponibili.
 \end_layout
 
 \begin_layout PhD Thesis Abstract
-Problemi simili all’assegnamento delle piattaforme nelle autostazioni nascono
+Problemi simili all'assegnamento delle piattaforme nelle autostazioni nascono
  nella gestione di aeroporti, stazioni ferroviarie, porti, interporti e
  così via.
- Ci sono anche forti somiglianze con il problema dell’assegnamento dei registri
+ Ci sono anche forti somiglianze con il problema dell'assegnamento dei registri
  nei processori di segnale digitale (DSP).
- Nel caso dell’autostazione il gestore può richiedere che gli assegnamenti
- bus-piattaforme siano tali da occupare il minor numero di piattaforme nell’oriz
+ Nel caso dell'autostazione il gestore può richiedere che gli assegnamenti
+ bus-piattaforme siano tali da occupare il minor numero di piattaforme nell'oriz
 zonte di pianificazione.
  Per questo problema si propone una formulazione innovativa come problema
  di restricted-coloring di un grafo d’intervallo e un modello di programmazione
@@ -349,7 +349,7 @@ Situazioni di mancato rispetto della tabella oraria, quali arrivi in anticipo
 
 \begin_layout PhD Thesis Abstract
 Per finire, allo scopo di generare una buona soluzione in un tempo di calcolo
- ragionevole, si propone anche un algoritmo euristico basato sull’idea di
+ ragionevole, si propone anche un algoritmo euristico basato sull'idea di
  risolvere il problema mediante una suddivisione in sottoproblemi più piccoli
  utilizzando un controllo a orizzonte recessivo, e una successiva ricostruzione
  della soluzione completa.
@@ -358,7 +358,7 @@ Per finire, allo scopo di generare una buona soluzione in un tempo di calcolo
 \begin_layout PhD Thesis Abstract
 Sono stati svolti esperimenti computazionali su una autostazione esistente
  con 24 piattaforme e più di duecento corse che hanno dimostrato l’efficacia
- dell’approccio.
+ dell'approccio.
 \end_layout
 
 \begin_layout PhD TOC
@@ -559,7 +559,7 @@ reference "chap:Rassegna-bibliografica"
 
  descrive i sistemi software di supporto alle decisioni impiegati nella
  pianificazione degli assegnamenti nelle autostazioni, presenta problemi
- studiati in constesti differenti che possono essere modellizzati e risolti
+ studiati in contesti differenti che possono essere modellizzati e risolti
  in modo analogo e fornisce una rassegna bibliografica sui problemi noti
  come Gate Assignment Problems.
 \end_layout
@@ -1494,18 +1494,18 @@ le corse appartenenti a linee che includono almeno un veicolo snodato devono
 
 \begin_layout Enumerate
 le corse appartenenti ad una linea compatibile solo con un sottoinsieme
- di piattaforme devono esere assegnate a piattaforme appartenenti all'insieme
+ di piattaforme devono essere assegnate a piattaforme appartenenti all'insieme
  dato.
 \end_layout
 
 \begin_layout Enumerate
 le piattaforme che sono riservate ad un insieme di linee devono essere assegnate
- solo a corse appartenti alle linee dell'insieme dato;
+ solo a corse appartenenti alle linee dell'insieme dato;
 \end_layout
 
 \begin_layout Enumerate
 una corsa non deve essere assegnata ad una piattaforma se l'intervallo di
- occupazione della corsa ha intersezione non vuota con un'intervallo di
+ occupazione della corsa ha intersezione non vuota con un intervallo di
  disabilitazione della piattaforma.
 \end_layout
 
@@ -2334,12 +2334,12 @@ Come anticipato esistono altri problemi che presentano affinità col problema
  e il binario al posto della piattaforma.
  Il problema nel caso ferroviario consiste nell'assegnare i treni ai binari
  di una stazione ferroviaria in modo da avere degli assegnamenti compatibili
- con l'istradamento dei treni, cosa che può verificarsi in un'autostazione
+ con l'instradamento dei treni, cosa che può verificarsi in un'autostazione
  in cui siano imposti i sensi di marcia nelle corsie per il raggiungimento
  della piattaforma.
  Il problema viene identificato in letteratura come Train Platforming Problem
  (TPP).
- Per una rassegna sul problema si rimanda al survey recente
+ Per una rassegna sul problema si rimanda alla rassegna recente
 \begin_inset space ~
 \end_inset
 
@@ -2388,7 +2388,7 @@ Altro problema simile è quello di caricamento di camion o altri veicoli
  L'analogia dei problemi si nota considerando il camion come se fosse l'autobus
  e il magazzino come se fosse la piattaforma.
  Purtroppo anche questo problema appare poco studiato e i lavori pubblicati
- spesso mutatano le soluzione dal AGAP.
+ spesso mutano le soluzione dal AGAP.
 \end_layout
 
 \begin_layout Standard
@@ -2437,10 +2437,13 @@ list-coloring
  grado di eseguire un sottoinsieme di istruzioni.
  Lo scheduling delle istruzioni è definito e esse possono essere elaborate
  solo da un sottoinsieme di registri.
- Benché il list-coloring sia un problema NP-hard, Zeitlhofer e Wess sfruttano
- alcune proprietà dei grafi d'intervallo per determinarne una soluzione
- ammissibile, se esiste, in tempi ragionevoli, evitando di esplorare l'intero
- albero di ricerca.
+ Benché il list-coloring sia un problema 
+\begin_inset Formula $\mathcal{NP}$
+\end_inset
+
+-hard, Zeitlhofer e Wess sfruttano alcune proprietà dei grafi d'intervallo
+ per determinarne una soluzione ammissibile, se esiste, in tempi ragionevoli,
+ evitando di esplorare l'intero albero di ricerca.
  
 \begin_inset Note Note
 status open
@@ -2521,7 +2524,7 @@ un tempo minimo di occupazione del gate è da tenere in considerazione e
 \begin_layout Standard
 Oltre a questi vincoli possono emergerne degli altri, ad esempio l'assegnamento
  di un velivolo grande ad un gate particolare può implicare che i gate vicini
- posssano servire solo velivoli piccoli, o addirittura essere completamente
+ possano servire solo velivoli piccoli, o addirittura essere completamente
  disabilitati.
 \end_layout
 
@@ -2555,7 +2558,7 @@ minimizzare il numero di movimentazioni dei velivoli a terra per effettuare
 \end_layout
 
 \begin_layout Standard
-L'esistenza di criteri così eterogenei e in constrasto fra loro rende difficile
+L'esistenza di criteri così eterogenei e in contrasto fra loro rende difficile
  la determinazione di un buon compromesso fra i differenti obiettivi e la
  soluzione ottima di un modello che considera un solo obiettivo o una somma
  pesata di questi potrebbe potrebbe rivelarsi poco attraente per l'operatore
@@ -2985,7 +2988,7 @@ key "yan2002sfe"
 \end_inset
 
 .
- Mentre la maggior parte degli studi sono concentrati sul'ottimizzazione
+ Mentre la maggior parte degli studi sono concentrati sull'ottimizzazione
  statica degli assegnamenti, la simulazione può essere utilizzata per analizzare
  le relazioni tra gli assegnamenti prodotti e i fattori che influenzano
  la soluzione durante l'esercizio.
@@ -3034,7 +3037,7 @@ key "haghani1998oga"
 \end_inset
 
  viene proposta un'euristica che assegna i voli con più passeggeri ai gate
- che sono più vicini, quando non c'è sovrapposizione temporare degli intervalli
+ che sono più vicini, quando non c'è sovrapposizione temporale degli intervalli
  di occupazione del gate.
  In
 \begin_inset space ~
@@ -3245,7 +3248,7 @@ key "Lim2005"
 \end_layout
 
 \begin_layout Standard
-La letterarura scientifica ha proposto, ad oggi, pochi lavori sul real-time
+La letteratura scientifica ha proposto, ad oggi, pochi lavori sul real-time
  recovery degli assegnamenti, ad eccezione di 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -3432,7 +3435,7 @@ dove:
 \begin_layout Standard
 La funzione obiettivo rappresenta la distanza percorsa dai passeggeri in
  arrivo e in partenza.
- Questa funzione presuppone che per ogni velivolo che occuopa un gate c'è
+ Questa funzione presuppone che per ogni velivolo che occupa un gate c'è
  un certo numero di passeggeri in arrivo quando l'aereo arriva al gate e
  un certo numero di passeggeri in partenza quando l'aereo parte dal gate.
  Il volo 
@@ -3936,7 +3939,7 @@ Il gestore di un'autostazione potrebbe richiedere che il piano di assegnamento
  Il software GatePlanner di Pluservice, infatti, considera l'obiettivo quello
  di minimizzare il numero di piattaforme in uso durante una giornata.
  La scelta di tale obiettivo è motivata, inoltre, dal fatto che l'eventuale
- se ci sono piattaforme non utilizzate esse possono essere impigate per
+ se ci sono piattaforme non utilizzate esse possono essere impiegate per
  scali di servizi e soste di veicoli.
 \end_layout
 
@@ -4795,7 +4798,7 @@ Dato un grafo d'intervallo con
 \end_layout
 
 \begin_layout Standard
-I grafi d'intervallo appartengono alla classe più generale dei cosidetti
+I grafi d'intervallo appartengono alla classe più generale dei cosiddetti
  grafi perfetti, grafi per cui vale che il numero di cricca è uguale al
  numero cromatico (
 \begin_inset Formula $\omega(G)=\chi(G)$
@@ -4919,7 +4922,7 @@ Si ricorda che un vertice
 \begin_inset Formula $X_{i}=\left\{ v_{j}\in N(v_{i})|j>i\right\} $
 \end_inset
 
-è un grafo competo è detta sequenza di eleminazione perfetta.
+è un grafo competo è detta sequenza di eliminazione perfetta.
  Si noti come i nodi del grafo in figura siano numerati secondo una sequenza
  di eliminazione perfetta.
 \end_layout
@@ -4999,9 +5002,9 @@ Se si definisce nel domino dei numeri reali la funzione
 \end_inset
 
  e scandirli dal minimo al massimo.
- In un passo generico dell’algoritmo i colori utilizzatio sono marcati e
+ In un passo generico dell'algoritmo i colori utilizzati sono marcati e
  quelli disponibili sono non marcati.
- Inzialmente nessun colore è marcato.
+ Inizialmente nessun colore è marcato.
  Si può notare che i massimi locali di 
 \begin_inset Formula $f(x)$
 \end_inset
@@ -5018,8 +5021,8 @@ key "serafini2009ricerca"
 \end_inset
 
 ).
- Nell’esempio ce ne sono quattro, che sono anche massime in questo caso.
- Il massimo locale è determinato dall’estremo destro di un intervallo.
+ Nell'esempio ce ne sono quattro, che sono anche massime in questo caso.
+ Il massimo locale è determinato dall'estremo destro di un intervallo.
  Si veda la fig.
 \begin_inset space ~
 \end_inset
@@ -5145,7 +5148,7 @@ Il problema del list-coloring può essere formulato su un grafo
 \begin_inset Formula $E_{i}=\left\{ \left((v,i),(w,i)\right)\,|\,(v,w)\in E\right\} $
 \end_inset
 
-, e si costruisca la clique sui nodi 
+, e si costruisca la cricca sui nodi 
 \begin_inset Formula $(v,1),(v,2),\ldots,(v,c)$
 \end_inset
 
@@ -5750,7 +5753,7 @@ fermate-piattaforme
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Istanza di esempio del problema di assegnameto bus-piattaforma
+Istanza di esempio del problema di assegnamento bus-piattaforma
 \end_layout
 
 \end_inset
@@ -6781,7 +6784,7 @@ reference "eq:vincolo_compatibilita_bus_0"
  chiamato Special Order Set di tipo 1 (SOS1).
  La caratteristica degli SOS1 è che al più una di queste variabili può assumere
  un valore strettamente positivo mentre le altre devono essere nulle.
- L'utilizzo di variabili di questo tipo in un algoritmo di Branch and Bound
+ L'utilizzo di variabili di questo tipo in un algoritmo di Branch&Bound
  permette di ridurre lo spazio di ricerca e quindi il tempo di calcolo.
  Le disequazioni espresse dal vincolo
 \begin_inset space ~
@@ -7041,7 +7044,7 @@ azione completa dovendo esplorare un albero pressoché completo.
 \begin_layout Standard
 Un modo per eliminare, almeno in parte, le simmetrie del modello è quello
  di preassegnare alcune piattaforme.
- E' infatti possibile, se non auspicabile, chiedere al capostazione di collocare
+ È infatti possibile, se non auspicabile, chiedere al capostazione di collocare
  i servizi che interferiscono nella cricca massima e risolvere il nuovo
  problema con un numero ridotto di variabili.
 \end_layout
@@ -7069,7 +7072,7 @@ key "golumbic2004algorithmic"
 \end_layout
 
 \begin_layout Standard
-Un semplice algoritmo greedy, come il First Fist, produce una soluzione
+Un semplice algoritmo greedy, come il First-Fist, produce una soluzione
  ottima.
 \end_layout
 
@@ -7533,10 +7536,10 @@ filtrano
 i.
  Questo modo di procedere nell'esplorazione dell'albero di ricerca è detto
  etichettatura.
- Iterando la propagazione dei vincoli e l'etchettatura, il risolutore dello
- strumento di programmmazione per vincoli calcola la soluzione, o le soluzioni,
+ Iterando la propagazione dei vincoli e l'etichettatura, il risolutore dello
+ strumento di programmazione per vincoli calcola la soluzione, o le soluzioni,
  di un problema or dimostra che l'insieme delle soluzioni è vuoto.
- La letteratura recente propone molti approcci che combinano le tenciche
+ La letteratura recente propone molti approcci che combinano le tecniche
  classiche della ricerca operativa con quelle della programmazione per vincoli.
 \end_layout
 
@@ -7814,8 +7817,8 @@ La formulazione precedente non considera una distanza temporale minima che
  Tale distanza minima, se piccola, potrebbe causare un effetto di propagazione
  a catena dei ritardi delle fermate assegnate allo stesso gate e potrebbe
  richiedere una rischedulazione che coinvolge varie corse.
- La formulazione proposta in questo sottoparagrafo considera l'intervallo
- temporale più piccolo che intercorre fra due fermate sullo stesso gate.
+ La formulazione proposta in questo paragrafo considera l'intervallo temporale
+ più piccolo che intercorre fra due fermate sullo stesso gate.
  Il modello del paragrafo
 \begin_inset space ~
 \end_inset
@@ -8261,7 +8264,7 @@ key "lpsolve09website"
 \end_inset
 
  perché è un software di pubblico dominio che può essere integrato in altre
- soluzionni senza restrizioni legali.
+ soluzioni senza restrizioni legali.
  L'impiego di un risolutori è da valutare in base alle dimensioni del problema,
  alle performance attese e al budget per l'acquisto della licenza dei risolutori
  commerciali.
@@ -8278,7 +8281,7 @@ Tutti i modelli proposti hanno sono definiti a partire dal grafo
 \end_inset
 
 .
- E' quindi possibile costruire il grafo di interferenza fra le fermate mediante
+ È quindi possibile costruire il grafo di interferenza fra le fermate mediante
  l'algoritmo
 \begin_inset space ~
 \end_inset
@@ -8982,7 +8985,7 @@ azione.
 \end_inset
 
  appartiene alla classe dei grafi perfetti quindi il numero cromatico è
- uguale al numero di cricca e determinare il numero di clique di un grafo
+ uguale al numero di cricca e determinare il numero di cricca di un grafo
  d'intervallo è risolubile in tempo polinomiale.
  
 \begin_inset ERT
@@ -9951,7 +9954,7 @@ Sono nuovi servizi le corse non contemplate nella pianificazione statica.
  dalla soluzione della pianificazione statica e modificando opportunamente
  il modello per tener conto delle nuove variabili (possibili assegnamenti)
  e dei nuovi vincoli di compatibilità.
- E' possibile impiegare il metodo per la pianificazione statica generando
+ È possibile impiegare il metodo per la pianificazione statica generando
  il nuovo modello e partendo nella ricerca di una nuova soluzione da quella
  del piano statico in cui le nuove corse non sono assegnate.
 \end_layout
@@ -10018,7 +10021,7 @@ Ad ogni corsa, che ha un ora di partenza
 \end_inset
 
 .
- L'algortimo di pianificazione impiegato nell'Autostazione considera occupata
+ L'algoritmo di pianificazione impiegato nell'Autostazione considera occupata
  della piattaforma per tutto l'intervallo 
 \begin_inset Formula $[a,d]$
 \end_inset
@@ -10370,7 +10373,7 @@ name "tab:Parametri-t_1-e-t_2"
 \end_layout
 
 \begin_layout Standard
-La frequenza dei servizi, divisa per fasce orarie, è rappresentatain fig.
+La frequenza dei servizi, divisa per fasce orarie, è rappresentata in fig.
 \begin_inset space ~
 \end_inset
 
@@ -10445,7 +10448,7 @@ L'istanza reale, contente dati relativi all'autostazione di Bologna, su
  Di questi quattro, disegnati in basso nelle immagini che seguono, sono
  destinati a linee internazionali e sono escluse dalla pianificazione automatica.
  La piattaforma n.
- 10, disegnata per decima contanto le piattaforme a partire dalla n.
+ 10, disegnata per decima contando le piattaforme a partire dalla n.
  1 in alto, è stata disabilitata per tutta la giornata tipo.
  Le prime fermate iniziano ad impegnare una piattaforma alle 5.35 del mattino
  e l'ultima partenza rilascia la piattaforma alle 20.25, su un intervallo
@@ -11764,8 +11767,8 @@ Per ridurre le simmetrie si potrebbe riformulare il problema utilizzando
  una formulazione in cui i gate sia considerati in modo pressoché indistinto.
  Il problema della colorazione di grafi è infatti affrontato con successo
  impiegando formulazioni di set partitioning o set covering risolte con
- tecniche di genearazione di colonne integrate ad altri metodi per la determinaz
-ione di soluzioni intere.
+ tecniche di generazione di colonne integrate ad altri metodi per la determinazi
+one di soluzioni intere.
 \end_layout
 
 \begin_layout Standard
@@ -11843,8 +11846,8 @@ nessuna coppia di vertici adiacenti appartenga ad uno stesso gruppo (colorazione
 \end_layout
 
 \begin_layout Itemize
-le partizioni permettani di rispettare il vincolo che ogni colore assegnato
- ad ogni nodo 
+le partizioni siano scelte in modo da rispettare il vincolo che ogni colore
+ assegnato ad ogni nodo 
 \begin_inset Formula $i$
 \end_inset
 
