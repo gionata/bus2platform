@@ -2933,7 +2933,7 @@ key "babic1984aircraft,mangoubi1985oga"
 
 \end_inset
 
-, che forniscono dei tentativi di risoluzione del AGAP utilizzando i metodi
+, che forniscono dei tentativi di risoluzione dell'AGAP utilizzando i metodi
  della ricerca operativa e della modellazione mediante programmi interi.
  In questi approcci la distanza percorsa nel terminal viene considerata
  come funzione dei flussi di arrivo e partenza dei passeggeri, dei flussi
@@ -2974,7 +2974,8 @@ key "mangoubi1985oga"
 \end_inset
 
  il problema viene formulato con un modello di assegnamento quadratico che
- viene quindi linearizzato.
+ viene quindi linearizzato; le istanze provengono dalle operazioni del Toronto
+ International Airport.
  Gli autori usano un rilassamento lineare e un'euristica greedy per risolvere
  il modello, fanno notare che la risoluzione esatta di un modello di un
  assegnamento quadratico linearizzato è difficile da risolvere e non propongono
@@ -3037,14 +3038,14 @@ terio.
  Per poter utilizzare gli strumenti di risoluzione della PLI il modello
  viene ridotto ad un solo obiettivo, impiegando come funzione obiettivo
  una combinazione lineare convessa delle due precedenti.
- Per considerare il secondo obiettivo introducono delle finestre temporali
- che indicano i tempi al più presto e al più tardi in cui un volo potrebbe
- essere assegnato ad un gate.
- Costruiscono quindi un modello di assegnamento con i vincoli di associare
- tutti voli ad un gate e di non assegnare due voli che interessano la stessa
- finestra temporale ad uno stesso gate.
- Per risolvere il modello adottano un metodo basato sulla generazione di
- colonne integrata con un algoritmo euristico per la determinazione delle
+ Per considerare il secondo obiettivo gli autori introducono delle finestre
+ temporali che indicano i tempi al più presto e al più tardi in cui un volo
+ potrebbe essere assegnato ad un gate e costruiscono quindi un modello di
+ assegnamento con i vincoli di associare tutti i voli ad un gate e di non
+ assegnare due voli che interessano la stessa finestra temporale ad uno
+ stesso gate.
+ Per risolvere il modello essi adottano un metodo basato sulla generazione
+ di colonne integrata con un algoritmo euristico per la determinazione delle
  colonne iniziali e di un metodo di Branch&Bound per la determinazione della
  soluzione ottima intera, o comunque di soluzioni intere, che viene applicato
  ad un caso di studio dell'aeroporto Chiang Kai-Shek di Taiwan con 214 voli
@@ -3063,7 +3064,7 @@ key "gosling1990des,srihari1991esm,Vanderstraeten198815"
 
 \end_inset
 
- si propongono soluzioni al AGAP mediante l'uso dei sistemi esperti.
+ si propongono soluzioni all'AGAP mediante l'uso dei sistemi esperti.
  Un sistema esperto è un programma per il supporto alle decisioni basato
  sulla conoscenza delle regole del sistema che cerca di riprodurre le prestazion
 i di una o più persone esperte in un determinato campo di attività, in questo
@@ -3083,8 +3084,9 @@ key "cheng1997kba"
 
 \end_inset
 
- viene proposta l'integrazione di un sistema esperto con la programmazione
- matematica.
+ viene proposta l'integrazione di un sistema esperto con  una procedura
+ euristica di assegnamento.
+ .
 \end_layout
 
 \begin_layout Standard
@@ -3133,13 +3135,17 @@ key "yan2002sfe"
  viene proposto un framework di simulazione che non solo è in grado di analizzar
 e gli effetti dei ritardi stocastici dei voli sull'assegnamento statico
  dei gate, ma permette inoltre di valutare di quanto l'introduzione di buffer
- di tempo migliori la robustezza delle soluzioni.
+ temporali migliori la robustezza delle soluzioni.
  Tale simulazione è applicata al caso dell'aeroporto Chiang Kai-Shek di
  Taiwan per valutare le prestazioni degli assegnamenti statici.
 \end_layout
 
 \begin_layout Standard
-Dal momento che il problema è NP-hard (si veda, ad esempio
+Dal momento che il problema è 
+\begin_inset Formula $\mathcal{NP}$
+\end_inset
+
+-hard (si veda, ad esempio
 \begin_inset space ~
 \end_inset
 
@@ -3150,7 +3156,7 @@ key "yan1998nmg"
 
 \end_inset
 
-) , molti ricercatori cercarono approcci euristici diversi per facilitare
+) , molti ricercatori hanno cercato approcci euristici diversi per facilitare
  il processo di risoluzione.
  In
 \begin_inset space ~
@@ -3163,9 +3169,20 @@ key "haghani1998oga"
 
 \end_inset
 
- viene proposta un'euristica che assegna i voli con più passeggeri ai gate
- che sono più vicini, quando non c'è sovrapposizione temporale degli intervalli
- di occupazione del gate.
+ il GAP è modellato come un QAP (così come in
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bolat2000ppr"
+
+\end_inset
+
+) e viene proposta un'euristica che assegna i voli con più passeggeri ai
+ gate che sono più vicini, quando non c'è sovrapposizione temporale degli
+ intervalli di occupazione del gate.
  In
 \begin_inset space ~
 \end_inset
@@ -3177,10 +3194,9 @@ key "xu2001airport"
 
 \end_inset
 
- viene proposta una metaeuristica Tabu Search per il AGAP.
- Il loro algoritmo sfrutta le particolari proprietà del vicinato e adotta
- una strategia efficace per la gestione della lista delle soluzioni candidate
- ad essere migliorate.
+ viene proposta una metaeuristica Tabu Search per l'AGAP; questo algoritmo
+ sfrutta le particolari proprietà del vicinato e adotta una strategia efficace
+ per la gestione della lista delle soluzioni candidate ad essere migliorate.
 \end_layout
 
 \begin_layout Standard
@@ -3198,44 +3214,18 @@ Da qui in poi parte una specie di ripetizione...
 \end_layout
 
 \begin_layout Standard
-Il problema nel caso degli aeroporti è stato affrontato a partire dalla
- metà degli anni 1980 e l'obiettivo considerato principale è minimizzare
- la distanza totale percorsa a piedi dai passeggeri nel terminal.
- In
+Tra gli altri lavori va ricordato
 \begin_inset space ~
 \end_inset
 
 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "mangoubi1985oga"
-
-\end_inset
-
- si propone una tecnica di soluzione esatta che fa uso di un modello di
- programmazione lineare intera, di cui risolvono il rilassamento lineare,
- e di un'euristica greedy.
- Le istanze provengono dalle operazioni del Toronto International Airport.
- In
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand citet
-key "hamzawi1986map"
-
-\end_inset
-
- viene presentato uno dei primi lavori che fa uso di calcolatori elettronici
- per la pianificazione dei gate e in
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Brazile1988"
 
 \end_inset
 
- è proposto un sistema esperto 
+, in cui è proposto un sistema esperto 
 \begin_inset Note Note
 status open
 
@@ -3245,75 +3235,36 @@ realizzato in Prolog
 
 \end_inset
 
- che opera in due fasi.
- La prima fase consiste nel generare quotidianamente i piani di assegnamento.
- La seconda fase consiste nel modificare i piani in tempo reale cercando
- di effettuare il minor numero di riassegnamenti.
- Con
+ che opera in due fasi: la prima fase consiste nel generare quotidianamente
+ i piani di assegnamento, la seconda fase consiste nel modificare i piani
+ in tempo reale cercando di effettuare il minor numero di riassegnamenti.
+ Degni di nota sono pure
 \begin_inset space ~
 \end_inset
 
- si introduce un'altra delle prime applicazioni in questo settore.
- In
+
 \begin_inset CommandInset citation
 LatexCommand citet
 key "srihari1991esm"
 
 \end_inset
 
- si presenta una rassegna sui sistemi esperti.
- In 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "cheng1997kba"
-
-\end_inset
-
- si presenta l'integrazione di un sistema rule-based con una procedura euristica
- di assegnamento.
- 
+, in cui si presenta una rassegna sui sistemi esperti; 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "yan1998nmg"
 
 \end_inset
 
- utilizzano invece un modello di ottimizzazione su rete.
- In 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "haghani1998oga"
-
-\end_inset
-
- e in 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bolat2000ppr"
-
-\end_inset
-
- il GAP è modellato come un QAP.
- In
-\begin_inset CommandInset citation
-LatexCommand citet
-key "yan2001omo"
-
-\end_inset
-
- si considerano in funzione obiettivo anche i tempi di attesa dei passeggeri,
- attraverso una formulazione di programmazione zero-uno multi-obiettivo.
- Si presenta un framework di simulazione, testato sui dati dell'aeroporto
- di Taipei, che analizza gli effetti dei ritardi stocastici dei voli.
- In 
+, in cui si utilizza invece un modello di ottimizzazione su rete;
 \begin_inset CommandInset citation
 LatexCommand citet
 key "lim2005ags"
 
 \end_inset
 
- viene introdotto il concetto di finestre temporali nella modellazione del
- GAP.
+, in cui viene introdotto il concetto di finestre temporali nella modellazione
+ del GAP.
 \end_layout
 
 \begin_layout Standard
@@ -3340,7 +3291,11 @@ aggiungere descrizione.
 \end_inset
 
 .
- In 
+ In
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lim2005"
@@ -3356,7 +3311,11 @@ key "Lim2005"
 
 \begin_layout Standard
 La letteratura scientifica ha proposto, ad oggi, pochi lavori sul real-time
- recovery degli assegnamenti, ad eccezione di 
+ recovery degli assegnamenti, ad eccezione di
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Blanco2003,Tang2010"
@@ -3505,7 +3464,7 @@ dove:
 \end_inset
 
  è la distanza che devono percorrere i passeggeri in partenza dal banco
- di check-in al fate 
+ di check-in al gate 
 \begin_inset Formula $j$
 \end_inset
 
@@ -3555,8 +3514,7 @@ e a due voli distinti.
 \end_layout
 
 \begin_layout Standard
-Il modello include due vincoli.
- L'equazione
+Il modello include due vincoli: l'equazione
 \begin_inset space ~
 \end_inset
 
@@ -3567,9 +3525,8 @@ reference "eq:vincolo_assegnamento_0-3"
 
 \end_inset
 
- è il vincolo che impone che a ogni aereo di essere assegnato ad un solo
- gate.
- L'equazione
+ è il vincolo che impone a ogni aereo di essere assegnato ad un solo gate,
+ mentrel'equazione
 \begin_inset space ~
 \end_inset
 
@@ -3580,7 +3537,7 @@ reference "eq:vincolo_compatibilita_bus_0-3"
 
 \end_inset
 
- è il vincolo che impone che duo o più velivoli non possono essere assegnati
+ è il vincolo che impone che due o più velivoli non possono essere assegnati
  allo stesso gate se i loro tempi di occupazione si sovrappongono 
 \end_layout
 
@@ -3750,31 +3707,46 @@ In un grafo orientato, un arco
 \end_layout
 
 \begin_layout Standard
-In un grafo non orientato il grado di un vertice è il numero di archi che
- da esso si dipartono
+Un grafo completo è un grafo che ha un arco tra ogni coppia di vertici.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Il numero di archi di un grafo completo è 
+\begin_inset Formula $|E|=\frac{|V|^{2}-|V|}{2}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+In un grafo non orientato il grado di un vertice è il numero di archi che
+ da esso si dipartono.
+\end_layout
+
+\begin_layout Plain Layout
 In un grafo orientato il grado entrante (uscente) di un vertice è il numero
  di archi incidenti in (da) esso.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 In un grafo orientato il grado di un vertice è la somma del suo grado entrante
  e del suo grado uscente.
 \end_layout
 
-\begin_layout Standard
-In alcuni casi ogni arco ha un peso (o costo) associato.
- Il costo può essere determinato tramite una funzione di costo, 
-\begin_inset Formula $c:E\rightarrow\mathbb{R}$
 \end_inset
 
-, dove 
-\begin_inset Formula $\mathbb{\mathbb{R}}$
-\end_inset
 
- è l’insieme dei numeri reali (o interi).
 \end_layout
 
 \begin_layout Standard
@@ -3820,15 +3792,6 @@ Il sottografo di
 
  tale che 
 \begin_inset Formula $E^{*}={(w,v)\in E|w,v\in V^{*}}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Un grafo completo è un grafo che ha un arco tra ogni coppia di vertici.
- Il numero di archi di un grafo completo è 
-\begin_inset Formula $|E|=\frac{|V|^{2}-|V|}{2}$
 \end_inset
 
 .
@@ -3946,7 +3909,7 @@ Il numero cromatico di
 \begin_inset Formula $G$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -3966,6 +3929,10 @@ Il grafo complementare di
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Un grafo non orientato 
 \begin_inset Formula $G=(V,E)$
 \end_inset
@@ -3986,6 +3953,11 @@ Un grafo non orientato
 \end_inset
 
  ed è 2-colorabile.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4010,7 +3982,7 @@ In generale per un grafo valgono le disequazioni
 \end_layout
 
 \begin_layout Standard
-Il grafo 
+Un grafo 
 \begin_inset Formula $G=(V,\, E)$
 \end_inset
 
@@ -4023,7 +3995,105 @@ Il grafo
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Il grafo 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+ è un grafo d'intervallo in quanto rappresenta l'intersezione di un multiinsieme
+ d'intervalli definiti sulla retta reale.
+ Ogni intervallo del multiinsieme corrisponde ad un vertice e due vertici
+ sono connessi da un lato se e solo se gli intervalli corrispondenti hanno
+ intersezione non vuota.
+ Il numero minimo di livelli necessari e sufficienti per disegnare gli intervall
+i senza sovrapposizioni corrisponde alla dimensione della cricca massima.
+ Sia 
+\begin_inset Formula $\mathcal{Q}_{G}$
+\end_inset
+
+ l'insieme di tutte le cricca massimali distinte.
+ Il grafo si può esprimere come il grafo unione delle cricca massimali:
  
+\begin_inset Formula $G=\cup_{Q\in\mathcal{Q}_{G}}Q$
+\end_inset
+
+ .
+ Si noti che il numero di cricche massimali di un grafo d'intervallo è minore
+ o uguale alla cardinalità dell'insieme dei nodi.
+ Il problema della ricerca di tutte le cricca massimali di un grafo d'intervallo
+ è un problema polinomiale.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Data una rappresentazione per intervalli di un grafo con 
+\begin_inset Formula $n$
+\end_inset
+
+ vertici, sia la sequenza ordinata degli estremi 
+\begin_inset Formula $d_{1},d_{2},\ldots,d_{2n}$
+\end_inset
+
+ con 
+\begin_inset Formula $d_{i}<d_{j}$
+\end_inset
+
+ per 
+\begin_inset Formula $1\leq i<j\leq2n$
+\end_inset
+
+.
+ Tutti gli intervalli che hanno intersezione non nulla con l'intervallo
+ aperto 
+\begin_inset Formula $(d_{i},d_{i+l})$
+\end_inset
+
+ formano una cricca massimale se e solo se 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ è un estremo sinistro e 
+\begin_inset Formula $d_{i+l}$
+\end_inset
+
+ è un estremo destro, non necessariamente dello stesso intervallo.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I grafi d'intervallo appartengono alla classe più generale dei cosiddetti
+ grafi perfetti, grafi per cui vale che il numero di cricca è uguale al
+ numero cromatico (
+\begin_inset Formula $\omega(G)=\chi(G)$
+\end_inset
+
+) e il numero di stabilità è uguale a quello di partizioni in cricche 
+\begin_inset Formula $\alpha(G)=k(G)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In alcuni casi ogni arco ha un peso (o costo) associato.
+ Il costo può essere determinato tramite una funzione di costo, 
+\begin_inset Formula $c:E\rightarrow\mathbb{R}$
+\end_inset
+
+, dove 
+\begin_inset Formula $\mathbb{\mathbb{R}}$
+\end_inset
+
+ è l’insieme dei numeri reali (o interi).
 \end_layout
 
 \begin_layout Section
@@ -4044,17 +4114,21 @@ Problema
 \end_layout
 
 \begin_layout Standard
-Il gestore di un'autostazione potrebbe richiedere che il piano di assegnamento
- fermate-piattaforme occupi durante, l'orizzonte di pianificazione il numero
- minimo possibile di piattaforme.
- Una politica di gestione che considera questo obiettivo permette di ridurre
- le spese di gestione ed eventualmente di produrre ulteriore profitto.
+Il gestore di un'autostazione potrebbe desiderare che il piano di assegnamento
+ autobus-piattaforme sia realizzato in modo da minimizzare il numero complessivo
+ di piattaforme impegnate in una giornata.
+ Una politica di gestione che considera questo obiettivo è motivata dall'esigenz
+a di utilizzare in modo effficiente l'area del piazzale dell'autostazione,
+ aumentando la densità di servizi, che può portare ad una riduzione delle
+ spese di gestione delle piattaforme ed eventualmente può produrre ulteriore
+ profitto.
  Il maggiore profitto si può ottenere accogliendo un numero maggiore di
  servizi fino a saturare la capacità dell'autostazione o con l'affitto delle
  piattaforme inutilizzate ad altri operatori di trasporto.
- Tale politica di gestione permette di utilizzare al massimo l'area del
- piazzale dell'autostazione, aumentando la densità di servizi, anche se
- la soluzione prodotta potrebbe essere poco robusta.
+ La scelta di tale obiettivo è motivata, inoltre, dal fatto che le piattaforme
+ non utilizzate possono essere impiegate per scali di servizi e soste di
+ veicoli.
+ Tale svantaggio però ha lo svantaggio di determinare piani poco robusti.
  Il software GatePlanner di Pluservice (si veda il paragrafo
 \begin_inset space ~
 \end_inset
@@ -4066,11 +4140,9 @@ reference "sub:GatePlanner"
 
 \end_inset
 
-), infatti, considera come obiettivo quello di minimizzare il numero di
- piattaforme in uso durante una giornata.
- La scelta di tale obiettivo è motivata, inoltre, dal fatto che le piattaforme
- non utilizzate possono essere impiegate per scali di servizi e soste di
- veicoli.
+), ad esempio, considera come obiettivo quello di minimizzare il numero
+ di piattaforme in uso durante una giornata.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4158,10 +4230,27 @@ reference "fig:gruppo-bis"
 
 \begin_layout Standard
 Si vuole formalizzare matematicamente il problema identificato dagli analisti
- della società Pluservice, che può essere descritto come segue:
+ della società Pluservice, che può essere descritto come in figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Descrizione-del-problema"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \begin_inset Box Boxed
 position "t"
 hor_pos "c"
@@ -4209,11 +4298,11 @@ compatibilità con le corse;
 \end_deeper
 \begin_layout Itemize
 una relazione fra corse, che associa ad una corsa l'eventuale corsa bis
- immediatamente successiva.
+ immediatamente successiva
 \end_layout
 
 \begin_layout Plain Layout
-Determinare un assegnamento delle corse alle piattaforme tale che:
+determinare un assegnamento delle corse alle piattaforme tale che:
 \end_layout
 
 \begin_layout Enumerate
@@ -4296,8 +4385,76 @@ renda minimo il numero di piattaforme che sono assegnate ad almeno una corsa.
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Descrizione del problema
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Descrizione-del-problema"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-I vincoli 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{img/rel_comp_dir_sim}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Relazioni di compatibilità fra corse e piattaforme
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:compatibilita"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nella figura i vincoli 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4313,8 +4470,8 @@ piattaforma
 \begin_inset Quotes erd
 \end_inset
 
- del software GatePlanner sono stati fusi in una relazione di compatibilità
- dall'insieme delle corse a quello delle piattaforme e i vincoli 
+ del software GatePlanner sono stati raggruppati in un'unica relazione di
+ compatibilità fra le corse e piattaforme, così come i vincoli 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4330,18 +4487,345 @@ abilitazione
 \begin_inset Quotes erd
 \end_inset
 
- in una relazione di compatibilità fra piattaforme e corse.
- Queste relazioni asimmetriche possono essere fuse in un unico concetto
- di relazione di compatibilità tra corse e piattaforme che è valida quando
- sono soddisfatte entrambe le compatibilità precedenti.
+ sono descritti da una relazione di compatibilità fra piattaforme e corse.
+ Per descrivere la regione ammissibile del problema è conveniente disporre
+ di una sola relazione di compatibilità che si può determinare andando a
+ verificare, per ogni possibile coppia corsa-piattaforma, se sono soddisfatti
+ tutti i vincoli.
+ Nella figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:compatibilita"
+
+\end_inset
+
+ viene mostrato il caso di una corsa, la numero
+\begin_inset space ~
+\end_inset
+
+1, che soddisfa i vincoli 
+\begin_inset Quotes eld
+\end_inset
+
+autosnodati
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+piattaforma
+\begin_inset Quotes erd
+\end_inset
+
+ se assegnata alle piattaforme
+\begin_inset space ~
+\end_inset
+
+1 e
+\begin_inset space ~
+\end_inset
+
+2, e rispetta i vincoli 
+\begin_inset Quotes eld
+\end_inset
+
+linea
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+abilitazione
+\begin_inset Quotes erd
+\end_inset
+
+ se assegnata alle piattaforme
+\begin_inset space ~
+\end_inset
+
+1 e
+\begin_inset space ~
+\end_inset
+
+3.
+ In tale esempio, quindi, esiste una sola relazione di compatibità che coinvolge
+ la corsa
+\begin_inset space ~
+\end_inset
+
+1 e la piattaforma
+\begin_inset space ~
+\end_inset
+
+1.
 \end_layout
 
 \begin_layout Standard
-Il problema decisionale del list-coloring di un grafo degli intervalli è
- il seguente:
+Per formulare il problema su grafo si considerino l'insieme delle piattaforme
+ 
+\begin_inset Formula $C=\{c_{1},\,\ldots,\, c_{m}\}$
+\end_inset
+
+, l'insieme delle corse 
+\begin_inset Formula $V=\{v_{1},\,\ldots,\, v_{n}\}$
+\end_inset
+
+, per ogni corsa 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+, i tempi 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ e 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ estremi dell'intervallo di occupazione di una piattaforma e la lista 
+\begin_inset Formula $L(v_{i})$
+\end_inset
+
+ delle piattaforme compatibili con la corsa 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+.
+ L'intervallo 
+\begin_inset Formula $(a_{i},\, d_{i})$
+\end_inset
+
+ definisce l'intervallo di occupazione di una piattaforma da parte della
+ corsa 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+.
+ Due corse 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+ e 
+\begin_inset Formula $v_{j}$
+\end_inset
+
+ i cui intervalli temporali di occupazione del gate si sovrappongono non
+ possono essere assegnati alla stessa piattaforma.
+ Sia 
+\begin_inset Formula $G=(V,\, E)$
+\end_inset
+
+ il grafo d'interferenza delle corse, avente 
+\begin_inset Formula $V$
+\end_inset
+
+ come insieme dei nodi.
+ Le relazioni espresse dagli archi 
+\begin_inset Formula $E$
+\end_inset
+
+ sono le 
+\emph on
+interferenze
+\emph default
+ fra le corse: due nodi sono adiacenti se e solo se gli intervalli temporali
+ di occupazione di una piattaforma da parte delle corse rappresentate dai
+ vertici abbiano intersezione non vuota.
+ Il grafo non è orientato e gli archi 
+\begin_inset Formula $(v_{i},\, v_{j})\in E$
+\end_inset
+
+ sono le coppie non ordinate 
+\begin_inset Formula $v_{i}\in V,\, v_{j}\in V\,:\,(a_{i},\, d_{i})\cap(a_{j},\, d_{j})\neq\emptyset$
+\end_inset
+
+.
+ Tale grafo è una rappresentazione di un insieme d'intervalli e appartiene
+ alla classe dei 
+\emph on
+grafi d'intervallo
+\emph default
+.
+ Un grafo d'intervallo è un 
+\emph on
+grafo perfetto
+\emph default
+ per cui il numero cromatico 
+\begin_inset Formula $\chi$
+\end_inset
+
+ è uguale alla dimensione della cricca massima 
+\begin_inset Formula $\omega$
+\end_inset
+
+.
+ Sia 
+\begin_inset Formula $\mathcal{Q}=[Q_{1},Q_{2},\ldots,Q_{r}]$
+\end_inset
+
+ una decomposizione in cricche massimali costruita in modo che la matrice
+ delle cricche sia ordinata secondo la 
+\emph on
+consecutive one property (C1P)
+\emph default
+ (si veda
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "golumbic2004algorithmic"
+
+\end_inset
+
+).
+ L'ordinamento delle cricche massimali non è influente nella formulazione
+ ma permette di sviluppare metodi efficienti di soluzione.
+ Ogni elemento 
+\begin_inset Formula $Q_{t}$
+\end_inset
+
+ contiene l'insieme delle fermate incompatibili fra loro e per la modellizzazion
+e e la risoluzione del problema è possibile non considerare gli insiemi
+ di cardinalità 1 (nodi isolati).
+ Le componenti e l'ordinamento del vettore 
+\begin_inset Formula $\mathcal{Q}$
+\end_inset
+
+ possono essere determinate in tempo polinomiale 
+\begin_inset Formula $O(n\log n)$
+\end_inset
+
+ usando algoritmi come quello descritto in
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wang1994"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
+Ogni allocazione delle piattaforme ammissibile corrisponde ad una colorazione
+ propria dei nodi del grafo in cui il colore assegnato al nodo sia compatibile
+ col nodo stesso, e viceversa.
+ Il problema decisionale del list-coloring di un grafo degli intervalli
+ è descritto in figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Problema-di-list-coloring"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "90col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Dati
+\end_layout
+
+\begin_layout Itemize
+un grafo d'intervallo 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+un insieme di colori 
+\begin_inset Formula $C$
+\end_inset
+
+ e
+\end_layout
+
+\begin_layout Itemize
+una famiglia di insiemi (liste di compatibilità) 
+\begin_inset Formula $\left\{ L(i)\right\} _{i\in V}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+determinare il colore di ogni vertice 
+\begin_inset Formula $i\in V$
+\end_inset
+
+ tale che
+\end_layout
+
+\begin_layout Itemize
+nessuna coppia di vertici adiacenti abbia lo stesso colore (colorazione
+ propria),
+\end_layout
+
+\begin_layout Itemize
+il colore assegnato ad ogni nodo 
+\begin_inset Formula $i\in V$
+\end_inset
+
+ sia presente nella lista di compatibilità 
+\begin_inset Formula $L(i)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+e che
+\end_layout
+
+\begin_layout Itemize
+il numero di colori distinti usati sia minimo.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Box Boxed
 position "t"
 hor_pos "c"
@@ -4429,156 +4913,58 @@ il numero di colori distinti usati sia minore o uguale a
 
 \end_layout
 
-\begin_layout Standard
-Per modellare il problema si considerino l'insieme delle piattaforme 
-\begin_inset Formula $C=\{c_{1},\,\ldots,\, c_{m}\}$
 \end_inset
 
-, l'insieme delle fermate dei bus da pianificare 
-\begin_inset Formula $V=\{v_{1},\,\ldots,\, v_{n}\}$
-\end_inset
 
-, e, per ogni fermata 
-\begin_inset Formula $v_{i}$
-\end_inset
-
-, i tempi 
-\begin_inset Formula $a_{i}$
-\end_inset
-
- tempo di inizio fermata programmato del bus 
-\begin_inset Formula $i$
-\end_inset
-
- (scheduled arriving time) e 
-\begin_inset Formula $d_{i}$
-\end_inset
-
- tempo di fine fermata schedulato del bus 
-\begin_inset Formula $i$
-\end_inset
-
- (scheduled departured time) e la lista 
-\begin_inset Formula $L(v_{i})$
-\end_inset
-
- delle piattaforme compatibili con la fermata 
-\begin_inset Formula $v_{i}$
-\end_inset
-
-.
- L'intervallo 
-\begin_inset Formula $(a_{i},\, d_{i})$
-\end_inset
-
- definisce l'intervallo di occupazione di una piattaforma da parte della
- fermata 
-\begin_inset Formula $v_{i}$
-\end_inset
-
-.
- Due fermate 
-\begin_inset Formula $v_{i}$
-\end_inset
-
- e 
-\begin_inset Formula $v_{j}$
-\end_inset
-
- i cui intervalli temporali di occupazione del gate si sovrappongono, necessaria
-mente non possono essere assegnati alla stessa piattaforma.
- Sia 
-\begin_inset Formula $G=(V,\, E)$
-\end_inset
-
- il grafo di interferenza delle fermate, avente 
-\begin_inset Formula $V$
-\end_inset
-
- insieme dei nodi e 
-\begin_inset Formula $E$
-\end_inset
-
- insieme degli archi, costruito in modo che esiste un arco da ogni fermata
- ad ogni altra fermata tale che gli intervalli temporali abbiano intersezione
- non vuota.
- Il grafo non è orientato e gli archi 
-\begin_inset Formula $(v_{i},\, v_{j})\in E$
-\end_inset
-
- sono le coppie non ordinate 
-\begin_inset Formula $v_{i}\in V,\, v_{j}\in V\,:\,(a_{i},\, d_{i})\cap(a_{j},\, d_{j})\neq\emptyset$
-\end_inset
-
-.
- Tale grafo è una rappresentazione di un insieme di intervalli e appartiene
- alla classe dei grafi d'intervallo.
- Si ricorda che un grafo d'intervallo è un grafo perfetto per cui il numero
- cromatico 
-\begin_inset Formula $\chi$
-\end_inset
-
- è uguale alla dimensione della cricca massima 
-\begin_inset Formula $\omega$
-\end_inset
-
-.
- Sia 
-\begin_inset Formula $\mathcal{Q}=[Q_{1},Q_{2},\ldots,Q_{r}]$
-\end_inset
-
- una decomposizione in cricche massimali costruita in modo che la matrice
- delle cricche sia ordinata secondo la consecutive one property (C1P).
- L'ordinamento può essere sfruttato efficientemente per potare l'albero
- di ricerca in modo da evitare l'esplorazione di stati 
-\begin_inset Note Note
-status open
+\end_layout
 
 \begin_layout Plain Layout
+\begin_inset Caption
 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\noun off
-\color none
-delle spazio di ricerca
+\begin_layout Plain Layout
+Problema di list-coloring
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Problema-di-list-coloring"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
 
- già esplorati.
- Ogni elemento 
-\begin_inset Formula $Q_{t}$
+
+\end_layout
+
 \end_inset
 
- contiene l'insieme delle fermate incompatibili fra loro e per la modellizzazion
-e e la risoluzione del problema è possibile non considerare gli insiemi
- di cardinalità 1 (nodi isolati).
- Le componenti e l'ordinamento del vettore 
-\begin_inset Formula $\mathcal{Q}$
+
+\end_layout
+
+\begin_layout Standard
+Se si rilassa il vincolo 
+\begin_inset Quotes eld
 \end_inset
 
- possono essere determinate in tempo polinomiale 
-\begin_inset Formula $O(n\log n)$
+corse bis
+\begin_inset Quotes erd
 \end_inset
 
- usando algoritmi come quello descritto in
+, il problema di assegnamento degli autobus alle piattaforme descritto in
+ figura
 \begin_inset space ~
 \end_inset
 
 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Wang1994"
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Descrizione-del-problema"
 
 \end_inset
 
-.
- Il problema di assegnamento dei veicoli alle piattaforme è esprimibile
- come problema di list-coloring definito sul grafo d'intervallo 
+ è formulabile come problema di list-coloring definito sul grafo d'intervallo
+ 
 \begin_inset Formula $G=(V,\, E)$
 \end_inset
 
@@ -4599,17 +4985,11 @@ key "Wang1994"
 \end_inset
 
  la lista di compatibilità.
- Ogni fermata corrisponde ad un vertice e ogni piattaforma ad un colore.
+ 
 \end_layout
 
-\begin_layout Standard
-Ogni allocazione delle piattaforme ammissibile corrisponde ad una colorazione
- propria dei nodi del grafo in cui il colore assegnato al nodo sia compatibile
- col nodo stesso, e viceversa.
-\end_layout
-
-\begin_layout Paragraph
-Esempio
+\begin_layout Subsection*
+Esempio di formulazione
 \end_layout
 
 \begin_layout Standard
@@ -4621,8 +5001,8 @@ reference "tab:fermate_e_compatibilita"
 
 \end_inset
 
-, in cui i numeri identificanti i servizi sono ordinati per tempo di inizio
- dell'intervallo di fermata.
+, in cui i numeri che identificano i servizi sono ordinati per tempo di
+ inizio dell'intervallo di fermata.
  
 \end_layout
 
@@ -5069,92 +5449,9 @@ reference "fig:Intervalli-temporali"
  siano presenti sovrapposizioni.
  La disposizione sui livelli rappresenterebbe una possibile soluzione al
  problema se tutte le fermate fossero compatibili con tutte le piattaforme.
- A partire dagli intervalli è possibile costruire un grafo in cui ad ogni
- intervallo corrisponde un vertice ed esiste un lato se due intervalli hanno
- intersezione non vuota.
- Il grafo 
-\begin_inset Formula $G=(V,E)$
-\end_inset
-
- è un grafo d'intervallo in quanto rappresenta l'intersezione di un multiinsieme
- d'intervalli definiti sulla retta reale.
- Ogni intervallo del multiinsieme corrisponde ad un vertice e due vertici
- sono connessi da un lato se e solo se gli intervalli corrispondenti hanno
- intersezione non vuota.
- Il numero minimo di livelli necessari e sufficienti per disegnare gli intervall
-i senza sovrapposizioni corrisponde alla dimensione della cricca massima.
- Sia 
-\begin_inset Formula $\mathcal{Q}_{G}$
-\end_inset
-
- l'insieme di tutte le cricca massimali distinte.
- Il grafo si può esprimere come il grafo unione delle cricca massimali:
- 
-\begin_inset Formula $G=\cup_{Q\in\mathcal{Q}_{G}}Q$
-\end_inset
-
- .
- Si noti che il numero di cricca massimali di un grafo d'intervallo è minore
- o uguale alla cardinalità dell'insieme dei nodi.
- Il problema della ricerca di tutte le cricca massimali di un grafo d'intervallo
- è un problema polinomiale.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Data una rappresentazione per intervalli di un grafo con 
-\begin_inset Formula $n$
-\end_inset
-
- vertici, sia la sequenza ordinata degli estremi 
-\begin_inset Formula $d_{1},d_{2},\ldots,d_{2n}$
-\end_inset
-
- con 
-\begin_inset Formula $d_{i}<d_{j}$
-\end_inset
-
- per 
-\begin_inset Formula $1\leq i<j\leq2n$
-\end_inset
-
-.
- Tutti gli intervalli che hanno intersezione non nulla con l'intervallo
- aperto 
-\begin_inset Formula $(d_{i},d_{i+l})$
-\end_inset
-
- formano una cricca massimale se e solo se 
-\begin_inset Formula $d_{i}$
-\end_inset
-
- è un estremo sinistro e 
-\begin_inset Formula $d_{i+l}$
-\end_inset
-
- è un estremo destro, non necessariamente dello stesso intervallo.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-I grafi d'intervallo appartengono alla classe più generale dei cosiddetti
- grafi perfetti, grafi per cui vale che il numero di cricca è uguale al
- numero cromatico (
-\begin_inset Formula $\omega(G)=\chi(G)$
-\end_inset
-
-) e il numero di stabilità è uguale a quello di partizioni in cricche 
-\begin_inset Formula $\alpha(G)=k(G)$
-\end_inset
-
-..
+ A partire dagli intervalli si costruisce il grafo in cui ad ogni intervallo
+ corrisponde un vertice ed esiste un lato se due intervalli hanno intersezione
+ non vuota.
 \end_layout
 
 \begin_layout Standard
