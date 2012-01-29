@@ -1,13 +1,8 @@
-%%%
-\documentclass{article}
-%%%
-\usepackage[x11names, rgb]{xcolor}
-%%%
-\usepackage{tikz}
-%%%
-\usetikzlibrary{decorations,arrows,shapes}
-%%%
-\begin{document}
+%%%\documentclass{article}
+%%%\usepackage[x11names, rgb]{xcolor}
+%%%\usepackage{tikz}
+%%%\usetikzlibrary{decorations,arrows,shapes}
+%%%\begin{document}
 %%%
 % Start of code
 \begin{tikzpicture}[>=latex',join=bevel,scale=0.5]
@@ -19,40 +14,52 @@
 %
 \begin{scope}
   \pgfsetstrokecolor{black}
-  \draw[thick,red] (8bp,102bp) -- (8bp,382bp) -- (92bp,382bp) -- (92bp,102bp) -- cycle;
+  \draw[thick,lightgray] (8bp,102bp) -- (8bp,382bp) -- (92bp,382bp) -- (92bp,102bp) -- cycle;
   \draw (50bp,370bp) node {Corsa};
 \end{scope}
 \begin{scope}
   \pgfsetstrokecolor{black}
-  \draw[thick,blue] (112bp,102bp) -- (112bp,382bp) -- (196bp,382bp) -- (196bp,102bp) -- cycle;
-  \draw (154bp,370bp) node {Piatt.};
+  \draw[thick,lightgray] (103bp,102bp) -- (103bp,382bp) -- (205bp,382bp) -- (205bp,102bp) -- cycle;
+  \draw (154bp,370bp) node {Piattaforma};
 \end{scope}
   \node (1) at (50bp,316bp) [draw,circle] {$1$};
-  \node (2) at (50bp,230bp) [draw,circle] {$2$};
-  \node (3) at (50bp,144bp) [draw,circle] {$3$};
-  \node (4) at (154bp,316bp) [draw,circle,fill=c1,opacity=0.7] {$1$};
-  \node (5) at (154bp,230bp) [draw,circle,fill=c2,opacity=0.7] {$2$};
-  \node (6) at (154bp,144bp) [draw,circle,fill=c3,opacity=0.7] {$3$};
+%   \node (2) at (50bp,230bp) [draw,circle] {$2$};
+   \node (2) at (50bp,230bp)  {\vdots};
+%   \node (3) at (50bp,144bp) [draw,circle] {$3$};
+  \node (4) at (154bp,316bp) [draw] {$1$};
+  \node (5) at (154bp,230bp) [draw] {$2$};
+  \node (6) at (154bp,144bp) [draw] {$3$};
 
   \draw (154bp,316bp) node {$1$};
   \draw (154bp,230bp) node {$2$};
   \draw (154bp,144bp) node {$3$};
 
-  \path[->] (1.north east) edge (4);
-  \path[] (1) edge (5);
-  \path[] (2) edge (4);
-  \path[] (2) edge (6);
-  \path[] (3) edge (4);
-  \path[] (3) edge (5);
-  \path[] (3) edge (6);
 
+% 1 -- 1
+  \path[red,dashed,->] (1.north east) edge [in=135, out=45] (4.north west);
+  \path[blue,dotted,->] (4.south west) edge [in=315, out=225] (1.south east);
   \path[] (1) edge (4);
-  \path[] (1) edge (5);
-  \path[] (2) edge (4);
-  \path[] (2) edge (6);
-  \path[] (3) edge (4);
-  \path[] (3) edge (5);
-  \path[] (3) edge (6);
+
+% 1 -> 2
+  \path[red,dashed,->] (1.south east) edge [in=180, out=315] (5.west);
+
+% 3 -> 1
+  \path[blue,dotted,->] (6.west) edge  [out=180, in=270] (1.south);
+
+
+ % \path[] (1) edge  (5);
+%  \path[] (2) edge (4);
+%  \path[] (2) edge (6);
+%  \path[] (3) edge (4);
+%  \path[] (3) edge (5);
+%  \path[] (3) edge (6);
+
+%  \path[] (1) edge (5);
+%  \path[] (2) edge (4);
+%  \path[] (2) edge (6);
+%  \path[] (3) edge (4);
+%  \path[] (3) edge (5);
+%  \path[] (3) edge (6);
 
 %  \draw [] (3) ..controls (92bp,265bp) and (112bp,281bp)  .. (6);
 %  \draw [] (4) ..controls (95bp,144bp) and (108bp,144bp)  .. (8);
@@ -68,6 +75,5 @@
 \end{tikzpicture}
 % End of code
 
-%%%
-\end{document}
+%%%\end{document}
 
