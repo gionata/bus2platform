@@ -534,7 +534,7 @@ La tesi è organizzata nel modo seguente.
 \end_layout
 
 \begin_layout Standard
-Il cap.
+Il Capitolo
 \begin_inset space ~
 \end_inset
 
@@ -551,7 +551,7 @@ o nel risolverlo.
 \end_layout
 
 \begin_layout Standard
-Il cap.
+Il Capitolo
 \begin_inset space ~
 \end_inset
 
@@ -570,7 +570,7 @@ reference "chap:Rassegna-bibliografica"
 \end_layout
 
 \begin_layout Standard
-Il cap.
+Il Capitolo
 \begin_inset space ~
 \end_inset
 
@@ -591,7 +591,7 @@ do vincoli addizionali per poter rappresentare le variegate situazioni che
 \end_layout
 
 \begin_layout Standard
-Il cap.
+Il Capitolo
 \begin_inset space ~
 \end_inset
 
@@ -603,7 +603,7 @@ reference "chap:Algoritmi-sviluppati"
 \end_inset
 
  illustra i metodi di risoluzione sviluppati per poter determinare delle
- buone soluzioni ai problemi proposti nel cap.
+ buone soluzioni ai problemi proposti nel Capitolo
 \begin_inset space ~
 \end_inset
 
@@ -619,7 +619,7 @@ reference "chap:Nuove-formulazioni"
 \end_layout
 
 \begin_layout Standard
-Il cap.
+Il Capitolo
 \begin_inset space ~
 \end_inset
 
@@ -637,7 +637,7 @@ reference "chap:Risultati-computazionali"
 \end_layout
 
 \begin_layout Standard
-Il cap.
+Il Capitolo
 \begin_inset space ~
 \end_inset
 
@@ -1256,6 +1256,13 @@ Sistemi di supporto alle decisioni per la gestione delle piattaforme delle
 
 \begin_layout Subsection*
 GatePlanner
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:GatePlanner"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1406,6 +1413,19 @@ corse bis
 gruppi bis
 \emph default
 .
+ Le corse di un gruppo bis, ad eccezione dell'ultima, sono poste in relazione
+ con la corsa bis immediatamente successiva, come illustrato in figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:gruppo-bis"
+
+\end_inset
+
+.
  Le piattaforme della stazione sono disposte in linea, come mostrato in
  figura.
 \begin_inset space ~
@@ -1418,7 +1438,7 @@ reference "fig:Disposizione-delle-piattaforme"
 
 \end_inset
 
- e per le autostazioni che presentano tale configuraurazione è conveniente
+ e per le autostazioni che presentano tale configurazione è conveniente
  far partire le corse bis da piattaforme adiacenti.
 \end_layout
 
@@ -1468,9 +1488,16 @@ Le corse possono essere: di linea, di linea effettuate da veicoli snodati
  Le linee possono essere compatibili solo con alcune piattaforme.
  Le piattaforme possono essere disabilitate in una o più fasce orarie e
  possono essere riservate ad uso esclusivo da alcune linee.
- L'algoritmo di pianificazione di GatePlanner, oltre ai vincoli di collocazione
- di ogni corsa e di non occupazione simultanea di una stessa piattaforma,
- considera anche i seguenti vincoli aggiuntivi:
+ L'algoritmo di pianificazione di GatePlanner considera i seguenti vincoli:
+\end_layout
+
+\begin_layout Enumerate
+ogni corsa deve essere assegnata ad una piattaforma;
+\end_layout
+
+\begin_layout Enumerate
+due corse non devono occupare una stessa piattaforma se i loro tempi di
+ fermata sono sovrapposti, anche solo parzialmente;
 \end_layout
 
 \begin_layout Enumerate
@@ -1486,32 +1513,125 @@ corse bis
  di un gruppo bis sono posizionate in ordine inverso rispetto all'orario
  di partenza.
  Tale vincolo serve a migliorare la qualità del sevizio offerto ai clienti
- e agevola le operazioni di manovra;
+ e agevola le operazioni di manovra (vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+bis
+\begin_inset Quotes erd
+\end_inset
+
+);
 \end_layout
 
 \begin_layout Enumerate
-le corse appartenenti a linee che includono almeno un veicolo snodato devono
- essere assegnate alle piattaforme che accettano mezzi snodati.
- Se una corsa con snodati ha delle corse bis allora tutte le corse del gruppo
- bis sono considerate come corse con snodati.
- Tale vincolo serve a garantire la realizzabilità della soluzione proposta;
+le corse appartenenti a linee che includono almeno un autobus articolato
+ devono essere assegnate alle piattaforme che accettano mezzi articolati.
+ Se una corsa con autosnodati ha delle corse bis allora tutte le corse del
+ gruppo bis sono considerate come corse con autosnodati.
+ Tale vincolo serve a garantire la realizzabilità della soluzione proposta
+ (vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+autosnodati
+\begin_inset Quotes erd
+\end_inset
+
+);
 \end_layout
 
 \begin_layout Enumerate
 le corse appartenenti ad una linea compatibile solo con un sottoinsieme
  di piattaforme devono essere assegnate a piattaforme appartenenti all'insieme
- dato.
+ dato (vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+piattaforma
+\begin_inset Quotes erd
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Enumerate
 le piattaforme che sono riservate ad un insieme di linee devono essere assegnate
- solo a corse appartenenti alle linee dell'insieme dato;
+ solo a corse appartenenti alle linee dell'insieme dato (vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+linea
+\begin_inset Quotes erd
+\end_inset
+
+);
 \end_layout
 
 \begin_layout Enumerate
 una corsa non deve essere assegnata ad una piattaforma se l'intervallo di
  occupazione della corsa ha intersezione non vuota con un intervallo di
- disabilitazione della piattaforma.
+ disabilitazione della piattaforma (vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+abilitazione
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{img/relazione_bis}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Rappresentazione di un 
+\emph on
+gruppo bis
+\emph default
+ e della 
+\emph on
+relazione bis
+\emph default
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:gruppo-bis"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1537,7 +1657,9 @@ reference "alg:gateplanner"
 \end_inset
 
 .
- 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -2534,7 +2656,7 @@ devono essere rispettate delle richieste di servizio e devono essere considerate
 
 \begin_layout Itemize
 un tempo minimo di occupazione del gate è da tenere in considerazione e
- deve essere garantito un altro tempo minimo prima che il prossimo velivolo
+ deve essere garantito un altro tempo minimo prima che il velivolo successivo
  possa occupare il gate.
 \end_layout
 
@@ -2551,7 +2673,7 @@ Gli obiettivi tipici considerati in letteratura sono:
 
 \begin_layout Itemize
 minimizzare il numero di velivoli non assegnati a gate (nel caso in cui
- i gate sono una risorsa scarsa);
+ i gate siano una risorsa scarsa);
 \end_layout
 
 \begin_layout Itemize
@@ -2617,8 +2739,8 @@ I modelli proposti in letteratura possono essere classificati a seconda
 Il tempo può essere gestito con delle finestre temporali, singole o multiple.
  Nel caso singolo si considera un gruppo di velivoli che arriva in quel
  periodo di tempo e si assegna ogni velivolo ad un solo gate.
- Il modello deve essere quindi risolto, indipendentemente l'uno dall'altro,
- per ogni finestra temporale.
+ Il modello deve essere quindi risolto per ogni finestra temporale, indipendente
+mente l'una dall'altra.
  Nel caso multiplo l'intero intervallo temporale di pianificazione si divide
  in più finestre di dimensione fissa e si risolve un modello multiperiodo.
  La determinazione dell'ampiezza dell'intervallo deve essere scelta accuratament
@@ -2638,7 +2760,7 @@ Molti dei modelli proposti per l'AGAP sono modelli di assegnamento quadratico,
 \begin_inset Formula $\mathcal{NP}$
 \end_inset
 
--hard, dove il costo di assegnare 
+-hard, per i quali il costo di assegnare 
 \begin_inset Formula $n$
 \end_inset
 
@@ -2658,12 +2780,12 @@ Molti dei modelli proposti per l'AGAP sono modelli di assegnamento quadratico,
 \end_layout
 
 \begin_layout Standard
-Gli autori propongono un nuovo modello, basato quello del multi-mode resource
- constraint project scheduling problem, che considera le attività di arrivo,
- parcheggio e partenza di un velivolo nel tempo, le interazioni fra voli
- e voli e tra voli e gate e una funzione obiettivo che è combinazione lineare
- convessa di più funzioni lineari che identificano distinti indici di prestazion
-e del sistema.
+Gli autori propongono un nuovo modello, basato su quello del Multi-mode
+ resource constraint project scheduling problem, che considera le attività
+ di arrivo, parcheggio e partenza di un velivolo nel tempo, le interazioni
+ fra voli e voli e tra voli e gate e una funzione obiettivo che è combinazione
+ lineare convessa di più funzioni lineari che identificano distinti indici
+ di prestazione del sistema.
  L'algoritmo proposto per la soluzione è una procedura Branch&Bound troncata.
 \end_layout
 
@@ -2716,10 +2838,10 @@ Per la soluzione del GAP in letteratura sono state proposte anche tecniche
 \begin_layout Standard
 I primi contributi scientifici sull'argomento sono dei primi anni '70 del
  secolo passato.
- Fra i primi tentativi di utilizzare metodi quantitativi sviluppati per
- aumentare l'efficienza dell'utilizzo dei gate e per di ridurre al minimo
- le distanze percorse all'interno del terminal aeroportuale di Toronto,
- sono presentati in
+ I primi tentativi di utilizzare metodi quantitativi, sviluppati per aumentare
+ l'efficienza dell'utilizzo dei gate e per di ridurre al minimo le distanze
+ percorse all'interno del terminal aeroportuale di Toronto, sono presentati
+ in
 \begin_inset space ~
 \end_inset
 
@@ -2730,7 +2852,7 @@ key "braaksma1971improving,braaksma1977reducing"
 
 \end_inset
 
-, i quali propongono come progettare i terminal aeroportuali.
+, in cui vengono proposte tecniche di progettazione dei terminal aeroportuali.
  Su questo filone il lavoro
 \begin_inset space ~
 \end_inset
@@ -2782,8 +2904,8 @@ key "wirasinghe1987airport"
 
 \end_inset
 
- introducendo altri tipi di terminal proponendo alcune linee guida per la
- progettazione dei terminal aeroportuali.
+ introducendo altri tipi di terminal e proponendo alcune linee guida per
+ la progettazione dei terminal aeroportuali.
  In
 \begin_inset space ~
 \end_inset
@@ -3933,8 +4055,19 @@ Il gestore di un'autostazione potrebbe richiedere che il piano di assegnamento
  Tale politica di gestione permette di utilizzare al massimo l'area del
  piazzale dell'autostazione, aumentando la densità di servizi, anche se
  la soluzione prodotta potrebbe essere poco robusta.
- Il software GatePlanner di Pluservice, infatti, considera come obiettivo
- quello di minimizzare il numero di piattaforme in uso durante una giornata.
+ Il software GatePlanner di Pluservice (si veda il paragrafo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "sub:GatePlanner"
+
+\end_inset
+
+), infatti, considera come obiettivo quello di minimizzare il numero di
+ piattaforme in uso durante una giornata.
  La scelta di tale obiettivo è motivata, inoltre, dal fatto che le piattaforme
  non utilizzate possono essere impiegate per scali di servizi e soste di
  veicoli.
@@ -3954,31 +4087,151 @@ Approccio
 \end_layout
 
 \begin_layout Standard
-Per questo obiettivo proponiamo:
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Per questo obiettivo proponiamo la formulazione del problema come un problema
+ di list-coloring applicato un grafo d'intervallo.
+ Per rispettare le restrizioni del problema in esame vengono altri vincoli
+ oltre a quelli di colorazione propria.
+ Il modello risultante è problema restricted-coloring.
 \end_layout
 
-\begin_layout Itemize
-la formulazione del problema come problema di restricted-coloring di un
- grafo d'intervallo;
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-un modello matematico per la risoluzione del problema di restricted-coloring;
+\begin_layout Standard
+Definiamo due corse 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+ 
+\emph on
+interferenti
+\emph default
+ se i rispettivi intervalli di occupazione di una piattaforma hanno istanti
+ in comune, ossia se 
+\begin_inset Formula $[a_{i},d_{i}]\cap[a_{j},d_{j}]\neq\emptyset$
+\end_inset
+
+, indipendentemente dal fatto che 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+ siano compatibili con una stessa piattaforma.
 \end_layout
 
-\begin_layout Itemize
-un algoritmo esatto ed efficiente (tratto da
+\begin_layout Standard
+Definiamo 
+\begin_inset Formula $bis(i)$
+\end_inset
+
+ una relazione che associa alla corsa 
+\begin_inset Formula $i$
+\end_inset
+
+, che appartiene ad un gruppo bis e non è la prima a partire, la rispettiva
+ corsa bis da cui è seguita (come in figura
 \begin_inset space ~
 \end_inset
 
 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Zeitlhofer20031411"
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:gruppo-bis"
 
 \end_inset
 
- e con l'aggiunta di vincoli locali sulle corse 
+).
+\end_layout
+
+\begin_layout Standard
+Si vuole formalizzare matematicamente il problema identificato dagli analisti
+ della società Pluservice, che può essere descritto come segue:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "90col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Standard
+Dati:
+\end_layout
+
+\begin_layout Itemize
+un insieme di corse da allocare in una giornata tipo, caratterizzate da:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+intervalli di occupazione delle piattaforme;
+\end_layout
+
+\begin_layout Itemize
+compatibilità con le piattaforme;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+un insieme di piattaforme, caratterizzate da:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+intevalli di disabilitazione;
+\end_layout
+
+\begin_layout Itemize
+compatibilità con le corse;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+una relazione fra corse, che associa ad una corsa l'eventuale corsa bis
+ immediatamente successiva.
+\end_layout
+
+\begin_layout Plain Layout
+Determinare un assegnamento delle corse alle piattaforme tale che:
+\end_layout
+
+\begin_layout Enumerate
+ogni corsa deve essere assegnata ad una piattaforma;
+\end_layout
+
+\begin_layout Enumerate
+le corse 
+\emph on
+interferenti
+\emph default
+ non devono essere assegnate ad una stessa piattaforma;
+\end_layout
+
+\begin_layout Enumerate
+le corse bis devono essere assegnate a piattaforme adiacenti, in particolare
+ le corse di un gruppo bis sono posizionate in ordine inverso rispetto all'orari
+o di partenza (vincolo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3986,11 +4239,101 @@ bis
 \begin_inset Quotes erd
 \end_inset
 
-).
+);
 \end_layout
 
-\begin_layout Subsection*
-Formulazione del problema
+\begin_layout Enumerate
+le corse devono essere assegnate a piattaforme compatibili (vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+autosnodati
+\begin_inset Quotes erd
+\end_inset
+
+, vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+piattaforma
+\begin_inset Quotes erd
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Enumerate
+le piattaforme devono essere assegnate solo a corse compatibili (vincolo
+ 
+\begin_inset Quotes eld
+\end_inset
+
+linea
+\begin_inset Quotes erd
+\end_inset
+
+, vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+abilitazione
+\begin_inset Quotes erd
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Plain Layout
+e che
+\end_layout
+
+\begin_layout Itemize
+renda minimo il numero di piattaforme che sono assegnate ad almeno una corsa.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I vincoli 
+\begin_inset Quotes eld
+\end_inset
+
+autosnodati
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+piattaforma
+\begin_inset Quotes erd
+\end_inset
+
+ del software GatePlanner sono stati fusi in una relazione di compatibilità
+ dall'insieme delle corse a quello delle piattaforme e i vincoli 
+\begin_inset Quotes eld
+\end_inset
+
+linea
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+abilitazione
+\begin_inset Quotes erd
+\end_inset
+
+ in una relazione di compatibilità fra piattaforme e corse.
+ Queste relazioni asimmetriche possono essere fuse in un unico concetto
+ di relazione di compatibilità tra corse e piattaforme che è valida quando
+ sono soddisfatte entrambe le compatibilità precedenti.
 \end_layout
 
 \begin_layout Standard
@@ -7096,8 +7439,7 @@ key "golumbic2004algorithmic"
 
 \end_inset
 
- cap.
- 8).
+ Capitolo 8).
 \end_layout
 
 \begin_layout Standard
@@ -8261,6 +8603,23 @@ Algoritmi sviluppati
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:Algoritmi-sviluppati"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Per questo obiettivo proponiamo la formulazione del problema come un problema
+ di list-coloring applicato un grafo d'intervallo.
+ Per rispettare le restrizioni del problema in esame vengono altri vincoli
+ oltre a quelli di colorazione propria.
+ Il modello risultante è problema restricted-coloring.
+\end_layout
 
 \end_inset
 
