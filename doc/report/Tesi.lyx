@@ -338,7 +338,7 @@ Problemi simili all'assegnamento delle piattaforme nelle autostazioni nascono
  bus-piattaforme siano tali da occupare il minor numero di piattaforme nell'oriz
 zonte di pianificazione.
  Per questo problema si propone una formulazione innovativa come problema
- di restricted-coloring di un grafo d’intervallo e un modello di programmazione
+ di list-coloring di un grafo d’intervallo e un modello di programmazione
  lineare intera per la sua risoluzione.
 \end_layout
 
@@ -4985,7 +4985,8 @@ name "fig:Problema-di-list-coloring"
 \end_layout
 
 \begin_layout Standard
-Se si rilassa il vincolo 
+Per presentare le formulazioni e i modelli di programmazione matematica
+ si considera il problema rilassato in cui è rimosso il vincolo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4993,8 +4994,9 @@ corse bis
 \begin_inset Quotes erd
 \end_inset
 
-, il problema di assegnamento degli autobus alle piattaforme descritto in
- figura
+ e non sono considerati criteri di preferenza.
+ Un tale problema di assegnamento degli autobus alle piattaforme descritto
+ in figura
 \begin_inset space ~
 \end_inset
 
@@ -5843,7 +5845,7 @@ Una soluzione ammissibile per il problema di list-coloring su
 \end_layout
 
 \begin_layout Standard
-L'insieme di archi 
+L'insieme di lati 
 \begin_inset Formula $\mathcal{E}^{k}$
 \end_inset
 
@@ -6283,7 +6285,17 @@ Pesare i gate permette di ridurre le simmetrie nelle soluzioni.
 
 \end_inset
 
+ La minimizzazione del numero di piattaforme che privilegia l'assegnamento
+ delle piattaforme vicine all'atrio, ad esempio, è soluzione ottima del
+ modello proposto nel caso in cui i pesi 
+\begin_inset Formula $c_{k}$
+\end_inset
 
+ siano proporzionali alla distanza atrio-piattaforma 
+\begin_inset Formula $k$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -7239,7 +7251,7 @@ name "fig:Trasformazioni-del-problema"
 
 \end_inset
 
-Trasformazioni del problema di restricted-coloring
+Trasformazioni del problema di list-coloring
 \end_layout
 
 \end_inset
@@ -7263,39 +7275,117 @@ La formulazione precedente non considera una distanza temporale minima che
  a catena dei ritardi delle fermate delle corse assegnate alla medesima
  piattaforma e potrebbe richiedere una riallocazione che coinvolge molte
  corse.
- La formulazione proposta in questo paragrafo considera l'intervallo temporale
- più piccolo che intercorre fra due corse assegnate alla stessa piattaforma.
-\end_layout
-
-\begin_layout Standard
-Il modello, come il modello costruito nel paragrafo precedente, usa una
- variabile d'assegnamento 
-\begin_inset Formula $x_{ik}$
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-x_{ik}=\begin{cases}
-1 & \text{se e solo se la corsa \ensuremath{v_{i}}}\text{ è assegnata alla piattaforma }k\\
-0 & \text{altrimenti}
-\end{cases}
-\]
-
+ Si propone quindi un nuovo problema di allocazione delle piattaforme, definito
+ in fig.
+\begin_inset space ~
 \end_inset
 
 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Descrizione-del-problema-1"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-S'introduce una variabile 
-\begin_inset Formula $y_{ij}$
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "90col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Standard
+Dati:
+\end_layout
+
+\begin_layout Itemize
+un insieme di corse da allocare in una giornata tipo;
+\end_layout
+
+\begin_layout Itemize
+un insieme di piattaforme;
+\end_layout
+
+\begin_layout Itemize
+le compatibilità fra corse e piattaforme
+\end_layout
+
+\begin_layout Plain Layout
+determinare un assegnamento delle corse alle piattaforme tale che:
+\end_layout
+
+\begin_layout Enumerate
+ogni corsa deve essere assegnata ad una piattaforma;
+\end_layout
+
+\begin_layout Enumerate
+le corse 
+\emph on
+interferenti
+\emph default
+ non devono essere assegnate ad una stessa piattaforma,
+\end_layout
+
+\begin_layout Plain Layout
+e che
+\end_layout
+
+\begin_layout Itemize
+sia massimo il più piccolo scarto di tempo fra gli istanti di disimpegno
+ e quello di occupazione di una stessa piattaforma.
+\end_layout
+
 \end_inset
 
-, che assume il valore 1 se le corse 
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Descrizione del problema
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Descrizione-del-problema-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Per modellizzare tale problema è conveniente introdurre un insieme 
+\begin_inset Formula $\mathcal{J}=\left\{ (i,\, j)\notin E:L(i)\cap L(j)\not\not\not=\emptyset\right\} $
+\end_inset
+
+ delle coppie di corse non che interferiscono fra loro e che sono compatibili
+ con almeno una piattaforma comune.
+ Ad ogni coppia dell'insieme è associato il valore dello scarto di tempo
+ che intercorre fra gli intervalli di occupazione delle piattaforme da parte
+ delle corse 
 \begin_inset Formula $i$
 \end_inset
 
@@ -7303,14 +7393,97 @@ S'introduce una variabile
 \begin_inset Formula $j$
 \end_inset
 
- sono assegnate ad una stessa piattaforma, e 0 altrimenti:
-\begin_inset Formula 
-\[
-y_{ij}=\begin{cases}
-1 & \text{se le corse }i\text{ e \ensuremath{j} sono assegnate ad una stessa piattaforma}\\
-0 & \text{altrimenti}
-\end{cases}
-\]
+: 
+\begin_inset Formula $c_{ij}=\max\{a_{i}-d_{j},\, a_{j}-d_{i}\}$
+\end_inset
+
+.
+ Lo scarto è illustrato in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:peso_cij"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{img/peso_cij}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lo scarto temporale 
+\begin_inset Formula $c_{ij}$
+\end_inset
+
+ fra le corse 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+ compatibili fra loro e con almeno una stessa piattaforma
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Lo scarto temporale 
+\begin_inset Formula $c_{ij}$
+\end_inset
+
+ fra le corse 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:peso_cij"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -7318,12 +7491,39 @@ y_{ij}=\begin{cases}
 \end_layout
 
 \begin_layout Standard
-La variabile 
+Si propone un modello di programmazione lineare intera mista che impiega
+ le variabili di assegnamento 
+\begin_inset Formula $x_{ij}$
+\end_inset
+
+, le variabili 
+\begin_inset Formula $y_{ij}$
+\end_inset
+
+ per ogni 
+\begin_inset Formula $(i,j)\in\mathcal{J}$
+\end_inset
+
+, che assumono il valore 1 se le corse 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+ sono assegnate ad una stessa piattaforma, e 0 altrimenti, e la variabile
+ 
 \begin_inset Formula $w$
 \end_inset
 
- denota lo scarto di tempo minimo fra l'arrivo e la partenza di due corse
- sulla stessa piattaforma
+ che denota lo scarto di tempo minimo fra l'arrivo e la partenza di due
+ corse sulla stessa piattaforma.
+\end_layout
+
+\begin_layout Standard
+Il modello di programmazione matematica che descrive il problema di ottimizzazio
+ne è il seguente:
 \end_layout
 
 \begin_layout Standard
@@ -7332,10 +7532,10 @@ La variabile
 \max\, z^{dm}=w\label{eq:max_m}\\
 \sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\label{eq:sosta_assegnata}\\
 \sum_{i\in\mathcal{Q}}x_{ik}\leq1 &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\label{eq:incomp_bp}\\
-x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall k\in\left(L(i)\cap L(j)\right),\,\forall(i,\, j)\in E^{k}\label{eq:fine_linearizzazione}\\
-w+M\, y_{ij}-c_{ij}\, y_{ij}\leq M &  & \forall(i,\, j)\in E\label{eq:m_minimo}\\
+x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall k\in C,\,\forall((i,k),\,(j,k))\notin\mathcal{E}^{k}\label{eq:fine_linearizzazione}\\
+w+M\, y_{ij}-c_{ij}\, y_{ij}\leq M &  & \forall(i,\, j)\in\mathcal{J}\label{eq:m_minimo}\\
 x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\label{eq:dom_xik}\\
-0\leq y_{ij}\leq1 &  & \forall(i,\, j)\in F\label{eq:lim_yij}\\
+0\leq y_{ij}\leq1 &  & \forall(i,\, j)\in\mathcal{J}\label{eq:lim_yij}\\
 w\geq0\label{eq:m}
 \end{eqnarray}
 
@@ -7398,7 +7598,7 @@ reference "eq:lim_yij"
 
 .
  La variabile continua e non negativa 
-\begin_inset Formula $m$
+\begin_inset Formula $w$
 \end_inset
 
  (equazione
@@ -7432,11 +7632,11 @@ reference "eq:m_minimo"
 \begin_inset Formula $M$
 \end_inset
 
- che fa si che la 
+ che lascia libera 
 \begin_inset Formula $w$
 \end_inset
 
- non sia vincolata quando gli autobus 
+ quando gli autobus 
 \begin_inset Formula $i$
 \end_inset
 
@@ -7446,7 +7646,11 @@ reference "eq:m_minimo"
 
  partono da piattaforme diverse.
  Il valore da assegnare a tale costante deve essere maggiore del tempo massimo
- che intercorre fra due corse che possono fermare su una stessa piattaforma.
+ che intercorre fra due corse in 
+\begin_inset Formula $\mathcal{J}$
+\end_inset
+
+.
  La funzione obiettivo 
 \begin_inset CommandInset ref
 LatexCommand eqref
@@ -7467,8 +7671,16 @@ Minimizzazione della probabilità di conflitto
 \end_layout
 
 \begin_layout Standard
-Il GAP può essere formulato anche come problema di minimizzazione della
- probabilità che fermate assegnate ad una stessa piattaforma siano 
+Sebbene lo scarto massimo sia un indicatore importante della robustezza
+ di un assegnamento, esso non è di per se sufficiente a garantire che una
+ soluziona al modello sia, nella pratica, quella che rende necessari il
+ minor numero di riassegnamenti.
+ Esistono molte soluzioni che hanno lo stesso scarto minimo, ottimo per
+ il problema formulato nel paragrafo precedente, che al fine della produzione
+ di un assegnamento robusto non si possono considerare equivalenti.
+ Si propone quindi di minimizzare un indice di prestazione differente, che
+ misuri in qualche modo la probabilità che corse assegnate ad una stessa
+ piattaforma siano 
 \begin_inset Quotes eld
 \end_inset
 
@@ -7477,16 +7689,124 @@ in conflitto
 \end_inset
 
 .
- Siano 
-\begin_inset Formula $D=\max_{F}c_{ij}$
+ 
+\end_layout
+
+\begin_layout Standard
+Si propone il problema di allocazione delle piattaforme formulato in fig.
+\begin_inset space ~
 \end_inset
 
- e 
-\begin_inset Formula $d=\min_{F}c_{ij}$
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Descrizione-del-problema-3"
+
 \end_inset
 
 .
- La probabilità di conflitto 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "90col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Standard
+Dati:
+\end_layout
+
+\begin_layout Itemize
+un insieme di corse da allocare in una giornata tipo;
+\end_layout
+
+\begin_layout Itemize
+un insieme di piattaforme;
+\end_layout
+
+\begin_layout Itemize
+le compatibilità fra corse e piattaforme
+\end_layout
+
+\begin_layout Plain Layout
+determinare un assegnamento delle corse alle piattaforme tale che:
+\end_layout
+
+\begin_layout Enumerate
+ogni corsa deve essere assegnata ad una piattaforma;
+\end_layout
+
+\begin_layout Enumerate
+le corse 
+\emph on
+interferenti
+\emph default
+ non devono essere assegnate ad una stessa piattaforma,
+\end_layout
+
+\begin_layout Plain Layout
+e che
+\end_layout
+
+\begin_layout Itemize
+la probabilità di conflitto sia minima.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Descrizione del problema
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Descrizione-del-problema-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Siano 
+\begin_inset Formula $D={\displaystyle \max_{(i,\, j)\in\mathcal{J}}}c_{ij}$
+\end_inset
+
+ e 
+\begin_inset Formula $d={\displaystyle \min_{(i,\, j)\in\mathcal{J}}}c_{ij}$
+\end_inset
+
+ le limitazioni inferiori e superiori del valore dello scarto.
+ Definiamo la probabilità di conflitto 
 \begin_inset Formula $p_{ij}$
 \end_inset
 
@@ -7498,7 +7818,7 @@ in conflitto
 \begin_inset Formula $j$
 \end_inset
 
- che possono occupare una stessa piattaforma si può definire come
+ che possono occupare una stessa piattaforma come:
 \end_layout
 
 \begin_layout Standard
@@ -7526,7 +7846,7 @@ La quantità
 \begin_layout Standard
 \begin_inset Formula 
 \[
-z^{p}=\frac{1}{|F|}\sum_{(i,j)\in F}p_{ij}y_{ij}=\frac{1}{|F|\,(D-d)}\sum_{(i,j)\in F}(D-c_{ij})\, y_{ij}
+z^{p}=\frac{1}{|\mathcal{J}|}\sum_{(i,j)\in\mathcal{J}}p_{ij}y_{ij}=\frac{1}{|\mathcal{J}|\,(D-d)}\sum_{(i,j)\in\mathcal{J}}(D-c_{ij})\, y_{ij}
 \]
 
 \end_inset
@@ -7535,20 +7855,19 @@ z^{p}=\frac{1}{|F|}\sum_{(i,j)\in F}p_{ij}y_{ij}=\frac{1}{|F|\,(D-d)}\sum_{(i,j)
 \end_layout
 
 \begin_layout Standard
-Il modello matematico del problema diventa quindi:
+Un modello di programmazione lineare intera mista del problema è il seguente:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray}
-\min\, z^{p}=\frac{1}{|F|\,(D-d)}\sum_{(i,j)\in F}(D-c_{ij})\,\sum_{k\in G}y_{ij}\label{eq:min_conflitto}\\
-\sum_{k\,:\,(i,\, k)\in E}x_{ik}=1 &  & \forall i\in B\label{eq:inizio_vincoli_4}\\
-\sum_{i\in\mathcal{Q}_{\overline{F}_{k}}:|\mathcal{Q}_{\overline{F}_{k}}|\geq2}x_{ik}\leq1 &  & \forall k\in G\\
-\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{ik}-y_{ij}\geq0 &  & \forall(i,\, j)\in F\\
-\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{jk}-y_{ij}\geq0 &  & \forall(i,\, j)\in F\\
-\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall(i,\, j)\in F\\
-x_{ik}\in\{0,\,1\} &  & \forall(i,\, k)\in E\\
-0\leq y_{ij}\leq1 &  & \forall(i,\, j)\in F\label{eq:fine_vincoli_4}
+\min\, z^{p}=\frac{1}{|\mathcal{J}|\,(D-d)}\sum_{(i,j)\in\mathcal{J}}(D-c_{ij})\,\sum_{k\in C}y_{ij}\label{eq:min_conflitto}\\
+\sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\label{eq:inizio_vincoli_4}\\
+\sum_{i\in\mathcal{Q}}x_{ik}\leq1 &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\\
+x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall k\in C,\,\forall((i,k),\,(j,k))\notin\mathcal{E}^{k}\\
+w+M\, y_{ij}-c_{ij}\, y_{ij}\leq M &  & \forall(i,\, j)\in\mathcal{J}\\
+x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\\
+0\leq y_{ij}\leq1 &  & \forall(i,\, j)\in\mathcal{J}\label{eq:fine_vincoli_4}
 \end{eqnarray}
 
 \end_inset
@@ -7569,7 +7888,7 @@ reference "eq:min_conflitto"
 \end_inset
 
  rappresenta una misura, compresa tra zero ed uno, di quanto l'assegnamento
- è robusto rispetto alle variazioni dell'input.
+ sia robusto rispetto alle variazioni dell'input.
  I vincoli
 \begin_inset space ~
 \end_inset
@@ -7628,16 +7947,53 @@ bis
 \end_inset
 
  senza doversi spostare da una parte all'altra dell'autostazione è desiderabile
- che le fermate delle corse bis siano assegnate a gate adiacenti.
- Questo requisito può essere modellato con il seguente insieme di vincoli:
+ che le fermate delle corse bis siano assegnate a piattaforme adiacenti.
+ Si può formulare questo requisito come vincolo lineare, grazie alle regole
+ imposte in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Descrizione-del-problema"
+
+\end_inset
+
+ e alla definizione della relazione bis, illustrata in fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:gruppo-bis"
+
+\end_inset
+
+.
+ Per ogni corsa 
+\begin_inset Formula $i$
+\end_inset
+
+ appartenente ad un 
+\emph on
+gruppo bis 
+\emph default
+e tale che non sia la prima che parte, si aggiunga il seguente insieme di
+ vincoli :
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Formula 
 \begin{eqnarray}
-x_{ik}\geq x_{j\, k-1} &  & k=\min_{k}\{k-1,\, k\in G\},\, j\in BIS(i)\label{eq:bis_primo_gate}\\
-x_{ik}\geq x_{i\, k-1}+x_{j\, k+1} &  & \forall k\in G,\, j\in BIS(i)\label{eq:bis_gate_in_mezzo}\\
-x_{ik}\geq x_{j\, k+1} &  & k=\max_{k}\{k+1,\, k\in G\},\, j\in BIS(i)\label{eq:bis_ultimo_gate}
+x_{ik}\geq x_{j\, k-1} &  & k=\min_{k}\{k-1,\, k\in C\},\, j\in BIS(i)\label{eq:bis_primo_gate}\\
+x_{ik}\geq x_{i\, k-1}+x_{j\, k+1} &  & \forall k\in C,\, j\in BIS(i)\label{eq:bis_gate_in_mezzo}\\
+x_{ik}\geq x_{j\, k+1} &  & k=\max_{k}\{k+1,\, k\in C\},\, j\in BIS(i)\label{eq:bis_ultimo_gate}
 \end{eqnarray}
 
 \end_inset
@@ -7645,21 +8001,27 @@ x_{ik}\geq x_{j\, k+1} &  & k=\max_{k}\{k+1,\, k\in G\},\, j\in BIS(i)\label{eq:
 
 \end_layout
 
-\begin_layout Standard
-Il modello presuppone che i gate adiacenti abbiano indici adiacenti.
- 
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Si fa notare che altre tipologie di vincolo come l'assegnamento delle corse
- coperte da mezzi snodati sono gestite in modo implicito nella generazione
- degli archi 
-\begin_inset Formula $E$
+\begin_inset Formula 
+\[
+x_{bis(i),k+1}=x_{ik}\quad\forall k\in C-\left\{ m\right\} 
+\]
+
 \end_inset
 
-.
- Gli stessi archi gestiscono il concetto di gate disabilitato in un intervallo
- temporale.
+
+\end_layout
+
+\begin_layout Standard
+Si fa notare che altre tipologie di vincolo, come ad esempio quello sull'assegna
+mento delle corse coperte da autosnodati, sono gestite in modo implicito
+ implicito nei modelli e che tutti i vincoli hard sono stati considerati
+ nel modello.
 \end_layout
 
 \begin_layout Subsection*
@@ -7668,9 +8030,9 @@ Preferenze sugli assegnamenti
 
 \begin_layout Standard
 I modelli matematici presentati possono essere estesi per considerare i
- criteri di esclusione di assegnamenti fermata-gate ammissibili.
- Per penalizzare l'assegnamento indesiderato di una fermata su un gate si
- può aggiungere al modello una penalità (un vincolo 
+ criteri di esclusione di assegnamenti corse piattaforma ammissibili.
+ Per penalizzare un assegnamento indesiderato si può aggiungere al modello
+ una penalità (un vincolo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -7678,15 +8040,15 @@ soft
 \begin_inset Quotes erd
 \end_inset
 
-) in funzione obiettivo, che ha i termini:
+) in funzione obiettivo:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
 \begin{cases}
--\sum_{(i,k)\in E}p_{ik}x_{ik} & \text{{se\,\ il\,\ problema\,è\,\ di\,\ massimo}}\\
-+\sum_{(i,k)\in E}p_{ik}x_{ik} & \text{{se\,\ il\,\ problema\,è\,\ di\,\ minimo}}
+-\alpha\sum_{(i,k)\in}p_{ik}x_{ik} & \mbox{se il problema è di massimo}\\
++\alpha\sum_{(i,k)\in E}p_{ik}x_{ik} & \mbox{se il problema è di minimo}
 \end{cases}
 \]
 
@@ -7701,11 +8063,11 @@ Se
 \end_inset
 
  è nullo esso non influisce sull'assegnamento, mentre un valore positivo
- grande permette di escludere l'assegnamento della fermata 
+ grande permette di escludere l'assegnamento della corsa 
 \begin_inset Formula $i$
 \end_inset
 
- al gate 
+ alla piattaforma 
 \begin_inset Formula $k$
 \end_inset
 
@@ -9590,15 +9952,15 @@ e tempo computazionale in un algoritmo di enumerazione delle soluzioni deve
  immediatamente se un insieme di fermate è sicuramente non gestibile dall'autost
 azione.
  Il numero minimo di piattaforme è il numero di colori soluzione del problema
- di restricted-coloring, il quale numero è maggiore o uguale al numero cromatico
+ di list-coloring, il quale numero è maggiore o uguale al numero cromatico
  del problema di colorazione di grafi definito sullo stesso grafo 
 \begin_inset Formula $G=(V,\, E)$
 \end_inset
 
 .
  Il problema di determinare il numero cromatico è infatti un rilassamento
- del problema della formulazione di restricted-coloring, in cui sono stati
- eliminati i vincoli di compatibilità.
+ del problema della formulazione di list-coloring, in cui sono stati eliminati
+ i vincoli di compatibilità.
  Il grafo 
 \begin_inset Formula $G=(V,\, E)$
 \end_inset
@@ -13203,6 +13565,19 @@ name "chap:Conclusioni-e-sviluppi"
 Conclusioni
 \end_layout
 
+\begin_layout Standard
+Il problema considerato è stato affrontato seguendo la classica metodologia
+ della ricerca operativa: la prima fase è stata l'analisi del problema;
+ sulla base di essa si è effettuata la modellazione matematica del problema;
+ successivamente esso è stato risolto per mezzo di opportuni metodi matematici.
+\end_layout
+
+\begin_layout Standard
+Le soluzioni fornite dagli algoritmi proposti si sono dimostrate buone;
+ ciò fa sì che tali algoritmi siano adatti a essere applicati a problemi
+ reali.
+\end_layout
+
 \begin_layout Section
 Sviluppi futuri
 \end_layout
@@ -13213,7 +13588,8 @@ Modello di Set Covering
 
 \begin_layout Standard
 Per ridurre le simmetrie si potrebbe riformulare il problema utilizzando
- una formulazione in cui i gate sia considerati in modo pressoché indistinto.
+ una formulazione in cui le piattaforme siano considerate in modo pressoché
+ indistinto.
  Il problema della colorazione di grafi è infatti affrontato con successo
  impiegando formulazioni di set partitioning o set covering risolte con
  tecniche di generazione di colonne integrate ad altri metodi per la determinazi
@@ -13338,6 +13714,15 @@ key "bjorklund2009set"
 \end_inset
 
 ) e tale problema può essere risolto con tecniche di Branch&Price.
+\end_layout
+
+\begin_layout Standard
+Si potrebbe usare con opportune modifiche il metodo proposto da Zeitlhofer
+ per il problema dell'allocazione dei registri nei DSP.
+\end_layout
+
+\begin_layout Standard
+Potrebbero altresì essere sviluppati algoritmi esatti.
 \end_layout
 
 \begin_layout Standard
