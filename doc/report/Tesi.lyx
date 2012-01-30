@@ -7389,7 +7389,12 @@ name "fig:Descrizione-del-problema-1"
 
 \end_inset
 
-Per modellizzare tale problema è conveniente introdurre un insieme 
+Per modellizzare tale problema è conveniente introdurre un insieme delle
+ 
+\emph on
+corse compatibili
+\emph default
+ 
 \begin_inset Formula $\mathcal{J}=\left\{ (i,\, j)\notin E:L(i)\cap L(j)\not\not\not=\emptyset\right\} $
 \end_inset
 
@@ -8083,7 +8088,653 @@ name "chap:Algoritmi-sviluppati"
 \end_layout
 
 \begin_layout Section
-Calcolo della limitazione inferiore del numero di piattaforme
+Predisposizione dei dati e calcolo della limitazione inferiore del numero
+ di piattaforme
+\end_layout
+
+\begin_layout Standard
+Per risolvere i modelli matematici presentati nel capitolo precedente si
+ devono ricostruire i dati presenti in modo non esplicito nell'input del
+ programma di risoluzione sviluppato.
+\end_layout
+
+\begin_layout Standard
+Tutti i modelli proposti hanno sono definiti a partire dal grafo 
+\begin_inset Formula $\mathcal{\bar{G}}=(\mathcal{V},\,\mathcal{\bar{E}})$
+\end_inset
+
+ e dalla famiglia di insiemi 
+\begin_inset Formula $\left\{ L(v_{i})\right\} _{i\in V}$
+\end_inset
+
+.
+ È quindi possibile costruire il grafo di interferenza fra le fermate mediante
+ l'alg.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:bcg"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb]%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output}%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{un'istanza $G = (V, E)$ e $
+\backslash
+{L(V_i)
+\backslash
+}$ di GA}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{il grafo $
+\backslash
+bar{
+\backslash
+mathcal{G}}$ complementare di $
+\backslash
+mathcal{G}$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	$
+\backslash
+mathcal{V} = 
+\backslash
+mathcal{E} = 
+\backslash
+emptyset$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{per ogni gate $k$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$k 
+\backslash
+in V$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{per ogni fermata $i$ che può essere assegnata alla piattaforma $k$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		$
+\backslash
+mathcal{V} = 
+\backslash
+mathcal{V} 
+\backslash
+cup 
+\backslash
+{(i, k)
+\backslash
+}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+ForEach{$i 
+\backslash
+in V : (i, k) 
+\backslash
+in E$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+tcc{per ogni fermata $j$ diversa da $i$ che può essere assegnata alla piattaform
+a $k$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+ForEach{$j 
+\backslash
+in V : (j, k) 
+\backslash
+in E 
+\backslash
+wedge j > i$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+tcc{se gli intervalli di occupazione delle fermate $i$ e $j$ sono disgiunte}%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$[a_i, d_i] 
+\backslash
+cap [a_j, d_j] = 
+\backslash
+emptyset$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+tcc{calcola il peso dell'arco $(i,j)$ }%
+\end_layout
+
+\begin_layout Plain Layout
+
+					$c_{ij} = 
+\backslash
+max 
+\backslash
+{a_i - d_j,
+\backslash
+, a_j - d_i
+\backslash
+}$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+tcc{aggiungi l'arco $(i,j)$ all'insieme $
+\backslash
+bar{
+\backslash
+mathcal{E}}$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+					$
+\backslash
+bar{
+\backslash
+mathcal{E}} = 
+\backslash
+bar{
+\backslash
+mathcal{E}} 
+\backslash
+cup 
+\backslash
+{(i,
+\backslash
+,j)
+\backslash
+}$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+				}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	}%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$
+\backslash
+bar{
+\backslash
+mathcal{G}} = (
+\backslash
+mathcal{V}, 
+\backslash
+bar{
+\backslash
+mathcal{E}})$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Costruzione del grafo $
+\backslash
+bar{
+\backslash
+mathcal{G}}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{alg:bcg}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'alg.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "alg:j_cij"
+
+\end_inset
+
+ accetta in ingresso l'insieme delle corse, quella delle piattaforme e la
+ lista delle compatibilità sosta-piattaforma e generea l'inseme delle 
+\emph on
+corse compatibili
+\emph default
+ e la funzione di costo ad essa associata 
+\begin_inset Formula $c_{ij}$
+\end_inset
+
+ che esprime lo scarto di tempo, in minuti, fra le finestre temporali delle
+ corse 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb]%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output}%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{un'istanza $V, C, L$ di GA}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{l'insieme $
+\backslash
+mathcal{J}$ e gli scarti temporali $c_{ij}$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F = 
+\backslash
+emptyset$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{per ogni piattaforma $k$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$k 
+\backslash
+in C$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{per ogni sosta $i$ che può essere assegnata alla piattaforma $k$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+ForEach{$i 
+\backslash
+in V : (i, k) 
+\backslash
+in L(i)$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+tcc{per ogni corsa $j$ diversa da $i$ che può essere assegnata alla piattaforma
+ $k$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+ForEach{$j 
+\backslash
+in V : (j, k) 
+\backslash
+in L 
+\backslash
+wedge j > i$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+tcc{se gli intervalli di occupazione delle fermate $i$ e $j$ sono disgiunte}%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$[a_i, d_i] 
+\backslash
+cap [a_j, d_j] = 
+\backslash
+emptyset$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+tcc{calcola il peso dell'arco $(i,j)$ }%
+\end_layout
+
+\begin_layout Plain Layout
+
+					$c_{ij} = 
+\backslash
+max 
+\backslash
+{a_i - d_j,
+\backslash
+, a_j - d_i
+\backslash
+}$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+tcc{aggiungi l'arco $(i,j)$ all'insieme $
+\backslash
+mathcal{J}$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+					$J = J 
+\backslash
+cup 
+\backslash
+{(i,
+\backslash
+,j)
+\backslash
+}$
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+				}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	}%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$
+\backslash
+mathcal{J}, 
+\backslash
+{c_{ij}
+\backslash
+}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Costruzione degli insiemi $
+\backslash
+mathcal{J}$ e dei pesi  $
+\backslash
+{c_{ij}
+\backslash
+}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{alg:j_cij}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8202,7 +8853,7 @@ reference "sub:Esempio-di-list_coloring"
 
 
 \begin_inset CommandInset ref
-LatexCommand vpageref
+LatexCommand vref
 reference "fig:Grafo-intervallo"
 
 \end_inset
@@ -8548,7 +9199,315 @@ Se la lista degli estremi degli intervalli è fornita in ordine non decrescente
 \end_layout
 
 \begin_layout Standard
-definito in algoritmo
+È possibile determinare anche determinare tutte le cricche massimale, utili
+ per inserire i vincoli d'incompatibilità nei modelli matematici ed in quelli
+ di programmazione per vincoli.
+ Le cricche di corse interferenti si determinano come in alg.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cliques_interferenti"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb] %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output} %
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{La lista ordinata $T$ degli estremi temporali degli intervalli di
+ fermata} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{L'insieme delle lista di fermate che interferiscono $
+\backslash
+mathcal{Q}$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $r = 1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $
+\backslash
+mathcal{Q} = 
+\backslash
+emptyset$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $Q_{r} = 
+\backslash
+emptyset$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Poni $prec = arrival$ 
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Per ogni istante temporale
+\backslash
+ldots} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$t 
+\backslash
+in T$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		Poni $i = t.fermata$ 
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{se l'istante corrente rappresenta un arrivo}%
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{$t.type = arrival$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+tcc{la fermata 
+\backslash
+`e nel gruppo di interferenti}%
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $Q_r = Q_r 
+\backslash
+cup i$ 
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $prec = arrival$ 
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+			} 
+\backslash
+Else {%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$prec = arrival 
+\backslash
+, 
+\backslash
+wedge 
+\backslash
+, |Q| > 1$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $
+\backslash
+mathcal{Q} = 
+\backslash
+mathcal{Q} 
+\backslash
+cup Q_r$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $Q_{r+1} = Q_r 
+\backslash
+setminus i$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $r=r+1$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				Poni $prec = departure$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+			} %
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+%	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$
+\backslash
+mathcal{Q}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Algoritmo di ricerca delle fermate interferenti (cricche massimali)}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{cliques_interferenti}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I modelli sviluppati richiedono di partizionare in cricche i sottografi
+ di 
+\begin_inset Formula $\mathcal{G}$
+\end_inset
+
+ che identificano le soste compatibili con una piattaforma ma che interferisco
+ fra di loro.
+ Per far ciò si usa l'algoritmo
 \begin_inset space ~
 \end_inset
 
@@ -8871,589 +9830,81 @@ end{algorithm}
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-{
-\backslash
-`E}
-\end_layout
-
-\end_inset
-
- sufficiente, ad esempio calcolare la cardinalità massima degli insiemi
- 
-\begin_inset Formula $Q_{r}$
-\end_inset
-
- determinati in alg.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "cliques_interferenti"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-linesnumbered%
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{algorithm}[!htb] %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKwInOut{Input}{input} %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKwInOut{Output}{output} %
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Input{La lista ordinata $T$ degli estremi temporali degli intervalli di
- fermata} %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Output{L'insieme delle lista di fermate che interferiscono $
-\backslash
-mathcal{Q}$} %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-BlankLine %
-\end_layout
-
-\begin_layout Plain Layout
-
-	Poni $r = 1$
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-	Poni $
-\backslash
-mathcal{Q} = 
-\backslash
-emptyset$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-	Poni $Q_{r} = 
-\backslash
-emptyset$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-	Poni $prec = arrival$ 
-\backslash
-; %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-BlankLine %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-tcc{Per ogni istante temporale
-\backslash
-ldots} %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-ForEach{$t 
-\backslash
-in T$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-		Poni $i = t.fermata$ 
-\backslash
-; %
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-tcc{se l'istante corrente rappresenta un arrivo}%
-\end_layout
-
-\begin_layout Plain Layout
-
-			
-\backslash
-If{$t.type = arrival$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-				
-\backslash
-tcc{la fermata 
-\backslash
-`e nel gruppo di interferenti}%
-\end_layout
-
-\begin_layout Plain Layout
-
-				Poni $Q_r = Q_r 
-\backslash
-cup i$ 
-\backslash
-;%
-\end_layout
-
-\begin_layout Plain Layout
-
-				Poni $prec = arrival$ 
-\backslash
-;%
-\end_layout
-
-\begin_layout Plain Layout
-
-			} 
-\backslash
-Else {%
-\end_layout
-
-\begin_layout Plain Layout
-
-				
-\backslash
-If{$prec = arrival 
-\backslash
-, 
-\backslash
-wedge 
-\backslash
-, |Q| > 1$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-					Poni $
-\backslash
-mathcal{Q} = 
-\backslash
-mathcal{Q} 
-\backslash
-cup Q_r$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-				}
-\end_layout
-
-\begin_layout Plain Layout
-
-				Poni $Q_{r+1} = Q_r 
-\backslash
-setminus i$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-				Poni $r=r+1$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-				Poni $prec = departure$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-			} %
-\end_layout
-
-\begin_layout Plain Layout
-
-		}
-\end_layout
-
-\begin_layout Plain Layout
-
-%	}
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Return {$
-\backslash
-mathcal{Q}$
-\backslash
-;} %
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-caption{Algoritmo di ricerca delle fermate interferenti (clique massimali)}
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-label{cliques_interferenti}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{algorithm}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-linesnumbered%
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{algorithm}[!htb]%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKwInOut{Input}{input}%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKwInOut{Output}{output}%
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Input{un'istanza $H = (B, G, E)$ di GA}%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Output{il grafo di compatibilità delle fermate $C = (B, F)$}%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-BlankLine%
-\end_layout
-
-\begin_layout Plain Layout
-
-	$F = 
-\backslash
-emptyset$
-\backslash
-;%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-BlankLine%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-tcc{per ogni gate $k$} %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-ForEach{$k 
-\backslash
-in G$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-tcc{per ogni fermata $i$ che può essere assegnata al gate $k$}%
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-ForEach{$i 
-\backslash
-in B : (i, k) 
-\backslash
-in E$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-			
-\backslash
-tcc{per ogni fermata $j$ diversa da $i$ che può essere assegnata al gate
- $k$}%
-\end_layout
-
-\begin_layout Plain Layout
-
-			
-\backslash
-ForEach{$j 
-\backslash
-in B : (j, k) 
-\backslash
-in E 
-\backslash
-wedge j > i$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-				
-\backslash
-tcc{se gli intervalli di occupazione delle fermate $i$ e $j$ sono disgiunte}%
-\end_layout
-
-\begin_layout Plain Layout
-
-				
-\backslash
-If{$[a_i, d_i] 
-\backslash
-cap [a_j, d_j] = 
-\backslash
-emptyset$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-					
-\backslash
-tcc{calcola il peso dell'arco $(i,j)$ }%
-\end_layout
-
-\begin_layout Plain Layout
-
-					$c_{ij} = 
-\backslash
-max 
-\backslash
-{a_i - d_j,
-\backslash
-, a_j - d_i
-\backslash
-}$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-					
-\backslash
-tcc{aggiungi l'arco $(i,j)$ all'insieme $F$}%
-\end_layout
-
-\begin_layout Plain Layout
-
-					$F = F 
-\backslash
-cup 
-\backslash
-{(i,
-\backslash
-,j)
-\backslash
-}$
-\backslash
-;%
-\end_layout
-
-\begin_layout Plain Layout
-
-				}%
-\end_layout
-
-\begin_layout Plain Layout
-
-			}%
-\end_layout
-
-\begin_layout Plain Layout
-
-		}%
-\end_layout
-
-\begin_layout Plain Layout
-
-	}%
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Return {$C = (B, F)$
-\backslash
-;} %
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-caption{Costruzione del grafo d'interferenza}
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-label{alg:bcg}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{algorithm}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Controllo a orizzonte recessivo
 \end_layout
 
 \begin_layout Standard
-----------------------
+I modelli matematici proposti capitolo precedente si possono risolvere direttame
+nte mediante l'uso di librerie software di ottimizzazione in grado di risolvere
+ di problemi di programmazione lineare mista.
+ Tra le librerie si è scelto LP_Solve
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "lpsolve09website"
+
+\end_inset
+
+ perché è sono di pubblico dominio e pertanto possono essere integrate in
+ altre soluzioni senza restrizioni legali.
+ I risolutori di PLI di affidano la risoluzione dei modelli interi ad un
+ algortmo di Branch&Bound che può essere implementato con accorgimenti particola
+ri.
 \end_layout
 
 \begin_layout Standard
-Le prestazioni di un algoritmo di Branch&Bound, per risolvere un tale modello,
- si rivelano inefficienti quando il limite inferiore sul numero di piattaforme
- è minore dell'ottimo.
- Se si analizza il caso con le piattaforme compatibili con tutte le fermate
- si nota che per ogni soluzione che impiega 
+Le prestazioni di un algoritmo di Branch&Bound, per risolvere i modelli
+ proposti nel cap.
+\begin_inset space ~
+\end_inset
+
+4, si rivelano inefficienti.
+ Il problema di minimizzazione del numero di piattaforme utilizzate determina
+ la soluzione ottima delle istanze reali provate, ma queste sono istanze
+ 
+\begin_inset Quotes eld
+\end_inset
+
+semplici
+\begin_inset Quotes erd
+\end_inset
+
+ amche se di grande dimensione.
+ Le istanze infatti sono tali per cui il limite inferiore sul numero di
+ piattaforme è uguale al valore dell'ottimo.
+ Generando istanze casualmente e con liste i compatibilità 
+\begin_inset Quotes eld
+\end_inset
+
+corte
+\begin_inset Quotes erd
+\end_inset
+
+ rispetto al numero di piattaforme l'algoritmo di Branch&Buond non riesce
+ a migliorare la soluzione incombente.
+ Questo problema si verifica a causa della simmetria del modello.
+ Nel caso di 
+\begin_inset Formula $n$
+\end_inset
+
+ corse e 
+\begin_inset Formula $m$
+\end_inset
+
+ piattaforme, e di 
+\begin_inset Formula $n$
+\end_inset
+
+ liste
+\begin_inset Formula $\left\{ L(i)\right\} $
+\end_inset
+
+ compatibili con tutte le piattaforme si nota che per ogni soluzione che
+ impiega 
 \begin_inset Formula $m$
 \end_inset
 
@@ -9464,9 +9915,9 @@ Le prestazioni di un algoritmo di Branch&Bound, per risolvere un tale modello,
  soluzioni equivalenti ottenute permutando le piattaforme tra loro.
  Essendo, inoltre, il numero di piattaforme disponibili generalmente maggiore
  di quante strettamente necessarie, si crea un'ulteriore generazione di
- soluzioni equivalenti ed il metodo del Branch&Bound non migliora di molto
- le prestazioni dell'enumerazione completa dovendo esplorare un albero pressoché
- completo.
+ soluzioni equivalenti ed il metodo del Branch&Bound si comporta come un
+ algoritmo d'enumerazione completa, dovendo esplorare un albero di ricerca
+ pressoché completo.
 \end_layout
 
 \begin_layout Standard
@@ -9479,371 +9930,6 @@ Un modo per eliminare, almeno in parte, le simmetrie del modello è quello
 
 \begin_layout Standard
 ------------------------
-\end_layout
-
-\begin_layout Standard
-I modelli matematici proposti nel paragrafo 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "sec:Formulazione-del-problema"
-
-\end_inset
-
- si possono approcciare mediante l'uso di librerie software di ottimizzazione
- in grado di risolvere di problemi di programmazione lineare mista.
- Tra le librerie si è scelto LP_Solve
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand citep
-key "lpsolve09website"
-
-\end_inset
-
- perché è un software di pubblico dominio che può essere integrato in altre
- soluzioni senza restrizioni legali.
- L'impiego di un risolutori è da valutare in base alle dimensioni del problema,
- alle performance attese e al budget per l'acquisto della licenza dei risolutori
- commerciali.
- 
-\end_layout
-
-\begin_layout Standard
-Tutti i modelli proposti hanno sono definiti a partire dal grafo 
-\begin_inset Formula $\mathcal{\bar{G}}=(\mathcal{V},\,\mathcal{\bar{E}})$
-\end_inset
-
- e dalla famiglia di insiemi 
-\begin_inset Formula $\left\{ L(v_{i})\right\} _{i\in V}$
-\end_inset
-
-.
- È quindi possibile costruire il grafo di interferenza fra le fermate mediante
- l'alg.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:bcg"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-linesnumbered%
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{algorithm}[!htb]%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKwInOut{Input}{input}%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKwInOut{Output}{output}%
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Input{un'istanza $G = (V, E)$ e $
-\backslash
-{L(V_i)
-\backslash
-}$ di GA}%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Output{il grafo $
-\backslash
-bar{
-\backslash
-mathcal{G}}$ complementare di $
-\backslash
-mathcal{G}$}%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-BlankLine%
-\end_layout
-
-\begin_layout Plain Layout
-
-	$
-\backslash
-mathcal{V} = 
-\backslash
-mathcal{E} = 
-\backslash
-emptyset$
-\backslash
-;%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-BlankLine%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-tcc{per ogni gate $k$} %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-ForEach{$k 
-\backslash
-in V$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-tcc{per ogni fermata $i$ che può essere assegnata alla piattaforma $k$}%
-\end_layout
-
-\begin_layout Plain Layout
-
-		$
-\backslash
-mathcal{V} = 
-\backslash
-mathcal{V} 
-\backslash
-cup 
-\backslash
-{(i, k)
-\backslash
-}$
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-ForEach{$i 
-\backslash
-in V : (i, k) 
-\backslash
-in E$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-			
-\backslash
-tcc{per ogni fermata $j$ diversa da $i$ che può essere assegnata alla piattaform
-a $k$}%
-\end_layout
-
-\begin_layout Plain Layout
-
-			
-\backslash
-ForEach{$j 
-\backslash
-in V : (j, k) 
-\backslash
-in E 
-\backslash
-wedge j > i$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-				
-\backslash
-tcc{se gli intervalli di occupazione delle fermate $i$ e $j$ sono disgiunte}%
-\end_layout
-
-\begin_layout Plain Layout
-
-				
-\backslash
-If{$[a_i, d_i] 
-\backslash
-cap [a_j, d_j] = 
-\backslash
-emptyset$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-					
-\backslash
-tcc{calcola il peso dell'arco $(i,j)$ }%
-\end_layout
-
-\begin_layout Plain Layout
-
-					$c_{ij} = 
-\backslash
-max 
-\backslash
-{a_i - d_j,
-\backslash
-, a_j - d_i
-\backslash
-}$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-					
-\backslash
-tcc{aggiungi l'arco $(i,j)$ all'insieme $
-\backslash
-bar{
-\backslash
-mathcal{E}}$}%
-\end_layout
-
-\begin_layout Plain Layout
-
-					$
-\backslash
-bar{
-\backslash
-mathcal{E}} = 
-\backslash
-bar{
-\backslash
-mathcal{E}} 
-\backslash
-cup 
-\backslash
-{(i,
-\backslash
-,j)
-\backslash
-}$
-\backslash
-;%
-\end_layout
-
-\begin_layout Plain Layout
-
-				}%
-\end_layout
-
-\begin_layout Plain Layout
-
-			}%
-\end_layout
-
-\begin_layout Plain Layout
-
-		}%
-\end_layout
-
-\begin_layout Plain Layout
-
-	}%
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Return {$
-\backslash
-bar{
-\backslash
-mathcal{G}} = (
-\backslash
-mathcal{V}, 
-\backslash
-bar{
-\backslash
-mathcal{E}})$
-\backslash
-;} %
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-caption{Costruzione del grafo $
-\backslash
-bar{
-\backslash
-mathcal{G}}$}
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-label{alg:bcg}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{algorithm}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
