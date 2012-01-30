@@ -8094,16 +8094,17 @@ Predisposizione dei dati e calcolo della limitazione inferiore del numero
 
 \begin_layout Standard
 Per risolvere i modelli matematici presentati nel capitolo precedente si
- devono ricostruire i dati presenti in modo non esplicito nell'input del
- programma di risoluzione sviluppato.
+ devono ricostruire i dati non esplicito nell'input del programma di risoluzione
+ sviluppato.
 \end_layout
 
 \begin_layout Standard
-Tutti i modelli proposti hanno sono definiti a partire dal grafo 
+I modelli proposti sono definiti su cricche e grafi, in particolare si necessita
+ di costruire il grafo 
 \begin_inset Formula $\mathcal{\bar{G}}=(\mathcal{V},\,\mathcal{\bar{E}})$
 \end_inset
 
- e dalla famiglia di insiemi 
+ a partire dalle corse e dalla famiglia di insiemi 
 \begin_inset Formula $\left\{ L(v_{i})\right\} _{i\in V}$
 \end_inset
 
@@ -8168,7 +8169,7 @@ Input{un'istanza $G = (V, E)$ e $
 \backslash
 {L(V_i)
 \backslash
-}$ di GA}%
+}$ di GAP}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -8447,7 +8448,7 @@ reference "alg:j_cij"
 \end_inset
 
  accetta in ingresso l'insieme delle corse, quella delle piattaforme e la
- lista delle compatibilità sosta-piattaforma e generea l'inseme delle 
+ lista delle compatibilità corsa-piattaforma e genera l'inseme delle 
 \emph on
 corse compatibili
 \emph default
@@ -8783,11 +8784,12 @@ Il numero minimo di piattaforme è il numero di colori soluzione del problema
 
  appartiene alla classe dei grafi d'intervallo quindi il numero cromatico
  è uguale al numero di cricca e determinare il numero di cricca di un grafo
- d'intervallo è risolubile in tempo polinomiale.
+ d'intervallo è un problema risolubile in tempo polinomiale.
 \end_layout
 
 \begin_layout Standard
-Si definisce nel domino dei numeri reali la funzione 
+Nota la rappresentazione per intervalli del grafo, si definisce nel domino
+ dei numeri reali la funzione 
 \begin_inset Formula $f(x)$
 \end_inset
 
@@ -9838,7 +9840,7 @@ Controllo a orizzonte recessivo
 I modelli matematici proposti capitolo precedente si possono risolvere direttame
 nte mediante l'uso di librerie software di ottimizzazione in grado di risolvere
  di problemi di programmazione lineare mista.
- Tra le librerie si è scelto LP_Solve
+ Tra le librerie disponibili si è scelto di usare LP_Solve
 \begin_inset space ~
 \end_inset
 
@@ -9849,23 +9851,22 @@ key "lpsolve09website"
 
 \end_inset
 
- perché è sono di pubblico dominio e pertanto possono essere integrate in
- altre soluzioni senza restrizioni legali.
- I risolutori di PLI di affidano la risoluzione dei modelli interi ad un
- algortmo di Branch&Bound che può essere implementato con accorgimenti particola
-ri.
+ perché è di pubblico dominio e può essere integrata in altre soluzioni
+ software senza restrizioni legali.
+ I risolutori di PLI affidano la risoluzione dei modelli interi ad un algoritmo
+ di Branch&Bound che può essere implementato con accorgimenti particolari.
 \end_layout
 
 \begin_layout Standard
-Le prestazioni di un algoritmo di Branch&Bound, per risolvere i modelli
- proposti nel cap.
+Le prestazioni di un algoritmo di Branch&Bound, comunque scelto un risolutore,
+ si rivelano inefficienti per risolvere i modelli proposti nel cap.
 \begin_inset space ~
 \end_inset
 
-4, si rivelano inefficienti.
+4.
  Il problema di minimizzazione del numero di piattaforme utilizzate determina
- la soluzione ottima delle istanze reali provate, ma queste sono istanze
- 
+ la soluzione ottima delle istanze reali provate in quanto queste risultano
+ essere istanze 
 \begin_inset Quotes eld
 \end_inset
 
@@ -9873,10 +9874,13 @@ semplici
 \begin_inset Quotes erd
 \end_inset
 
- amche se di grande dimensione.
- Le istanze infatti sono tali per cui il limite inferiore sul numero di
- piattaforme è uguale al valore dell'ottimo.
- Generando istanze casualmente e con liste i compatibilità 
+, anche se di grande dimensione.
+ Queste istanze, che nel passato erano risolte a mano, sono tali per cui
+ la limitazione inferiore sul numero di piattaforme è uguale al valore dell'otti
+mo.
+ L'algoritmo di B&B non riesce a migliorare la soluzione incombente nelle
+ istanze generate casualmente specie quando queste sono corredate di liste
+ di compatibilità 
 \begin_inset Quotes eld
 \end_inset
 
@@ -9884,8 +9888,7 @@ corte
 \begin_inset Quotes erd
 \end_inset
 
- rispetto al numero di piattaforme l'algoritmo di Branch&Buond non riesce
- a migliorare la soluzione incombente.
+ rispetto al numero di piattaforme.
  Questo problema si verifica a causa della simmetria del modello.
  Nel caso di 
 \begin_inset Formula $n$
@@ -9903,7 +9906,7 @@ corte
 \begin_inset Formula $\left\{ L(i)\right\} $
 \end_inset
 
- compatibili con tutte le piattaforme si nota che per ogni soluzione che
+ compatibili con tutte le piattaforme, si nota che per ogni soluzione che
  impiega 
 \begin_inset Formula $m$
 \end_inset
@@ -9915,9 +9918,9 @@ corte
  soluzioni equivalenti ottenute permutando le piattaforme tra loro.
  Essendo, inoltre, il numero di piattaforme disponibili generalmente maggiore
  di quante strettamente necessarie, si crea un'ulteriore generazione di
- soluzioni equivalenti ed il metodo del Branch&Bound si comporta come un
- algoritmo d'enumerazione completa, dovendo esplorare un albero di ricerca
- pressoché completo.
+ soluzioni equivalenti ed il metodo del B&B si comporta come un algoritmo
+ d'enumerazione completa, dovendo esplorare un albero di ricerca che non
+ riesce a potare.
 \end_layout
 
 \begin_layout Standard
@@ -9929,16 +9932,14 @@ Un modo per eliminare, almeno in parte, le simmetrie del modello è quello
 \end_layout
 
 \begin_layout Standard
-------------------------
-\end_layout
-
-\begin_layout Standard
-La pianificazione dell'assegnamento per una giornata può essere ottenuta
- risolvendo il modello matematico con i dati dell'intera giornata.
- Purtroppo il tempo di risoluzione aumenta esponenzialmente all'aumentare
- del numero di corse e di gate quindi può risultare più efficiente dividere
- l'intervallo di pianificazione in più fasce orarie all'interno della stessa
- giornata.
+Nonostante questa difficoltà dei metodi diretti nella risoluzione dei modelli
+ proposti si è scelto di utilizzare questi metodi, ma su problemi piccoli
+ in cui è possibile esaurire l'albero di ricerca o comunque determinare
+ delle buone soluzioni in tempi contenuti.
+ L'idea di base è che si può dividere l'intervallo di pianificazione in
+ più fasce orarie all'interno della stessa giornata si possono risolvere
+ più problemi di dimensione ridotta e debolmente accoppiati tra loro.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -9948,18 +9949,18 @@ Al fine di generare una buona soluzione in tempi ridotti si propone un algoritmo
 li in problemi più piccoli per poi ricostruire la soluzione completa.
  I problemi più piccoli sono generati partizionando l'orizzonte di pianificazion
 e in intervalli di breve durata e quindi con poche fermate.
- Viene inoltre scelto un sottoinsieme di gate sufficiente a soddisfare la
- richiesta di tutte le fermate.
- Per far ciò si risolve il problema di minimizzazione dei gate impiegati
- nell'intero orizzonte di pianificazione utilizzando il modello descritto
- nel paragrafo
+ Viene inoltre scelto un sottoinsieme di piattaforme sufficiente a soddisfare
+ la richiesta di tutte le corse.
+ Per far ciò si risolve euristicamente il problema di minimizzazione delle
+ piattaforme impiegate nell'intero orizzonte di pianificazione utilizzando
+ un algoritmo greedy simile a quello presentato in alg.
 \begin_inset space ~
 \end_inset
 
 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "sub:Minimizzazione-gate"
+LatexCommand vref
+reference "alg:gateplanner"
 
 \end_inset
 
@@ -9971,8 +9972,9 @@ reference "sub:Minimizzazione-gate"
 \emph on
 multiple time slot
 \emph default
-) di 120 minuti ed i modelli proposti sono risolti per ogni fascia oraria
- come illustrato in algoritmo 
+) di una certa ampiezza (120 minuti nelle prove sui dati reali è sembrato
+ un buon compromesso) ed i modelli proposti sono risolti per ogni fascia
+ oraria come illustrato in algoritmo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "alg:time_slice"
@@ -9981,6 +9983,16 @@ reference "alg:time_slice"
 
 .
  La fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "fig:Algoritmo-iterativo_legami_ist_sol"
+
+\end_inset
+
  mostra graficamente come siano legati fra loro i sottoproblemi, le soluzioni
  e le istanze dei problemi successivi al primo sottoproblema.
 \end_layout
@@ -10031,21 +10043,6 @@ name "fig:Algoritmo-iterativo_legami_ist_sol"
 \end_layout
 
 \begin_layout Standard
-In questo modo si semplifica notevolmente il problema e nel caso considerato
- il numero massimo di fermate presenti nei modelli di ottimizzazione si
- è ridotto da 229 a non più di 24.
- La fascia di punta massima, fra le 13.30 e le 14.00, dell'istanza considerata
- ha infatti 24 fermate.
- La riduzione delle dimensioni del problema permette una risoluzione esatta
- dei modelli matematici anche impiegando librerie gratuite e scaricabili
- dalla rete.
-\end_layout
-
-\begin_layout Subsection*
-Parametri degli algoritmi
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -10093,7 +10090,7 @@ SetKw{To}{to}%
 
 	
 \backslash
-Input{un'istanza $H = (B, G, E)$ di GA e una lista di istanti $p_1, 
+Input{un'istanza di GA e una lista di istanti $p_1, 
 \backslash
 ldots, p_P$}%
 \end_layout
@@ -10102,7 +10099,7 @@ ldots, p_P$}%
 
 	
 \backslash
-Output{gli assegnamenti fermate-gate nella giornata da pianificare}%
+Output{gli assegnamenti soste-piattaforme nella giornata da pianificare}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -10132,21 +10129,21 @@ To $P$}{%
 
 		
 \backslash
-tcc{considera solo le fermate $B_p$ che occuperanno un gate nell'intervallo
- $p$}%
+tcc{considera solo le corse $V_p$ che occuperanno una piattaforma nell'intervall
+o $p$}%
 \end_layout
 
 \begin_layout Plain Layout
 
-		$B_p = 
+		$V_p = 
 \backslash
-{b 
+{v 
 \backslash
-in B : d_b 
+in V : d_v 
 \backslash
 geq p_{p-1} 
 \backslash
-wedge a_b 
+wedge a_v 
 \backslash
 leq p_p 
 \backslash
@@ -10159,18 +10156,19 @@ leq p_p
 
 		
 \backslash
-tcc{considera solo i gate $G_p$ che sono abilitati nell'intervallo $p$}%
+tcc{considera solo le piattaforme $C_p$ che sono abilitate nell'intervallo
+ $p$}%
 \end_layout
 
 \begin_layout Plain Layout
 
-		$G_p = 
+		$C_p = 
 \backslash
-{g 
+{c 
 \backslash
-in G : g$ è abilitato in $[p_{p-1}, p_p]$ e almeno una fermata $b 
+in C : c$ è abilitato in $[p_{p-1}, p_p]$ e almeno una corsa $v 
 \backslash
-in B_p$ può essere assegnata a $g 
+in V_p$ può essere assegnata a $c 
 \backslash
 }$
 \backslash
@@ -10186,14 +10184,16 @@ tcc{sotto-grafi indotti}
 
 \begin_layout Plain Layout
 
-		genera $C_p = (B_p, F_b)$
+		genera $G = (V_p, E_p)$
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-		genera $H_p = (B_p, G_p, E_p)$
+		genera $
+\backslash
+mathcal{G}_p$ da $V_p, C_p, E_p$
 \backslash
 ;
 \end_layout
@@ -10286,151 +10286,99 @@ end{algorithm}
 Metodo dei buffer temporali
 \end_layout
 
-\begin_layout Section
-Pre-elaborazione delle istanze: riduzione della dimensione e rottura di
- alcune simmetrie
-\end_layout
-
-\begin_layout Section
-Algoritmo di riallocazione
-\end_layout
-
 \begin_layout Standard
-Per poter riassegnare i gate il sistema è necessario disporre in tempo reale
- delle informazioni relative allo stato delle fermate, ovvero degli orari
- effettivi di arrivo e partenza delle corse, e dello stato di occupazione
- dei gate.
-\end_layout
+Si propone un metodo per approcciare contemporaneamente il problema della
+ determinazione di soluzioni robuste mantenendo il più possibile limitato
+ il numero di piattaforme che ospitano almeno una corsa nell'orizzonte di
+ pianificazione.
+ L'idea è quella di determinare una soluzione con scarto minimo che sia
+ il più grande possibile risolvendo iterativamente il problema di minimizzazione
+ del numero di piattaforme.
+ Per far ciò s'introduce un parametro 
+\series bold
 
-\begin_layout Standard
-La riallocazione è necessaria quando si verificano i seguenti casi: 
-\end_layout
-
-\begin_layout Itemize
-creazione di nuove corse non contemplate nella pianificazione;
-\end_layout
-
-\begin_layout Itemize
-aggiunta di veicoli ad una corsa (corse bis);
-\end_layout
-
-\begin_layout Itemize
-ritardi o anticipi tali da determinare sovrapposizioni di fermate su uno
- stesso gate;
-\end_layout
-
-\begin_layout Standard
-I problemi possono essere affrontati impiegando l'algoritmo di pianificazione
- statica con i dati modificati.
- Se il problema richiede la generazione di assegnamenti non considerati
- (nuove corse) al modello matematico vanno aggiungente dinamicamente nuove
- variabili e nuovi vincoli che rappresentano la situazione corrente, altrimenti
- occorre modificare i vincoli di compatibilità.
- Se si usa la tecnica detta 
-\begin_inset Quotes eld
+\begin_inset Formula $b$
 \end_inset
 
-warm-start
-\begin_inset Quotes erd
+
+\series default
+ agli algoritmi che generano il grafo d'interferenza 
+\begin_inset Formula $G$
 \end_inset
 
- (partenza a caldo) fornendo al risolutore il piano statico (ora inammissibile)
- e si termina alla prima soluzione ammissibile si dovrebbe giungere rapidamente
- ad una soluzione simile a quella data.
- Con partenza 
-\begin_inset Quotes eld
+ in modo tale da considerare interferenti le corse 
+\begin_inset Formula $i$
 \end_inset
 
-a caldo
-\begin_inset Quotes erd
+ e 
+\begin_inset Formula $j$
 \end_inset
 
- s'intende la procedura che permette di intraprendere il processo di ricerca
- di una soluzione ammissibile a partire da una soluzione fornita.
- Il processo di ricerca non fornisce, però, la garanzia di trovare una soluzione.
+ per cui l'intervallo 
+\begin_inset Formula $[a_{i}-\frac{{b}}{2},d_{i}+\frac{b}{2}]$
+\end_inset
+
+ si sovrapponga, anche solo parzialmente, con l'intervallo 
+\begin_inset Formula $[a_{j}-\frac{{b}}{2},d_{j}+\frac{b}{2}]$
+\end_inset
+
+.
+ Il buffer temporale è illustrato in fig.
+\begin_inset space ~
+\end_inset
+
+.occupazione_piattaforma-buffer e l'algoritmo in alg.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "alg:time_buffer"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Una tecnica generale che permette di verificare l'esistenza di una soluzione
- ammissibile e, se esiste, di determinarla, è il backtracking.
- Tale tecnica considera tutti i possibili assegnamenti, scegliendo e disfacendo
- gli assegnamenti che non soddisfano i vincoli.
- Consiste nell'esplorazione di strutture ad albero in cui i nodi rappresentano
- delle soluzioni parziali (nodi non terminali) o complete (foglie) e tiene
- traccia di tutti i nodi e tutti i rami (scelta di un assegnamento) visitati
- in precedenza, in modo da poter tornare indietro al più vicino nodo che
- conteneva un cammino ancora inesplorato nel caso che la ricerca nel ramo
- attuale non abbia successo.
-\end_layout
-
-\begin_layout Subsubsection*
-Conflitto dovuto a modifica dell'intervallo di fermata
-\end_layout
-
-\begin_layout Standard
-Quando due fermate si trovano ad essere in conflitto perché gli intervalli
- di occupazione del gate si sovrappongono si può effettuare un riassegnamento
- con l'obiettivo di spostare la fermata su un gate che sia il più vicino
- possibile.
- Per far ciò è necessario stimare il tempo di occupazione del gate da parte
- delle nuove fermate e trovare il gate più vicino che sia libero in uno
- dei due intervalli, quindi si può assegnare la fermata dell'intervallo
- prescelto al gate individuato.
-\end_layout
-
-\begin_layout Standard
-Se non è possibile individuare un gate libero negli intervalli di occupazione
- stimati occorre effettuare almeno due cambiamenti negli assegnamenti prodotti
- nella pianificazione statica.
- Un obiettivo perseguibile è quello di introdurre il minor numero di cambiamenti
- rispetto al piano.
- Per far ciò devono essere ricalcolate le compatibilità fra le fermate e
- si deve procedere a ritroso nella ricerca con l'algoritmo di backtracking.
- Occorre disfare iterativamente una delle scelte di assegnamento della pianifica
-zione statica e tentare di costruire una soluzione ammissibile a partire
- dagli assegnamenti parziali.
- Se non si può generare una soluzione ammissibile a partire dagli assegnamenti
- dati si sale di un livello e disfacendo un assegnamento.
-\end_layout
-
-\begin_layout Subsubsection*
-Creazione di nuovi servizi
-\end_layout
-
-\begin_layout Standard
-Sono nuovi servizi le corse non contemplate nella pianificazione statica.
- Le nuove fermate possono essere assegnate immediatamente ai gate disponibili,
- stimando il tempo di occupazione dei gate da parte delle nuove fermate.
- Qualora non sia possibile assegnare le nuove fermate si deve procedere
- alla costruzione di nuove soluzioni con la tecnica del backtracking partendo
- dalla soluzione della pianificazione statica e modificando opportunamente
- il modello per tener conto delle nuove variabili (possibili assegnamenti)
- e dei nuovi vincoli di compatibilità.
- È possibile impiegare il metodo per la pianificazione statica generando
- il nuovo modello e partendo nella ricerca di una nuova soluzione da quella
- del piano statico in cui le nuove corse non sono assegnate.
-\end_layout
-
-\begin_layout Subsubsection*
-Creazione di corse bis
-\end_layout
-
-\begin_layout Standard
-Le corse bis sono nuove corse che vanno trattate con l'accorgimento di essere
- posizionate su gate adiacenti o, se ciò non è possibile, su gate prossimi
- a quello della corsa padre.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-Per questo obiettivo proponiamo la formulazione del problema come un problema
- di list-coloring applicato un grafo d'intervallo.
- Per rispettare le restrizioni del problema in esame vengono altri vincoli
- oltre a quelli di buona colorazione.
- Il modello risultante è problema restricted-coloring.
+\noindent
+\align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering{
+\backslash
+input{img/occupazione_piattaforma-buffer}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Intervalli-temporali-1"
+
+\end_inset
+
+Buffer temporale 
+\begin_inset Formula $b$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -10438,9 +10386,187 @@ Per questo obiettivo proponiamo la formulazione del problema come un problema
 
 \end_layout
 
-\begin_layout Subsection*
-Caso particolare: ogni fermata è assegnabile ad ogni piattaforma e non sono
- presenti altre restrizioni
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb]%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKw{To}{to}%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{un'istanza di GA}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{gli assegnamenti soste-piattaforme nella giornata da pianificare}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{il buffer è inizialiazzato a 0}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	$b = 0$;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Repeat(){Esistono soluzioni ammissibili
+\backslash
+;}{
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{sotto-grafi indotti}
+\end_layout
+
+\begin_layout Plain Layout
+
+		genera $G = (V, E)$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		risolvi il problema di minimizzazione (euristica)
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		$b = b + 1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return l'insieme di assegnamenti {$
+\backslash
+{x_{ik} : x_{ik}^* = 1
+\backslash
+}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Algoritmo iterativo per di massimizzazione dello scarto minimo}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{alg:time_buffer}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Un caso particolare
+\end_layout
+
+\begin_layout Standard
+La risoluzione del problema di minimizzazione del numero di piattaforme
+ assegnate ad almeno una piattaforma può presentare delle istanze in cui
+ ogni fermata è assegnabile ad ogni piattaforma e non sono presenti altre
+ restrizioni o vincoli soft.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -10760,439 +10886,7 @@ In tal caso il grafo che rappresenta la relazione di compatibilità tra fermate
 \end_inset
 
 .
- Per mostrale le analogie con il modello sopra esposto proponiamo un modello
- matematico usato per la colorazione di un grafo qualsiasi (vedi
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "MendezDiaz2006826"
-
-\end_inset
-
-), che è il seguente:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray}
-\min & \mbox{colours}=\sum_{k\in C}u_{k}\label{eq:min_gates_pesati-1}\\
-\sum_{k\,:\,(i,\, k)\in E}x_{ik}=1 &  & \forall i\in V\label{eq:vincolo_assegnamento_0-1}\\
-x_{ik}+x_{jk}\leq u_{k} &  & \forall k\in\left(L(i)\cap L(j)\right),\,\forall(i,\, j)\in\mathcal{E}^{k}\label{eq:vincolo_compatibilita_bus_0-1}\\
-\sum_{(i,\, k)\in A}\, x_{ik}\geq u_{k} &  & \forall k\in C\label{eq:uk_maggiore_xik-1}\\
-u_{k}\geq u_{k+1} &  & 1\leq k\leq|C|-1\label{eq:symmetry-breaking}\\
-x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\label{eq:x_ik_dominio-1}\\
-u_{k}\in\{0,\,1\} &  & \forall k\in C\label{eq:u_ik_dominio-1}
-\end{eqnarray}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La variabile binaria 
-\begin_inset Formula $x_{ik}$
-\end_inset
-
- indica l'assegnamento del colore 
-\begin_inset Formula $k$
-\end_inset
-
- al vertice 
-\begin_inset Formula $i$
-\end_inset
-
-.
- La variabile binaria 
-\begin_inset Formula $u_{k}$
-\end_inset
-
- indica l'uso del colore 
-\begin_inset Formula $k$
-\end_inset
-
-.
- L'eq.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:vincolo_assegnamento_0-1"
-
-\end_inset
-
- assegna esattamente un colore ad ogni vertice e le disequazioni
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:vincolo_compatibilita_bus_0-1"
-
-\end_inset
-
- assicurano che i vertici adiacenti siano colorati diversamente.
- Allo scopo di evitare molte soluzioni equivalenti sono introdotte le disequazio
-ni
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:uk_maggiore_xik-1"
-
-\end_inset
-
- e 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:symmetry-breaking"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Altri modelli possono essere formulati considerando il solo grafo di compatibili
-tà o il suo complemento ma sarebbero comunque necessarie le liste 
-\begin_inset Formula $L(i)$
-\end_inset
-
- che ad ogni fermata (vertice del grafo) 
-\begin_inset Formula $i$
-\end_inset
-
- associano i colori compatibili (gate) o incompatibili.
- Il problema nel che si ha considerando il solo grafo di compatibilità,
- che è appartiene alla classe dei grafi di comparabilità, è detto Minimum
- Clique Partition Problem o Clique Cover Problem e consiste nel partizionare
- il grafo nel numero minore possibile di clique.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection*
-Modello del problema di programmazione per vincoli
-\end_layout
-
-\begin_layout Standard
-La Programmazione per Vincoli (Constraint Programming) è un paradigma di
- programmazione per risolvere problemi combinatorici espressi con un linguaggio
- di modellazione (descrittivo) espressivo mediante efficienti implementazioni
- di algoritmi di risoluzione.
-\end_layout
-
-\begin_layout Standard
-I due concetti fondamentali della programmazione per vincoli sono la propagazion
-e dei vincoli e la ricerca costruttiva.
- La propagazione dei vincoli è un efficiente sistema che ha lo scopo di
- ridurre il dominio delle variabili del problema sfruttando la semantica
- dei vincoli del problema.
- Il motore inferenziale è implementato attraverso algoritmi di filtraggio
- che 
-\begin_inset Quotes eld
-\end_inset
-
-filtrano
-\begin_inset Quotes erd
-\end_inset
-
- valori dal dominio di ogni variabile.
- Quando la propagazione dei vincoli non riesce a rimuovere ulteriori valori
- dal dominio delle variabili, incomincia la fase di ricerca costruttiva.
- Quest'ultima esplora l'albero di ricerca restringendo il dominio di una
- variabile alla volta; in sostanza, si esegue una ricerca nello spazio di
- soluzioni parziali.
- La forma più semplice di ricerca costruttiva consiste nel selezionare una
- variabile non assegnata, ossia a cui non sia ancora assegnato un valore
- fra quelli del suo dominio, e procedere ad assegnarle uno dei valori disponibil
-i.
- Questo modo di procedere nell'esplorazione dell'albero di ricerca è detto
- etichettatura.
- Iterando la propagazione dei vincoli e l'etichettatura, il risolutore dello
- strumento di programmazione per vincoli calcola la soluzione, o le soluzioni,
- di un problema o dimostra che l'insieme delle soluzioni è vuoto.
- La letteratura recente propone molti approcci che combinano le tecniche
- classiche della ricerca operativa con quelle della programmazione per vincoli.
-\end_layout
-
-\begin_layout Standard
-I modelli di programmazione per vincoli del problema di buona colorazione
- di grafi si basano sul vincolo 
-\emph on
-alldifferent
-\emph default
-, introdotto da
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "regin1994filtering"
-
-\end_inset
-
-.
- Questo vincolo impone che un insieme di variabili intere assumano valori
- differenti tra loro e appartenenti ad uno stesso domino.
- Punto di forza del vincolo 
-\emph on
-alldifferent
-\emph default
- è l'efficiente algoritmo di propagazione che è capace di ridurre il dominio
- di ogni variabile utilizzando i risultati della teoria dell'accoppiamento
- su grafi bipartiti.
- Dato un grafo 
-\begin_inset Formula $G=(V,E)$
-\end_inset
-
-, siano 
-\begin_inset Formula $\underbar{\chi}$
-\end_inset
-
- e 
-\begin_inset Formula $\bar{\chi}$
-\end_inset
-
- una limitazione superiore ed inferiore sul numero.
- Sia 
-\begin_inset Formula $K=\left\{ 1,2,\ldots,\bar{\chi}\right\} $
-\end_inset
-
- l'insieme dei colori disponibili, assumendo che i numeri naturali rappresentino
- i colori (e quindi le piattaforme), e sia 
-\begin_inset Formula $x_{i}\in K$
-\end_inset
-
- per 
-\begin_inset Formula $i\in V$
-\end_inset
-
- il dominio intero e finito per le variabili del problema, dove il valore
- assegnato ad 
-\begin_inset Formula $x_{i}$
-\end_inset
-
- il colore assegnato al vertice 
-\begin_inset Formula $i$
-\end_inset
-
--esimo .
- Sia 
-\begin_inset Formula $x_{0}$
-\end_inset
-
- il dominio finito di interi che modella il numero totale di colori usati,
- ossia nella soluzione ottima 
-\begin_inset Formula $x_{0}=\chi(G)$
-\end_inset
-
-.
- Sia inoltre 
-\begin_inset Formula $\overline{x_{0}}$
-\end_inset
-
- la migliore limitazione superiore nota per problema, eventualmente determinata
- inizialmente con un'euristica costruttiva e poi eventualmente aggiornata
- dall'algoritmo di risoluzione.
- Il modello di programmazione per vincoli è il seguente:
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-variabile
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-dominio
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x_{0}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\underbar{\chi},\ldots,\bar{\chi}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\left\{ x_{i}\right\} $
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\left\{ L_{i}\right\} $
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="1">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-vincolo
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-alldifferent
-\begin_inset Formula $\left(\left\{ x_{i}:i\in\mathcal{Q}\right\} \right)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x_{0}$
-\end_inset
-
-= count
-\begin_inset Formula $\left(x_{i}\right)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="1">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Limitazione superiore
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x_{0}\leq\overline{x_{0}}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -11761,8 +11455,27 @@ Allocazioni predisposte dall'Autostazione
 
 \end_layout
 
-\begin_layout Section
-Parametri degli algoritmi
+\begin_layout Standard
+Sono presentate le soluzioni ottenute con gli algoritmi basati sulla risoluzione
+ dei modelli matematici troncata.
+\end_layout
+
+\begin_layout Standard
+L'algoritmo di minimizzazione del numero massimo di piattaforme utilizzate
+ è stato fatto girare sull'istanza completa per un tempo massimo di 5 secondi
+ e senza indicazioni sul lower bound per il problema.
+\end_layout
+
+\begin_layout Standard
+Le procedure per la determinazione delle soluzioni dei problemi di robustezza
+ sono state eseguite all'interno dell'algoritmo di controllo a orizzonte
+ recessivo.
+ L'intervallo 
+\begin_inset Formula $p$
+\end_inset
+
+ è stato scelto di ampiezza 2 ore e il tempo di calcolo massimo prima di
+ troncare il B&B è di 10 secondi.
 \end_layout
 
 \begin_layout Section
@@ -12765,8 +12478,9 @@ Vengono presentate le soluzioni mediante l'algoritmo di minimizzazione del
 \begin_inset Formula $G$
 \end_inset
 
- è costruito aggiungendo un buffer temporale simmetrico di 10, 8, 6, 4 e
- 2 minuti.
+ è costruito aggiungendo un buffer temporale simmetrico di 2, 4, 6, 8 e
+ 10 minuti, ovvero le iterazione del metodo dei buffer temporali risolto
+ però con il modello matematico per la minimizzazione del numero di piattaforme.
  I test con valori di buffer maggiori o uguali a 12 minuti non hanno prodotto
  soluzioni ammissibili.
  
@@ -12837,10 +12551,6 @@ Allocazioni che minimizzano le piattaforme (buffer di 2 minuti)
 \end_layout
 
 \begin_layout Standard
-x
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -12902,78 +12612,6 @@ Allocazioni che massimizzano lo scarto minimo (buffer di 2 minuti)
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-x
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fbox{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/time_buffer/m1/IterativeTimeHorizonMath.pdf
-	scale 70
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:real_conflitto-b2"
-
-\end_inset
-
-Allocazioni che minimizzano il conflitto minimo (buffer di 2 minuti)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-x
 \end_layout
 
 \begin_layout Standard
@@ -13041,10 +12679,6 @@ Allocazioni che minimizzano le piattaforme (buffer di 4 minuti)
 \end_layout
 
 \begin_layout Standard
-x
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -13109,10 +12743,6 @@ Allocazioni che massimizzano lo scarto minimo (buffer di 4 minuti)
 \end_layout
 
 \begin_layout Standard
-x
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -13174,10 +12804,6 @@ Allocazioni che minimizzano il conflitto (buffer di 4 minuti)
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-x
 \end_layout
 
 \begin_layout Standard
@@ -13309,10 +12935,6 @@ Allocazioni che massimizzano lo scarto minimo (buffer di 6 minuti)
 \end_layout
 
 \begin_layout Standard
-x
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -13374,10 +12996,6 @@ Allocazioni che minimizzano il conflitto (buffer di 6 minuti)
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-x
 \end_layout
 
 \begin_layout Standard
@@ -13445,10 +13063,6 @@ Allocazioni che minimizzano le piattaforme minimo (buffer di 8 minuti)
 \end_layout
 
 \begin_layout Standard
-x
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -13510,10 +13124,6 @@ Allocazioni che massimizzano lo scarto minimo (buffer di 8 minuti)
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-x
 \end_layout
 
 \begin_layout Standard
@@ -13581,10 +13191,6 @@ Allocazioni che minimizzano il conflitto (buffer di 8 minuti)
 \end_layout
 
 \begin_layout Standard
-x
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -13649,10 +13255,6 @@ Allocazioni che minimizzano le piattaforme (buffer di 10 minuti)
 \end_layout
 
 \begin_layout Standard
-x
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -13714,10 +13316,6 @@ Allocazioni che massimizzano lo scarto minimo (buffer di 10 minuti)
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-x
 \end_layout
 
 \begin_layout Standard
@@ -13803,7 +13401,7 @@ Conclusioni
 Il problema considerato è stato affrontato seguendo la classica metodologia
  della ricerca operativa: la prima fase è stata l'analisi del problema;
  sulla base di essa si è effettuata la modellazione matematica del problema;
- successivamente esso è stato risolto per mezzo di opportuni metodi matematici.
+ successivamente esso è stato risolto per mezzo di opportuni metodi algoritmici.
 \end_layout
 
 \begin_layout Standard
@@ -13816,138 +13414,11 @@ Le soluzioni fornite dagli algoritmi proposti si sono dimostrate buone;
 Sviluppi futuri
 \end_layout
 
-\begin_layout Subsection*
-Modello di Set Covering
-\end_layout
-
 \begin_layout Standard
 Per ridurre le simmetrie si potrebbe riformulare il problema utilizzando
  una formulazione in cui le piattaforme siano considerate in modo pressoché
- indistinto.
- Il problema della colorazione di grafi è infatti affrontato con successo
- impiegando formulazioni di set partitioning o set covering risolte con
- tecniche di generazione di colonne integrate ad altri metodi per la determinazi
-one di soluzioni intere.
-\end_layout
-
-\begin_layout Standard
-Il problema sarebbe da riformulare come segue:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Box Boxed
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "90col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-Dati
-\end_layout
-
-\begin_layout Itemize
-un grafo d'intervallo 
-\begin_inset Formula $G=(V,E)$
-\end_inset
-
-,
-\end_layout
-
-\begin_layout Itemize
-un insieme di colori 
-\begin_inset Formula $C$
-\end_inset
-
-,
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $|V|$
-\end_inset
-
- liste di compatibilità 
-\begin_inset Formula $L(i)$
-\end_inset
-
- e
-\end_layout
-
-\begin_layout Itemize
-un numero positivo 
-\begin_inset Formula $\chi_{r}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-determinare una partizione 
-\begin_inset Formula $\mathcal{P}=\left\{ P_{1},P_{2},\ldots,P_{\chi^{\prime}}\right\} $
-\end_inset
-
- dei vertici 
-\begin_inset Formula $V$
-\end_inset
-
- tale che
-\end_layout
-
-\begin_layout Itemize
-nessuna coppia di vertici adiacenti appartenga ad uno stesso gruppo (buona
- colorazione),
-\end_layout
-
-\begin_layout Itemize
-le partizioni siano scelte in modo da rispettare il vincolo che ogni colore
- assegnato ad ogni nodo 
-\begin_inset Formula $i$
-\end_inset
-
- sia presente nella lista di compatibilità 
-\begin_inset Formula $L(i)$
-\end_inset
-
- e
-\end_layout
-
-\begin_layout Itemize
-il numero di partizioni usate 
-\begin_inset Formula $\chi^{\prime}$
-\end_inset
-
- sia minore o uguale a 
-\begin_inset Formula $\chi_{r}$
-\end_inset
-
- .
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Il problema di list-coloring può essere formulato come un problema di max
- weighted partition (si veda
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "bjorklund2009set"
-
-\end_inset
-
-) e tale problema può essere risolto con tecniche di Branch&Price.
+ indistinto ma tale da pemettere di formulare i vincoli di compatibità.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -13956,7 +13427,323 @@ Si potrebbe usare con opportune modifiche il metodo proposto da Zeitlhofer
 \end_layout
 
 \begin_layout Standard
-Potrebbero altresì essere sviluppati algoritmi esatti.
+Potrebbero altresì essere sviluppati algoritmi esatti, in particolare basati
+ sulla programmazione per vincoli.
+\begin_inset Note Note
+status open
+
+\begin_layout Subsection*
+Modello del problema di programmazione per vincoli
+\end_layout
+
+\begin_layout Plain Layout
+La Programmazione per Vincoli (Constraint Programming) è un paradigma di
+ programmazione per risolvere problemi combinatorici espressi con un linguaggio
+ di modellazione (descrittivo) espressivo mediante efficienti implementazioni
+ di algoritmi di risoluzione.
+\end_layout
+
+\begin_layout Plain Layout
+I due concetti fondamentali della programmazione per vincoli sono la propagazion
+e dei vincoli e la ricerca costruttiva.
+ La propagazione dei vincoli è un efficiente sistema che ha lo scopo di
+ ridurre il dominio delle variabili del problema sfruttando la semantica
+ dei vincoli del problema.
+ Il motore inferenziale è implementato attraverso algoritmi di filtraggio
+ che 
+\begin_inset Quotes eld
+\end_inset
+
+filtrano
+\begin_inset Quotes erd
+\end_inset
+
+ valori dal dominio di ogni variabile.
+ Quando la propagazione dei vincoli non riesce a rimuovere ulteriori valori
+ dal dominio delle variabili, incomincia la fase di ricerca costruttiva.
+ Quest'ultima esplora l'albero di ricerca restringendo il dominio di una
+ variabile alla volta; in sostanza, si esegue una ricerca nello spazio di
+ soluzioni parziali.
+ La forma più semplice di ricerca costruttiva consiste nel selezionare una
+ variabile non assegnata, ossia a cui non sia ancora assegnato un valore
+ fra quelli del suo dominio, e procedere ad assegnarle uno dei valori disponibil
+i.
+ Questo modo di procedere nell'esplorazione dell'albero di ricerca è detto
+ etichettatura.
+ Iterando la propagazione dei vincoli e l'etichettatura, il risolutore dello
+ strumento di programmazione per vincoli calcola la soluzione, o le soluzioni,
+ di un problema o dimostra che l'insieme delle soluzioni è vuoto.
+ La letteratura recente propone molti approcci che combinano le tecniche
+ classiche della ricerca operativa con quelle della programmazione per vincoli.
+\end_layout
+
+\begin_layout Plain Layout
+I modelli di programmazione per vincoli del problema di buona colorazione
+ di grafi si basano sul vincolo 
+\emph on
+alldifferent
+\emph default
+, introdotto da
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "regin1994filtering"
+
+\end_inset
+
+.
+ Questo vincolo impone che un insieme di variabili intere assumano valori
+ differenti tra loro e appartenenti ad uno stesso domino.
+ Punto di forza del vincolo 
+\emph on
+alldifferent
+\emph default
+ è l'efficiente algoritmo di propagazione che è capace di ridurre il dominio
+ di ogni variabile utilizzando i risultati della teoria dell'accoppiamento
+ su grafi bipartiti.
+ Dato un grafo 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+, siano 
+\begin_inset Formula $\underbar{\chi}$
+\end_inset
+
+ e 
+\begin_inset Formula $\bar{\chi}$
+\end_inset
+
+ una limitazione superiore ed inferiore sul numero.
+ Sia 
+\begin_inset Formula $K=\left\{ 1,2,\ldots,\bar{\chi}\right\} $
+\end_inset
+
+ l'insieme dei colori disponibili, assumendo che i numeri naturali rappresentino
+ i colori (e quindi le piattaforme), e sia 
+\begin_inset Formula $x_{i}\in K$
+\end_inset
+
+ per 
+\begin_inset Formula $i\in V$
+\end_inset
+
+ il dominio intero e finito per le variabili del problema, dove il valore
+ assegnato ad 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ il colore assegnato al vertice 
+\begin_inset Formula $i$
+\end_inset
+
+-esimo .
+ Sia 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ il dominio finito di interi che modella il numero totale di colori usati,
+ ossia nella soluzione ottima 
+\begin_inset Formula $x_{0}=\chi(G)$
+\end_inset
+
+.
+ Sia inoltre 
+\begin_inset Formula $\overline{x_{0}}$
+\end_inset
+
+ la migliore limitazione superiore nota per problema, eventualmente determinata
+ inizialmente con un'euristica costruttiva e poi eventualmente aggiornata
+ dall'algoritmo di risoluzione.
+ Il modello di programmazione per vincoli è il seguente:
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+variabile
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+dominio
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\underbar{\chi},\ldots,\bar{\chi}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left\{ x_{i}\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left\{ L_{i}\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+vincolo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+alldifferent
+\begin_inset Formula $\left(\left\{ x_{i}:i\in\mathcal{Q}\right\} \right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{0}$
+\end_inset
+
+= count
+\begin_inset Formula $\left(x_{i}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Limitazione superiore
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{0}\leq\overline{x_{0}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
