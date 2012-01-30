@@ -1,0 +1,41 @@
+%%%\documentclass{article}
+%%%\usepackage[x11names, rgb]{xcolor}
+%%%\usepackage{tikz}
+%%%\usetikzlibrary{decorations,arrows,shapes}
+%%%\begin{document}
+%%%
+\begin{tikzpicture}[>=latex',join=bevel,domain=0.4:6.6,scale=0.72]
+    \draw[->] (-0.4,0) -- (7.2,0) node[below] {tempo};
+    \draw[->,] (-0.5,-0.5) -- (-0.5,3);
+    \draw (-0.8, 1.5) node[rotate=90] {piattaforma};
+
+    \foreach \x in {0,2,4,6} {
+     		\draw (\x,0.1) -- (\x,-0.1);
+		\draw [dashed] (\x, 0.2) -- (\x,0.9);
+	}
+
+
+    \foreach \y in {1,2} {
+     		\draw (-0.6,\y) -- (-0.4, \y);
+		\draw [dotted] (-0.3, \y) -- (7.2,\y);
+	}
+		
+
+\draw (0, 0) node[below] {$a_i$};
+\draw (2, 0) node[below] {$d_i$};
+\draw (4, 0) node[below] {$a_j$};
+\draw (6, 0) node[below] {$d_j$};
+
+\draw [<->,blue] (2,1.25) -- (4,1.25) node [black,sloped,midway,above] {$c_{ij}$};
+
+\path[draw=black,fill=yellow!50]   ( 0, 1) --++ (2,0) --++ (0,1) -++ (-2,0) --cycle;
+\path[draw=black,fill=yellow!50]   ( 4, 1) --++ (2,0) --++ (0,1) -++ (-2,0) --cycle;
+
+\draw(1,1.5) node {$i$};
+\draw(5,1.5) node {$i$};
+\draw(-0.25,1.5) node {$k$};
+
+
+\end{tikzpicture}
+%%%
+%%%\end{document}
