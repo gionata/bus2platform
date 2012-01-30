@@ -1319,7 +1319,7 @@ o
 \begin_inset Formula $[a_{i},d_{i}]$
 \end_inset
 
-, come rappresentato in figura.
+, come rappresentato in fig.
 \begin_inset space ~
 \end_inset
 
@@ -1427,7 +1427,7 @@ reference "fig:gruppo-bis"
 
 .
  Le piattaforme della stazione sono disposte in linea, come mostrato in
- figura.
+ fig.
 \begin_inset space ~
 \end_inset
 
@@ -1643,9 +1643,9 @@ Il problema considerato è quello di minimizzare il numero di piattaforme
 
 \begin_layout Standard
 Per determinare una buona soluzione del problema, da quanto si evince dalla
- documentazione, viene impiegato un algoritmo greedy simile all'algoritmo
- first-fit usato per la soluzione approssimata del problema di bin packing.
- L'algoritmo è illustrato in algoritmo
+ documentazione, viene impiegata una procedura greedy simile a quella first-fit
+ usata per la soluzione approssimata del problema di bin packing.
+ La procedura è illustrata in alg.
 \begin_inset space ~
 \end_inset
 
@@ -2193,10 +2193,9 @@ end{algorithm}
 \end_layout
 
 \begin_layout Standard
-L'algoritmo è di tipo euristico costruttivo e come tale non garantisce di
- determinare una soluzione, anche se la regione ammissibile fosse non vuota,
- e nel caso in cui venisse prodotta una soluzione non è garantito che sia
- ottima.
+Essa è di tipo euristico costruttivo e come tale non garantisce di determinare
+ una soluzione, anche se la regione ammissibile fosse non vuota, e nel caso
+ in cui venisse prodotta una soluzione non è garantito che sia ottima.
 \end_layout
 
 \begin_layout Subsection*
@@ -3998,6 +3997,19 @@ Un grafo
 \end_layout
 
 \begin_layout Standard
+Dato un multiinsieme finito di intervalli su una linea retta, si può costruire
+ un grafo 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+ nel seguente modo: ogni intervallo corrisponde ad un vertice del grafo,
+ e due vertici sono collegati da un lato se e solo se gli intervalli corrisponde
+nti hanno intersezione non vuota.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Il grafo 
 \begin_inset Formula $G=(V,E)$
 \end_inset
@@ -4007,14 +4019,19 @@ Il grafo
  Ogni intervallo del multiinsieme corrisponde ad un vertice e due vertici
  sono connessi da un lato se e solo se gli intervalli corrispondenti hanno
  intersezione non vuota.
- Il numero minimo di livelli necessari e sufficienti per disegnare gli intervall
-i senza sovrapposizioni corrisponde alla dimensione della cricca massima.
+ 
+\end_layout
+
+\end_inset
+
+Il numero minimo di livelli necessari e sufficienti per disegnare gli intervalli
+ senza sovrapposizioni corrisponde alla dimensione della cricca massima.
  Sia 
 \begin_inset Formula $\mathcal{Q}_{G}$
 \end_inset
 
  l'insieme di tutte le cricca massimali distinte.
- Il grafo si può esprimere come il grafo unione delle cricca massimali:
+ Il grafo G si può esprimere come il grafo unione delle cricca massimali:
  
 \begin_inset Formula $G=\cup_{Q\in\mathcal{Q}_{G}}Q$
 \end_inset
@@ -4024,6 +4041,33 @@ i senza sovrapposizioni corrisponde alla dimensione della cricca massima.
  o uguale alla cardinalità dell'insieme dei nodi.
  Il problema della ricerca di tutte le cricca massimali di un grafo d'intervallo
  è un problema polinomiale.
+ Un vertice 
+\begin_inset Formula $v$
+\end_inset
+
+ di 
+\begin_inset Formula $G=(V,E)$
+\end_inset
+
+ è simpliciale se l'insieme dei nodi adiacenti 
+\begin_inset Formula $N(v)$
+\end_inset
+
+ induce un sottografo completo di 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Un ordinamento dei vertici 
+\begin_inset Formula $\sigma=[v_{1},v_{2},\ldots,v_{n}]$
+\end_inset
+
+ tale per cui 
+\begin_inset Formula $X_{i}=\left\{ v_{j}\in N(v_{i})|j>i\right\} $
+\end_inset
+
+ è un grafo completo, è detta sequenza di eliminazione perfetta.
+ Un grafo d'intervallo ammette sempre una tale sequenza.
 \end_layout
 
 \begin_layout Standard
@@ -4720,11 +4764,11 @@ key "Wang1994"
 \end_layout
 
 \begin_layout Standard
-Ogni allocazione delle piattaforme ammissibile corrisponde ad una colorazione
- propria dei nodi del grafo in cui il colore assegnato al nodo sia compatibile
- col nodo stesso, e viceversa.
- Il problema decisionale del list-coloring di un grafo degli intervalli
- è descritto in figura
+Ogni allocazione delle piattaforme ammissibile corrisponde ad una buona
+ colorazione propria dei nodi del grafo in cui il colore assegnato al nodo
+ sia compatibile col nodo stesso, e viceversa.
+ Il problema del list-coloring di un grafo degli intervalli è descritto
+ in figura
 \begin_inset space ~
 \end_inset
 
@@ -4795,8 +4839,7 @@ determinare il colore di ogni vertice
 \end_layout
 
 \begin_layout Itemize
-nessuna coppia di vertici adiacenti abbia lo stesso colore (colorazione
- propria),
+nessuna coppia di vertici adiacenti abbia lo stesso colore (buona colorazione),
 \end_layout
 
 \begin_layout Itemize
@@ -4884,8 +4927,7 @@ determinare il colore di ogni vertice
 \end_layout
 
 \begin_layout Itemize
-nessuna coppia di vertici adiacenti abbia lo stesso colore (colorazione
- propria),
+nessuna coppia di vertici adiacenti abbia lo stesso colore (buona colorazione),
 \end_layout
 
 \begin_layout Itemize
@@ -4969,7 +5011,7 @@ reference "fig:Descrizione-del-problema"
 \end_inset
 
  con compatibilità 
-\begin_inset Formula $L\,:\, V\rightarrow2^{C}$
+\begin_inset Formula $\mbox{L\,:\, V\rightarrow2^{C}}$
 \end_inset
 
 , dove 
@@ -4989,12 +5031,17 @@ reference "fig:Descrizione-del-problema"
 \end_layout
 
 \begin_layout Subsection*
-Esempio di formulazione
+Esempio di formulazione del problema di allocazione come problema di list-colori
+ng
 \end_layout
 
 \begin_layout Standard
 Si consideri di dover assegnare le piattaforme agli autobus che effettuano
- i servizi di trasporto programmati come da tabella 
+ i servizi di trasporto programmati come da tab.
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:fermate_e_compatibilita"
@@ -5432,7 +5479,7 @@ Tabella oraria e compatibilità autobus-piattaforme
 \end_layout
 
 \begin_layout Standard
-Nella figura.
+Nella fig.
 \begin_inset space ~
 \end_inset
 
@@ -5503,7 +5550,7 @@ Intervalli e grafo d'intervallo corrispondente
 \begin_layout Standard
 \noindent
 \align left
-Nella figura.
+Nella fig.
 \begin_inset space ~
 \end_inset
 
@@ -5540,33 +5587,6 @@ ordine perfetto
 \end_layout
 
 \begin_layout Standard
-Si ricorda che un vertice 
-\begin_inset Formula $v$
-\end_inset
-
- di 
-\begin_inset Formula $G=(V,E)$
-\end_inset
-
- è simpliciale se l'insieme dei nodi adiacenti 
-\begin_inset Formula $N(v)$
-\end_inset
-
- induce un sottografo completo di 
-\begin_inset Formula $G$
-\end_inset
-
-.
- Un ordinamento dei vertici 
-\begin_inset Formula $\sigma=[v_{1},v_{2},\ldots,v_{n}]$
-\end_inset
-
- tale per cui 
-\begin_inset Formula $X_{i}=\left\{ v_{j}\in N(v_{i})|j>i\right\} $
-\end_inset
-
- è un grafo completo, è detta sequenza di eliminazione perfetta.
- 
 \begin_inset Note Note
 status open
 
@@ -5625,121 +5645,6 @@ Istanza e soluzione di un problema di list-coloring
 \end_layout
 
 \begin_layout Standard
-Si definisce nel domino dei numeri reali la funzione 
-\begin_inset Formula $f(x)$
-\end_inset
-
-, che assume come valore la differenza tra il numero di estremi sinistri
- e destri presenti nella retta reale prima di 
-\begin_inset Formula $x$
-\end_inset
-
-.
- Per ogni punto reale 
-\begin_inset Formula $x$
-\end_inset
-
- è quindi definita una cricca e per ogni cricca esiste un numero reale 
-\begin_inset Formula $x$
-\end_inset
-
- che la definisce.
- Il valore della massima cricca è dato da 
-\begin_inset Formula $\chi=\max f(x)$
-\end_inset
-
-.
- Per colorare il grafo d'intervallo nel caso di colorazione di grafi basta
- ordinare i valori 
-\begin_inset Formula $d_{i}$
-\end_inset
-
- e scandirli dal minimo al massimo.
- In un passo generico dell'algoritmo i colori utilizzati sono marcati e
- quelli disponibili sono non marcati.
- Inizialmente nessun colore è marcato.
- Si può notare che i massimi locali di 
-\begin_inset Formula $f(x)$
-\end_inset
-
- forniscono le cricche massimali (si veda
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "serafini2009ricerca"
-
-\end_inset
-
-).
- Nell'esempio ce ne sono quattro.
- Il massimo locale è determinato dall'estremo destro di un intervallo.
- Si veda la figura.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Grafo-intervallo-fx"
-
-\end_inset
-
-.
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering{
-\backslash
-input{img/interval_graph_fx}}
-\end_layout
-
-\end_inset
-
-
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Grafo-intervallo-fx"
-
-\end_inset
-
-La funzione 
-\begin_inset Formula $f(x)$
-\end_inset
-
-: numero di intervalli che contengono 
-\begin_inset Formula $x$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -5760,11 +5665,11 @@ Modello matematico del problema di minimizzazione delle piattaforme
 \end_layout
 
 \begin_layout Standard
-Il problema del list-coloring può essere formulato su un grafo 
+Il problema del list-coloring può essere riformulato su un grafo 
 \begin_inset Formula $\mathcal{G}(\mathcal{V},\mathcal{E})=G+K_{m}$
 \end_inset
 
- ottenuto dal grafo di interferenza delle fermate 
+ ottenuto dal grafo d'interferenza delle fermate 
 \begin_inset Formula $G=(V,\, E)$
 \end_inset
 
@@ -5830,7 +5735,7 @@ L'insieme
 \begin_inset Formula $(v_{i},\, c_{k})$
 \end_inset
 
- se la fermata 
+ se la corsa 
 \begin_inset Formula $v_{i}\in V$
 \end_inset
 
@@ -5868,7 +5773,7 @@ L'insieme
 \begin_inset Formula $\mathcal{E}^{k}$
 \end_inset
 
- modellano le incompatibilità fra fermate compatibili con la piattaforma
+ modellano le incompatibilità fra le sole corse compatibili con la piattaforma
  
 \begin_inset Formula $k$
 \end_inset
@@ -5891,7 +5796,7 @@ L'insieme
 \begin_inset Formula $c_{k}$
 \end_inset
 
- che può essere assegnato ai vertici (fermate) compatibili col colore 
+ che può essere assegnato ai vertici compatibili col colore 
 \begin_inset Formula $v_{i}|c_{k}\in L(v_{i})$
 \end_inset
 
@@ -5938,62 +5843,442 @@ Una soluzione ammissibile per il problema di list-coloring su
 \end_layout
 
 \begin_layout Standard
+L'insieme di archi 
+\begin_inset Formula $\mathcal{E}^{k}$
+\end_inset
+
+ contiene le coppie non ordinate di fermate incompatibili fra loro e compatibili
+ con la piattaforma 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ Si devono determinare gli assegnamenti delle fermate alle piattaforme.
+\end_layout
+
+\begin_layout Standard
+Per passare ad un modello di programmazione lineare intera si consideri
+ una variabile binaria
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{ik}=\begin{cases}
+1 & \text{se e solo se la corsa \ensuremath{v_{i}}}\text{ è assegnata alla piattaforma }k\\
+0 & \text{altrimenti}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+che rappresenta la scelta del vertice 
+\begin_inset Formula $(v_{i},c_{k})$
+\end_inset
+
+ nel massimo insieme stabile.
+\end_layout
+
+\begin_layout Standard
+\noindent
+I vincoli di assegnamento impongono che ogni fermata sia assegnata ad una
+ sola piattaforma (colore, nei problemi di colorazione di grafi):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{k\in L(i)}x_{ik}=1\qquad\forall i\in V
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I vincoli di non sovrapposizione delle fermate, che impediscono di assegnare
+ due corse interferenti ad una stessa piattaforma , possono essere espressi
+ genericamente da
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{ik}+x_{jk}\leq1\qquad\forall k\in\left(L(i)\cap L(j)\right),\,\forall(i,\, j)\in\mathcal{E}^{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'ultimo insieme di vincoli descrive l'incompatibilità delle fermate in
+ modo naturale, ma il rilassamento lineare generalmente fornisce soluzioni
+ distanti dall'ottimo(vedi
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "caprara1998properties"
+
+\end_inset
+
+).
+ Inoltre il numero di vincoli è elevato e la complessità dell'algoritmo
+ risolutivo comunemente impiegato per problemi di PL, cresce al crescere
+ del numero di vincoli.
+ È possibile formulare in modo più compatto e stringente i vincoli di incompatib
+ilità mediante l'uso del vettore 
+\begin_inset Formula $\mathcal{Q}_{k}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i\in\mathcal{Q}}x_{ik}\leq1\qquad\forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Nella funzione obiettivo si considerano i colori (piattaforme) utilizzati,
+ definiti da una variabile binaria
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u_{k}=\begin{cases}
+1 & \text{se e solo se la piattaforma \ensuremath{k}}\text{ è assegnata ad almeno una corsa }\\
+0 & \text{altrimenti}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Per legare la variabile 
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ agli assegnamenti 
+\begin_inset Formula $x_{ik}$
+\end_inset
+
+ occorre aggiungere le disuguaglianze
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u_{k}\geq x_{ik}\qquad\forall k\in C,\forall i\in L^{-1}(k)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+I vincoli sopra esposti permettono di definire il domino delle 
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ come variabili continue, 
+\begin_inset Formula $0\leq u_{k}\leq1\,\forall k\in C$
+\end_inset
+
+, e esse continueranno ad assumere valori nell'insieme 
+\begin_inset Formula $\left\{ 0,1\right\} ^{|C|}$
+\end_inset
+
+.
+ Per ridurre il numero di disequazioni è possibile considerare tutti i vincoli
+ che coinvolgono una stessa piattaforma 
+\begin_inset Formula $k$
+\end_inset
+
+ , ottenendo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+|L^{-1}(k)|u_{k}\geq\sum_{i\in L^{-1}(k)}\, x_{ik}\qquad\forall k\in C
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Si considerino cioè per ogni piattaforma 
+\noindent
+I vincoli sono meno stringenti ma si presentano in numero minore.
+ Prove sperimentali hanno mostrato che la risoluzione del modello con meno
+ vincoli migliora i tempi di calcolo.
+ 
+\end_layout
+
+\end_inset
+
+Il modello completo per la descrizione del problema di minimizzazione del
+ numero di piattaforme utilizzate è il seguente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\min & z^{col}=\sum_{k\in C}c_{k}\, u_{k}\label{eq:min_gates_pesati}\\
+\sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\label{eq:vincolo_assegnamento_0}\\
+\sum_{i\in\mathcal{Q}}x_{ik}\leq1 &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\label{eq:vincolo_compatibilita_bus_0}\\
+\sum_{i\in L^{-1}(k)}\, x_{ik}\leq|L^{-1}(k)|\, u_{k} &  & \forall k\in C\label{eq:uk_maggiore_xik}\\
+\sum_{k\in C}\, u_{k}\geq\chi\label{eq:lower_bound_gates}\\
+x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\label{eq:x_ik_dominio}\\
+u_{k}\in\{0,\,1\} &  & \forall k\in C\label{eq:u_ik_dominio}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il modello proposto impiega la variabile
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $u_{k}$
+\end_inset
+
+, che vale 1 se il gate 
 \begin_inset Formula $k$
 \end_inset
 
- il sottografo indotto 
-\begin_inset Formula $H^{k}=(V^{k},\,\{c_{k}\},\, A^{k})$
+ è occupato da almeno una corsa, altrimenti vale 0.
+ Il vincolo
+\begin_inset space ~
 \end_inset
 
- di 
-\begin_inset Formula $H$
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:vincolo_assegnamento_0"
+
 \end_inset
 
-, in cui 
-\begin_inset Formula $V^{k}\subseteq V$
+ impone che ogni fermata sia assegnata ad una piattaforma.
+ Il vincolo
+\begin_inset space ~
 \end_inset
 
- ha per elementi tutte e sole le fermate che possono essere assegnate alla
- piattaforma 
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:vincolo_compatibilita_bus_0"
+
+\end_inset
+
+ dichiara che le fermate su uno stesso gate devono essere compatibili fra
+ loro, ovvero devono occupare il gate in intervalli di tempo che non si
+ sovrappongono.
+ Le variabili 
+\begin_inset Formula $x_{ik}$
+\end_inset
+
+ coinvolte in un gruppo di vincoli di questo tipo appartengono ad un insieme
+ chiamato Special Order Set di tipo 1 (SOS1).
+ La caratteristica degli SOS1 è che al più una di queste variabili può assumere
+ un valore strettamente positivo mentre le altre devono essere nulle.
+ L'utilizzo di variabili di questo tipo, in un algoritmo di Branch&Bound,
+ permette di ridurre lo spazio di ricerca e quindi il tempo di calcolo.
+ Le disequazioni espresse dal vincolo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:uk_maggiore_xik"
+
+\end_inset
+
+ forzano la variabile
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ al valore 1 se almeno una fermata è assegnata alla piattaforma 
 \begin_inset Formula $k$
-\end_inset
-
- ed 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\noun off
-\color none
-
-\begin_inset Formula $E^{k}$
-\end_inset
-
-
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\noun default
-\color inherit
- l'insieme dei lati incidenti in 
-\begin_inset Formula $k$
-\end_inset
-
-, ed il sottografo indotto del grafo di interferenza delle fermate 
-\begin_inset Formula $G^{k}=(V^{k},\, E^{k})$
 \end_inset
 
 .
+ Il vincolo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lower_bound_gates"
+
+\end_inset
+
+ dichiara che il numero di piattaforme usate sarà maggiore o uguale ad un
+ lower bound (che può essere calcolato in tempo polinomiale con l'alg.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "bp_lb"
+
+\end_inset
+
+).
+ Il lower bound permette di certificare l'ottimalità della soluzione e riduce
+ pertanto il numero di stati che devono essere esplorati dall'algoritmo
+ di risoluzione del modello matematico per le istanze più semplici.
+ I domini delle variabili 
+\begin_inset Formula $x_{ik}$
+\end_inset
+
+ e 
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ sono dichiarati dai vincoli
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:x_ik_dominio"
+
+\end_inset
+
+ e
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:u_ik_dominio"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il modello può essere reso ancora più compatto eliminando i vincoli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:uk_maggiore_xik"
+
+\end_inset
+
+ e legando la variabile 
+\begin_inset Formula $u_{k}$
+\end_inset
+
+ alle variabili 
+\begin_inset Formula $x_{ik}$
+\end_inset
+
+ nelle disequazioni 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:vincolo_compatibilita_bus_0"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\min & z^{col}=\sum_{k\in C}c_{k}\, u_{k}\label{eq:min_gates_pesati-2}\\
+\sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\label{eq:vincolo_assegnamento_0-2}\\
+\sum_{i\in\mathcal{Q}}x_{ik}\leq u_{k} &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\label{eq:vincolo_compatibilita_bus_0-2}\\
+\sum_{k\in C}\, u_{k}\geq\chi\label{eq:lower_bound_gates-1}\\
+x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\label{eq:x_ik_dominio-2}\\
+u_{k}\in\{0,\,1\} &  & \forall k\in C\label{eq:u_ik_dominio-2}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per minimizzare il numero di piattaforme è sufficiente assegnare ai parametri
+ 
+\begin_inset Formula $c_{k}$
+\end_inset
+
+ il valore 1, mentre se si hanno preferenze sulla scelta delle piattaforme
+ da utilizzare occorre 
+\begin_inset Quotes eld
+\end_inset
+
+pesarle
+\begin_inset Quotes erd
+\end_inset
+
+ assegnando ai parametri 
+\begin_inset Formula $c_{k}$
+\end_inset
+
+ un valore non negativo.
+ La funzione obiettivo 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:min_gates_pesati"
+
+\end_inset
+
+ nel primo caso esprime il numero di piattaforme occupate, mentre nel secondo
+ caso fornisce un indice del costo di utilizzo delle piattaforme.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Pesare i gate permette di ridurre le simmetrie nelle soluzioni.
 \end_layout
 
 \end_inset
@@ -6002,10 +6287,131 @@ Si considerino cioè per ogni piattaforma
 \end_layout
 
 \begin_layout Standard
-Ad esempio si supponga di dover allocare le fermate 1, 2, 3 definite dagli
- intervalli (1,4), (2, 5) e (3,6) ai gate 1, 2, 3 aventi tempi di servizio
- [0, 7], [0, 7] e [1,5], senza presenza di ulteriori vincoli di allocazione.
- I parametri sono riassunti in tabella
+Il modello è stato costruito a partire dal modello di PLI di Kantorovich
+ per il Bin Packing, eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:min_gates_pesati"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:vincolo_assegnamento_0"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:uk_maggiore_xik"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:x_ik_dominio"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:u_ik_dominio"
+
+\end_inset
+
+; a tale modello è stato aggiunto una limitazione inferiore esplicita (equazione
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lower_bound_gates"
+
+\end_inset
+
+) ed il vincolo di compatibilità (equazione
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:vincolo_compatibilita_bus_0"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Le prestazioni di un algoritmo di Branch&Bound, per risolvere un tale modello,
+ si rivelano inefficienti quando il limite inferiore sul numero di piattaforme
+ è minore dell'ottimo.
+ Se si analizza il caso con le piattaforme compatibili con tutte le fermate
+ si nota che per ogni soluzione che impiega 
+\begin_inset Formula $m$
+\end_inset
+
+ piattaforme esistono 
+\begin_inset Formula $m!$
+\end_inset
+
+ soluzioni equivalenti ottenute permutando le piattaforme tra loro.
+ Essendo, inoltre, il numero di piattaforme disponibili generalmente maggiore
+ di quante strettamente necessarie, si crea un'ulteriore generazione di
+ soluzioni equivalenti ed il metodo del Branch&Bound non migliora di molto
+ le prestazioni dell'enumerazione completa dovendo esplorare un albero pressoché
+ completo.
+\end_layout
+
+\begin_layout Subsection*
+Esempio di formulazione del problema del massimo insieme stabile
+\end_layout
+
+\begin_layout Standard
+Si supponga di dover allocare le corse
+\begin_inset space ~
+\end_inset
+
+1, 2, 3 definite dagli intervalli 
+\begin_inset Formula $\mbox{(1,4)}$
+\end_inset
+
+, 
+\begin_inset Formula $\mbox{(2,5)}$
+\end_inset
+
+ e 
+\begin_inset Formula $\mbox{(3,6)}$
+\end_inset
+
+ alle piattaforme
+\begin_inset space ~
+\end_inset
+
+1, 2, 3 aventi tempi di servizio 
+\begin_inset Formula $\mbox{[0,7]}$
+\end_inset
+
+, 
+\begin_inset Formula $\mbox{[0,7]}$
+\end_inset
+
+ e 
+\begin_inset Formula $\mbox{[1,5]}$
+\end_inset
+
+, senza presenza di ulteriori vincoli di allocazione.
+ I parametri sono riassunti in tab.
 \begin_inset space ~
 \end_inset
 
@@ -6231,7 +6637,7 @@ Istanza di esempio: tabella oraria e compatibilità
 
 \begin_layout Standard
 La rappresentazione delle fasce orarie di occupazione può essere effettuata
- mediante un diagramma a barre come in figura.
+ mediante un diagramma a barre come in fig.
 \begin_inset space ~
 \end_inset
 
@@ -6243,7 +6649,7 @@ reference "fig:Intervalli-di-occupazione1"
 \end_inset
 
  Le compatibilità fermata-piattaforma del problema in esame sono rappresentate
- in figura.
+ in fig.
 \begin_inset space ~
 \end_inset
 
@@ -6254,7 +6660,7 @@ reference "fig:relazioni_L1"
 
 \end_inset
 
-, mentre il grafo di compatibilità risulta essere quello in figura.
+, mentre il grafo di compatibilità risulta essere quello in fig.
 \begin_inset space ~
 \end_inset
 
@@ -6474,7 +6880,7 @@ Il grafo
 \end_inset
 
  di un problema di insiemi stabili.
- L'istanza è rappresentata in figura.
+ L'istanza è rappresentata in fig.
 \begin_inset space ~
 \end_inset
 
@@ -6491,7 +6897,7 @@ reference "fig:Istanza-mis"
 
 \begin_layout Standard
 Una soluzione, fra le tre possibili, del problema del massimo insieme stabile
- è presentata in figura.
+ è presentata in fig.
 \begin_inset space ~
 \end_inset
 
@@ -6529,7 +6935,7 @@ Per passare dalla soluzione del problema del massimo insieme stabile di
 \begin_inset Formula $\mathcal{G}$
 \end_inset
 
- selezionato nella soluzione, come presentato in figura.
+ selezionato nella soluzione, come presentato in fig.
 \begin_inset space ~
 \end_inset
 
@@ -6846,558 +7252,54 @@ Trasformazioni del problema di restricted-coloring
 
 \end_layout
 
-\begin_layout Standard
-L'insieme di archi 
-\begin_inset Formula $\mathcal{E}^{k}$
-\end_inset
-
- contiene le coppie non ordinate di fermate incompatibili fra loro e compatibili
- con la piattaforma 
-\begin_inset Formula $k$
-\end_inset
-
-.
- Si devono determinare gli assegnamenti delle fermate alle piattaforme.
-\end_layout
-
-\begin_layout Standard
-Per passare ad un modello di programmazione lineare intera si consideri
- una variabile binaria
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-x_{ik}=\begin{cases}
-1 & \text{se e solo se la sosta \ensuremath{v_{i}}}\text{ è assegnata alla piattaforma }k\\
-0 & \text{altrimenti}
-\end{cases}
-\]
-
-\end_inset
-
+\begin_layout Subsection*
 
 \end_layout
 
-\begin_layout Standard
-che rappresenta la scelta del vertice 
-\begin_inset Formula $(v_{i},c_{k})$
-\end_inset
-
- nel massimo insieme stabile.
+\begin_layout Section
+Massimizzazione dello scarto minimo minimo
 \end_layout
 
 \begin_layout Standard
-\noindent
-I vincoli di assegnamento impongono che ogni fermata sia assegnata ad una
- sola piattaforma (colore, nei problemi di colorazione di grafi):
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\sum_{k\in L(i)}x_{ik}=1\qquad\forall i\in V
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-I vincoli di non sovrapposizione delle fermate, che impediscono di assegnare
- due fermate interferenti ad una stessa piattaforma , possono essere espressi
- genericamente da
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-x_{ik}+x_{jk}\leq1\qquad\forall k\in\left(L(i)\cap L(j)\right),\,\forall(i,\, j)\in\mathcal{E}^{k}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-L'ultimo insieme di vincoli descrive l'incompatibilità delle fermate in
- modo naturale, ma il rilassamento lineare generalmente fornisce soluzioni
- distanti dall'ottimo (vedi
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "caprara1998properties"
-
-\end_inset
-
-).
- Inoltre il numero di vincoli è elevato e la complessità dell'algoritmo
- risolutivo comunemente impiegato per problemi di PL, cresce al crescere
- del numero di vincoli.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-`E
-\end_layout
-
-\end_inset
-
- possibile formulare in modo più compatto e stringente i vincoli di incompatibil
-ità mediante l'uso del vettore 
-\begin_inset Formula $\mathcal{Q}_{k}$
-\end_inset
-
- definito in algoritmo
+La formulazione precedente non considera una distanza temporale minima che
+ deve intercorrere fra due corse su una stessa piattaforma.
+ Tale distanza minima, se piccola, potrebbe causare un effetto di propagazione
+ a catena dei ritardi delle fermate delle corse assegnate alla medesima
+ piattaforma e potrebbe richiedere una riallocazione che coinvolge varie
+ corse.
+ La formulazione proposta in questo paragrafo considera l'intervallo temporale
+ più piccolo che intercorre fra due corse assegnate alla stessa piattaforma.
+ Il modello del paragrafo
 \begin_inset space ~
 \end_inset
 
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "cliques_incompatibili_per_colore"
+reference "sub:Massimizzazione-delle-distanze"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\sum_{i\in\mathcal{Q}}x_{ik}\leq1\qquad\forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}
-\]
-
+ viene modificato introducendo una variabile, indicata con 
+\begin_inset Formula $m$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-linesnumbered%
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{algorithm}[!htb] %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKwInOut{Input}{input} %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKwInOut{Output}{output} %
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Input{La lista ordinata $T$ degli estremi temporali degli intervalli di
- fermata} %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Output{Il vettore contenente gli insiemi delle fermate incompatibili $
-\backslash
-mathcal{Q}_k$} %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-BlankLine %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-tcc{Per ogni piattaforma $k$} %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-ForEach{$k 
-\backslash
-in C$}{ %
-\end_layout
-
-\begin_layout Plain Layout
-
-		Poni $
-\backslash
-mathcal{Q}_{k} = 
-\backslash
-emptyset$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-		Poni $Q = 
-\backslash
-emptyset$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-		Poni $prec = arrival$ 
-\backslash
-; %
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-BlankLine %
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-tcc{Per ogni istante temporale
-\backslash
-ldots} %
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-ForEach{$t 
-\backslash
-in T$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-			Poni $i = t.fermata$ 
-\backslash
-; %
-\end_layout
-
-\begin_layout Plain Layout
-
-			
-\backslash
-tcc{
-\backslash
-ldots di una fermata assegnabile al gate k} %
-\end_layout
-
-\begin_layout Plain Layout
-
-			
-\backslash
-If{$(i, k) 
-\backslash
-in A$}{ %
-\end_layout
-
-\begin_layout Plain Layout
-
-				
-\backslash
-tcc{se l'istante corrente rappresenta un arrivo}%
-\end_layout
-
-\begin_layout Plain Layout
-
-				
-\backslash
-If{$t.type = arrival$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-					
-\backslash
-tcc{la fermata 
-\backslash
-`e nel gruppo di incompatibili}%
-\end_layout
-
-\begin_layout Plain Layout
-
-					Poni $Q = Q 
-\backslash
-cup i$ 
-\backslash
-;%
-\end_layout
-
-\begin_layout Plain Layout
-
-					Poni $prec = arrival$ 
-\backslash
-;%
-\end_layout
-
-\begin_layout Plain Layout
-
-				} 
-\backslash
-Else {%
-\end_layout
-
-\begin_layout Plain Layout
-
-					
-\backslash
-If{$prec = arrival 
-\backslash
-, 
-\backslash
-wedge 
-\backslash
-, |Q| > 1$}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-						Poni $
-\backslash
-mathcal{Q}_{k} = 
-\backslash
-mathcal{Q}_{k} 
-\backslash
-cup Q$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-					}
-\end_layout
-
-\begin_layout Plain Layout
-
-					Poni $Q = Q 
-\backslash
-setminus i$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-					Poni $prec = departure$ 
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-				} %
-\end_layout
-
-\begin_layout Plain Layout
-
-			}
-\end_layout
-
-\begin_layout Plain Layout
-
-		}
-\end_layout
-
-\begin_layout Plain Layout
-
-	}
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-Return {$
-\backslash
-mathcal{Q}_{k}$
-\backslash
-;} %
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-caption{Determinazione delle fermate interferenti compatibili con la piattaforma
- $k$}
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-label{cliques_incompatibili_per_colore}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{algorithm}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-Nella funzione obiettivo si considerano i colori (piattaforme) utilizzati,
- modellati da una variabile binaria
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-u_{k}=\begin{cases}
-1 & \text{se e solo se la piattaforma \ensuremath{k}}\text{ è assegnata ad almeno una sosta }\\
-0 & \text{altrimenti}
-\end{cases}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-Per legare la variabile 
-\begin_inset Formula $u_{k}$
-\end_inset
-
- agli assegnamenti 
-\begin_inset Formula $x_{ik}$
-\end_inset
-
- occorre aggiungere le disuguaglianze
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-u_{k}\geq x_{ik}\qquad\forall k\in C,\forall i\in L^{-1}(k)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-I vincoli sopra esposti permettono di definire il domino delle 
-\begin_inset Formula $u_{k}$
-\end_inset
-
- come variabili continue, 
-\begin_inset Formula $0\leq u_{k}\leq1\,\forall k\in C$
-\end_inset
-
-, e esse continueranno ad assumere valori nell'insieme 
-\begin_inset Formula ${0,1}^{|C|}$
-\end_inset
-
-.
- Per ridurre il numero di disequazioni è possibile considerare tutti i vincoli
- che coinvolgono una stessa piattaforma 
-\begin_inset Formula $k$
-\end_inset
-
- giungendo a
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-|L^{-1}(k)|u_{k}\geq\sum_{i\in L^{-1}(k)}\, x_{ik}\qquad\forall k\in C
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\noindent
-I vincoli sono meno stringenti ma si presentano in numero minore.
- Prove sperimentali hanno mostrato che la risoluzione del modello con meno
- vincoli migliora i tempi di calcolo.
+, che rappresenta la distanza temporale minima fra due fermate sullo stesso
+ gate.
  
-\end_layout
-
-\end_inset
-
-Il modello per la risoluzione del problema di minimizzazione del numero
- di piattaforme utilizzate è il seguente:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray}
-\min & z^{col}=\sum_{k\in C}c_{k}\, u_{k}\label{eq:min_gates_pesati}\\
-\sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\label{eq:vincolo_assegnamento_0}\\
-\sum_{i\in\mathcal{Q}}x_{ik}\leq1 &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\label{eq:vincolo_compatibilita_bus_0}\\
-\sum_{i\in L^{-1}(k)}\, x_{ik}\leq|L^{-1}(k)|\, u_{k} &  & \forall k\in C\label{eq:uk_maggiore_xik}\\
-\sum_{k\in C}\, u_{k}\geq s\label{eq:lower_bound_gates}\\
-x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\label{eq:x_ik_dominio}\\
-u_{k}\in\{0,\,1\} &  & \forall k\in C\label{eq:u_ik_dominio}
+\max\, z^{dm}=m\label{eq:max_m}\\
+\sum_{k\,:\,(i,\, k)\in E}x_{ik}=1 &  & \forall i\in B\label{eq:sosta_assegnata}\\
+\sum_{i\in\mathcal{Q}_{\overline{F}_{k}}:|\mathcal{Q}_{\overline{F}_{k}}|\geq2}x_{ik}\leq1 &  & \forall k\in G\label{eq:incomp_bp}\\
+x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall(i,\, j)\in F\,\forall k:(i,k),(j,k)\in E\label{eq:fine_linearizzazione}\\
+m+M\, y_{ij}-c_{ij}\, y_{ij}\leq M &  & \forall(i,\, j)\in F\label{eq:m_minimo}\\
+x_{ik}\in\{0,\,1\} &  & \forall(i,\, k)\in E\label{eq:dom_xik}\\
+0\leq y_{ij}\leq1 &  & \forall(i,\, j)\in F\label{eq:lim_yij}\\
+m\geq0\label{eq:m}
 \end{eqnarray}
 
 \end_inset
@@ -7406,122 +7308,43 @@ u_{k}\in\{0,\,1\} &  & \forall k\in C\label{eq:u_ik_dominio}
 \end_layout
 
 \begin_layout Standard
-Il modello proposto impiega la variabile
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset Formula $u_{k}$
-\end_inset
-
-, che vale 1 se il gate 
-\begin_inset Formula $k$
-\end_inset
-
- è occupato da almeno una corsa, altrimenti vale 0.
- Il vincolo
+I vincoli
 \begin_inset space ~
 \end_inset
 
 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:vincolo_assegnamento_0"
+reference "eq:sosta_assegnata"
 
 \end_inset
 
- impone che ogni fermata sia assegnata ad una piattaforma.
- Il vincolo
-\begin_inset space ~
-\end_inset
-
-
+-
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:vincolo_compatibilita_bus_0"
+reference "eq:fine_linearizzazione"
 
 \end_inset
 
- dichiara che le fermate su uno stesso gate devono essere compatibili fra
- loro, ovvero devono occupare il gate in intervalli di tempo che non si
- sovrappongono.
- Le variabili 
-\begin_inset Formula $x_{ik}$
-\end_inset
-
- coinvolte in un gruppo di vincoli di questo tipo appartengono ad un insieme
- chiamato Special Order Set di tipo 1 (SOS1).
- La caratteristica degli SOS1 è che al più una di queste variabili può assumere
- un valore strettamente positivo mentre le altre devono essere nulle.
- L'utilizzo di variabili di questo tipo, in un algoritmo di Branch&Bound,
- permette di ridurre lo spazio di ricerca e quindi il tempo di calcolo.
- Le disequazioni espresse dal vincolo
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:uk_maggiore_xik"
-
-\end_inset
-
- forzano la variabile
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset Formula $u_{k}$
-\end_inset
-
- al valore 1 se almeno una fermata è assegnata alla piattaforma 
-\begin_inset Formula $k$
-\end_inset
-
-.
- Il vincolo
+ sono gli stessi di quelli adoperati nel modello proposto nel paragrafo
 \begin_inset space ~
 \end_inset
 
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "eq:lower_bound_gates"
+reference "sub:Massimizzazione-delle-distanze"
 
 \end_inset
 
- dichiara che il numero di piattaforme usate sarà maggiore o uguale ad un
- lower bound (che può essere calcolato in tempo polinomiale con l'algoritmo
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "bp_lb"
-
-\end_inset
-
-).
- Il lower bound permette di certificare l'ottimalità della soluzione e riduce
- pertanto il numero di stati che devono essere esplorati dall'algoritmo
- di risoluzione del modello matematico.
- I domini delle variabili 
-\begin_inset Formula $x_{ik}$
-\end_inset
-
- e 
-\begin_inset Formula $u_{k}$
-\end_inset
-
- sono dichiarati dai vincoli
+ così come i domini e i limiti espressi in
 \begin_inset space ~
 \end_inset
 
 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:x_ik_dominio"
+reference "eq:dom_xik"
 
 \end_inset
 
@@ -7532,48 +7355,165 @@ reference "eq:x_ik_dominio"
 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:u_ik_dominio"
+reference "eq:lim_yij"
 
 \end_inset
 
 .
+ Le differenze rispetto al modello per la massimizzazione della somme delle
+ distanze fra fermate sono nell'aggiunta della variabile continua e non
+ negativa 
+\begin_inset Formula $m$
+\end_inset
+
+ (equazione
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:m"
+
+\end_inset
+
+) che è minore di ogni distanza temporale 
+\begin_inset Formula $c_{ij}$
+\end_inset
+
+ fra la la distanza di due fermate su uno stesso gate.
+ L'equazione
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:m_minimo"
+
+\end_inset
+
+ fa uso di una costante 
+\begin_inset Formula $M$
+\end_inset
+
+ che fa si che la 
+\begin_inset Formula $m$
+\end_inset
+
+ non sia vincolata quando gli autobus 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+ partono da piattaforme diverse.
+ Il valore da assegnare a tale costante deve essere maggiore del tempo massimo
+ che intercorre fra due fermate che possono fermare su una stessa piattaforma.
+ La funzione obiettivo 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:max_m"
+
+\end_inset
+
+ assicura che 
+\begin_inset Formula $m$
+\end_inset
+
+ assuma il valore dell'intervallo minimo di tempo fra due fermate su una
+ stessa piattaforma.
+\end_layout
+
+\begin_layout Section
+Minimizzazione della probabilità di conflitto
 \end_layout
 
 \begin_layout Standard
-Il modello può essere reso ancora più compatto eliminando i vincoli 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:uk_maggiore_xik"
-
+Il GAP può essere formulato anche come problema di minimizzazione della
+ probabilità che fermate assegnate ad una stessa piattaforma siano 
+\begin_inset Quotes eld
 \end_inset
 
- e legando la variabile 
-\begin_inset Formula $u_{k}$
-\end_inset
-
- alle variabili 
-\begin_inset Formula $x_{ik}$
-\end_inset
-
- nelle disequazioni 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:vincolo_compatibilita_bus_0"
-
+in conflitto
+\begin_inset Quotes erd
 \end_inset
 
 .
+ Siano 
+\begin_inset Formula $D=\max_{F}c_{ij}$
+\end_inset
+
+ e 
+\begin_inset Formula $d=\min_{F}c_{ij}$
+\end_inset
+
+.
+ La probabilità di conflitto 
+\begin_inset Formula $p_{ij}$
+\end_inset
+
+ fra due corse 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+ che possono occupare una stessa piattaforma si può definire come
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{ij}=\frac{D-c_{ij}}{D-d}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La quantità 
+\begin_inset Formula $p_{ij}$
+\end_inset
+
+ è un numero compreso fra zero, quando la distanza temporale fra due fermate
+ che possono essere assegnate allo stesso gate è massima, e uno quando tale
+ intervallo è minimo.
+ Una misura del conflitto del piano di assegnamento è data da
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z^{p}=\frac{1}{|F|}\sum_{(i,j)\in F}p_{ij}y_{ij}=\frac{1}{|F|\,(D-d)}\sum_{(i,j)\in F}(D-c_{ij})\, y_{ij}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il modello matematico del problema diventa quindi:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray}
-\min & z^{col}=\sum_{k\in C}c_{k}\, u_{k}\label{eq:min_gates_pesati-2}\\
-\sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\label{eq:vincolo_assegnamento_0-2}\\
-\sum_{i\in\mathcal{Q}}x_{ik}\leq u_{k} &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\label{eq:vincolo_compatibilita_bus_0-2}\\
-\sum_{k\in C}\, u_{k}\geq s\label{eq:lower_bound_gates-1}\\
-x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\label{eq:x_ik_dominio-2}\\
-u_{k}\in\{0,\,1\} &  & \forall k\in C\label{eq:u_ik_dominio-2}
+\min\, z^{p}=\frac{1}{|F|\,(D-d)}\sum_{(i,j)\in F}(D-c_{ij})\,\sum_{k\in G}y_{ij}\label{eq:min_conflitto}\\
+\sum_{k\,:\,(i,\, k)\in E}x_{ik}=1 &  & \forall i\in B\label{eq:inizio_vincoli_4}\\
+\sum_{i\in\mathcal{Q}_{\overline{F}_{k}}:|\mathcal{Q}_{\overline{F}_{k}}|\geq2}x_{ik}\leq1 &  & \forall k\in G\\
+\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{ik}-y_{ij}\geq0 &  & \forall(i,\, j)\in F\\
+\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{jk}-y_{ij}\geq0 &  & \forall(i,\, j)\in F\\
+\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall(i,\, j)\in F\\
+x_{ik}\in\{0,\,1\} &  & \forall(i,\, k)\in E\\
+0\leq y_{ij}\leq1 &  & \forall(i,\, j)\in F\label{eq:fine_vincoli_4}
 \end{eqnarray}
 
 \end_inset
@@ -7582,40 +7522,182 @@ u_{k}\in\{0,\,1\} &  & \forall k\in C\label{eq:u_ik_dominio-2}
 \end_layout
 
 \begin_layout Standard
-Per minimizzare il numero di piattaforme è sufficiente assegnare ai parametri
- 
-\begin_inset Formula $c_{k}$
+La funzione obiettivo
+\begin_inset space ~
 \end_inset
 
- il valore 1, mentre se si hanno preferenze sulla scelta delle piattaforme
- da utilizzare occorre 
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:min_conflitto"
+
+\end_inset
+
+ rappresenta una misura, compresa tra zero ed uno, di quanto l'assegnamento
+ è robusto rispetto alle variazioni dell'input.
+ I vincoli
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:inizio_vincoli_4"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:fine_vincoli_4"
+
+\end_inset
+
+ sono analoghi a quelli
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:vincolo_assegnamento"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:limiti_y"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Vincoli addizionali
+\end_layout
+
+\begin_layout Subsection*
+Corse bis assegnate a gate adiacenti
+\end_layout
+
+\begin_layout Standard
+Per consentire agli utenti di un servizio di salire a bordo di un veicolo
+ che effettua una corsa 
 \begin_inset Quotes eld
 \end_inset
 
-pesarle
+bis
 \begin_inset Quotes erd
 \end_inset
 
- assegnando ai parametri 
-\begin_inset Formula $c_{k}$
+ senza doversi spostare da una parte all'altra dell'autostazione è desiderabile
+ che le fermate delle corse bis siano assegnate a gate adiacenti.
+ Questo requisito può essere modellato con il seguente insieme di vincoli:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+x_{ik}\geq x_{j\, k-1} &  & k=\min_{k}\{k-1,\, k\in G\},\, j\in BIS(i)\label{eq:bis_primo_gate}\\
+x_{ik}\geq x_{i\, k-1}+x_{j\, k+1} &  & \forall k\in G,\, j\in BIS(i)\label{eq:bis_gate_in_mezzo}\\
+x_{ik}\geq x_{j\, k+1} &  & k=\max_{k}\{k+1,\, k\in G\},\, j\in BIS(i)\label{eq:bis_ultimo_gate}
+\end{eqnarray}
+
 \end_inset
 
- un valore non negativo.
- La funzione obiettivo 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:min_gates_pesati"
 
-\end_inset
+\end_layout
 
- nel primo caso esprime il numero di piattaforme occupate, mentre nel secondo
- caso fornisce un indice del costo di utilizzo delle piattaforme.
+\begin_layout Standard
+Il modello presuppone che i gate adiacenti abbiano indici adiacenti.
  
+\end_layout
+
+\begin_layout Standard
+Si fa notare che altre tipologie di vincolo come l'assegnamento delle corse
+ coperte da mezzi snodati sono gestite in modo implicito nella generazione
+ degli archi 
+\begin_inset Formula $E$
+\end_inset
+
+.
+ Gli stessi archi gestiscono il concetto di gate disabilitato in un intervallo
+ temporale.
+\end_layout
+
+\begin_layout Subsection*
+Penalizzazione degli assegnamenti
+\end_layout
+
+\begin_layout Standard
+I modelli matematici presentati possono essere estesi per considerare i
+ criteri di esclusione di assegnamenti fermata-gate ammissibili.
+ Per penalizzare l'assegnamento indesiderato di una fermata su un gate si
+ può aggiungere al modello una penalità (un vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+soft
+\begin_inset Quotes erd
+\end_inset
+
+) in funzione obiettivo, che ha i termini:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+-\sum_{(i,k)\in E}p_{ik}x_{ik} & \text{{se\,\ il\,\ problema\,è\,\ di\,\ massimo}}\\
++\sum_{(i,k)\in E}p_{ik}x_{ik} & \text{{se\,\ il\,\ problema\,è\,\ di\,\ minimo}}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se 
+\begin_inset Formula $p_{ik}$
+\end_inset
+
+ è nullo esso non influisce sull'assegnamento, mentre un valore positivo
+ grande permette di escludere l'assegnamento della fermata 
+\begin_inset Formula $i$
+\end_inset
+
+ al gate 
+\begin_inset Formula $k$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Chapter
+Algoritmi sviluppati
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Algoritmi-sviluppati"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Pesare i gate permette di ridurre le simmetrie nelle soluzioni.
+Per questo obiettivo proponiamo la formulazione del problema come un problema
+ di list-coloring applicato un grafo d'intervallo.
+ Per rispettare le restrizioni del problema in esame vengono altri vincoli
+ oltre a quelli di buona colorazione.
+ Il modello risultante è problema restricted-coloring.
 \end_layout
 
 \end_inset
@@ -7623,102 +7705,7 @@ Pesare i gate permette di ridurre le simmetrie nelle soluzioni.
 
 \end_layout
 
-\begin_layout Standard
-Il modello è stato costruito a partire dal modello di PLI di Kantorovich
- per il Bin Packing, equazione
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:min_gates_pesati"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:vincolo_assegnamento_0"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:uk_maggiore_xik"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:x_ik_dominio"
-
-\end_inset
-
- e 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:u_ik_dominio"
-
-\end_inset
-
-; a tale modello è stato aggiunto un limite inferiore esplicito (equazione
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:lower_bound_gates"
-
-\end_inset
-
-) ed il vincolo di compatibilità (equazione
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:vincolo_compatibilita_bus_0"
-
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
-Le prestazioni di un algoritmo di Branch&Bound, per risolvere un tale modello,
- si rivelano inefficienti quando il limite inferiore sul numero di piattaforme
- è minore dell'ottimo.
- Se si analizza il caso con le piattaforme compatibili con tutte le fermate
- si nota che per ogni soluzione che impiega 
-\begin_inset Formula $m$
-\end_inset
-
- piattaforme esistono 
-\begin_inset Formula $m!$
-\end_inset
-
- soluzioni equivalenti ottenute permutando le piattaforme tra loro.
- Essendo, inoltre, il numero di piattaforme disponibili generalmente maggiore
- di quante strettamente necessarie, si crea un'ulteriore generazione di
- soluzioni equivalenti ed il metodo del Branch&Bound non migliora di molto
- le prestazioni dell'enumerazione completa dovendo esplorare un albero pressoché
- completo.
-\end_layout
-
-\begin_layout Standard
-Un modo per eliminare, almeno in parte, le simmetrie del modello è quello
- di preassegnare alcune piattaforme.
- È infatti possibile, se non auspicabile, chiedere al capostazione di allocare
- i servizi che interferiscono nella cricca massima e risolvere il nuovo
- problema con un numero ridotto di variabili.
-\end_layout
-
-\begin_layout Paragraph
+\begin_layout Subsection*
 Caso particolare: ogni fermata è assegnabile ad ogni piattaforma e non sono
  presenti altre restrizioni
 \end_layout
@@ -8002,8 +7989,8 @@ Return {gli assegnamenti
 
 	
 \backslash
-caption{Algoritmo "First-Fit" per la colorazione propria dei vertici di
- un grafo d'intervallo}
+caption{Algoritmo "First-Fit" per la buona colorazione dei vertici di un
+ grafo d'intervallo}
 \end_layout
 
 \begin_layout Plain Layout
@@ -8212,7 +8199,7 @@ i.
 \end_layout
 
 \begin_layout Standard
-I modelli di programmazione per vincoli del problema di colorazione propria
+I modelli di programmazione per vincoli del problema di buona colorazione
  di grafi si basano sul vincolo 
 \emph on
 alldifferent
@@ -8476,455 +8463,44 @@ Limitazione superiore
 \end_layout
 
 \begin_layout Section
-Massimizzazione dello scarto minimo minimo
-\end_layout
-
-\begin_layout Standard
-La formulazione precedente non considera una distanza temporale minima che
- deve intercorrere fra due fermate su uno stesso gate.
- Tale distanza minima, se piccola, potrebbe causare un effetto di propagazione
- a catena dei ritardi delle fermate assegnate allo stesso gate e potrebbe
- richiedere una riallocazione che coinvolge varie corse.
- La formulazione proposta in questo paragrafo considera l'intervallo temporale
- più piccolo che intercorre fra due fermate sullo stesso gate.
- Il modello del paragrafo
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sub:Massimizzazione-delle-distanze"
-
-\end_inset
-
- viene modificato introducendo una variabile, indicata con 
-\begin_inset Formula $m$
-\end_inset
-
-, che rappresenta la distanza temporale minima fra due fermate sullo stesso
- gate.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray}
-\max\, z^{dm}=m\label{eq:max_m}\\
-\sum_{k\,:\,(i,\, k)\in E}x_{ik}=1 &  & \forall i\in B\label{eq:sosta_assegnata}\\
-\sum_{i\in\mathcal{Q}_{\overline{F}_{k}}:|\mathcal{Q}_{\overline{F}_{k}}|\geq2}x_{ik}\leq1 &  & \forall k\in G\label{eq:incomp_bp}\\
-x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall(i,\, j)\in F\,\forall k:(i,k),(j,k)\in E\label{eq:fine_linearizzazione}\\
-m+M\, y_{ij}-c_{ij}\, y_{ij}\leq M &  & \forall(i,\, j)\in F\label{eq:m_minimo}\\
-x_{ik}\in\{0,\,1\} &  & \forall(i,\, k)\in E\label{eq:dom_xik}\\
-0\leq y_{ij}\leq1 &  & \forall(i,\, j)\in F\label{eq:lim_yij}\\
-m\geq0\label{eq:m}
-\end{eqnarray}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-I vincoli
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:sosta_assegnata"
-
-\end_inset
-
--
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:fine_linearizzazione"
-
-\end_inset
-
- sono gli stessi di quelli adoperati nel modello proposto nel paragrafo
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sub:Massimizzazione-delle-distanze"
-
-\end_inset
-
- così come i domini e i limiti espressi in
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:dom_xik"
-
-\end_inset
-
- e
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:lim_yij"
-
-\end_inset
-
-.
- Le differenze rispetto al modello per la massimizzazione della somme delle
- distanze fra fermate sono nell'aggiunta della variabile continua e non
- negativa 
-\begin_inset Formula $m$
-\end_inset
-
- (equazione
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:m"
-
-\end_inset
-
-) che è minore di ogni distanza temporale 
-\begin_inset Formula $c_{ij}$
-\end_inset
-
- fra la la distanza di due fermate su uno stesso gate.
- L'equazione
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:m_minimo"
-
-\end_inset
-
- fa uso di una costante 
-\begin_inset Formula $M$
-\end_inset
-
- che fa si che la 
-\begin_inset Formula $m$
-\end_inset
-
- non sia vincolata quando i bus 
-\begin_inset Formula $i$
-\end_inset
-
- e 
-\begin_inset Formula $j$
-\end_inset
-
- partono da gate diversi.
- Il valore da assegnare a tale costante deve essere maggiore del tempo massimo
- che intercorre fra due fermate che possono occupare uno stesso gate.
- La funzione obiettivo 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:max_m"
-
-\end_inset
-
- assicura che 
-\begin_inset Formula $m$
-\end_inset
-
- assuma il valore dell'intervallo minimo di tempo fra due fermate su uno
- stesso gate.
-\end_layout
-
-\begin_layout Section
-Minimizzazione della probabilità di conflitto
-\end_layout
-
-\begin_layout Standard
-Il GAP può essere modellato anche come problema di minimizzazione della
- probabilità che fermate assegnate allo stesso gate possano essere 
-\begin_inset Quotes eld
-\end_inset
-
-in conflitto
-\begin_inset Quotes erd
-\end_inset
-
-.
- Siano 
-\begin_inset Formula $D=\max_{F}c_{ij}$
-\end_inset
-
- e 
-\begin_inset Formula $d=\min_{F}c_{ij}$
-\end_inset
-
-.
- La probabilità di conflitto 
-\begin_inset Formula $p_{ij}$
-\end_inset
-
- fra due fermate 
-\begin_inset Formula $i$
-\end_inset
-
- e 
-\begin_inset Formula $j$
-\end_inset
-
- che possono occupare uno stesso gate si può definire come
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-p_{ij}=\frac{D-c_{ij}}{D-d}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La quantità 
-\begin_inset Formula $p_{ij}$
-\end_inset
-
- è un numero compreso fra zero, quando la distanza temporale fra due fermate
- che possono essere assegnate allo stesso gate è massima, e uno quando tale
- intervallo è minimo.
- Una misura del conflitto del piano di assegnamento è data da
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-z^{p}=\frac{1}{|F|}\sum_{(i,j)\in F}p_{ij}y_{ij}=\frac{1}{|F|\,(D-d)}\sum_{(i,j)\in F}(D-c_{ij})\, y_{ij}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Il modello matematico del problema diventa quindi:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray}
-\min\, z^{p}=\frac{1}{|F|\,(D-d)}\sum_{(i,j)\in F}(D-c_{ij})\,\sum_{k\in G}y_{ij}\label{eq:min_conflitto}\\
-\sum_{k\,:\,(i,\, k)\in E}x_{ik}=1 &  & \forall i\in B\label{eq:inizio_vincoli_4}\\
-\sum_{i\in\mathcal{Q}_{\overline{F}_{k}}:|\mathcal{Q}_{\overline{F}_{k}}|\geq2}x_{ik}\leq1 &  & \forall k\in G\\
-\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{ik}-y_{ij}\geq0 &  & \forall(i,\, j)\in F\\
-\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{jk}-y_{ij}\geq0 &  & \forall(i,\, j)\in F\\
-\sum_{k:(i,k)\in E\,\wedge(j,k)\in E}x_{ik}+x_{jk}-y_{ij}\leq1 &  & \forall(i,\, j)\in F\\
-x_{ik}\in\{0,\,1\} &  & \forall(i,\, k)\in E\\
-0\leq y_{ij}\leq1 &  & \forall(i,\, j)\in F\label{eq:fine_vincoli_4}
-\end{eqnarray}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La funzione obiettivo
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:min_conflitto"
-
-\end_inset
-
- rappresenta una misura, compresa tra zero ed uno, di quanto l'assegnamento
- è robusto rispetto alle variazioni dell'input.
- I vincoli
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:inizio_vincoli_4"
-
-\end_inset
-
--
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:fine_vincoli_4"
-
-\end_inset
-
- sono analoghi a quelli
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:vincolo_assegnamento"
-
-\end_inset
-
--
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:limiti_y"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Section
-Vincoli addizionali
-\end_layout
-
-\begin_layout Subsection*
-Corse bis assegnate a gate adiacenti
-\end_layout
-
-\begin_layout Standard
-Per consentire agli utenti di un servizio di salire a bordo di un veicolo
- che effettua una corsa 
-\begin_inset Quotes eld
-\end_inset
-
-bis
-\begin_inset Quotes erd
-\end_inset
-
- senza doversi spostare da una parte all'altra dell'autostazione è desiderabile
- che le fermate delle corse bis siano assegnate a gate adiacenti.
- Questo requisito può essere modellato con il seguente insieme di vincoli:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray}
-x_{ik}\geq x_{j\, k-1} &  & k=\min_{k}\{k-1,\, k\in G\},\, j\in BIS(i)\label{eq:bis_primo_gate}\\
-x_{ik}\geq x_{i\, k-1}+x_{j\, k+1} &  & \forall k\in G,\, j\in BIS(i)\label{eq:bis_gate_in_mezzo}\\
-x_{ik}\geq x_{j\, k+1} &  & k=\max_{k}\{k+1,\, k\in G\},\, j\in BIS(i)\label{eq:bis_ultimo_gate}
-\end{eqnarray}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Il modello presuppone che i gate adiacenti abbiano indici adiacenti.
- 
-\end_layout
-
-\begin_layout Standard
-Si fa notare che altre tipologie di vincolo come l'assegnamento delle corse
- coperte da mezzi snodati sono gestite in modo implicito nella generazione
- degli archi 
-\begin_inset Formula $E$
-\end_inset
-
-.
- Gli stessi archi gestiscono il concetto di gate disabilitato in un intervallo
- temporale.
-\end_layout
-
-\begin_layout Subsection*
-Esclusione degli assegnamenti
-\end_layout
-
-\begin_layout Standard
-I modelli matematici presentati possono essere estesi per considerare i
- criteri di esclusione di assegnamenti fermata-gate ammissibili.
- Per penalizzare l'assegnamento indesiderato di una fermata su un gate si
- può aggiungere al modello una penalità (un vincolo 
-\begin_inset Quotes eld
-\end_inset
-
-soft
-\begin_inset Quotes erd
-\end_inset
-
-) in funzione obiettivo, che ha i termini:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\begin{cases}
--\sum_{(i,k)\in E}p_{ik}x_{ik} & \text{{se\,\ il\,\ problema\,è\,\ di\,\ massimo}}\\
-+\sum_{(i,k)\in E}p_{ik}x_{ik} & \text{{se\,\ il\,\ problema\,è\,\ di\,\ minimo}}
-\end{cases}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Se 
-\begin_inset Formula $p_{ik}$
-\end_inset
-
- è nullo esso non influisce sull'assegnamento, mentre un valore positivo
- grande permette di escludere l'assegnamento della fermata 
-\begin_inset Formula $i$
-\end_inset
-
- al gate 
-\begin_inset Formula $k$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Chapter
-Algoritmi sviluppati
-\begin_inset CommandInset label
-LatexCommand label
-name "chap:Algoritmi-sviluppati"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Per questo obiettivo proponiamo la formulazione del problema come un problema
- di list-coloring applicato un grafo d'intervallo.
- Per rispettare le restrizioni del problema in esame vengono altri vincoli
- oltre a quelli di colorazione propria.
- Il modello risultante è problema restricted-coloring.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
 Controllo a orizzonte recessivo
+\end_layout
+
+\begin_layout Standard
+----------------------
+\end_layout
+
+\begin_layout Standard
+Le prestazioni di un algoritmo di Branch&Bound, per risolvere un tale modello,
+ si rivelano inefficienti quando il limite inferiore sul numero di piattaforme
+ è minore dell'ottimo.
+ Se si analizza il caso con le piattaforme compatibili con tutte le fermate
+ si nota che per ogni soluzione che impiega 
+\begin_inset Formula $m$
+\end_inset
+
+ piattaforme esistono 
+\begin_inset Formula $m!$
+\end_inset
+
+ soluzioni equivalenti ottenute permutando le piattaforme tra loro.
+ Essendo, inoltre, il numero di piattaforme disponibili generalmente maggiore
+ di quante strettamente necessarie, si crea un'ulteriore generazione di
+ soluzioni equivalenti ed il metodo del Branch&Bound non migliora di molto
+ le prestazioni dell'enumerazione completa dovendo esplorare un albero pressoché
+ completo.
+\end_layout
+
+\begin_layout Standard
+Un modo per eliminare, almeno in parte, le simmetrie del modello è quello
+ di preassegnare alcune piattaforme.
+ È infatti possibile, se non auspicabile, chiedere al capostazione di allocare
+ i servizi che interferiscono nella cricca massima e risolvere il nuovo
+ problema con un numero ridotto di variabili.
+\end_layout
+
+\begin_layout Standard
+------------------------
 \end_layout
 
 \begin_layout Standard
@@ -8967,7 +8543,7 @@ Tutti i modelli proposti hanno sono definiti a partire dal grafo
 
 .
  È quindi possibile costruire il grafo di interferenza fra le fermate mediante
- l'algoritmo
+ l'alg.
 \begin_inset space ~
 \end_inset
 
@@ -9340,7 +8916,7 @@ reference "alg:time_slice"
 \end_inset
 
 .
- La figura.
+ La fig.
  mostra graficamente come siano legati fra loro i sottoproblemi, le soluzioni
  e le istanze dei problemi successivi al primo sottoproblema.
 \end_layout
@@ -9647,6 +9223,330 @@ Calcolo della limitazione inferiore del numero di piattaforme
 \end_layout
 
 \begin_layout Standard
+definito in algoritmo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cliques_incompatibili_per_colore"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+linesnumbered%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[!htb] %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output} %
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{La lista ordinata $T$ degli estremi temporali degli intervalli di
+ fermata} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{Il vettore contenente gli insiemi delle fermate incompatibili $
+\backslash
+mathcal{Q}_k$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{Per ogni piattaforma $k$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$k 
+\backslash
+in C$}{ %
+\end_layout
+
+\begin_layout Plain Layout
+
+		Poni $
+\backslash
+mathcal{Q}_{k} = 
+\backslash
+emptyset$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Poni $Q = 
+\backslash
+emptyset$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Poni $prec = arrival$ 
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{Per ogni istante temporale
+\backslash
+ldots} %
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+ForEach{$t 
+\backslash
+in T$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+			Poni $i = t.fermata$ 
+\backslash
+; %
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+tcc{
+\backslash
+ldots di una fermata assegnabile al gate k} %
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{$(i, k) 
+\backslash
+in A$}{ %
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+tcc{se l'istante corrente rappresenta un arrivo}%
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$t.type = arrival$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+tcc{la fermata 
+\backslash
+`e nel gruppo di incompatibili}%
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $Q = Q 
+\backslash
+cup i$ 
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $prec = arrival$ 
+\backslash
+;%
+\end_layout
+
+\begin_layout Plain Layout
+
+				} 
+\backslash
+Else {%
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+If{$prec = arrival 
+\backslash
+, 
+\backslash
+wedge 
+\backslash
+, |Q| > 1$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+						Poni $
+\backslash
+mathcal{Q}_{k} = 
+\backslash
+mathcal{Q}_{k} 
+\backslash
+cup Q$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $Q = Q 
+\backslash
+setminus i$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+					Poni $prec = departure$ 
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				} %
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$
+\backslash
+mathcal{Q}_{k}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+caption{Determinazione delle fermate interferenti compatibili con la piattaforma
+ $k$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+label{cliques_incompatibili_per_colore}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Al fine di certificare l'ottimalità di una soluzione trovata e dunque risparmiar
 e tempo computazionale in un algoritmo di enumerazione delle soluzioni deve
  essere stimato il numero minimo di piattaforme necessarie ad accogliere
@@ -9671,7 +9571,124 @@ azione.
  appartiene alla classe dei grafi perfetti quindi il numero cromatico è
  uguale al numero di cricca e determinare il numero di cricca di un grafo
  d'intervallo è risolubile in tempo polinomiale.
- 
+\end_layout
+
+\begin_layout Standard
+Si definisce nel domino dei numeri reali la funzione 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, che assume come valore la differenza tra il numero di estremi sinistri
+ e destri presenti nella retta reale prima di 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ Per ogni punto reale 
+\begin_inset Formula $x$
+\end_inset
+
+ è quindi definita una cricca e per ogni cricca esiste un numero reale 
+\begin_inset Formula $x$
+\end_inset
+
+ che la definisce.
+ Il valore della massima cricca è dato da 
+\begin_inset Formula $\chi=\max f(x)$
+\end_inset
+
+.
+ Per colorare il grafo d'intervallo nel caso di colorazione di grafi basta
+ ordinare i valori 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ e scandirli dal minimo al massimo.
+ In un passo generico dell'algoritmo i colori utilizzati sono marcati e
+ quelli disponibili sono non marcati.
+ Inizialmente nessun colore è marcato.
+ Si può notare che i massimi locali di 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ forniscono le cricche massimali (si veda
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "serafini2009ricerca"
+
+\end_inset
+
+).
+ Nell'esempio ce ne sono quattro.
+ Il massimo locale è determinato dall'estremo destro di un intervallo.
+ Si veda la fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Grafo-intervallo-fx"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering{
+\backslash
+input{img/interval_graph_fx}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Grafo-intervallo-fx"
+
+\end_inset
+
+La funzione 
+\begin_inset Formula $f(x)$
+\end_inset
+
+: numero di intervalli che contengono 
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -9689,7 +9706,11 @@ status open
 \begin_inset Formula $Q_{r}$
 \end_inset
 
- determinati in algoritmo
+ determinati in alg.
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "cliques_interferenti"
@@ -9987,7 +10008,7 @@ Un altro modo di determinare tale valore consiste nel contare il numero
  massimo di intervalli temporali che si sovrappongono.
  L'algoritmo richiede la lista ordinata degli istanti temporali di arrivo
  e partenza delle fermate e deve poter determinare se si tratta di un arrivo
- o di una partenza ed è formalizzato in algoritmo
+ o di una partenza ed è formalizzato in alg.
 \begin_inset space ~
 \end_inset
 
@@ -10710,7 +10731,7 @@ Ad ogni corsa, che ha un ora di partenza
 \begin_inset Formula $[a,d]$
 \end_inset
 
-, come rappresentato in figura.
+, come rappresentato in fig.
 \begin_inset space ~
 \end_inset
 
@@ -10740,7 +10761,7 @@ L'istanza in considerazione include 229 corse non internazionali da pianificare,
 
  non sono costanti ma variano al variare dell'ora di partenza della corsa
  alla quale si riferiscono.
- La tabella
+ La tab.
 \begin_inset space ~
 \end_inset
 
@@ -11057,7 +11078,7 @@ name "tab:Parametri-t_1-e-t_2"
 \end_layout
 
 \begin_layout Standard
-La frequenza dei servizi, divisa per fasce orarie, è rappresentata in figura.
+La frequenza dei servizi, divisa per fasce orarie, è rappresentata in fig.
 \begin_inset space ~
 \end_inset
 
@@ -11142,7 +11163,7 @@ L'istanza reale, contente dati relativi all'autostazione di Bologna, su
 
 \begin_layout Standard
 La soluzione ottenuta dalla pianificazione con GatePlanner e probabilmente
- modificata dal capostazione è illustrata in figura.
+ modificata dal capostazione è illustrata in fig.
 \begin_inset space ~
 \end_inset
 
@@ -13234,8 +13255,8 @@ determinare una partizione
 \end_layout
 
 \begin_layout Itemize
-nessuna coppia di vertici adiacenti appartenga ad uno stesso gruppo (colorazione
- propria),
+nessuna coppia di vertici adiacenti appartenga ad uno stesso gruppo (buona
+ colorazione),
 \end_layout
 
 \begin_layout Itemize
