@@ -369,5 +369,4 @@ End
 
 Preamble
 	\usepackage{lmodern}
-	\errorcontextlines=9
 EndPreamble
