@@ -23,7 +23,7 @@
 
 \usepackage{ifpdf}
 \end_preamble
-\options lof,lot,a4print
+\options lof,lot
 \use_default_options true
 \maintain_unincluded_children false
 \language italian
@@ -171,10 +171,10 @@ frontmatter
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
-Desidero ringraziare il Prof.
- Ferdinando Pezzella per la disponibilità, la fiducia e la pazienza, per
- il suo valido supporto umano e professionale e per le opportunità che mi
- ha offerto in questi anni.
+Ringrazio particolarmente il Prof.
+ Ferdinando Pezzella per il suo valido supporto umano e professionale e
+ per la disponibilità, la fiducia, la pazienza e le opportunità che mi ha
+ offerto in questi anni.
  I suoi insegnamenti mi hanno introdotto nell'affascinate mondo della Ricerca
  Operativa, trasmettendomi curiosità e passione per questa disciplina.
 \end_layout
@@ -201,8 +201,8 @@ Una particolare gratitudine alla Pluservice S.r.l.
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
-Ringrazio il Professor Fabrizio Marinelli per avermi fatto capire l’importanza
- del rigore metodologico.
+Ringrazio il Prof.
+ Fabrizio Marinelli per avermi fatto capire l’importanza del rigore metodologico.
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
@@ -227,7 +227,11 @@ Un sentito grazie al Prof.
 
 \begin_layout PhD Thesis Acknowledge
 Grazie a Gianluca, per l’amicizia, il sostegno, la pazienza e per i tanti
- momenti trascorsi insieme.
+ momenti trascorsi insieme; a Ludovico, compagno di corso, di progetti e
+ di dottorato; a Simone, con cui ho condiviso viaggi, enogastronomia e fantastic
+i bagni al mare; agli ex-tesisti Angelo e Marco, colleghi nello studio e
+ amici nella vita; agli amici, sempre più internazionali, della “Tana del
+ Bianconiglio” per le chiacchierate e le serate passate insieme.
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
@@ -238,56 +242,9 @@ Grazie a Gianluca, per l’amicizia, il sostegno, la pazienza e per i tanti
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
-Ringrazio Ludovico, compagno di corso, di progetti e di dottorato.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-\begin_inset VSpace vfill
-\end_inset
-
-
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Grazie a Simone, con cui ho condiviso alcune passioni comuni: viaggi, informatic
-a, enogastronomia e fantastici bagni al mare.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-\begin_inset VSpace vfill
-\end_inset
-
-
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Grazie ai ex-tesisti, nonché amici, Angelo e Marco che in questi anni mi
- hanno fatto compagnia in laboratorio.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-\begin_inset VSpace vfill
-\end_inset
-
-
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-Grazie agli amici sempre più internazionali della “Tana del Bianconiglio”
- per le chiacchierate e le serate passate insieme.
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-\begin_inset VSpace vfill
-\end_inset
-
-
-\end_layout
-
-\begin_layout PhD Thesis Acknowledge
-La mia riconoscenza va soprattutto ai miei genitori e a nonna Dina per essermi
- stati vicini, per aver sempre creduto in me e per il dono dei loro saggi
- consigli nonchè dell'affetto incondizionato.
+Sono riconoscente soprattutto ai miei genitori e a nonna Dina che mi sono
+ stati vicini, hanno condiviso le mie scelte e mi hanno sostenuto con affetto
+ incondizionato.
 \end_layout
 
 \begin_layout PhD Thesis Acknowledge
@@ -312,7 +269,15 @@ Un ringraziamento speciale a Lucilla che mi è stata accanto, con dolcezza
 
 \begin_layout PhD Thesis Acknowledge
 Un ricordo, con l’affetto che ci ha sempre legati, all'amico Vittorio, con
- la sua du botte e quel sorriso indimenticabile.
+ la sua 
+\begin_inset Quotes eld
+\end_inset
+
+du botte
+\begin_inset Quotes erd
+\end_inset
+
+ e quel sorriso indimenticabile.
 \end_layout
 
 \begin_layout PhD Thesis Abstract
@@ -372,7 +337,7 @@ status open
 
 \begin_layout Plain Layout
 
-}
+}%Elenco dei simboli
 \end_layout
 
 \begin_layout Plain Layout
@@ -446,8 +411,34 @@ name "chap:Introduzione"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Scopo della tesi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Scopo di questa tesi è lo studio di un problema che si presenta nella gestione
  delle autostazioni.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Situazione attuale
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -493,20 +484,24 @@ gate
 \emph default
 .
  Le piattaforme possono essere disposte secondo vari schemi che influenzano
- sia l'accessibilità da parte dei veicoli di varie tipologie che il tempo
+ sia l'accessibilità da parte dei veicoli (di varie tipologie) che il tempo
  minimo in cui un veicolo occupa la piattaforma.
  Questo tempo è diverso per veicoli che iniziano o terminano il servizio
  nell'autostazione e per veicoli che sono in transito.
- Le piattaforme possono essere assegnate in maniera fissa alle linee o alle
+\end_layout
+
+\begin_layout Standard
+Le piattaforme possono essere assegnate in maniera fissa alle linee o alle
  singole corse, oppure possono essere assegnate in modo flessibile se l'autostaz
 ione ha un sistema dinamico di informazione che permetta agli utenti (passeggeri
  e conducenti) di conoscere in anticipo la piattaforma in cui fermerà l'autobus.
  Siccome le piattaforme sono risorse scarse e costose è preferibile la seconda
- modalità di utilizzo che richiede un minor numero di piattaforme in quanto
- permette un utilizzo più efficiente del piazzale (un numero maggiore di
- servizi di trasporto, a parità di piattaforme disponibili) ma non fornisce
+ modalità in quanto richiede un minor numero di piattaforme permettendo
+ un utilizzo più efficiente del piazzale (un numero maggiore di servizi
+ di trasporto, a parità di piattaforme disponibili) anche se non fornisce
  al passeggero e al conducente la comodità di conoscere la piattaforma con
- largo anticipo e richiede di decidere gli assegnamenti autobus-piattaforma.
+ largo anticipo e richiede al management dell'autostazione di decidere gli
+ assegnamenti autobus-piattaforma.
  La piattaforma di arrivo o partenza del veicolo è soggetta a variazioni
  dinamiche rispetto al servizio programmato dovute alle caratteristiche
  stocastiche dei tempi di arrivo e partenza degli autobus, e a eventi anomali
@@ -516,16 +511,16 @@ ione ha un sistema dinamico di informazione che permetta agli utenti (passeggeri
 
 \begin_layout Standard
 Il problema affrontato in questa tesi è quello di determinare assegnamenti
- delle fermate delle corse alle piattaforme, che possono essere definite
- in anticipo in base alle tabelle orarie delle corse in un certo periodo
- di tempo e possono essere riassegnate in modo dinamico avvalendosi, possibilmen
-te, dei dati in tempo reale sulla posizione dei veicoli.
+ delle fermate alle piattaforme, che possono essere definite in anticipo
+ in base alle tabelle orarie delle corse in un certo periodo di tempo e
+ possono essere riassegnate in modo dinamico avvalendosi, possibilmente,
+ dei dati in tempo reale sulla posizione dei veicoli.
  Gli assegnamenti di un veicolo ad una piattaforma possono essere soggetti
  a vari vincoli di compatibilità.
  La gestione manuale dei processi della stazione risulta sempre più complessa
  al crescere del numero di servizi di trasporto e di piattaforme da gestire
  fino a diventare impraticabile per un operatore umano e una politica di
- assegnamento non corretta può comportare forte disagi ai passeggeri ed
+ assegnamento non corretta può comportare forti disagi ai passeggeri ed
  agli autisti, compromettendo il buon funzionamento dell'autostazione.
 \end_layout
 
@@ -584,9 +579,10 @@ reference "chap:Nuove-formulazioni"
  propone le formulazioni di nuovi problemi di allocazione delle piattaforme
  ed i modelli di programmazione lineare intera che ne descrivono indici
  di prestazione e vincoli.
- I modelli sono generali possibili e si prestano ad essere modificati introducen
-do vincoli addizionali per poter rappresentare le variegate situazioni che
- si verificano nelle diverse autostazioni.
+ I modelli sono predisposti per astrarre gli aspetti generali del problema
+ e si prestano ad essere modificati introducendo vincoli addizionali, in
+ grado di rappresentare le variegate situazioni che si verificano nelle
+ diverse autostazioni.
  
 \end_layout
 
@@ -602,8 +598,8 @@ reference "chap:Algoritmi-sviluppati"
 
 \end_inset
 
- illustra i metodi di risoluzione sviluppati per poter determinare delle
- buone soluzioni ai problemi proposti nel Capitolo
+ espone i metodi di risoluzione sviluppati per poter determinare delle buone
+ soluzioni ai problemi proposti nel Capitolo
 \begin_inset space ~
 \end_inset
 
@@ -703,9 +699,10 @@ manuale
 \end_layout
 
 \begin_layout Standard
-Le soluzioni fornite dagli algoritmi sviluppati in questa tesi usando come
- input i dati dell'Autostazione di Bologna si sono dimostrate di buona qualità;
- gli algoritmi pertanto sono adatti ad essere applicati a situazioni reali.
+Le soluzioni fornite dagli algoritmi sviluppati in questa tesi, usando come
+ input i dati dell'Autostazione di Bologna.
+ si sono dimostrate di buona qualità; gli algoritmi pertanto sono adatti
+ ad essere applicati a situazioni reali.
 \end_layout
 
 \begin_layout Chapter
@@ -872,7 +869,7 @@ ione.
 \end_layout
 
 \begin_layout Section
-Il problema considerato
+Il problema preso in considerazione
 \end_layout
 
 \begin_layout Standard
@@ -1450,8 +1447,15 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Graphics
-	filename img/layout_piattaforme.png
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{img/layout_piattaforme}
+\end_layout
 
 \end_inset
 
@@ -4312,7 +4316,7 @@ height "1in"
 height_special "totalheight"
 status open
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Dati:
 \end_layout
 
@@ -5018,7 +5022,7 @@ reference "fig:Descrizione-del-problema"
 \end_inset
 
  con compatibilità 
-\begin_inset Formula $\mbox{L\,:\, V\rightarrow2^{C}}$
+\begin_inset Formula $\mbox{L\,:\,\ V\rightarrow2^{C}}$
 \end_inset
 
 , dove 
@@ -5674,8 +5678,8 @@ status open
 \end_layout
 
 \begin_layout Section
-Modello matematico del problema di minimizzazione delle piattaforme assegnate
- ad almeno una corsa
+Modello matematico del problema di minimizzazione del numero di piattaforme
+ assegnate ad almeno una corsa
 \end_layout
 
 \begin_layout Standard
@@ -7322,7 +7326,7 @@ height "1in"
 height_special "totalheight"
 status open
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Dati:
 \end_layout
 
@@ -7745,7 +7749,7 @@ height "1in"
 height_special "totalheight"
 status open
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Dati:
 \end_layout
 
@@ -8089,7 +8093,7 @@ name "chap:Algoritmi-sviluppati"
 
 \begin_layout Section
 Predisposizione dei dati e calcolo della limitazione inferiore del numero
- di piattaforme
+ di piattaforme necessarie
 \end_layout
 
 \begin_layout Standard
@@ -10022,7 +10026,7 @@ input{img/iterative_horizon}
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Controllo a orizzonte recessivo: sotto-istanze e soluzioni
+Controllo a orizzonte recessivo: sotto-problemi e soluzioni
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Algoritmo-iterativo_legami_ist_sol"
@@ -10535,7 +10539,7 @@ Return l'insieme di assegnamenti {$
 
 	
 \backslash
-caption{Algoritmo iterativo per di massimizzazione dello scarto minimo}
+caption{Algoritmo iterativo per la massimizzazione dello scarto minimo}
 \end_layout
 
 \begin_layout Plain Layout
@@ -11590,7 +11594,7 @@ name "fig:real_coloring"
 
 \end_inset
 
-Allocazioni che minimizzano il numero di piattaforme
+Allocazioni che minimizzano il numero di piattaforme impiegate
 \end_layout
 
 \end_inset
@@ -11846,7 +11850,7 @@ name "subfig:real_coloring"
 
 \end_inset
 
-Minimizzazione del numero di piattaforme
+Minimizzazione del numero di piattaforme impiegate
 \end_layout
 
 \end_inset
@@ -12469,7 +12473,7 @@ Allocazioni che minimizzano il conflitto (18 piattaforme)
 \end_layout
 
 \begin_layout Section
-Scenari alternativi al variare delle finestre temporali
+Scenari alternativi al variare dell'ampiezza delle finestre temporali
 \end_layout
 
 \begin_layout Standard
@@ -12537,7 +12541,7 @@ name "fig:real_coloring-b2"
 
 \end_inset
 
-Allocazioni che minimizzano le piattaforme (buffer di 2 minuti)
+Allocazioni che minimizzano le piattaforme impiegate (buffer di 2 minuti)
 \end_layout
 
 \end_inset
@@ -12665,7 +12669,7 @@ name "fig:real_coloring-b4"
 
 \end_inset
 
-Allocazioni che minimizzano le piattaforme (buffer di 4 minuti)
+Allocazioni che minimizzano le piattaforme impiegate (buffer di 4 minuti)
 \end_layout
 
 \end_inset
@@ -12857,7 +12861,7 @@ name "fig:real_coloring-b6"
 
 \end_inset
 
-Allocazioni che minimizzano le piattaforme (buffer di 6 minuti)
+Allocazioni che minimizzano le piattaforme impiegate (buffer di 6 minuti)
 \end_layout
 
 \end_inset
@@ -13049,7 +13053,7 @@ name "fig:real_coloring-b8"
 
 \end_inset
 
-Allocazioni che minimizzano le piattaforme minimo (buffer di 8 minuti)
+Allocazioni che minimizzano le piattaforme impiegate (buffer di 8 minuti)
 \end_layout
 
 \end_inset
@@ -13241,7 +13245,7 @@ name "fig:real_coloring-b10"
 
 \end_inset
 
-Allocazioni che minimizzano le piattaforme (buffer di 10 minuti)
+Allocazioni che minimizzano le piattaforme impiegate (buffer di 10 minuti)
 \end_layout
 
 \end_inset
@@ -13395,6 +13399,28 @@ name "chap:Conclusioni-e-sviluppi"
 
 \begin_layout Section
 Conclusioni
+\end_layout
+
+\begin_layout Standard
+Nel presente lavoro si considera l’assegnamento degli autobus alle piattaforme
+ disponibili di un'autostazione, uno dei problemi più rilevanti che si presenta
+ nella gestione operativa di un stazione degli autobus.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+l’astrazione, ovvero la capacità di identificare caratteristiche comuni
+ in campi differenti, così che idee generali possano essere elaborate ed
+ applicate a situazioni tra loro assai diverse.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
