@@ -6279,8 +6279,7 @@ reference "eq:vincolo_compatibilita_bus_0"
 
  dichiara che le corse assegnate ad una stessa piattaforma devono essere
  compatibili nel tempo fra loro, ovvero devono occupare il gate in intervalli
- di tempo che non si sovrappongono.
- 
+ di tempo che non si sovrappongono
 \begin_inset Foot
 status open
 
@@ -6299,6 +6298,7 @@ Le variabili
 
 \end_inset
 
+.
  Le disequazioni espresse dal vincolo
 \begin_inset space ~
 \end_inset
@@ -6386,7 +6386,7 @@ reference "eq:u_ik_dominio"
 \begin_layout Standard
 Il modello può essere reso ancora più compatto eliminando i vincoli 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:uk_maggiore_xik"
 
 \end_inset
@@ -6401,7 +6401,7 @@ reference "eq:uk_maggiore_xik"
 
  nelle disequazioni 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:vincolo_compatibilita_bus_0"
 
 \end_inset
@@ -11546,7 +11546,7 @@ I buffer temporali al variare della fascia oraria:
 \begin_inset Formula $t_{1}$
 \end_inset
 
-e 
+ e 
 \begin_inset Formula $t_{2}$
 \end_inset
 
