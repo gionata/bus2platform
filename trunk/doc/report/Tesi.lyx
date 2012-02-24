@@ -530,7 +530,7 @@ La tesi è organizzata nel modo seguente.
 \end_layout
 
 \begin_layout Standard
-Il Capitolo
+Il capitolo
 \begin_inset space ~
 \end_inset
 
@@ -547,7 +547,7 @@ o nel risolverlo.
 \end_layout
 
 \begin_layout Standard
-Il Capitolo
+Il capitolo
 \begin_inset space ~
 \end_inset
 
@@ -566,7 +566,7 @@ reference "chap:Rassegna-bibliografica"
 \end_layout
 
 \begin_layout Standard
-Il Capitolo
+Il capitolo
 \begin_inset space ~
 \end_inset
 
@@ -588,7 +588,7 @@ reference "chap:Nuove-formulazioni"
 \end_layout
 
 \begin_layout Standard
-Il Capitolo
+Il capitolo
 \begin_inset space ~
 \end_inset
 
@@ -616,7 +616,7 @@ reference "chap:Nuove-formulazioni"
 \end_layout
 
 \begin_layout Standard
-Il Capitolo
+Il capitolo
 \begin_inset space ~
 \end_inset
 
@@ -634,7 +634,7 @@ reference "chap:Risultati-computazionali"
 \end_layout
 
 \begin_layout Standard
-Il Capitolo
+Il capitolo
 \begin_inset space ~
 \end_inset
 
@@ -3613,7 +3613,7 @@ Il modello include due vincoli: l'eq.
 
 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:vincolo_assegnamento_0-3"
 
 \end_inset
@@ -3625,7 +3625,7 @@ reference "eq:vincolo_assegnamento_0-3"
 
 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:vincolo_compatibilita_bus_0-3"
 
 \end_inset
@@ -4014,7 +4014,7 @@ Il grafo complementare di
 \begin_inset Formula $\overline{G}=(V,\overline{E})$
 \end_inset
 
- dove 
+ il cui l'insieme gli archi è 
 \begin_inset Formula $\overline{E}=\{(x,y)\in V\times V|x\neq y\wedge(x,y)\notin E\}$
 \end_inset
 
@@ -4239,13 +4239,13 @@ In alcuni casi ogni arco ha un peso (o costo) associato.
 status open
 
 \begin_layout Plain Layout
-Minimizzazione del numero delle piattaforme assegnate ad almeno una corsa
+Formulazione su grafo del problema
 \end_layout
 
 \end_inset
 
-Formulazione su grafo del problema di minimizzazione del numero delle piattaform
-e assegnate ad almeno una corsa
+Formulazione su grafo del problema di minimizzazione del numero di piattaforme
+ assegnate ad almeno una corsa
 \end_layout
 
 \begin_layout Standard
@@ -7035,11 +7035,12 @@ Istanza di esempio del problema di assegnamento corsa-piattaforma
 
 \end_inset
 
-L'istanza del problema di partenza viene ricondotta ad un problema 
+L'istanza del problema di gestione delle piattaforme viene ricondotta a
+ quella 
 \begin_inset Formula $\mathcal{I}=[G(V,E),\, L]$
 \end_inset
 
- di list-coloring con parametri 
+ di un problema di list-coloring di un grafo con parametri 
 \begin_inset Formula $G$
 \end_inset
 
@@ -10860,7 +10861,7 @@ key "golumbic2004algorithmic"
 
 \end_inset
 
- Capitolo 8).
+ capitolo 8).
 \end_layout
 
 \begin_layout Standard
@@ -12552,7 +12553,7 @@ name "fig:real_scarto-1-16"
 
 \end_inset
 
-Allocazioni che massimizzano lo scarto minimo(17 piattaforme)
+Allocazioni che massimizzano lo scarto minimo (17 piattaforme)
 \end_layout
 
 \end_inset
@@ -12681,7 +12682,7 @@ name "fig:real_scarto-17"
 
 \end_inset
 
-Allocazioni che massimizzano lo scarto minimo(18 piattaforme)
+Allocazioni che massimizzano lo scarto minimo (18 piattaforme)
 \end_layout
 
 \end_inset
