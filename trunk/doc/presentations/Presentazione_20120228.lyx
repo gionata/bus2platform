@@ -48,7 +48,7 @@
 \pgfdeclareimage[height=5mm]{UNIVPM}{img/logo_bn_198}
 \logo{\pgfuseimage{UNIVPM}}
 
-\usepackage[ruled,vlined,lined,boxed]{algorithm2e}
+\usepackage[]{algorithm2e}
 
 \usepackage{xmpmulti}
 \usepackage{listings} %Per inserire codice
@@ -63,7 +63,10 @@
 
 \newcommand{\blu}[1]{{\usebeamercolor[fg]{structure} #1}}
 \newcommand{\red}[1]{{\usebeamercolor[fg]{alerted text} #1}}
+
+%\usepackage{standalone}
 \end_preamble
+\options draft
 \use_default_options false
 \maintain_unincluded_children false
 \language italian
@@ -1156,7 +1159,7 @@ status open
 
 
 \backslash
-input{img/fasce_orarie3}
+includegraphics{img/fasce_orarie3}
 \end_layout
 
 \end_inset
@@ -1177,7 +1180,7 @@ status open
 
 
 \backslash
-input{img/relazioni_L3}
+includegraphics{img/relazioni_L3}
 \end_layout
 
 \end_inset
@@ -1286,7 +1289,7 @@ begin{center}
 \backslash
 only<1->{
 \backslash
-input{img/K_3_list_3_coloring_istanza}}
+includegraphics{img/K_3_list_3_coloring_istanza}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1417,7 +1420,7 @@ onslide<2->{%3-
 
 
 \backslash
-input{img/K_3_list_3_coloring_mis_istanza}
+includegraphics{img/K_3_list_3_coloring_mis_istanza}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1539,7 +1542,7 @@ begin{center}
 
 
 \backslash
-input{img/K_3_list_3_coloring_mis_soluzione}
+includegraphics{img/K_3_list_3_coloring_mis_soluzione}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1617,7 +1620,7 @@ onslide<2->{
 
 
 \backslash
-input{img/K_3_list_3_coloring_soluzione}
+includegraphics{img/K_3_list_3_coloring_soluzione}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2840,16 +2843,1000 @@ normalsize
 Proposed algorithms
 \end_layout
 
-\begin_layout BeginFrame
-A first-fist heuristic for Model 1
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile,allowsframebreaks]
 \end_layout
 
-\begin_layout BeginFrame
-Receding Horizon
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{A first-fist heuristic for Model 1}
 \end_layout
 
-\begin_layout BeginFrame
-Time buffer
+\begin_layout Plain Layout
+
+
+\backslash
+SetAlgoNoLine
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+NoCaptionOfAlgo
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+SetAlgoVlined
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+scriptsize
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H] %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output} %
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{The services set $F$ the platform set $P$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{A bus--platform assignment $
+\backslash
+mathcal{A}$} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine %
+\end_layout
+
+\begin_layout Plain Layout
+
+	$n 
+\backslash
+leftarrow |F|$,
+\backslash
+quad	$m 
+\backslash
+leftarrow |P|$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{$i 
+\backslash
+leftarrow 1$ 
+\backslash
+KwTo $n$ }{
+\end_layout
+
+\begin_layout Plain Layout
+
+%		
+\backslash
+tcc{Fermata non assegnata}
+\end_layout
+
+\begin_layout Plain Layout
+
+		$
+\backslash
+mathcal{A}_i 
+\backslash
+leftarrow -1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+%	
+\backslash
+tcc{Partiziona $F$ in sottoinsiemi} %
+\end_layout
+
+\begin_layout Plain Layout
+
+%	
+\backslash
+tcc{Le corse di $F_1$ devono soddisfare i vincoli 1.
+ e 2.} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F_1 
+\backslash
+leftarrow 
+\backslash
+{f 
+\backslash
+in F :$ ``bis groups'', articulated buses$
+\backslash
+}$;
+\backslash
+quad
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F 
+\backslash
+leftarrow F 
+\backslash
+setminus F_1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+%	
+\backslash
+tcc{Le corse di $F_2$ devono soddisfare solo il vincolo 1.} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F_2 
+\backslash
+leftarrow 
+\backslash
+{f 
+\backslash
+in F :$ ``bis groups''$
+\backslash
+}$;
+\backslash
+quad
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F 
+\backslash
+leftarrow F 
+\backslash
+setminus F_2$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+%	
+\backslash
+tcc{Le corse di $F_3$ devono soddisfare solo il vincolo 2.} %1
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F_3 
+\backslash
+leftarrow 
+\backslash
+{f 
+\backslash
+in F :$ articulated buses$
+\backslash
+}$;
+\backslash
+quad
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F 
+\backslash
+leftarrow F 
+\backslash
+setminus F_3$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+%	
+\backslash
+tcc{Le corse di $F_4$ devono soddisfare il vincolo 3.} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F_4 
+\backslash
+leftarrow 
+\backslash
+{f 
+\backslash
+in F :$ reserved platforms$
+\backslash
+}$;
+\backslash
+quad
+\end_layout
+
+\begin_layout Plain Layout
+
+%	
+\backslash
+tcc{Le corse di $F_5$ non sono presenti nei precedenti insiemi} %
+\end_layout
+
+\begin_layout Plain Layout
+
+	$F_5 
+\backslash
+leftarrow F 
+\backslash
+setminus F_4$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+%no	$F_{5}=F
+\backslash
+setminus
+\backslash
+ensuremath{{
+\backslash
+displaystyle 
+\backslash
+bigcup_{i=1}^{4}}F_{i})}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Let $
+\backslash
+mathcal{P}$ be the platforms vectors in non--decreasing order
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{$i
+\backslash
+leftarrow 1$ 
+\backslash
+KwTo $5$ }{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Let $
+\backslash
+mathcal{F}_i$ be the services vector in non--decreasing order of leaving
+ time
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+ForEach{$f 
+\backslash
+in 
+\backslash
+mathcal{F}_i$ }{
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+For{$k
+\backslash
+leftarrow 1$ 
+\backslash
+KwTo $m$}{
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{$f$ can be assigned to $
+\backslash
+mathcal{P}_k$ {
+\backslash
+bf and} $
+\backslash
+mathcal{P}_k$ is available}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+If{$f$ does not overlap with other services assigned to $
+\backslash
+mathcal{P}_k$}{
+\end_layout
+
+\begin_layout Plain Layout
+
+%						
+\backslash
+tcc{Assegna $f$ a $P$}
+\end_layout
+
+\begin_layout Plain Layout
+
+						$
+\backslash
+mathcal{A}_f 
+\backslash
+leftarrow k$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+						$n 
+\backslash
+leftarrow n - 1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+				}	
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%	
+\backslash
+If{$n 
+\backslash
+neq 0$}{
+\end_layout
+
+\begin_layout Plain Layout
+
+%%		
+\backslash
+emph{Assegnamento non completo}%
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+%%	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return {$
+\backslash
+mathcal{A}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%	
+\backslash
+caption{First Fit like heuristics}
+\end_layout
+
+\begin_layout Plain Layout
+
+%	
+\backslash
+label{alg:gateplanner}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile,allowsframebreaks]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{A time buffer increase heuristic for Model 2}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+SetAlgoNoLine
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+NoCaptionOfAlgo
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+SetAlgoVlined
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+scriptsize
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H] %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKw{To}{to}%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{un'istanza di GA}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{gli assegnamenti soste-piattaforme nella giornata da pianificare}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{il buffer è inizialiazzato a 0}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	$b = 0$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Repeat(){Esistono soluzioni ammissibili}{
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{sotto-grafi indotti}
+\end_layout
+
+\begin_layout Plain Layout
+
+		genera $G = (V, E)$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		risolvi il problema di minimizzazione del numero delle piattaforme assegnate
+ ad almeno una corsa
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		$b = b + 1$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return l'insieme di assegnamenti {$
+\backslash
+{x_{ik} : x_{ik}^* = 1
+\backslash
+}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile,allowsframebreaks]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{A Receding Horizon heuristic for Model 3}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+SetAlgoNoLine
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+NoCaptionOfAlgo
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+SetAlgoVlined
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+scriptsize
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H]%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKw{To}{to}%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Input{un'istanza di GA e una lista di istanti $p_1, 
+\backslash
+ldots, p_P$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Output{gli assegnamenti soste-piattaforme nella giornata da pianificare}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+BlankLine%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+tcc{per ogni intervallo $[p_{p-1}, p_p]$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+ForEach{$p = 1$ 
+\backslash
+To $P$}{%
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{considera solo le corse $V_p$ che occuperanno una piattaforma nell'intervall
+o $p$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		$V_p = 
+\backslash
+{v 
+\backslash
+in V : d_v 
+\backslash
+geq p_{p-1} 
+\backslash
+wedge a_v 
+\backslash
+leq p_p 
+\backslash
+}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{considera solo le piattaforme $C_p$ che sono abilitate nell'intervallo
+ $p$}%
+\end_layout
+
+\begin_layout Plain Layout
+
+		$C_p = 
+\backslash
+{c 
+\backslash
+in C : c$ è abilitato in $[p_{p-1}, p_p]$ e almeno una corsa $v 
+\backslash
+in V_p$ può essere assegnata a $c 
+\backslash
+}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+tcc{sotto-grafi indotti}
+\end_layout
+
+\begin_layout Plain Layout
+
+		genera $G = (V_p, E_p)$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		genera $
+\backslash
+mathcal{G}_p$ da $V_p, C_p, E_p$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		genera il modello matematico del problema
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		imposta gli upper bound delle variabili $
+\backslash
+{x_{ik}
+\backslash
+}$ per forzare gli assegnamenti ottenuti con la precedente iterazione
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		risolvi il modello
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		imposta gli assegnamenti ottenuti nella soluzione complessiva
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Return l'insieme di assegnamenti {$
+\backslash
+{x_{ik} : x_{ik}^* = 1
+\backslash
+}$
+\backslash
+;} %
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%%	
+\backslash
+caption{Controllo a orizzonte recessivo}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%	
+\backslash
+label{alg:time_slice}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
