@@ -17,12 +17,13 @@
 %% Save up on ink for the 4-up handouts
 \mode<handout>{
 \useoutertheme{wuerzburg}
-\useinnertheme[outline,italian]{chamfered}
-\pgfpagesuselayout{4 on 1}[a4paper, landscape, border shrink=10mm]
+\useinnertheme[outline]{chamfered}
+%\pgfpagesuselayout{4 on 1}[a4paper, landscape, border shrink=10mm]
+\pgfpagesuselayout{2 on 1}[a4paper, portrait, border shrink=10mm]
 \pgfpageslogicalpageoptions{1}{border code=\pgfstroke}
 \pgfpageslogicalpageoptions{2}{border code=\pgfstroke}
-\pgfpageslogicalpageoptions{3}{border code=\pgfstroke}
-\pgfpageslogicalpageoptions{4}{border code=\pgfstroke}
+%\pgfpageslogicalpageoptions{3}{border code=\pgfstroke}
+%\pgfpageslogicalpageoptions{4}{border code=\pgfstroke}
 }
 
 \mode<presentation>{\AtBeginSection{%
@@ -51,12 +52,16 @@
 \newcommand{\red}[1]{{\usebeamercolor[fg]{alerted text} #1}}
 
 %\usepackage{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
+            \node[shape=ellipse,draw,inner sep=2pt] (char) {#1};}}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
-\language italian
+\language british
 \language_package default
-\inputencoding auto
+\inputencoding latin1
 \fontencoding global
 \font_roman times
 \font_sans default
@@ -75,7 +80,20 @@
 \index_command default
 \paperfontsize default
 \spacing single
-\use_hyperref false
+\use_hyperref true
+\pdf_author "Gionata Massi"
+\pdf_subject "Presentazione della tesi di Dottorato di Gionata Massi."
+\pdf_keywords "Bus station management, Gate assignment, Heuristic methods, Interval graphs, List colouring."
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_pagemode FullScreen
 \papersize default
 \use_geometry true
 \use_amsmath 2
@@ -292,11 +310,7 @@ Advisor: Prof.
 \end_layout
 
 \begin_layout Date
-Ancona - 
-\lang british
-February
-\lang italian
- 28, 2012
+Ancona -- February 28, 2012
 \begin_inset Argument
 status open
 
@@ -361,15 +375,27 @@ status open
 
 
 \backslash
-note{Buon pomeriggio,
+note{
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+Buon pomeriggio,
 \end_layout
 
 \begin_layout Plain Layout
 
 illustrer
 \backslash
-`o uno dei temi sviluppati nel corso del dottorato che ha per oggetto la
- pianificazione dell'utilizzo delle piattaforme di un'autostazione.
+`o uno dei temi sviluppati nel corso del dottorato di ricerca che ha per
+ oggetto la pianificazione dell'utilizzo delle piattaforme di un'autostazione.
 \end_layout
 
 \begin_layout Plain Layout
@@ -377,16 +403,137 @@ illustrer
 Il tutor accademico 
 \backslash
 `e il prof.
+\backslash
  F.
- Pezzella e la societ
+\backslash
+ Pezzella e la ricerca 
+\backslash
+`e stata cofinanziata dalla societ
 \backslash
 `a Pluservice s.r.l.
- di Senigallia ha cofinanziato la ricerca.
+\backslash
+ di Senigallia.
+       (20'' -- 20'')
 \end_layout
 
 \begin_layout Plain Layout
 
-}
+
+\backslash
+par Il lavoro che si presenta riassume uno studio di Ricerca Operativo svolto
+ in tutte le sue fasi tipiche, ossia:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+par 
+\backslash
+begin{description}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+item[1.~Analisi] si 
+\backslash
+`e analizzato un problema reale di gestione di un sistema complesso,
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+item[2.~Modellizzazione]	si sono astratte le caratteristiche d'interesse
+ del sistema e si sono formulati alcuni problemi di ottimizzazione su grafo,
+ in modo da poter verificare delle analogie con problemi che emergono in
+ constesti differenti e da poterne valutare la complessit
+\backslash
+`a e ricercare algoritmi,
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+item[3.~Costruzione~del~modello~matematico] si sono costruiti dei modelli
+ matematici per i problemi presi in considerazione,
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+item[4.~Risoluzione] sono stati proposti degli algoritmi euristici per risolvere
+ il problema, in quanto esso 
+\backslash
+`e riducibile ad altri problemi $
+\backslash
+mathcal{NP}$-completi,
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+item[5.~Validazione~e~sviluppo~del~DSS] il modello matematico 
+\backslash
+`e stato validato su di un caso reale e sono stati implementati gli algoritmi
+ di calcolo della soluzione.
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+item[6.~Conclusione] infine si sono determinati i limiti di applicabilit
+\backslash
+`a del lavoro svolto e si sono intraviste delle prospettive di ulteriore
+ sviluppo.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{description} (1' -- 1' 20'')
+\end_layout
+
+\begin_layout Plain Layout
+
+}%tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
 \end_layout
 
 \end_inset
@@ -400,7 +547,7 @@ Platform Assignment Problem in Bus Stations
 status open
 
 \begin_layout Plain Layout
-Bus-Platform assignment
+Bus--Platform assignment
 \end_layout
 
 \end_inset
@@ -446,7 +593,69 @@ status open
 
 
 \backslash
-note{}
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+La problematica da affrontare emerge in una stazione degli autobus e in
+ particolare 
+\backslash
+`e stata presa a riferimento quella di Bologna.
+ La foto e lo schema mostrano, nel caso specifico, 24 piattaforme che servono
+ delle corse in partenza.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+par
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+item Una delle pi
+\backslash
+`u importati decisioni che deve essere effettuata dal gestore della stazione
+ 
+\backslash
+`e quella di assegnare gli autobus alle piattaforme da cui ogni autobus
+ deve partire.
+\end_layout
+
+\begin_layout Plain Layout
+
+   
+\backslash
+item Un assegnamento non ottimale pu
+\backslash
+`o creare congestioni e conseguentemente ritardi delle partenze e disagio
+ a passeggeri, ai quali pu
+\backslash
+`o essere chiesto di camminare per una lunga  distanza (l'area delle partenze
+ è lunga oltre 170 m) in caso di cambio di piattaforma, e disagi agli autisti.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
 \end_layout
 
 \end_inset
@@ -493,7 +702,7 @@ Calculate
 \end_layout
 
 \begin_layout Itemize
-An optimal bus-platform assignment
+An optimal bus--platform assignment
 \end_layout
 
 \begin_layout Standard
@@ -509,47 +718,24 @@ note{%
 
 \begin_layout Plain Layout
 
-
+%{
 \backslash
-tiny
+small
+\end_layout
+
+\begin_layout Plain Layout
+
+Il problema affrontato pu
+\backslash
+`o essere descritto in termini di input/output.
+ In input si hanno:
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-begin{itemize}
-\end_layout
-
-\begin_layout Plain Layout
-
-  
-\backslash
-item One of the most important decisions that must be taken in managing
- a bus station is the assignment of the buses to the platform from which
- each bus has to leave.
-\end_layout
-
-\begin_layout Plain Layout
-
-   
-\backslash
-item A non optimal assignment may create congestion and consequently bus
- delays and discomfort for passengers, who may be required to walk long
- distances in case of bus change.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{itemize}
-\end_layout
-
-\begin_layout Plain Layout
-
-We can describe the problem in term of input/out.
- In input we have:
+par
 \end_layout
 
 \begin_layout Plain Layout
@@ -563,44 +749,51 @@ begin{itemize}
 
   
 \backslash
-item The set of time intervals of platform occupation by the bus used for
- a service on a given day;
+item L'insieme degli intervalli temporali in cui una piattaforma risulta
+ occupata da un autobus che copre un servizio per un dato giorno;
 \end_layout
 
 \begin_layout Plain Layout
 
   
 \backslash
-item The list of platforms that can be occupied by the buses during the
- given intervals;
+item la lista delle piattaforme che possono essere occupate dagli autobus
+ dati gli intervalli temporali;
 \end_layout
 
 \begin_layout Plain Layout
 
   
 \backslash
-item and any preference criterion chosen by the station management and/or
- bus companies; 
+item e altri criteri di preferenza scelti dal capostazione e/o dalle compagnie
+ di trasporto; 
 \backslash
 end{itemize}
 \end_layout
 
 \begin_layout Plain Layout
 
-In output we want a assignement.
- It must be feasible and optimal with respect to one ore more objectives.
-\end_layout
-
-\begin_layout Plain Layout
-
 
 \backslash
-normalsize
+par
 \end_layout
 
 \begin_layout Plain Layout
 
-}
+In output si vuole un assegnamento ammissibile ed ottimo rispetto a uno
+ o pi
+\backslash
+`u obiettivi.
+\end_layout
+
+\begin_layout Plain Layout
+
+%}%small
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
 \end_layout
 
 \end_inset
@@ -708,52 +901,78 @@ note{%
 
 \begin_layout Plain Layout
 
-For similar problems, in particular the gate assignment problem, literature
- and integrating companies are proposing several conflicting objectives.
+{
+\backslash
+tiny
 \end_layout
 
 \begin_layout Plain Layout
 
-The bus station of our case is using a software that attemps to minimize
- the number of platform used because the management intented to rent unused
- platform.
+Per problemi simili, in particolare il ``gate assignment problem'' nel caso
+ aeroportuale, la letteratura scientifica e alcune società che producono
+ sistemi di supporto alle decisioni hanno proposto vari obiettivi che risultano
+ in contrasto fra loro.
 \end_layout
 
 \begin_layout Plain Layout
 
-To pursue this objective, unfortunatly, can lead to unexpected changes during
- the service that distroy the assignment.
- To find a new assignment feasible assignment, accetable by customers and
- bus drivers, is an hard problem.
- So another objective is to develop a robust assignment.
- Robust means that small change in the arrival and departur time of a bus
- service will not affect the assignment feasibility.
+Il management dell'autostazione considerata utilizza un software che cerca
+ di minimizzare il numero di piattaforme utilizzate in quanto si vuole massimizz
+are l'uso del piazzale affittando a servizi aggiuntivi le piattaforme che
+ rimangono disponibili.
 \end_layout
 
 \begin_layout Plain Layout
 
+Perseguire questo obiettico, sfortunatamente, pu
+\backslash
+`o portare a dover far fronte a cambiamenti inattesi, durante l'esercizio,
+ che rendono inattuabile l'assegnamento predisposto.
+ Rigenerare un nuovo assegnmento ammissibile, accettabile dai passeggeri
+ e dagli autosti, è un problema difficile.
+ Quindi un altro obiettivo è quello di programmare un assegnamento ``robusto''.
+ Robusto significa che a piccole variazioni degli orari di partenza e di
+ arrivo degli autobus rispetto a quelle previste non pregiudicano la fattibilità
+ dell'assegnamento e le prestazioni del sistema non peggiorano drasticamente.
 \end_layout
 
 \begin_layout Plain Layout
 
-Other aims are 
+
+\backslash
+par
+\end_layout
+
+\begin_layout Plain Layout
+
+Altri scopi sono 
 \backslash
 ldots{}
 \end_layout
 
 \begin_layout Plain Layout
 
+
+\backslash
+par
 \end_layout
 
 \begin_layout Plain Layout
 
-We focus on the minimization of the number of used platform and on the robustnes
-s.
+Il nostro lavoro si 
+\backslash
+`e concentrato sulla minimizzazione del numero delle piattaforme utilizzate
+ in una giornata e sulla robustezza.
 \end_layout
 
 \begin_layout Plain Layout
 
-}
+}%tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
 \end_layout
 
 \end_inset
@@ -785,7 +1004,7 @@ A platform is compatible with a subset of services.
 \begin_layout Standard
 
 \size footnotesize
-The concept of service-platform compatibility allows to model and manage
+The concept of service--platform compatibility allows to model and manage
  some criteria such as:
 \end_layout
 
@@ -794,7 +1013,10 @@ The concept of service-platform compatibility allows to model and manage
 \size footnotesize
 All platforms must have a manoeuvring area big enough for the buses used
  for the assigned services (e.g.
- articulated buses);
+\begin_inset space ~
+\end_inset
+
+articulated buses);
 \end_layout
 
 \begin_layout Itemize
@@ -817,19 +1039,100 @@ status open
 
 
 \backslash
-note{%
+note{
 \end_layout
 
 \begin_layout Plain Layout
 
-}
+{
+\backslash
+scriptsize
+\end_layout
+
+\begin_layout Plain Layout
+
+I vincoli sull'assegnamento impongono che
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+item ogni autobus deve essere assegnato ad una piattaforma (si assume che
+ il numero di piattaforme sia sufficiente a servire tutti gli autobus),
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+item autobus che fermano nell'autostazione in intervalli di tempo che si
+ sovrappongono, sia pure parzialmente, devono essere assegnati a piattaforme
+ distinte,
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+item esiste una relazione di compatibilit
+\backslash
+`a fra autobus e piattaforme.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+La relazione di compatibilit
+\backslash
+`a è stata introdotta per descrivere sinteticamente e gestire alcuni criteri
+ come il permettere ad autobus snodati di entrare agevolmente nella piattaforma,
+ garantire alle compagnie di trasporto ed ai passeggeri di avere servizi
+ per certe destinazione assegnate ad un ristretto numero di piattaforme
+ e permettere le operazioni di manutenzione delle piattaforme.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Oltre a questi vincoli nella pratica se ne hanno degli altri che mettono
+ in relazione due assegnamenti, ad esempio nella stazione che verr
+\backslash
+`a presa in esame le ``corse bis'', ovvero i servizi effettuati con pi
+\backslash
+`u di un veicolo, devono partire da piattaforme adiacenti.
+\end_layout
+
+\begin_layout Plain Layout
+
+}%scriptsize
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
 \end_layout
 
 \end_inset
 
 
-\begin_inset Note Note
-status open
+\end_layout
 
 \begin_layout BeginFrame
 Previous works
@@ -841,7 +1144,7 @@ Literature review
 
 \begin_layout Itemize
 The bus assignment problem has not received much attention in the literature
- with the notable exception of Adenso-Díaz, 2005 (Oviedo bus station case).
+ with the notable exception of Adenso--Díaz, 2005 (Oviedo bus station case).
 \end_layout
 
 \begin_layout Itemize
@@ -855,7 +1158,7 @@ The bus assignment problem also has strong similarities with the problem
  2003).
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -863,17 +1166,68 @@ status open
 
 
 \backslash
-note{%
+note{
 \end_layout
 
 \begin_layout Plain Layout
 
-}
+{
+\backslash
+tiny
 \end_layout
 
-\end_inset
+\begin_layout Plain Layout
 
+La letteratura scientifica non presenta lavori sull'assegnamento delle piattafor
+me nelle autostazioni, ad eccezione del lavoro di Adenso--Diaz in cui viene
+ descritto il sistema di supporto alle decisioni sviluppato per la stazione
+ degli autobus di Oviedo, in Spagna) che usa tecniche di Intelligenza Artificial
+e.
+\end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Problemi con una struttura simile, in cui delle attività consumano nel tempo
+ delle risorse rinnovabili, emergono in contesti differenti.
+ Si notano forti analogie col problema di gestione dei binari in una stazione
+ ferroviaria  o dei gate di un aeroporto.
+ Per quest'ultimo caso un lavoro sulla generazione di piani di assegnamento
+ robusti è stato pubblicato da Lim 
+\backslash
+& Wang in cui si propongono un modello matematico minimizza un indice di
+ probabilità di conflitto e una metaeuristica basata sulla ricerca locale.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Si fa notare, infine, che anche nel contesto della traduzione del codice
+ sorgente in codice macchina si presentano problematiche che condividono
+ la struttura matematica del problema di gestione delle piattaforme.
+ Zeitlhofer 
+\backslash
+& Wess presentano il caso dell'ottimizzazione della gestione dei registri
+ nel caso di Digital Signal Processo con registri eterogenei.
+ Essi utilizzano i grafi d'intervallo per modellizzare le interferenze tra
+ variabili il cui tempo di vita si sovrappone, sia pure solo parzialmente,
+ e propongono un algoritmo esatto per la soluzione di un problema decisionale.
+\end_layout
+
+\begin_layout Plain Layout
+
+}%tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
 \end_layout
 
 \end_inset
@@ -939,12 +1293,12 @@ There is an arc between service
 \end_layout
 
 \begin_layout Standard
-A proper graph colouring (that respects the constraints of time non-overlap
- and service-platform compatibility) is a feasible solution to the problem.
+A proper graph colouring (that respects the constraints of time non--overlap
+ and service--platform compatibility) is a feasible solution to the problem.
 \end_layout
 
 \begin_layout BeginFrame
-Graph formulation - an example
+Graph formulation -- an example
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -1008,7 +1362,10 @@ Departure
 
 \color black
 Comp.
- platform
+\begin_inset space ~
+\end_inset
+
+platform
 \end_layout
 
 \end_inset
@@ -1282,9 +1639,9 @@ Let us consider an example.
 
 Suppose we have to assign the services 1, 2, 3, which have time intervals
  (1,4), (2,5) and (3,6) respectively, to gates 1, 2, 3, with the compatibilities
- given in the table, i.e.
- service 1 can be assigned to platform 1 or 2, service 2 can be assigned
- to platform 1 or 3, service 3 can be assigned to any platform.
+ given in the table, i.e.~service 1 can be assigned to platform 1 or 2, service
+ 2 can be assigned to platform 1 or 3, service 3 can be assigned to any
+ platform.
 \end_layout
 
 \begin_layout Plain Layout
@@ -1303,8 +1660,8 @@ The time intervals can be represented using a bar graph as shown at the
 
 \begin_layout Plain Layout
 
-The service-platform compatibilities are represented using the diagram at
- the bottom right.
+The service--platform compatibilities are represented using the diagram
+ at the bottom right.
 \end_layout
 
 \begin_layout Plain Layout
@@ -1318,7 +1675,7 @@ The service-platform compatibilities are represented using the diagram at
 \end_layout
 
 \begin_layout BeginFrame
-Graph formulation - an example
+Graph formulation -- an example
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -1572,7 +1929,7 @@ The graph G and the information contained in L allow to generate the graph
 \end_layout
 
 \begin_layout BeginFrame
-Graph formulation - an example
+Graph formulation -- an example
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -1965,8 +2322,7 @@ only<2>{Each service is assigned to a platform}
 
 \backslash
 only<3>{Services on the same platform have to be compatible with each other,
- i.e.
- they have to occupy the platform in non-overlapping time intervals}
+ i.e.~they have to occupy the platform in non--overlapping time intervals}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1991,7 +2347,11 @@ chi$) computed in polynomial time}
 
 
 \backslash
-only<6>{Variables are binary}
+only<6->{Variables are binary}
+\backslash
+uncover<7>{
+\backslash
+ldots but the integrality constraints of such $u_k$ can be relaxed.}
 \end_layout
 
 \end_inset
@@ -2009,28 +2369,220 @@ status open
 
 \begin_layout Plain Layout
 
+{
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
 scriptsize
 \end_layout
 
+\begin_layout Plain Layout
+
+
+\backslash
+begin{eqnarray*}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+min & z^{col}=
+\backslash
+displaystyle
+\backslash
+sum_{k
+\backslash
+in C}u_{k}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pause
+\backslash
+sum_{k
+\backslash
+in L(i)}x_{ik}=1 &  & 
+\backslash
+forall i
+\backslash
+in V
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pause
+\backslash
+sum_{i
+\backslash
+in
+\backslash
+mathcal{Q}}x_{ik}
+\backslash
+leq1 &  & 
+\backslash
+forall k
+\backslash
+in C,
+\backslash
+,
+\backslash
+forall
+\backslash
+mathcal{Q}
+\backslash
+in
+\backslash
+mathcal{Q}_{k}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pause u_{k}
+\backslash
+geq x_{ik} &  & 
+\backslash
+forall k
+\backslash
+in C,
+\backslash
+,
+\backslash
+forall i
+\backslash
+in L^{-1}(k)
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pause
+\backslash
+sum_{k
+\backslash
+in C}
+\backslash
+, u_{k}
+\backslash
+geq
+\backslash
+chi
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pause x_{ik}
+\backslash
+in
+\backslash
+{0,
+\backslash
+,1
+\backslash
+} &  & 
+\backslash
+forall i
+\backslash
+in V,
+\backslash
+,
+\backslash
+forall k
+\backslash
+in L(i)
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<6>{u_{k}
+\backslash
+in
+\backslash
+{0,
+\backslash
+,1
+\backslash
+} &  & 
+\backslash
+forall k
+\backslash
+in C}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<7->{ 
+\backslash
+red{0 
+\backslash
+leq u_{k} 
+\backslash
+leq 1} &  & 
+\backslash
+forall k
+\backslash
+in C }
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{eqnarray*}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
 \end_inset
 
 
-\begin_inset Formula 
-\begin{eqnarray*}
-\min & z^{col}=\sum_{k\in C}u_{k}\\
-\pause\sum_{k\in L(i)}x_{ik}=1 &  & \forall i\in V\\
-\pause\sum_{i\in\mathcal{Q}}x_{ik}\leq1 &  & \forall k\in C,\,\forall\mathcal{Q}\in\mathcal{Q}_{k}\\
-\pause\sum_{i\in L^{-1}(k)}\, x_{ik}\leq|L^{-1}(k)|\, u_{k} &  & \forall k\in C\\
-\pause\sum_{k\in C}\, u_{k}\geq\chi\\
-\pause x_{ik}\in\{0,\,1\} &  & \forall i\in V,\,\forall k\in L(i)\\
-u_{k}\in\{0,\,1\} &  & \forall k\in C
-\end{eqnarray*}
+\end_layout
 
-\end_inset
-
-
+\end_deeper
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -2038,12 +2590,25 @@ status open
 
 
 \backslash
-normalsize
+note{
+\end_layout
+
+\begin_layout Plain Layout
+
+xxx
+\end_layout
+
+\begin_layout Plain Layout
+
+} %note
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -2057,7 +2622,7 @@ Model 2: arrival departure gap
 
 \end_inset
 
-Model 2: max min time arrival-departure gap
+Model 2: max min time arrival--departure gap
 \end_layout
 
 \end_inset
@@ -2065,9 +2630,8 @@ Model 2: max min time arrival-departure gap
 
 \end_layout
 
-\end_deeper
 \begin_layout BeginFrame
-Maximisation of the minimum arrival-departure gap
+Maximisation of the minimum arrival--departure gap
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -2089,8 +2653,29 @@ If this gap is too small, a delay in the departure of a bus could cause
  to the same platform and may require a rescheduling involving many services.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{
+\end_layout
+
+\begin_layout Plain Layout
+
+}%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout BeginFrame
-Maximisation of the minimum arrival-departure gap
+Maximisation of the minimum arrival--departure gap
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -2159,11 +2744,32 @@ The variable
 \begin_inset Formula $w$
 \end_inset
 
- which is the minimum arrival-departure gap.
+ which is the minimum arrival--departure gap.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{
+\end_layout
+
+\begin_layout Plain Layout
+
+}%
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout BeginFrame
-Maximisation of the minimum arrival-departure gap
+Maximisation of the minimum arrival--departure gap
 \end_layout
 
 \begin_layout FrameSubtitle
@@ -2187,7 +2793,7 @@ status open
 
 
 \backslash
-only<1>{Maximize the minimum arrival-departure gap}
+only<1>{Maximize the minimum arrival--departure gap}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2202,8 +2808,7 @@ only<2>{Each service is assigned to a platform}
 
 \backslash
 only<3>{Services on the same platform have to be compatible with each other,
- i.e.
- they have to occupy the platform in non-overlapping time intervals}
+ i.e.~they have to occupy the platform in non--overlapping time intervals}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2219,7 +2824,7 @@ only<4>{The variable $y_{ij}$ must be 1 if services $i$ and $j$ are assigned
 
 \backslash
 only<5>{When the variable $y_{ij}$ is 1 then the variable $w$ must be less
- or equal to the arrival-depature gap $c_{ij}$ between services $i$ and
+ or equal to the arrival--depature gap $c_{ij}$ between services $i$ and
  $j$}
 \end_layout
 
@@ -2245,7 +2850,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+{
 \backslash
 scriptsize
 \end_layout
@@ -2478,76 +3083,6 @@ end{eqnarray*}
 
 \begin_layout Plain Layout
 
-
-\backslash
-normalsize
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-normalsize
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-note{%
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-tiny
-\end_layout
-
-\begin_layout Plain Layout
-
-The differences from the model for the maximisation of the sum of the gaps
- between services are: 
-\backslash
-begin{itemize} 
-\backslash
-item The introduction of the continuous and non-negative variable $m$, which
- is lesser than any time gap $c_{ij}$ between two servics on the same gate;
- 
-\backslash
-item The constant $M$, which implies that $w$ is not bound when the buses
- $i$ and $j$ leave from different platforms.
- The value to assign to this constant must be greater than the maximum time
- that elapses between two services that can occupy the same platform; 
-\backslash
-item The objective function, which ensures that $w$ assumes the value of
- the minimum time between two services on the same platform.
- 
-\backslash
-end{itemize}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-normalsize
-\end_layout
-
-\begin_layout Plain Layout
-
 }
 \end_layout
 
@@ -2576,6 +3111,62 @@ Model 3: min conflict conflict measure between bus services
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+The differences from the model for the maximisation of the sum of the gaps
+ between services are: 
+\backslash
+begin{itemize} 
+\backslash
+item The introduction of the continuous and non--negative variable $m$,
+ which is lesser than any time gap $c_{ij}$ between two servics on the same
+ gate; 
+\backslash
+item The constant $M$, which implies that $w$ is not bound when the buses
+ $i$ and $j$ leave from different platforms.
+ The value to assign to this constant must be greater than the maximum time
+ that elapses between two services that can occupy the same platform; 
+\backslash
+item The objective function, which ensures that $w$ assumes the value of
+ the minimum time between two services on the same platform.
+ 
+\backslash
+end{itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout BeginFrame
 Minimisation of an assignments conflict measure 
 \end_layout
@@ -2647,6 +3238,44 @@ A measure of the conflict of the plan assignment is used as objective function
  (Lim & Wang, 2005).
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+xxx
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout BeginFrame
 Minimisation of an assignments conflict measure 
 \end_layout
@@ -2687,8 +3316,7 @@ only<2>{Each service is assigned to a platform}
 
 \backslash
 only<3>{Services on the same platform have to be compatible with each other,
- i.e.
- they have to occupy the platform in non-overlapping time intervals}
+ i.e.~they have to occupy the platform in non--overlapping time intervals}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2737,11 +3365,7 @@ sum_{(i,j)
 \backslash
 in E}(D-c_{ij})
 \backslash
-,
-\backslash
-sum_{k
-\backslash
-in G}y_{ij}
+,y_{ij}
 \backslash
 
 \backslash
@@ -2914,6 +3538,44 @@ normalsize
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+xxx
+\end_layout
+
+\begin_layout Plain Layout
+
+}%font size
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Proposed algorithms
 \end_layout
@@ -2933,7 +3595,7 @@ begin{frame}[fragile,allowsframebreaks]
 
 
 \backslash
-frametitle{A first-fist heuristic for Model 1}
+frametitle{A first--fit heuristic for Model 1}
 \end_layout
 
 \begin_layout Plain Layout
@@ -3226,7 +3888,7 @@ bigcup_{i=1}^{4}}F_{i})}$
 
 	Let $
 \backslash
-mathcal{P}$ be the platforms vectors in non--decreasing order
+mathcal{P}$ be the platform vectors in non--decreasing order
 \backslash
 ;
 \end_layout
@@ -3246,7 +3908,7 @@ KwTo $5$ }{
 
 		Let $
 \backslash
-mathcal{F}_i$ be the services vector in non--decreasing order of leaving
+mathcal{F}_i$ be the service vector in non--decreasing order of leaving
  time
 \backslash
 ;
@@ -3390,7 +4052,7 @@ mathcal{A}$
 
 %	
 \backslash
-caption{First Fit like heuristics}
+caption{First--Fit like heuristics}
 \end_layout
 
 \begin_layout Plain Layout
@@ -3410,6 +4072,43 @@ end{algorithm}
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+xxx
+\end_layout
+
+\begin_layout Plain Layout
+
+}%font size
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -3666,6 +4365,35 @@ vfill
 
 
 \backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+xxx
+\end_layout
+
+\begin_layout Plain Layout
+
+}%font size
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 end{frame}
 \end_layout
 
@@ -3857,7 +4585,7 @@ in V_p$ is compatible with $c
 
 %		
 \backslash
-tcc{sotto-grafi indotti}
+tcc{sotto--grafi indotti}
 \end_layout
 
 \begin_layout Plain Layout
@@ -3878,7 +4606,7 @@ mathcal{G}_p$ from $V_p, C_p, E_p$
 
 \begin_layout Plain Layout
 
-		generate the concrete mathematical model
+		generate the mathematical model
 \backslash
 ;
 \end_layout
@@ -3988,6 +4716,35 @@ vfill
 
 
 \backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+xxx
+\end_layout
+
+\begin_layout Plain Layout
+
+}%font size
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 end{frame}
 \end_layout
 
@@ -4016,7 +4773,7 @@ Instance
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="2">
+<lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
@@ -4026,7 +4783,10 @@ Instance
 
 \begin_layout Plain Layout
 No.
- platforms
+\begin_inset space ~
+\end_inset
+
+platforms
 \end_layout
 
 \end_inset
@@ -4035,7 +4795,10 @@ No.
 \begin_inset Text
 
 \begin_layout Plain Layout
-24
+\begin_inset Formula $24$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4047,7 +4810,10 @@ No.
 
 \begin_layout Plain Layout
 No.
- leaving services
+\begin_inset space ~
+\end_inset
+
+leaving services
 \end_layout
 
 \end_inset
@@ -4056,7 +4822,34 @@ No.
 \begin_inset Text
 
 \begin_layout Plain Layout
-229
+\begin_inset Formula $229$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operation hours
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+05:30--20:30 (
+\begin_inset Formula $15$
+\end_inset
+
+ hours)
 \end_layout
 
 \end_inset
@@ -4067,7 +4860,11 @@ No.
 \begin_inset Text
 
 \begin_layout Plain Layout
-Operation hours
+Avg.
+\begin_inset space ~
+\end_inset
+
+occupacy (min)
 \end_layout
 
 \end_inset
@@ -4076,7 +4873,10 @@ Operation hours
 \begin_inset Text
 
 \begin_layout Plain Layout
-05:30--20:30 (15 hours)
+\begin_inset Formula $\approx18$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4162,7 +4962,10 @@ Model 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-5520
+\begin_inset Formula $5520$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4171,7 +4974,10 @@ Model 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-1892
+\begin_inset Formula $1915$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4180,7 +4986,10 @@ Model 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-5520
+\begin_inset Formula $5496$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4200,7 +5009,10 @@ Model 2
 \begin_inset Text
 
 \begin_layout Plain Layout
-30484
+\begin_inset Formula $30484$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4209,7 +5021,10 @@ Model 2
 \begin_inset Text
 
 \begin_layout Plain Layout
-624904
+\begin_inset Formula $624904$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4218,7 +5033,10 @@ Model 2
 \begin_inset Text
 
 \begin_layout Plain Layout
-5496
+\begin_inset Formula $5496$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4238,7 +5056,10 @@ Model 3
 \begin_inset Text
 
 \begin_layout Plain Layout
-30483
+\begin_inset Formula $30483$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4247,7 +5068,10 @@ Model 3
 \begin_inset Text
 
 \begin_layout Plain Layout
-599917
+\begin_inset Formula $599917$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4256,7 +5080,10 @@ Model 3
 \begin_inset Text
 
 \begin_layout Plain Layout
-5496
+\begin_inset Formula $5496$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4269,6 +5096,48 @@ Model 3
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+xxx
+\end_layout
+
+\begin_layout Plain Layout
+
+}%font size
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
 \begin_layout BeginFrame
 A case study
 \end_layout
@@ -4277,7 +5146,7 @@ A case study
 Bologna bus station daily operation
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="6">
@@ -4302,7 +5171,30 @@ Bologna bus station daily operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-Platforms
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{minipage}{1.5cm}
+\backslash
+begin{center}No.
+ of
+\backslash
+
+\backslash
+platforms
+\backslash
+end{center}
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4311,7 +5203,29 @@ Platforms
 \begin_inset Text
 
 \begin_layout Plain Layout
-Min gap
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{minipage}{1.5cm}
+\backslash
+begin{center}Min gap
+\backslash
+
+\backslash
+(min)
+\backslash
+end{center}
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4320,7 +5234,29 @@ Min gap
 \begin_inset Text
 
 \begin_layout Plain Layout
-Conflict pr.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{minipage}{2cm}
+\backslash
+begin{center}Conflict
+\backslash
+
+\backslash
+probability
+\backslash
+end{center}
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4329,7 +5265,29 @@ Conflict pr.
 \begin_inset Text
 
 \begin_layout Plain Layout
-Time
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{minipage}{1cm}
+\backslash
+begin{center}Time
+\backslash
+
+\backslash
+(sec)
+\backslash
+end{center}
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4358,7 +5316,31 @@ Model 1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+circled{
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $15$
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
 \end_inset
 
 
@@ -4373,7 +5355,7 @@ Model 1
 \begin_inset Formula $0$
 \end_inset
 
-'
+
 \end_layout
 
 \end_inset
@@ -4394,7 +5376,7 @@ Model 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.72''
+0.72
 \end_layout
 
 \end_inset
@@ -4445,10 +5427,34 @@ Model 2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+circled{
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $19$
 \end_inset
 
-'
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4472,7 +5478,7 @@ Model 2
 \begin_inset Formula $\approx$
 \end_inset
 
-17''
+17
 \end_layout
 
 \end_inset
@@ -4526,7 +5532,7 @@ Model 3
 \begin_inset Formula $12$
 \end_inset
 
-'
+
 \end_layout
 
 \end_inset
@@ -4535,7 +5541,31 @@ Model 3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+circled{
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $7.55\cdot10^{-3}$
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
 \end_inset
 
 
@@ -4550,7 +5580,7 @@ Model 3
 \begin_inset Formula $\approx$
 \end_inset
 
-34''
+34
 \end_layout
 
 \end_inset
@@ -4598,7 +5628,7 @@ Current
 \begin_inset Formula $0$
 \end_inset
 
-'
+
 \end_layout
 
 \end_inset
@@ -4619,7 +5649,7 @@ Current
 \begin_inset Text
 
 \begin_layout Plain Layout
--
+---
 \end_layout
 
 \end_inset
@@ -4639,6 +5669,585 @@ He
 </cell>
 </row>
 </lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+A case study
+\end_layout
+
+\begin_layout FrameSubtitle
+Bologna bus station daily operation
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Current
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{minipage}{1.5cm}
+\backslash
+begin{center}No.
+\backslash
+
+\backslash
+platforms
+\backslash
+end{center}
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+circled{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $15$
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $24$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $24$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $19$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{minipage}{1.5cm}
+\backslash
+begin{center}Min gap
+\backslash
+
+\backslash
+(min)
+\backslash
+end{center}
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+circled{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $19$
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $12$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{minipage}{2cm}
+\backslash
+begin{center}Conflict
+\backslash
+
+\backslash
+probability
+\backslash
+end{center}
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.38\cdot10^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.57\cdot10^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+circled{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $7.55\cdot10^{-3}$
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.12\cdot10^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{minipage}{1cm}
+\backslash
+begin{center}Time
+\backslash
+
+\backslash
+(sec)
+\backslash
+end{center}
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.72$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\approx17$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\approx34$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+---
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ex/He
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ex
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+LP_SOLVE, Intel Core i3 330M @ 2.13GHz, 4 GB 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+He
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Receding Horizon Heuristics, time windows: 1hour
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+He
+\begin_inset Formula $^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+---
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+xxx
+\end_layout
+
+\begin_layout Plain Layout
+
+}%font size
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
+\end_layout
 
 \end_inset
 
@@ -4748,6 +6357,44 @@ note{A picture is worth a thousand words!}
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+xxx
+\end_layout
+
+\begin_layout Plain Layout
+
+}%font size
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Conclusions
 \end_layout
@@ -4798,7 +6445,7 @@ Algorithms for solving more efficiently the models
 \end_layout
 
 \begin_layout Itemize
-Heuristics and meta-heuristics
+Heuristics and meta--heuristics
 \end_layout
 
 \begin_layout Itemize
@@ -4826,6 +6473,44 @@ vskip0pt plus.5fill
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{%
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+tiny
+\end_layout
+
+\begin_layout Plain Layout
+
+xxx
+\end_layout
+
+\begin_layout Plain Layout
+
+}%font size
+\end_layout
+
+\begin_layout Plain Layout
+
+}%note
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout BeginPlainFrame
 
 \end_layout
@@ -4834,13 +6519,10 @@ vskip0pt plus.5fill
 \align center
 
 \size huge
-\lang english
 Thank you for your attention!
 \end_layout
 
 \begin_layout Standard
-
-\lang english
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -4851,19 +6533,14 @@ Thank you for your attention!
 \align center
 
 \size largest
-\lang english
 Any questions?
 \end_layout
 
 \begin_layout BeginFrame
-
-\lang english
 References
 \end_layout
 
 \begin_layout Standard
-
-\lang english
 \begin_inset ERT
 status open
 
@@ -4881,8 +6558,6 @@ beamertemplatearticlebibitems
 
 \begin_layout Bibliography
 \labelwidthstring References
-
-\lang english
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Adenso-Diaz2005"
@@ -4894,7 +6569,7 @@ key "Adenso-Diaz2005"
 \end_inset
 
 B.
- Adenso-Díaz.
+ Adenso--Díaz.
  
 \begin_inset ERT
 status collapsed
@@ -4910,7 +6585,7 @@ newblock
 
  
 \emph on
-Rule-based system for platform assignment in bus stations.
+Rule --based system for platform assignment in bus stations.
 \emph default
 
 \begin_inset ERT
@@ -4928,7 +6603,10 @@ newblock
  In 
 \emph on
 Proc.
- of
+\begin_inset space ~
+\end_inset
+
+of
 \emph default
  Multidisciplinary Scheduling: Theory and Applications.
  Springer US, pp.
@@ -4937,8 +6615,6 @@ Proc.
 
 \begin_layout Bibliography
 \labelwidthstring References
-
-\lang english
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Lim2005"
@@ -4981,18 +6657,18 @@ newblock
  In 
 \emph on
 Proc.
- of 
+\begin_inset space ~
+\end_inset
+
+of 
 \emph default
-ICTAI 05.
- 17th IEEE International Conference on Tools with Artificial Intelligence,
- pp.
+the 17th IEEE International Conference on Tools with Artificial Intelligence
+ (ICTAI 05), pp.
  74 –81, 2005.
 \end_layout
 
 \begin_layout Bibliography
 \labelwidthstring References
-
-\lang english
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Zeitlhofer2003"
@@ -5019,8 +6695,8 @@ newblock
 
 \end_inset
 
- List-coloring of interval graphs with application to register assignment
- for heterogeneous register-set architectures.
+ List--coloring of interval graphs with application to register assignment
+ for heterogeneous register--set architectures.
 \begin_inset ERT
 status collapsed
 
