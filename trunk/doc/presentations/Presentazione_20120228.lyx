@@ -66,7 +66,6 @@
 
 %\usepackage{standalone}
 \end_preamble
-\options draft
 \use_default_options false
 \maintain_unincluded_children false
 \language italian
@@ -252,11 +251,11 @@ DOTTORATO DI RICERCA in Scienze dell'Ingegneria
 \begin_inset Newline newline
 \end_inset
 
- Indirizzo Ingegneria Informatica, Gestionale e dell'Automazione
+Ingegneria Informatica, Gestionale e dell'Automazione
 \begin_inset Newline newline
 \end_inset
 
-X Ciclo
+X Ciclo n.s.
 \shape italic
 \size footnotesize
 
@@ -275,9 +274,19 @@ Università Politecnica delle Marche
 \shape default
 \size default
 
-\begin_inset Graphics
-	filename img/logoUNIVPM.pdf
-	width 0.5cm
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pgfpicture}[width=0.5cm]
+\backslash
+pgfuseimage{UNIVPM}
+\backslash
+end{pgfpicture}
+\end_layout
 
 \end_inset
 
@@ -384,7 +393,18 @@ The Bologna bus station
 \align center
 \begin_inset Graphics
 	filename img/edificio_vista_alto.jpg
-	height 80theight%
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/layout_piattaforme.pdf
+	scale 75
 
 \end_inset
 
@@ -1535,6 +1555,13 @@ textwidth}{
 
 
 \backslash
+onslide<1->{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 begin{center}
 \end_layout
 
@@ -1559,6 +1586,11 @@ A max stable set solution
 
 \backslash
 end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2919,7 +2951,7 @@ SetKwInOut{Output}{output} %
 
 	
 \backslash
-Input{The services set $F$ the platform set $P$} %
+Input{The services set $F$ and the platform set $P$} %
 \end_layout
 
 \begin_layout Plain Layout
@@ -3377,6 +3409,13 @@ frametitle{A time buffer increase heuristic for Model 2}
 
 
 \backslash
+onslide<1->{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 SetAlgoNoLine
 \end_layout
 
@@ -3438,14 +3477,14 @@ SetKw{To}{to}%
 
 	
 \backslash
-Input{un'istanza di GA}%
+Input{an istance of the Bus--Platform Assignment problem}%
 \end_layout
 
 \begin_layout Plain Layout
 
 	
 \backslash
-Output{gli assegnamenti soste-piattaforme nella giornata da pianificare}%
+Output{a Bus--Platform assignment}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -3457,9 +3496,9 @@ BlankLine%
 
 \begin_layout Plain Layout
 
-	
+%	
 \backslash
-tcc{il buffer è inizialiazzato a 0}%
+tcc{initial buffer set to zero}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -3473,34 +3512,35 @@ tcc{il buffer è inizialiazzato a 0}%
 
 	
 \backslash
-Repeat(){Esistono soluzioni ammissibili}{
+Repeat(){a feasible solution was found}{
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+%		
 \backslash
-tcc{sotto-grafi indotti}
+tcc{induced sub--graph}
 \end_layout
 
 \begin_layout Plain Layout
 
-		genera $G = (V, E)$
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-		risolvi il problema di minimizzazione del numero delle piattaforme assegnate
- ad almeno una corsa
+		generate $G = (V, E)$ according to $b$
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-		$b = b + 1$
+		solve the list graph colouring problem of $G$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		$b 
+\backslash
+leftarrow b + 2$ minutes
 \backslash
 ;
 \end_layout
@@ -3518,13 +3558,9 @@ tcc{sotto-grafi indotti}
 
 	
 \backslash
-Return l'insieme di assegnamenti {$
+Return the last found feasible assignment
 \backslash
-{x_{ik} : x_{ik}^* = 1
-\backslash
-}$
-\backslash
-;} %
+;%
 \end_layout
 
 \begin_layout Plain Layout
@@ -3536,7 +3572,51 @@ end{algorithm}
 
 \begin_layout Plain Layout
 
-}
+}%scriptsize
+\end_layout
+
+\begin_layout Plain Layout
+
+}%onslide
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+onslide<2->{
+\backslash
+includegraphics{img/buffer1}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+onslide<3->{
+\backslash
+includegraphics{img/buffer2}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vfill
 \end_layout
 
 \begin_layout Plain Layout
@@ -3573,6 +3653,13 @@ begin{frame}[fragile,allowsframebreaks]
 
 \backslash
 frametitle{A Receding Horizon heuristic for Model 3}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+onslide<1->{
 \end_layout
 
 \begin_layout Plain Layout
@@ -3640,16 +3727,16 @@ SetKw{To}{to}%
 
 	
 \backslash
-Input{un'istanza di GA e una lista di istanti $p_1, 
+Input{an instance and a list $p_1, 
 \backslash
-ldots, p_P$}%
+ldots, p_P$ of time points}%
 \end_layout
 
 \begin_layout Plain Layout
 
 	
 \backslash
-Output{gli assegnamenti soste-piattaforme nella giornata da pianificare}%
+Output{the bus--platform assignaments}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -3663,7 +3750,7 @@ BlankLine%
 
 	
 \backslash
-tcc{per ogni intervallo $[p_{p-1}, p_p]$}%
+tcc{for each interval $[p_{p-1}, p_p]$}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -3679,8 +3766,7 @@ To $P$}{%
 
 		
 \backslash
-tcc{considera solo le corse $V_p$ che occuperanno una piattaforma nell'intervall
-o $p$}%
+tcc{consider the services $V_p$ that stops in period $p$}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -3706,8 +3792,7 @@ leq p_p
 
 		
 \backslash
-tcc{considera solo le piattaforme $C_p$ che sono abilitate nell'intervallo
- $p$}%
+tcc{consider the platforms $C_p$ available in period $p$}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -3716,9 +3801,9 @@ tcc{considera solo le piattaforme $C_p$ che sono abilitate nell'intervallo
 \backslash
 {c 
 \backslash
-in C : c$ è abilitato in $[p_{p-1}, p_p]$ e almeno una corsa $v 
+in C : c$ available in $[p_{p-1}, p_p]$ and at least one service $v 
 \backslash
-in V_p$ può essere assegnata a $c 
+in V_p$ is compatible with $c 
 \backslash
 }$
 \backslash
@@ -3727,55 +3812,55 @@ in V_p$ può essere assegnata a $c
 
 \begin_layout Plain Layout
 
-		
+%		
 \backslash
 tcc{sotto-grafi indotti}
 \end_layout
 
 \begin_layout Plain Layout
 
-		genera $G = (V_p, E_p)$
+		generate $G = (V_p, E_p)$
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-		genera $
+		generate $
 \backslash
-mathcal{G}_p$ da $V_p, C_p, E_p$
-\backslash
-;
-\end_layout
-
-\begin_layout Plain Layout
-
-		genera il modello matematico del problema
+mathcal{G}_p$ from $V_p, C_p, E_p$
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-		imposta gli upper bound delle variabili $
+		generate the concrete mathematical model
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		set the upper bound of variable $
 \backslash
 {x_{ik}
 \backslash
-}$ per forzare gli assegnamenti ottenuti con la precedente iterazione
+}$ to force consistence with previous iteration
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-		risolvi il modello
+		solve
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-		imposta gli assegnamenti ottenuti nella soluzione complessiva
+		save the solution of period $p$
 \backslash
 ;
 \end_layout
@@ -3793,13 +3878,7 @@ mathcal{G}_p$ da $V_p, C_p, E_p$
 
 	
 \backslash
-Return l'insieme di assegnamenti {$
-\backslash
-{x_{ik} : x_{ik}^* = 1
-\backslash
-}$
-\backslash
-;} %
+Return a bus--platform assignment %
 \end_layout
 
 \begin_layout Plain Layout
@@ -3825,6 +3904,41 @@ label{alg:time_slice}
 
 \backslash
 end{algorithm}}
+\end_layout
+
+\begin_layout Plain Layout
+
+}%onslide
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+onslide<2->{{
+\backslash
+includegraphics[scale=0.50]{img/iterative_horizon}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vfill
 \end_layout
 
 \begin_layout Plain Layout
@@ -4541,7 +4655,9 @@ status open
 \backslash
 only<1>{
 \backslash
-include{img/sol_reale}}
+includegraphics[height=0.8
+\backslash
+textheight]{../report/img/actual_solution_m}}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -4550,7 +4666,9 @@ include{img/sol_reale}}
 \backslash
 only<2>{
 \backslash
-include{img/sol_model1}}
+includegraphics[height=0.8
+\backslash
+textheight]{../report/img/real_MathModelColoring}}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -4559,7 +4677,9 @@ include{img/sol_model1}}
 \backslash
 only<3>{
 \backslash
-include{img/sol_model2}}
+includegraphics[height=0.8
+\backslash
+textheight]{../report/img/real_IterativeTimeHorizonMathMD}}%
 \end_layout
 
 \begin_layout Plain Layout
@@ -4568,7 +4688,9 @@ include{img/sol_model2}}
 \backslash
 only<4>{
 \backslash
-include{img/sol_model3}}
+includegraphics[height=0.8
+\backslash
+textheight]{../report/img/real_IterativeTimeHorizonMath}}%
 \end_layout
 
 \begin_layout Plain Layout
