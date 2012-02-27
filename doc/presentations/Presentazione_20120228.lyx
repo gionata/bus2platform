@@ -38,28 +38,14 @@
 \usepackage{palatino}
 \usepackage[scaled=.77]{beramono}
 
-% Toglie lenorme spazione prima di description
+% Toglie l'enorme spazione prima di description
 \setbeamersize{description width=0pt}
-
-\usetikzlibrary{snakes,arrows,shapes}
-%\usepackage{multirow}
-%\usepackage{verbatim}
 
 \pgfdeclareimage[height=5mm]{UNIVPM}{img/logo_bn_198}
 \logo{\pgfuseimage{UNIVPM}}
 
 \usepackage[]{algorithm2e}
-
 \usepackage{xmpmulti}
-\usepackage{listings} %Per inserire codice
-
-%per pagina note da stampare
-%\usepackage{handoutWithNotes}
-%\pgfpagesuselayout{4 on 1 with notes}[a4paper,border shrink=5mm]
-
-%\usepackage{footnote}
-%\makesavenoteenv{tabular}
-
 
 \newcommand{\blu}[1]{{\usebeamercolor[fg]{structure} #1}}
 \newcommand{\red}[1]{{\usebeamercolor[fg]{alerted text} #1}}
@@ -166,7 +152,7 @@ status open
 
 {
 \backslash
-bf Gionata Massi}
+sl Gionata Massi}
 \end_layout
 
 \end_inset
@@ -197,7 +183,7 @@ status open
 
 {
 \backslash
-bf F.
+sl F.
  Pezzella}
 \backslash
 mbox{
@@ -220,7 +206,7 @@ status open
 
 {
 \backslash
-bf S.
+sl S.
  Longhi}
 \backslash
 mbox{
@@ -367,6 +353,47 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{Buon pomeriggio,
+\end_layout
+
+\begin_layout Plain Layout
+
+illustrer
+\backslash
+`o uno dei temi sviluppati nel corso del dottorato che ha per oggetto la
+ pianificazione dell'utilizzo delle piattaforme di un'autostazione.
+\end_layout
+
+\begin_layout Plain Layout
+
+Il tutor accademico 
+\backslash
+`e il prof.
+ F.
+ Pezzella e la societ
+\backslash
+`a Pluservice s.r.l.
+ di Senigallia ha cofinanziato la ricerca.
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Platform Assignment Problem in Bus Stations
 \begin_inset Argument
@@ -405,6 +432,22 @@ The Bologna bus station
 \begin_inset Graphics
 	filename img/layout_piattaforme.pdf
 	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+note{}
+\end_layout
 
 \end_inset
 
