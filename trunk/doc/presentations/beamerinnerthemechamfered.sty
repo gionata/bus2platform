@@ -176,7 +176,7 @@
 }
 
 
-
+%% Gionata Massi
 
 \defbeamertemplate*{title page}{chamfered}[1][]
 {
@@ -184,6 +184,10 @@
   \vfill
   \begin{centering}
     \begin{centering}
+     \begin{centering}
+      \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute
+    \end{centering}
+    \vskip1em\par
       \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par%
       \ifx\insertsubtitle\@empty%
       \else%
@@ -196,11 +200,7 @@
       \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor
     \end{centering}
     \vskip1em\par
-    \begin{centering}
-      \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute
-    \end{centering}
-    \vskip1em\par
-    \begin{centering}
+   \begin{centering}
       \usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate
     \end{centering}\vskip0.5em
     {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
