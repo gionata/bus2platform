@@ -80,6 +80,19 @@ int main(int argc, char *argv[])
 
 	int *warmStart = 0;
 
+	/////
+	long int dur_acc = 0;
+	for (Buses::const_iterator b = problemSets.B().begin(); b != problemSets.B().end(); b++) {
+		dur_acc +=
+		       ((*b)->departure() - 
+		       (*b)->arrival())
+		       .minutes();
+		// cout << dur_acc << endl;
+	}
+	cout << "avg interval size (min) = " << (double) dur_acc / problemSets.B().size() << endl;
+
+	/////
+
 	string reference_name("istanza_reale_feasible");
 	size_t ref_len = reference_name.length();
 	size_t inst_len = instance_name.length();
