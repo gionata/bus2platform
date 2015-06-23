@@ -1,0 +1,1 @@
+bus2platform is a system thar supports the bus station manager to make the gate assignment decision.
